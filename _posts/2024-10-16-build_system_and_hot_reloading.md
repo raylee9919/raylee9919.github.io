@@ -24,7 +24,7 @@ My build process consists of two main lines. One builds `win32.exe`, and the oth
 > Scared of diagrams? Believe me, so am I. OOP's class hierarchy UML diagrams are my worst nightmare. 
 
 In simple terms, win32.exe checks the write timestamp of `game.dll` every frame. 
-If it has changed, it loads the updated code. Since the game state is stored in a reserved memory chunk, 
+If it has changed, it loads the updated code. Since the game state is stored in a reserved memory chunk (e.g. Character's hit-point), 
 allocated by `win32.exe`, reloading `game.dll` into any arbitrary memory address won't break anything. 
 This way, you don't have to shut down the process to modify the game code!
 
