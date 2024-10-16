@@ -1,0 +1,31 @@
+Asset
+  Animation
+    Quaternion
+    Interpolation (Currently, Linear)
+  Font Rendering
+
+Debug Infrastructure
+
+Meta-Programming
+
+SSE/AVX SIMD
+  CPU Bitmap Rendering
+
+Math Library
+  Random
+  Interpolation
+
+OpenGL
+  Graphics Pipeline (e.g. Batch)
+
+Multi-Threading
+
+Memory Management
+  Arena-Based
+
+Build System
+  Unity BUild
+  Hot-Reloading
+
+
+Win32 OpenGL API HELL
