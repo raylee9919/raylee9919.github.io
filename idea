@@ -24,11 +24,16 @@ Memory Management
   Arena-Based
 
 Build System
-  Unity BUild
-  Hot-Reloading
+  Unity BUild (O)
+  Hot-Reloading (O)
 
 Simulation
   Hash-Map
+
+Lighting
+  SVO!
+
+PNG Loading
 
 
 Win32 OpenGL API HELL
