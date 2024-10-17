@@ -20,18 +20,8 @@ OpenGL
 
 Multi-Threading
 
-Memory Management
-  Arena-Based
-
-Build System
-  Unity BUild (O)
-  Hot-Reloading (O)
-
 Simulation
   Hash-Map
-
-Lighting
-  SVO!
 
 PNG Loading
 
