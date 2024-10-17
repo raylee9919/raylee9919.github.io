@@ -24,9 +24,9 @@ Finally knowing what was going on, I still had code to write: low-endians, high-
 the first time sucks. And speaking of bits, there was no room for mistakes. A single wrong bit, and you are done. You will get a hideous magenta Pikachu on your screen.  
 
 Finally, long after the struggle that seemed to never end, a wild Pikachu appeared!
-![Pika](..\resources\pika.png)
+![Pika](../resources/pika.png)
 <div style="text-align: left;">
-  <img src="../resources/arch_btw.jpg" width="200" />
+  <img src="../resources/arch_btw.jpg" alt="image" width="200" />
 </div>
 > I use Arch, btw.
 
