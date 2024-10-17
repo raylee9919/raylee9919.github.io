@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Rendering Font
+title: Font Rendering
 author: raylee
 date: 2024-10-17 21:00 +0900
 categories: [Programming, Game_Dev]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Loading PNG, how hard could it be?
+title: Loading PNG
 author: raylee
 date: 2024-10-17 20:00 +0900
 categories: [Programming, Game_Dev]

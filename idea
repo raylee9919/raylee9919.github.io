@@ -2,7 +2,6 @@ Asset
   Animation
     Quaternion
     Interpolation (Currently, Linear)
-  Font Rendering
 
 Debug Infrastructure
 
