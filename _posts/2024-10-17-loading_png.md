@@ -26,7 +26,7 @@ the first time sucks. And speaking of bits, there was no room for mistakes. A si
 Finally, long after the struggle that seemed to never end, a wild Pikachu appeared!
 ![Pika](..\resources\pika.png)
 <div style="text-align: left;">
-  <img src="..\resources\arch_btw.jpg" width="200" />
+  <img src="../resources/arch_btw.jpg" width="200" />
 </div>
 > I use Arch, btw.
 
