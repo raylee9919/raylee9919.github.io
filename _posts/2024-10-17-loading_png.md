@@ -31,4 +31,4 @@ Finally, long after the struggle that seemed to never end, a wild Pikachu appear
 > I use Arch, btw.
 
 Finally, for those who are intereted in code, I'll leave a link below.  
-[Github](https://github.com/raylee9919/png-from-scratch)
+[Github Link](https://github.com/raylee9919/png-from-scratch)
