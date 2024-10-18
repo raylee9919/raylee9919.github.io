@@ -33,6 +33,8 @@ I hope you feel the same tingle I felt when I first read this!
 Computing extremely granular samples all over the hemisphere? Go nuts if you are rendering a Pixar movie. But in real-time rendering? Meh...  
 
 ...  
+![gi_0](../resources/gi0.png)  
+> Image of a scene fetching albedo data from low res-voxel octree in my game engine.
 
 
 I'll share the resources that I found personally helpful.  
