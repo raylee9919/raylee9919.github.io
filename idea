@@ -7,15 +7,9 @@ Debug Infrastructure
 
 Meta-Programming
 
-SSE/AVX SIMD
-  CPU Bitmap Rendering
-
 Math Library
   Random
   Interpolation
-
-OpenGL
-  Graphics Pipeline (e.g. Batch)
 
 Multi-Threading
 
