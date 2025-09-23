@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hash</title>
+    </head>
+    <body>
+        <h1>Hash</h1>
+        <h3>Seong Woo Lee</h3>
+
+        <p>The "deterministic randomness" is incredibly useful for a variety of purposes,
+        such as hash tables, checksums, <a href="https://en.wikipedia.org/wiki/Monte_Carlo_algorithm">monte carlo algorithms</a>,
+        communication-less distributed algorithms, etc, the list goes on.</p>
+
+        <p>Hash functions compute their output by essentially shuffling their input
+        really, really well, in a such way that is not feasible to reverse.</p>
+
+        <p>
+        Cryptographers came up with a variety of properties that a <a href="https://en.wikipedia.org/wiki/Random_oracle">random oracle</a> would have.
+        The three most important and well-known properties a secure cryptographic hash function 
+        should satisfy are:
+        <ol>
+            <li><strong>Pre-Image Resistance.</strong> For some constant c it should be hard to find 
+                some input m such that h(m) = c.
+            </li>
+            <li><strong>Second Pre-Image Resistance.</strong> For some input m1, it should be hard to
+                find another input m2 such that h(m1) = h(m2).
+            </li>
+            <li><strong>Collision Resistance.</strong> It should be hard to find inputs m1, m2 such that
+                h(m1) = h(m2).
+            </li>
+        </ol>
+        We generally consider one of these properties <em>broken</em> if there exists a method that produces
+        a collision or pre-image faster than simply trying random inputs (a.k.a., <em>brute force attack</em>).
+        However, there are gradations in breakage, as some methods are only several magnitudes faster than brute force.
+        That my sound a lot, but a method taking 2^100 steps instead of 2^128 are still both equally out of reach for
+        today's computers.
+        </p>
+
+        <p><a href="https://en.wikipedia.org/wiki/MD5">MD5</a> used to be a common hash function, and 
+        <a href="https://en.wikipedia.org/wiki/SHA-1">SHA-1</a> is still in common use today. While both 
+        were considered cryptographically secure at one point, generating MD5 collisions now takes less than a second
+        on modern PC. In 2017 a collaboration of researchers from CWI and Google and announced <a href="https://shattered.io/">the first SHA-1 collision</a>.
+        However, afaik, neither MD5 nor SHA-1 have practical (second) pre-image attacks, only theoretical ones.
+        </p>
+
+        <p>
+        <ul>
+            <li>
+                C++: 64-bit clang 13.0.0 on Apple M1 ships with <a href="https://github.com/google/cityhash">CityHash64</a>.
+                MSVC <a href="https://learn.microsoft.com/en-us/cpp/build/reference/zh?view=msvc-170">uses</a> MD5 and SHA-256 by default.
+            </li>
+            <li>Java: OpenJDK ships with incredibly simple hash function. It just computes h = h*31 + c for each character c.</li>
+            <li>Zig: it uses <a href="https://github.com/wangyi-fudan/wyhash/blob/master/wyhash.h">wyhash</a> by default.</li>
+        </ul>
+        </p>
+
+        <h2>To Arms!<h2>
+        <h3>Inverse Operation</h3>
+        <p>Inverse operations are pairs of operations that undo or are the opposite of each other.</p>
+
+        <p>Most operations on the integer registers in computers are also invertible, 
+        despite the integers being modulo 2^w in the case of overflow. Let's study some:</p>
+
+        <ol>
+            <li>
+                Addition can be inverted using subtraction, obviously.
+            </li>
+
+            <li>
+                <p>
+                Multiplication by a constant <em>c</em> is <em>not</em> inverted by division. This would 
+                not work in the case of overflow. Instead, we calculate the <a href="https://en.wikipedia.org/wiki/Modular_multiplicative_inverse">modular multiplication inverse</a> of c.
+                This is an integer a such that ax ≡ 1 (mod m). We invert multiplication by c simply by multiplying a.
+                </p>
+
+                <p>
+                This constant exists only if and only if c is <a href="https://en.wikipedia.org/wiki/Coprime_integers">coprime</a> with our modulus m, which for us 
+                means that c must be odd as m = 2^n. For example, multiplication by 2 is not invertible, which is easy to 
+                see as such, as it is equivalent to a bit shift to the left by one position, losing the msb forever.
+                </p>
+
+                <p>
+                The code below computes the modular multiplicative inverse of an integer using the 
+                <a href="https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm">extended Euclidean algorithm</a> by calculating x, y such that 
+                </p>
+            </li>
+
+            <li>
+                XOR is its own inverse. i.e., x ^= y can be inverted by x ^= y.
+                <table border=1 cellspacing=0 cellpadding=4>
+                    <tr>
+                        <th>x</th> <th>y</th> <th>x^y</th> <th>(x^y)^y</th>
+                    </tr>
+                    <tr>
+                        <td><strong>0</strong></td> <td>0</td> <td>0</td> <td><strong>0</strong></td> 
+                    </tr>
+                    <tr>
+                        <td><strong>0</strong></td> <td>1</td> <td>1</td> <td><strong>0</strong></td> 
+                    </tr>
+                    <tr>
+                        <td><strong>1</strong></td> <td>0</td> <td>1</td> <td><strong>1</strong></td> 
+                    </tr>
+                    <tr>
+                        <td><strong>1</strong></td> <td>1</td> <td>0</td> <td><strong>1</strong></td> 
+                    </tr>
+                </table>
+            </li>
+
+            <li>
+                <p>Bit shifts aren't invertible, but <em>bit rotation</em> by a constant is. For example, 
+                a bit rotation to the left by 3 places on a 8-bit word, where each bit is shown as a letter:</p>
+
+                <pre><code>
+                <span>abcdefghi</span>
+                <span>defghiabc</span>
+                </code></pre>
+
+                <p>The formula for a right-rotation of k places is <strong>(x >> k) | (x << (w - k))</strong>, where w is the width of the integer type.
+                Its inverse is a left-rotation, which simply swaps the direction of both shifts. Alternatively, the inverse of a right 
+                rotation of k places is another right-rotation of w-k places.</p>
+
+                <p>Another common operation in hash functions is the "xorshift". It is an operation of one of the following forms, with k > 0:</p>
+
+                <pre><code>
+                <span>x ^= x << k // left-xorshift</span>
+                <span>x ^= x >> k // right-xorshift</span>
+                </code></pre>
+
+                <p>Inversion is analogous between the two, so let's focus on the left xorshift.</p>
+
+                <p>An important observation is that the least significant k bits are unaffected.
+                Thus by repeating the operation, we recover the least siginificant 2k bits, as the XOR will 
+                invert itself for the next k bits.</p>
+
+                <p>From this we can conclude the following identity:</p>
+
+                <pre>
+                <span>xorshift(xorshift(x, k), k) = <strong>xorshift(x, 2k)</strong></span>
+                </pre>
+
+                <p>One more observation for complete knowledge: a xorshift of k >= w where w is the width of the integer is a no-op.
+                Thus, we repeatedly apply our doubling identity until we reach large enough q such that xorshift(x, (2^q)*k) = x.</p>
+
+                <p>For example, to invert a left xorshift by 13 for 64-bit integers we apply the following sequence:</p>
+
+                <pre><code>
+                <span>x ^= x << 13</span>
+                <span></span>
+                <span>x ^= x << 13      // Inverse step 1.</span>
+                <span>x ^= x << 26      // Inverse step 2.</span>
+                <span>x ^= x << 52      // Inverse step 3.</span>
+                <span>// x ^= x << 104  // Next step would be a no-op.</span>
+                </code></pre>
+
+            </li>
+        </ol>
+
+        <p>We now are ready to strike our formidable foe.</p>
+
+        <h2>Breaking CityHash64</h2>
+        
+        <pre><code>
+            static U64 mul = 0x9ddfea08eb382d69ULL;
+            static U64 k0  = 0xc3a5c85c97cb3127ULL;
+            static U64 k1  = 0xb492b66fbe98f273ULL;
+            static U64 k2  = 0x9ae16a3b2f90404fULL;
+            static U64 k3  = 0xc949d7c7509e6557ULL;
+            
+            static U64
+            load_word_64(void *ptr)
+            {
+                U64 result;
+                memcpy(&result, ptr, sizeof(U64));
+                return result;
+            }
+            
+            static U64
+            rotate(U64 val, int shift)
+            {
+                U64 result = _rotr64(val, shift);
+                return result;
+            }
+            
+            static U64
+            hash_len_16(U64 u, U64 v) 
+            {
+                U64 x = u ^ v;
+                x *= mul;
+                x ^= x >> 47;
+                U64 y = v ^ x;
+                y *= mul;
+                y ^= y >> 47;
+                y *= mul;
+                return y;
+            }
+            
+            static U64
+            hash_len_17_to_32(char *str, U64 len )
+            {
+                U64 a = load_word_64(str) * k1;
+                U64 b = load_word_64(str + 8);
+                U64 c = load_word_64(str + len - 8) * k2;
+                U64 d = load_word_64(str + len -15) * k0;
+                U64 result = hash_len_16(rotate(a - b, 43) + rotate(c, 30) + d, a + rotate(b ^ k3, 20) - c + len);
+                return result;
+            }
+        </code></pre>
+
+        <p>Assume the length of the input is always 32. Then it will always 
+        call <code>hash_len_17_to_32</code>.</p>
+
+        <p>We first compute the modular multiplicative invserse of <code>mul</code> and <code>k0</code>:
+
+        <pre><code>
+        </code></pre>
+
+    </body>
+</html>

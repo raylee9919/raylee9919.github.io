@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Hash Science</title>
+    </head>
+
+    <body style="max-width: 1360px; margin: auto;">
+        <h1>Hash</h1>
+        <h3>Seong Woo Lee</h3>
+
+        <h2>Avoiding Collision</h2>
+
+        <p>Assume there are 1024 entries in the hash table. Due to the <a href="https://en.wikipedia.org/wiki/Birthday_problem" >birthday paradox</a>, collision 
+        happens more often, counter to our intuition. The graph below visualizes such phenomenon as x is the number of inserted element:</p>
+
+        <img src="hash_collision.png" alt="hash collision graph">
+
+        <p>
+        <strong>1 - [ M! / ((M - N)! * M<sup>N</sup>) ]</strong> (M: table size, N: number of inserted items)
+        </p>
+
+        <p>About only 40 items out of 1024 slots give us half a chance to collide! It seems fair to assert that, <em>collisions will occur</em>.
+        That is, we'd like to pick a good hash function that lets each slot to share same probability of being filled. Too bad, we noramlly have 
+        no power over the key of the actual records. Records in real life tend to be poorly distributed. What if we can expect the pattern though? In that case, it seems 
+        reasonable to use distribution-dependent hash function. To sum things up, there are 2 situations we face while picking a hash function in general:</p>
+
+        <ol>
+            <li>We can't expect the pattern of incoming records/keys.</li>
+            <li>We know something about the incoming records/keys. In such case, we should use distribution-dependent hash function.
+                For example, we don't want to use a hash function that hashes only the first character of incoming english words since the keys will be unevenly distributed.</li>
+        </ol>
+
+        <h2>Hash Functions for Starters</h2>
+
+        <p>We'll delve into the simplest hash functions.</p>
+
+        <ol>
+            <li><strong>Simple Mod</strong>
+
+                <pre><code>
+                    int foo(int x) {
+                        return x % 16;
+                    }
+                </code></pre>
+
+                <p>Integers in [0,16) can be represented with 4-bits. That is, the returned value from above function soley depends on the least significant 4-bits of the key.
+                Since those bits are poorly distributed, the result will also be poorly distributed. This denotes that the size of the table size <em>M</em> can have
+                big effect on the performance of the hash system because the table size is typically used as the modulus.
+                </p>
+            </li>
+            <li><strong>Mid-Square Method</strong>
+                <p>Invented by <em>John von Neumann</em>, described by him in 1949.
+                It squares the key, then extracts the middle <em>r</em> bits. The juicy part is that, most or all bits contribute to the result.
+                For example, assume we have a table size of 100 with given key 1234:</p>
+
+                <pre>
+                  1234 
+                × 1234
+               -------
+                  4936
+                 3702
+                2468
+               1234
+               -------
+               1522756
+                 --   
+                 <strong>22</strong>
+                </pre>
+
+                <p>All digits contribute to the result 22. It isn't dominantly produced by bottom nor top digits of the number.</p>
+            </li>
+        </ol>
+
+        <h2>Probing</h2>
+
+        <ol>
+            <li><strong>Linear Probing by Steps</strong>
+                <p><b>p</b>(<i>K</i>, <i>i</i>) = <i>ci</i></p>
+                <p>
+                <i>c</i> is some constant other than 1. Not all values will make the probing cycle through all entries before returning to the 
+                home position. Constant <i>c</i> must be <a href="https://en.wikipedia.org/wiki/Coprime_integers">coprime</a> to table size
+                <i>M</i> to generate a linear probing that visits all slots in the table.
+                </p>
+            </li>
+
+            <li><strong>Pseudo-Random Probing</strong>
+                <p><b>p</b>(<i>K</i>, <i>i</i>) = <b>R</b>[<i>i</i> - 1]</p>
+                <p>
+                <b>R</b> is an array of length <i>M</i> - 1 containing a random integers between [1, <i>M</i>).
+                </p>
+            </li>
+
+            <li><strong>Quadratic Probing</strong>
+                <p><b>p</b>(<i>K</i>, <i>i</i>) = <i>c</i><sub>1</sub><i>i</i><sup>2</sup> + <i>c</i><sub>2</sub><i>i</i> + <i>c</i><sub>3</sub>
+                (<i>K</i> is key, <i>i</i> is an iteration index, and <i>c</i><sub>1</sub>,<i>c</i><sub>2</sub>,<i>c</i><sub>3</sub> are constants)</p>
+
+                <p>Typically, not all slots will be on the probe sequence. A number of disjoint sets might exist in the table.
+                That is, even if the hash table isn't really full, there's a chance of a record not being inserted to the table. 
+                Fortunately, there are some combinations of table size <i>M</i> and a function.
+                For example, if <i>M</i> is a power of two and <b>p</b>(<i>K</i>, <i>i</i>) = <i>i</i><sup>2</sup>,
+                then every slot in the table will be visited.
+                </p>
+            </li>
+
+            <li><strong>Double Hashing</strong>
+                <p>
+                If a hash function generates a cluster at a particular home position, then the cluster remains under pseudo-random and quadratic probing. 
+                This problem is called <em>secondary clustering</em>. Probing functions so far ignored its input parameter <em>K</em>. To resolve such clustering, 
+                we must get our key <i>K</i> involved in the probing process. For example, we can determine a constant <i>c</i> in linear probing  by a 
+                second hash function with <i>K</i> as a input parameter. Setting <i>c</i> relatively prime to <i>M</i> can be crucial. Let <i>M</i> be a prime number and 
+                have our second hash function return a value between [1, <i>M</i>). Or, setting <i>M</i> = 2<sup><i>m</i></sup> and have the function return an odd value
+                between [1, 2<sup><i>m</i></sup>) is another way to go.
+                </p>
+            </li>
+        </ol>
+
+        <h2>Closed Hashing Analysis</h2>
+
+        <p>Because the possibility of collision increases as the number of inserted item goes up, we define the <em>load factor</em> for the table as,
+        <b>&alpha;</b> = <i>N/M</i> (<i>N</i> is the number of records in the table, and <i>M</i> is the size of the table).</p>
+
+        <p>It would be great to know the average number of slots probed as &alpha; varies. Thankfully, people have done the math for us, and the graph of linear 
+        probing follows as:</p>
+
+        <img src="hash_load_factor_graph.svg" alt="hash load factor graph" width=25%>
+
+        <p>The blue graph represents insertion which is basically an unsuccessful search, while the red graph corresponds to deletion, or successful search.</p>
+
+        <p>For linear probing, performance degrades rapidly once the load factor grows higher than somewhere about 0.5. What we, as implementors can learn from this is that, 
+        we might want to design a hash table that never gets half full.</p>
+
+
+        <h2>Deletion</h2>
+
+        <p>Searching must still pass through the newly emptied slot to reach records further down. Also, we want the emptied slots to be reusable. 
+        Thus, we cannot simply mark the slot as empty. This problem can be resolved by putting the <em>tombstone</em> in the slot. Search will continue 
+        after it encounters a tombstone to avoid having duplicate keys while it'll stop whenever it reaches empty slot.
+        However, this tend to lengthen the average distance from a record's home position to the record itself.</p>
+
+        <p>To resolve such problem, you can either reorganize upon deletion to shorten the path length or periodically reinsert all records and clear all tombstones.</p>
+    </body>
+</html>
