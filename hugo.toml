@@ -30,7 +30,7 @@ author = "SeongWoo Lee"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
 description = "SeongWoo Lee's personal website"
 keywords = "blog, developer, personal"
-info = ["Aspiring software developer", "Graphics apprentice"]
+info = ["Aspiring better software programmer", "Graphics apprentice"]
 avatarURL = "images/profile.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
@@ -171,18 +171,13 @@ url = "https://youtube.com/@seongwoolee9919/"
 languageName = "EN"
 
 [[languages.en.menu.main]]
-name = "About"
-weight = 1
-url = "about/"
-
-[[languages.en.menu.main]]
 name = "Blog"
-weight = 2
+weight = 1
 url = "posts/"
 
 [[languages.en.menu.main]]
 name = "Projects"
-weight = 3
+weight = 2
 url = "projects/"
 
 [languages.kr]
@@ -194,16 +189,11 @@ author = "이성우"
 info = ["소프트웨어 프로그래머", "그래픽스 견습생"]
 
 [[languages.kr.menu.main]]
-name = "소개"
-weight = 1
-url = "about/"
-
-[[languages.kr.menu.main]]
 name = "블로그"
-weight = 2
+weight = 1
 url = "posts/"
 
 [[languages.kr.menu.main]]
 name = "프로젝트"
-weight = 3
+weight = 2
 url = "projects/"

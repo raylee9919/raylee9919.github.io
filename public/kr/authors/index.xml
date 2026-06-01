@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Authors on 이성우</title>
-		<link>http://seongwoolee.com/kr/authors/</link>
+		<link>http://localhost:1313/kr/authors/</link>
 		<description>Recent content in Authors on 이성우</description>
 		<generator>Hugo</generator>
 		<language>kr</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Mon, 01 Jun 2026 17:35:25 +0900</lastBuildDate>
 		
-			<atom:link href="http://seongwoolee.com/kr/authors/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/kr/authors/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>이성우</title>
-				<link>http://seongwoolee.com/kr/authors/%EC%9D%B4%EC%84%B1%EC%9A%B0/</link>
+				<link>http://localhost:1313/kr/authors/%EC%9D%B4%EC%84%B1%EC%9A%B0/</link>
 				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
-				<guid>http://seongwoolee.com/kr/authors/%EC%9D%B4%EC%84%B1%EC%9A%B0/</guid>
+				<guid>http://localhost:1313/kr/authors/%EC%9D%B4%EC%84%B1%EC%9A%B0/</guid>
 				<description></description>
 			</item>
 	</channel>

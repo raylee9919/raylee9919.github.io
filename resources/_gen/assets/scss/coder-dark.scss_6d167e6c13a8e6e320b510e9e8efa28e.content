@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'KoPubBatang-Light';
+  src: url("https://static.wfonts.com/data/2016/07/09/kopub-batang/KoPubBatang-Light.woff") format("woff");
+  font-display: swap; }
+
 body.colorscheme-dark {
   color: #dadada;
   background-color: #212121; }
