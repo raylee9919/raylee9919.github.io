@@ -3,64 +3,99 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/kr/authors/</loc>
+    <loc>http://seongwoolee.com/kr/authors/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/authors/"
+                href="http://seongwoolee.com/authors/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="http://localhost:1313/kr/authors/"
+                href="http://seongwoolee.com/kr/authors/"
                 />
   </url><url>
-    <loc>http://localhost:1313/kr/categories/</loc>
+    <loc>http://seongwoolee.com/kr/posts/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/"
+                href="http://seongwoolee.com/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="http://localhost:1313/kr/categories/"
+                href="http://seongwoolee.com/kr/posts/"
                 />
   </url><url>
-    <loc>http://localhost:1313/kr/series/</loc>
+    <loc>http://seongwoolee.com/kr/tags/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/series/"
+                href="http://seongwoolee.com/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="http://localhost:1313/kr/series/"
+                href="http://seongwoolee.com/kr/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1313/kr/tags/</loc>
+    <loc>http://seongwoolee.com/kr/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+  </url><url>
+    <loc>http://seongwoolee.com/kr/posts/nanite/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/"
+                href="http://seongwoolee.com/posts/nanite/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="http://localhost:1313/kr/tags/"
+                href="http://seongwoolee.com/kr/posts/nanite/"
                 />
   </url><url>
-    <loc>http://localhost:1313/kr/</loc>
+    <loc>http://seongwoolee.com/kr/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/"
+                href="http://seongwoolee.com/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="http://localhost:1313/kr/"
+                href="http://seongwoolee.com/kr/"
+                />
+  </url><url>
+    <loc>http://seongwoolee.com/kr/authors/%EC%9D%B4%EC%84%B1%EC%9A%B0/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+  </url><url>
+    <loc>http://seongwoolee.com/kr/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://seongwoolee.com/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="http://seongwoolee.com/kr/categories/"
+                />
+  </url><url>
+    <loc>http://seongwoolee.com/kr/series/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="http://seongwoolee.com/kr/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://seongwoolee.com/series/"
                 />
   </url>
 </urlset>

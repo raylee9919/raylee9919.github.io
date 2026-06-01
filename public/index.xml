@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>SeongWoo Lee</title>
-		<link>http://localhost:1313/</link>
+		<link>http://seongwoolee.com/</link>
 		<description>Recent content on SeongWoo Lee</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Mon, 01 Jun 2026 17:35:25 +0900</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://seongwoolee.com/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Nanite</title>
-				<link>http://localhost:1313/posts/nanite/</link>
+				<link>http://seongwoolee.com/posts/nanite/</link>
 				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
-				<guid>http://localhost:1313/posts/nanite/</guid>
+				<guid>http://seongwoolee.com/posts/nanite/</guid>
 				<description>&lt;p&gt;Hello, World!&lt;/p&gt;</description>
 			</item>
 	</channel>

@@ -13,6 +13,10 @@ pagerSize = 6
 # Enable Disqus comments
 # shortname = "yourdiscussshortname"
 
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
+
 [markup]
 [markup.highlight]
 noClasses = false

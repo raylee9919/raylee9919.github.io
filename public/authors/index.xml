@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Authors on SeongWoo Lee</title>
-		<link>http://localhost:1313/authors/</link>
+		<link>http://seongwoolee.com/authors/</link>
 		<description>Recent content in Authors on SeongWoo Lee</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,19 +12,12 @@
 		
 			<lastBuildDate>Mon, 01 Jun 2026 17:35:25 +0900</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/authors/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://seongwoolee.com/authors/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>SeongWoo Lee</title>
-				<link>http://localhost:1313/authors/seongwoo-lee/</link>
+				<link>http://seongwoolee.com/authors/seongwoo-lee/</link>
 				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
-				<guid>http://localhost:1313/authors/seongwoo-lee/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>이성우</title>
-				<link>http://localhost:1313/authors/%EC%9D%B4%EC%84%B1%EC%9A%B0/</link>
-				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
-				<guid>http://localhost:1313/authors/%EC%9D%B4%EC%84%B1%EC%9A%B0/</guid>
+				<guid>http://seongwoolee.com/authors/seongwoo-lee/</guid>
 				<description></description>
 			</item>
 	</channel>
