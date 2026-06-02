@@ -42,8 +42,7 @@
 
 
 
-지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.
-다만, 추가로 고려해야할 세 가지가 있다.">
+지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.">
 <meta name="keywords" content="blog, developer, personal">
 
 
@@ -53,15 +52,15 @@
 	<meta name="twitter:description" content="엘더스크롤 5: 스카이림
 반지의 제왕 Ⅲ: 왕의 귀환
 레드 데드 리뎀션 2
-수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.Ⅰ. 모델링태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다. 다만, 추가로 고려해야할 세 가지가 있다.">
+수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.Ⅰ. 모델링태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.">
 
-<meta property="og:url" content="http://localhost:1313/kr/posts/atmosphericscattering/">
+<meta property="og:url" content="http://localhost:1313/kr/posts/sky-rendering-1/">
 	<meta property="og:site_name" content="이성우">
 	<meta property="og:title" content="하늘 렌더링 1">
 	<meta property="og:description" content="엘더스크롤 5: 스카이림
 반지의 제왕 Ⅲ: 왕의 귀환
 레드 데드 리뎀션 2
-수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.Ⅰ. 모델링태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다. 다만, 추가로 고려해야할 세 가지가 있다.">
+수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.Ⅰ. 모델링태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.">
 	<meta property="og:locale" content="kr">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
@@ -75,7 +74,7 @@
 
 
 
-<link rel="canonical" href="http://localhost:1313/kr/posts/atmosphericscattering/">
+<link rel="canonical" href="http://localhost:1313/kr/posts/sky-rendering-1/">
 
 
 <link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -177,7 +176,7 @@
                 
               
               <li class="navigation-item">
-                <a href="/posts/atmosphericscattering/">EN</a>
+                <a href="/posts/sky-rendering-1/">EN</a>
               </li>
             
           
@@ -195,7 +194,7 @@
       <header>
         <div class="post-title">
           <h1 class="title">
-            <a class="title-link" href="http://localhost:1313/kr/posts/atmosphericscattering/">
+            <a class="title-link" href="http://localhost:1313/kr/posts/sky-rendering-1/">
               하늘 렌더링 1
             </a>
           </h1>
@@ -210,7 +209,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              2-minute read
+              3-minute read
             </span>
           </div>
           
@@ -270,27 +269,53 @@
 <p><figure><img src="/images/RTE1.svg" width="600">
 </figure>
 
-지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.
-다만, 추가로 고려해야할 세 가지가 있다.</p>
+지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.</p>
 <p><figure><img src="/images/RTE2.svg" width="600">
 </figure>
 
-첫 번째, 경로 내내 산란과 흡수로 인해 에너지가 감소한다.</p>
+빛의 경로 내내 산란과 흡수로 인해 에너지가 감소한다.</p>
 <p><figure><img src="/images/RTE3.svg" width="600">
 </figure>
 
-두 번째, 경로 내내 산란으로 인해 빛이 들어옴으로써 에너지가 증가한다.</p>
-<p>세 번째, 고도(高度, altitude)에 따라 대기 중 입자들의 크기가 달라지고, 이에 따라 산란이 달라진다.</p>
+빛의 경로 내내 산란으로 인해 빛이 들어옴으로써 에너지가 증가한다.</p>
 <div class="notice note">
   <div class="notice-title">
     <i class="fa-solid fa-sticky-note" aria-hidden="true"></i>Note
   </div>
-  <div class="notice-content">그림의 한계로 세 부분만 나타냈지만, 실제로는 경로 내 무수히 많은 &ldquo;점&quot;들에서 산란과 흡수가 일어난다. 또한, 본문에서 흡수는 무시하고 산란만 다루도록 하겠다.</div>
+  <div class="notice-content">그림의 한계로 세 부분만 나타냈지만, 실제로는 경로 내 무수히 많은 &ldquo;점&quot;들에서 산란과 흡수가 일어난다. 또한, 본문의 모델에서 흡수는 무시한다.</div>
 </div>
 
 </p>
 <p>
-다음은 대기(大氣, atmosphere)에서의 산란을 좀 더 살펴보겠다. 이 부분이 하늘 렌더링을 매력적으로 만든다.
+이를 빛이 매질을 통과하는 방정식인 VRE(Volume Rendering Equation)로 나타내면 다음과 같다.
+$$
+L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D T(t)\,\Big[\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega}) + \sigma_a(\mathbf{x}_t)\,L_e(\mathbf{x}_t, \boldsymbol{\omega})\Big]\,dt + \color{orange}T(D)\,L_0
+$$
+광원을 오직 태양으로 단순화하여 발광 (Emission)에 관한 항을 제거하면, 
+$$
+L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D T(t)\,\Big[\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega})\Big]\,dt + \color{orange}T(D)\,L_0
+$$
+위 식을 천천히 살펴보자.
+</br></br>
+$T(d)$는 <i>들어온 빛에 대한 남은 빛의 비율</i> ($\frac{L_{\text{out}}}{L_{\text{in}}}$)이다. 거리 $d$에 대해 다음과 같이 표현한다 (Beer-Lambert 법칙).
+$$T(d) = e^{-\sigma_t d}$$
+하지만 이는 매질이 균일(homogeneous)할 때이다. 대기(大氣, atmosphere)는 고도(高度, altitude)에 따라 입자의 크기가 달라지는 불균일(heterogeneous) 매질이다. 이 경우, 
+거리 $d$ 동안 매 지점의 상쇄 계수 $\sigma_t(\mathbf{x})$를 적분해주어야 한다. 즉,
+$$
+T(d) = \exp\!\left(-\int_0^d \sigma_t(\mathbf{x_s})\,ds\right)
+$$
+</br>
+그렇다면 $\color{orange}T(D)\,L_0$는 어떻게 해석할 수 있을까?
+<figure><img src="/images/VRE1.svg" width="400">
+</figure>
+
+이는 대기에 도달한 빛이 산란과 흡수를 거쳐 상쇄되어 카메라에 도달하는 광량이다.
+$$
+L_{\text{scat}}(\mathbf{x}, \boldsymbol{\omega}) = \int_{S^2} p(\boldsymbol{\omega}', \boldsymbol{\omega})\,L(\mathbf{x}, \boldsymbol{\omega}')\,d\boldsymbol{\omega}'
+$$
+</p>
+<p>
+다음은 대기에서의 산란을 좀 더 살펴보겠다. 이 부분이 하늘 렌더링을 매력적으로 만든다.
 </p>
 <h1>Ⅱ. 두 가지 산란</h1>
 <h2>레일리 산란 (Rayleigh Scattering)</h2>

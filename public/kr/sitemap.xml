@@ -64,6 +64,9 @@
                 href="http://localhost:1313/kr/posts/atmosphericscattering/"
                 />
   </url><url>
+    <loc>http://localhost:1313/kr/tags/%ED%99%98%EA%B2%BD/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/kr/authors/</loc>
     <xhtml:link
                 rel="alternate"
@@ -91,13 +94,13 @@
     <loc>http://localhost:1313/kr/series/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="kr"
-                href="http://localhost:1313/kr/series/"
+                hreflang="en"
+                href="http://localhost:1313/series/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/series/"
+                hreflang="kr"
+                href="http://localhost:1313/kr/series/"
                 />
   </url>
 </urlset>

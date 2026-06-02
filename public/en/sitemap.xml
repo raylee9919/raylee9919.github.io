@@ -63,13 +63,13 @@
     <loc>http://localhost:1313/categories/</loc>
     <xhtml:link
                 rel="alternate"
-                hreflang="kr"
-                href="http://localhost:1313/kr/categories/"
+                hreflang="en"
+                href="http://localhost:1313/categories/"
                 />
     <xhtml:link
                 rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/categories/"
+                hreflang="kr"
+                href="http://localhost:1313/kr/categories/"
                 />
   </url><url>
     <loc>http://localhost:1313/series/</loc>

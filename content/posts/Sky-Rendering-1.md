@@ -1,6 +1,6 @@
 +++ 
 date = 2026-06-01T17:35:25+09:00
-title = "Atmospheric Scattering"
+title = "Sky Rendering"
 description = ""
 slug = ""
 authors = []
