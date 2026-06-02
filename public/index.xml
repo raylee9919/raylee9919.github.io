@@ -10,15 +10,22 @@
 		
 		
 		
-			<lastBuildDate>Mon, 01 Jun 2026 17:35:25 +0900</lastBuildDate>
+			<lastBuildDate>Tue, 02 Jun 2026 00:02:27 +0900</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>Nanite</title>
-				<link>http://localhost:1313/posts/nanite/</link>
+				<title>RTS</title>
+				<link>http://localhost:1313/projects/rts/</link>
+				<pubDate>Tue, 02 Jun 2026 00:02:27 +0900</pubDate>
+				<guid>http://localhost:1313/projects/rts/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Atmospheric Scattering</title>
+				<link>http://localhost:1313/posts/atmosphericscattering/</link>
 				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
-				<guid>http://localhost:1313/posts/nanite/</guid>
-				<description>&lt;p&gt;Hello, World!&lt;/p&gt;</description>
+				<guid>http://localhost:1313/posts/atmosphericscattering/</guid>
+				<description>&lt;p&gt;Work in progess.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>

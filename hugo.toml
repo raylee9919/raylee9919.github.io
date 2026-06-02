@@ -8,10 +8,11 @@ enableEmoji = true
 [pagination]
 pagerSize = 6
 
-[services]
-[services.disqus]
-# Enable Disqus comments
-# shortname = "yourdiscussshortname"
+[params.utterances]
+  repo = "" # https://utteranc.es/#heading-repository
+  issueTerm = "" # https://utteranc.es/#heading-mapping
+  label = "" # https://utteranc.es/#heading-issue-label
+  theme = "" # https://utteranc.es/#heading-theme
 
 [caches]
   [caches.images]
@@ -30,11 +31,11 @@ author = "SeongWoo Lee"
 # license = '<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA-4.0</a>'
 description = "SeongWoo Lee's personal website"
 keywords = "blog, developer, personal"
-info = ["Aspiring better software programmer", "Graphics apprentice"]
+info = ["Software Programmer", "Graphics Apprentice"]
 avatarURL = "images/profile.jpg"
 #gravatar = "john.doe@example.com"
 dateFormat = "January 2, 2006"
-since = 2026
+since = 2025
 # Git Commit in Footer, uncomment the line below to enable it
 # commit = "https://github.com/luizdepra/hugo-coder/tree/"
 # Right To Left, shift content direction for languages such as Arabic
@@ -170,6 +171,9 @@ url = "https://youtube.com/@seongwoolee9919/"
 [languages.en]
 languageName = "EN"
 
+[languages.en.params]
+dateFormat = "January 2, 2006"
+
 [[languages.en.menu.main]]
 name = "Blog"
 weight = 1
@@ -186,7 +190,8 @@ title = "이성우"
 
 [languages.kr.params]
 author = "이성우"
-info = ["소프트웨어 프로그래머", "그래픽스 견습생"]
+info = ["소프트웨어 개발자", "그래픽스 학도"]
+dateFormat = "2006年 1月 2日"
 
 [[languages.kr.menu.main]]
 name = "블로그"

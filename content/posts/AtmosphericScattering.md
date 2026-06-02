@@ -1,13 +1,13 @@
 +++ 
 date = 2026-06-01T17:35:25+09:00
-title = "Nanite"
+title = "Atmospheric Scattering"
 description = ""
 slug = ""
-authors = ["SeongWoo Lee"]
-tags = ["Graphics"]
+authors = []
+tags = [""]
 categories = []
 externalLink = ""
 series = []
 +++
 
-Hello, World!
+Work in progess.
