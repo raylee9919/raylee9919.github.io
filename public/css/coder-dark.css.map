@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "coder-dark.css",
-	"sourceRoot": "C:/dev/swl/blog",
+	"sourceRoot": "C:/dev/swl/Blog",
 	"sources": [
 		"themes/hugo-coder/assets/scss/coder-dark.scss",
 		"assets/scss/_variables.scss",
