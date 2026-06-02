@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>이성우</title>
-		<link>http://seongwoolee.com/kr/</link>
+		<link>http://localhost:1313/kr/</link>
 		<description>Recent content on 이성우</description>
 		<generator>Hugo</generator>
 		<language>kr</language>
@@ -12,13 +12,13 @@
 		
 			<lastBuildDate>Mon, 01 Jun 2026 17:35:25 +0900</lastBuildDate>
 		
-			<atom:link href="http://seongwoolee.com/kr/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/kr/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>하늘 렌더링 1</title>
-				<link>http://seongwoolee.com/kr/posts/atmosphericscattering/</link>
+				<link>http://localhost:1313/kr/posts/atmosphericscattering/</link>
 				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
-				<guid>http://seongwoolee.com/kr/posts/atmosphericscattering/</guid>
-				<description>&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;http://seongwoolee.com/images/skyrim-nightsky.webp&#34; width=&#34;900&#34;&gt;&lt;figcaption&gt;&#xA;&#x9;&#x9;&#x9;&lt;p&gt;엘더스크롤 5: 스카이림&lt;/p&gt;&#xA;&#x9;&#x9;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;/br&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://seongwoolee.com/images/mordor-cloud.jpg&#34; width=&#34;900&#34;&gt;&lt;figcaption&gt;&#xA;&#x9;&#x9;&#x9;&lt;p&gt;반지의 제왕 Ⅲ: 왕의 귀환&lt;/p&gt;&#xA;&#x9;&#x9;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;/br&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://seongwoolee.com/images/sunset-rdr2.jpg&#34; width=&#34;900&#34;&gt;&lt;figcaption&gt;&#xA;&#x9;&#x9;&#x9;&lt;p&gt;레드 데드 리뎀션 2&lt;/p&gt;&#xA;&#x9;&#x9;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;/br&gt;&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,&#xD;&#xA;아련한 노을은 여운을 두고 가기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고, &#xD;&#xA;날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 &lt;b&gt;물리 기반 하늘 렌더링&lt;/b&gt;의 과정을 다루어본다.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;&lt;h2&gt;Ⅰ. 개요&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;&#xD;&#xA;태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 표현할 수 있을까?&#xD;&#xA;&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;http://seongwoolee.com/images/RTE1.svg&#34; width=&#34;600&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.&#xA;다만, 추가로 고려해야할 세 가지가 있다.&lt;/p&gt;</description>
+				<guid>http://localhost:1313/kr/posts/atmosphericscattering/</guid>
+				<description>&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;http://localhost:1313/images/skyrim-nightsky.webp&#34; width=&#34;900&#34;&gt;&lt;figcaption&gt;&#xA;&#x9;&#x9;&#x9;&lt;p&gt;엘더스크롤 5: 스카이림&lt;/p&gt;&#xA;&#x9;&#x9;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;/br&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://localhost:1313/images/mordor-cloud.jpg&#34; width=&#34;900&#34;&gt;&lt;figcaption&gt;&#xA;&#x9;&#x9;&#x9;&lt;p&gt;반지의 제왕 Ⅲ: 왕의 귀환&lt;/p&gt;&#xA;&#x9;&#x9;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;/br&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;http://localhost:1313/images/sunset-rdr2.jpg&#34; width=&#34;900&#34;&gt;&lt;figcaption&gt;&#xA;&#x9;&#x9;&#x9;&lt;p&gt;레드 데드 리뎀션 2&lt;/p&gt;&#xA;&#x9;&#x9;&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;&lt;/br&gt;&lt;/p&gt;&#xA;&lt;p&gt;&#xD;&#xA;수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,&#xD;&#xA;휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 &#xD;&#xA;날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 &lt;b&gt;물리 기반 하늘 렌더링&lt;/b&gt;의 과정을 다루어본다.&#xD;&#xA;&lt;/p&gt;&#xD;&#xA;&lt;h1&gt;Ⅰ. 모델링&lt;/h1&gt;&#xD;&#xA;&lt;p&gt;&#xD;&#xA;태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?&#xD;&#xA;&lt;p&gt;&lt;figure&gt;&lt;img src=&#34;http://localhost:1313/images/RTE1.svg&#34; width=&#34;600&#34;&gt;&#xA;&lt;/figure&gt;&#xA;&#xA;지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.&#xA;다만, 추가로 고려해야할 세 가지가 있다.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>
