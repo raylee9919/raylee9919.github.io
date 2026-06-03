@@ -11,7 +11,7 @@ tags:
   - OpenGL
 categories:
   - projects
-cover: images/project-rts.webp
+cover: images/project-rts.png
 status: "in_progress"
 link: "https://github.com/raylee9919/rts"
 ---
