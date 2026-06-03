@@ -220,3 +220,10 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km
 </p>
 
 {{< notice note >}} Another important scattering type, ozone scattering, is not covered in this post. {{< /notice >}}
+
+<h1>Ⅲ. Ray Marching</h1>
+
+<h1>Ⅳ. Result</h1>
+<p>The following video shows the implementation in C++ and D3D12.</p>
+{{< youtube KMlMLBRS_BI>}}
+{{< figure src="/images/result-1.png">}}

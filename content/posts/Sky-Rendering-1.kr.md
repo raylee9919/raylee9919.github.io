@@ -228,3 +228,13 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km
 </p>
 
 {{< notice note >}} 또 다른 중요한 산란인, 오존(Ozone) 산란은 본문에서 다루지 않겠다. {{< /notice >}}
+
+
+
+
+<h1>Ⅲ. 레이 마칭 (Ray Marching)</h1>
+
+<h1>Ⅳ. 결과</h1>
+<p>아래는 이를 토대로 C++와 D3D12로 구현한 실시간 하늘 렌더링의 결과이다.</p>
+{{< youtube KMlMLBRS_BI>}}
+{{< figure src="/images/result-1.png">}}
