@@ -1,0 +1,25 @@
+{
+  "background_color": "#ffffff",
+  "categories": [
+    "blog",
+    "technology",
+    "education"
+  ],
+  "description": "SeongWoo Lee's Website",
+  "dir": "ltr",
+  "display": "standalone",
+  "icons": [
+    {
+      "sizes": "any",
+      "src": "/images/favicon.svg",
+      "type": "image/svg+xml"
+    }
+  ],
+  "lang": "en",
+  "name": "SeongWoo Lee",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "short_name": "Hugo Narrow",
+  "start_url": "/",
+  "theme_color": "#09090b"
+}

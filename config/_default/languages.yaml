@@ -1,0 +1,44 @@
+en:
+  locale: en
+  label: "English"
+  weight: 1
+  params:
+    dateFormat:
+      long: "January 2, 2006"
+      medium: "Jan 2, 2006"
+      short: "01/02"
+
+ko:
+  locale: ko 
+  label: "한국어"
+  weight: 2
+  params:
+    dateFormat:
+      long: "2006년 1월 2일"
+      medium: "2006-01-02"
+      short: "01-02"
+
+# ja:
+#   locale: ja-JP
+#   label: "日本語"
+#   weight: 3
+
+# fr:
+#   locale: fr-FR
+#   label: "Français"
+#   weight: 4
+
+# de:
+#   locale: de-DE
+#   label: "Deutsch"
+#   weight: 5
+
+# es:
+#   locale: es-ES
+#   label: "Español"
+#   weight: 6
+
+# ru:
+#   locale: ru-RU
+#   label: "Русский"
+#   weight: 7

@@ -1,0 +1,92 @@
+main:
+  - name: 포스트
+    pageRef: /posts
+    weight: 10
+    params:
+      icon: posts
+
+  - name: 프로젝트
+    weight: 20
+    pageRef: /projects
+    params:
+      icon: projects
+
+  # Example: parent item with dropdown submenu children
+  - name: 더보기
+    weight: 30
+    params:
+      icon: layers
+
+  - name: 태그
+    weight: 1
+    pageRef: /tags
+    parent: 더보기
+    params:
+      icon: tags
+
+  - name: 분류
+    weight: 2
+    pageRef: /categories
+    parent: 더보기
+    params:
+      icon: categories
+
+  - name: 시리즈
+    weight: 3
+    pageRef: /series
+    parent: 더보기
+    params:
+      icon: bookmark
+
+  - name: 보관소
+    pageRef: /archives
+    weight: 4
+    parent: 더보기
+    params:
+      icon: archive
+
+
+
+# footer menu
+footer:
+  - name: Timeline
+    pageRef: /timeline
+    weight: 10
+    params:
+      icon: chart
+
+  - name: About
+    pageRef: /about
+    weight: 20
+    params:
+      icon: about
+
+  - name: Resume
+    pageRef: /resume
+    weight: 25
+    params:
+      icon: file-text
+
+  - name: RSS Feed
+    url: /index.xml
+    weight: 30
+    params:
+      icon: rss
+
+# footer social link
+social:
+  - name: GitHub
+    url: https://github.com/raylee9919
+    weight: 10
+    params:
+      icon: github
+  - name: X
+    url: https://x.com/raylee9919
+    weight: 20
+    params:
+      icon: x 
+  - name: Youtube
+    url: https://www.youtube.com/@seongwoolee9919
+    weight: 30
+    params:
+      icon: youtube

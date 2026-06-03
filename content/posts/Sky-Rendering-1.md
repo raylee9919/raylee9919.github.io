@@ -4,10 +4,10 @@ title = "Sky Rendering 1"
 description = ""
 slug = ""
 authors = []
-tags = ["graphics", "rendering", "environment", "game engine"]
+tags = ["Graphics", "Rendering", "Environment", "Game Engine"]
 categories = []
 externalLink = ""
-series = []
+series = ["Sky Rendering"]
 math = "true"
 +++
 
@@ -36,9 +36,6 @@ Along the light's path, energy decreases due to scattering and absorption.
 
 {{< figure src="/images/RTE3.svg" width="600">}}
 Along the light's path, energy increases as light is scattered in from other directions.
-
-{{< notice note >}} 
-Due to the limitations of illustration, only three points are shown, but in reality scattering and absorption occur at infinitely many points along the path. Also, absorption is ignored in the model presented here.{{< /notice >}}
 </p>
 
 <p>
@@ -139,9 +136,6 @@ In the next section, we will look at how these values are determined in the sky 
 As altitude increases, particle size decreases, and photons with shorter wavelengths are affected more strongly.
 In other words, "blue" light with shorter wavelengths scatters more. Blue-wavelength photons reach our eyes from all directions, and we perceive that "all around us" as a blue sky.
 This is called Rayleigh scattering.
-
-{{< notice info >}} 
-Light energy is distributed across a continuous spectrum of wavelengths, but a typical RGB renderer uses only three values: R, G, and B. This is an approximation around the three wavelengths to which the human eye is most sensitive, since it is not feasible to account for every wavelength in the continuous spectrum. The coefficients we will use alongside those of Sébastien Hillaire and Eric Bruneton are not derived from integration, but are coefficients for three specific wavelengths (440nm, 550nm, 680nm). {{< /notice >}}
 </p>
 
 <p>
@@ -218,8 +212,6 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km
     </br>
     {{< figure src="/images/rayleigh-and-mie.png" width="600" attr="Rayleigh + Mie: blue sky with halo">}}
 </p>
-
-{{< notice note >}} Another important scattering type, ozone scattering, is not covered in this post. {{< /notice >}}
 
 <h1>Ⅲ. Ray Marching</h1>
 

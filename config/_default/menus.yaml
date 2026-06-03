@@ -1,0 +1,94 @@
+main:
+  - name: Posts
+    pageRef: /posts
+    weight: 10
+    params:
+      icon: posts
+
+  - name: Projects
+    weight: 20
+    pageRef: /projects
+    params:
+      icon: projects
+
+  # Example: parent item with dropdown submenu children
+  - name: More
+    weight: 30
+    params:
+      icon: layers
+
+  - name: Categories
+    weight: 1
+    pageRef: /categories
+    parent: More
+    params:
+      icon: categories
+
+  - name: Tags
+    weight: 2
+    pageRef: /tags
+    parent: More
+    params:
+      icon: tags
+
+  - name: Series
+    weight: 3
+    pageRef: /series
+    parent: More
+    params:
+      icon: bookmark
+
+  - name: Archives
+    pageRef: /archives
+    weight: 4
+    parent: More
+    params:
+      icon: archive
+
+
+
+
+
+# footer menu
+footer:
+  - name: Timeline
+    pageRef: /timeline
+    weight: 10
+    params:
+      icon: chart
+
+  - name: About
+    pageRef: /about
+    weight: 20
+    params:
+      icon: about
+
+  - name: Resume
+    pageRef: /resume
+    weight: 25
+    params:
+      icon: file-text
+
+  - name: RSS Feed
+    url: /index.xml
+    weight: 30
+    params:
+      icon: rss
+
+# footer social link
+social:
+  - name: GitHub
+    url: https://github.com/raylee9919
+    weight: 10
+    params:
+      icon: github
+  - name: X
+    url: https://x.com/raylee9919
+    weight: 20
+    params:
+      icon: x
+  - name: Youtube
+    url: https://www.youtube.com/@seongwoolee9919
+    weight: 30
+    params:
+      icon: youtube
