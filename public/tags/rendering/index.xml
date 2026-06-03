@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>SeongWoo Lee</title>
-		<link>http://localhost:1313/</link>
-		<description>Recent content on SeongWoo Lee</description>
+		<title>Rendering on SeongWoo Lee</title>
+		<link>http://localhost:1313/tags/rendering/</link>
+		<description>Recent content in Rendering on SeongWoo Lee</description>
 		<generator>Hugo</generator>
 		<language>en</language>
 		
 		
 		
 		
-			<lastBuildDate>Tue, 02 Jun 2026 00:02:27 +0900</lastBuildDate>
+			<lastBuildDate>Mon, 01 Jun 2026 17:35:25 +0900</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>RTS</title>
-				<link>http://localhost:1313/projects/rts/</link>
-				<pubDate>Tue, 02 Jun 2026 00:02:27 +0900</pubDate>
-				<guid>http://localhost:1313/projects/rts/</guid>
-				<description></description>
-			</item>
+			<atom:link href="http://localhost:1313/tags/rendering/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Sky Rendering 1</title>
 				<link>http://localhost:1313/posts/sky-rendering-1/</link>

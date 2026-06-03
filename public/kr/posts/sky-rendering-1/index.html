@@ -36,7 +36,7 @@
 휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 
 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.
 
-Ⅰ. 모델링
+Ⅰ. 수식
 
 태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?
 
@@ -52,7 +52,7 @@
 	<meta name="twitter:description" content="엘더스크롤 5: 스카이림
 반지의 제왕 Ⅲ: 왕의 귀환
 레드 데드 리뎀션 2
-수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.Ⅰ. 모델링태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.">
+수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.Ⅰ. 수식태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.">
 
 <meta property="og:url" content="http://localhost:1313/kr/posts/sky-rendering-1/">
 	<meta property="og:site_name" content="이성우">
@@ -60,7 +60,7 @@
 	<meta property="og:description" content="엘더스크롤 5: 스카이림
 반지의 제왕 Ⅲ: 왕의 귀환
 레드 데드 리뎀션 2
-수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.Ⅰ. 모델링태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.">
+수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.Ⅰ. 수식태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?지구에 도달한 태양의 빛은 산란하여 그 중 일부만 카메라에 도달하게 된다.">
 	<meta property="og:locale" content="kr">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
@@ -209,7 +209,7 @@
             </span>
             <span class="reading-time">
               <i class="fa-solid fa-clock" aria-hidden="true"></i>
-              3-minute read
+              4-minute read
             </span>
           </div>
           
@@ -263,7 +263,7 @@
 휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 
 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 <b>물리 기반 하늘 렌더링</b>의 과정을 다루어본다.
 </p>
-<h1>Ⅰ. 모델링</h1>
+<h1>Ⅰ. 수식</h1>
 <p>
 태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?
 <p><figure><img src="/images/RTE1.svg" width="600">
@@ -289,36 +289,92 @@
 <p>
 이를 빛이 매질을 통과하는 방정식인 VRE(Volume Rendering Equation)로 나타내면 다음과 같다.
 $$
-L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D T(t)\,\Big[\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega}) + \sigma_a(\mathbf{x}_t)\,L_e(\mathbf{x}_t, \boldsymbol{\omega})\Big]\,dt + \color{orange}T(D)\,L_0
+L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D T(t)\,\Big[\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega}) + \sigma_a(\mathbf{x}_t)\,L_e(\mathbf{x}_t, \boldsymbol{\omega})\Big]\,dt + T(D)\,L_0
 $$
-광원을 오직 태양으로 단순화하여 발광 (Emission)에 관한 항을 제거하면, 
+광원을 오직 태양으로 단순화하여 발광(emission)에 관한 항을 제거하면, 
 $$
-L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D T(t)\,\Big[\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega})\Big]\,dt + \color{orange}T(D)\,L_0
+L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D \textcolor{#419BF9}{T(t)}\,\Big[\textcolor{#00CC66}{\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega})}\Big]\,dt + \color{orange}T(D)\,L_0
 $$
 위 식을 천천히 살펴보자.
 </br></br>
 $T(d)$는 <i>들어온 빛에 대한 남은 빛의 비율</i> ($\frac{L_{\text{out}}}{L_{\text{in}}}$)이다. 거리 $d$에 대해 다음과 같이 표현한다 (Beer-Lambert 법칙).
 $$T(d) = e^{-\sigma_t d}$$
-하지만 이는 매질이 균일(homogeneous)할 때이다. 대기(大氣, atmosphere)는 고도(高度, altitude)에 따라 입자의 크기가 달라지는 불균일(heterogeneous) 매질이다. 이 경우, 
-거리 $d$ 동안 매 지점의 상쇄 계수 $\sigma_t(\mathbf{x})$를 적분해주어야 한다. 즉,
+하지만 위 식은 균일(homogeneous) 매질의 경우에만 성립한다. 대기(atmosphere)는 고도(altitude)에 따라 입자의 크기가 달라지는 불균일(heterogeneous) 매질이다. 이 경우, 
+거리 $d$ 동안 매 지점의 상쇄 함수 $\sigma_t(\mathbf{x})$를 적분해주어야 한다. 즉,
 $$
 T(d) = \exp\!\left(-\int_0^d \sigma_t(\mathbf{x_s})\,ds\right)
 $$
 </br>
-그렇다면 $\color{orange}T(D)\,L_0$는 어떻게 해석할 수 있을까?
+이를 통해 기존 VRE에서 $\color{orange}T(D)\,L_0$는 어떻게 해석할 수 있을까?
 <figure><img src="/images/VRE1.svg" width="400">
 </figure>
 
-이는 대기에 도달한 빛이 산란과 흡수를 거쳐 상쇄되어 카메라에 도달하는 광량이다.
+이는 대기에 도달한 빛($L_0$)이 산란과 흡수를 거쳐 상쇄되어 카메라에 도달하는 빛의 양이다.
+</br></br>
+이제, $\int$ 안의 $\textcolor{#00CC66}{\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega})}$를 살펴보자.
+<figure><img src="/images/VRE2.svg" width="350">
+</figure>
+
+이전에 언급했듯이, 거리 $D$ 동안 외부로부터 산란(in-scattering)으로 오는 빛에 의해 광량이 증가한다. 이렇게 들어온 빛은 다시 산란하여 카메라를 향해야 비로소 보일 것이다. 들어온 빛 중 얼마나 다시 산란하여 카메라를 향할까? 추가된 광량 $\textcolor{#00CC66}{L_{\text{scat}}}$에 산란에 대한 확률 밀도 함수인 $\textcolor{#00CC66}{\sigma_s(\mathbf{x}_t)}$를 곱하여 $\int_0^D$동안 적분한 것이 그것이다. 그리고 그 빛은 다시 카메라까지 남은 거리 동안 산란과 흡수를 통해 상쇄될 것이다. 이에 따라 $\textcolor{#419BF9}{T(t)}$를 곱해준 것이다.
+</br></br>
+그렇다면 $\textcolor{#00CC66}{L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega})}$는 어떻게 표현될까?
 $$
-L_{\text{scat}}(\mathbf{x}, \boldsymbol{\omega}) = \int_{S^2} p(\boldsymbol{\omega}', \boldsymbol{\omega})\,L(\mathbf{x}, \boldsymbol{\omega}')\,d\boldsymbol{\omega}'
+\textcolor{#00CC66}{L_{\text{scat}}(\mathbf{x}, \boldsymbol{\omega})} = \int_{S^2} p(\boldsymbol{\omega}', \boldsymbol{\omega})\,L(\mathbf{x}, \boldsymbol{\omega}')\,d\boldsymbol{\omega}'
 $$
+이 수식은 또 무엇인가. 차근히 살펴보자. </br>
+<figure><img src="/images/VRE3.svg" width="400">
+</figure>
+
+지금까지 $\mathbf{x}_t$로 빛이 단방향에서 들어오는 것처럼 그렸다. 거짓말이었다. 빛은 위 그림처럼 사방에서 들어온다.
+따라서 사방에서 들어오는 빛을 $\int_{S^2}$로 적분해아한다.
+<p><figure><img src="/images/VRE4.svg" width="400">
+</figure>
+
+문제는 이 과정이 재귀적이라는 것이다. 사방에서 들어온 빛은 또 다른 방향에서 산란된 빛이며, 그 빛 또한 다시 다른 방향에서 산란된 빛이다. $\int$도 달갑지 않은데, 재귀까지 들어오니 복잡해진다.
+<figure><img src="/images/VRE5.svg" width="450">
+</figure>
+
+따라서 우리는 위 그림처럼 단일 산란(single scattering) 모델로 단순화할 것이다. 이전에 저렇게 그렸던 이유가 있었다.
+$$
+\textcolor{#00CC66}{L_{\text{scat}}(\mathbf{x}, \boldsymbol{\omega})} = p(\boldsymbol{\omega}^{\prime}, \boldsymbol{\omega}) L_\text{sun}T(D)
+$$
+$L_{\text{scat}}$을 위처럼 다시 쓸 수 있다. 뒤의 $L_\text{sun}(D)$는 이전에 봤던 것 같지 않은가? 거리 $D$동안 상쇄된 햇빛의 양이다.</p>
 </p>
 <p>
-다음은 대기에서의 산란을 좀 더 살펴보겠다. 이 부분이 하늘 렌더링을 매력적으로 만든다.
+앞의 $p(\boldsymbol{\omega}^{\prime}, \boldsymbol{\omega})$는 무엇일까? $\mathbf{x}_t$로 들어온 빛은 
+산란되어 사방으로 흩어진다. 하지만 우리가 원하는 것은, 카메라 방향으로 산란된 빛의 비율이다. 다시 말해, $\omega^{\prime}$에서 온 빛이 $\omega$로 얼마나 
+향했냐는 것이다. 이를 나타낸 것이 $p(\boldsymbol{\omega}^{\prime}, \boldsymbol{\omega})$이고, 보다시피 
+들어오고 나가는 방향을 인자로 갖는다. 보통 코드에서는 두 방향의 $\cos$값을 인자로 갖는다.
 </p>
-<h1>Ⅱ. 두 가지 산란</h1>
-<h2>레일리 산란 (Rayleigh Scattering)</h2>
+<p>
+$p$는 위상 함수(phase function)라고 불린다. 이는 확률 밀도 함수(probability density function)이며, 전 구간에 걸친 적분 값이 1이 된다는 의미이다. 
+예를 들어, $\omega$와 $\omega^{\prime}$에 관계 없이 모든 방향으로 균일하게 산란하는 위상 함수는 어떻게 될까? 이를 상수 $c$라고 하면,
+</p>
+<p>$$
+p(\omega, \omega^{\prime}) = c
+$$
+$$
+\int_0^{2\pi}\int_0^{\pi}c\sin(\theta){d\theta}{d\phi} = 1
+$$
+$$
+c4\pi = 1
+$$
+$$
+c = \frac{1}{4\pi}
+$$</p>
+<p>
+다시 돌아와서, 배운 것을 토대로 $\textcolor{#00CC66}{\sigma_s(\mathbf{x})L_{\text{scat}}(\mathbf{x}, \boldsymbol{\omega})} = \sigma_s(\mathbf{x}) p(\boldsymbol{\omega}^{\prime}, \boldsymbol{\omega}) L_\text{sun}T(D)$를 한 문장으로 정리하면?</br>
+<b>대기로 들어와 상쇄되고 카메라 쪽으로 산란된 햇빛의 양</b>이다.
+</p>
+<p>
+지금까지 아래 식을 차근차근 뜯어보았다. 매질을 거쳐 카메라에 도달하는 빛의 양을 어느 정도 이해했기를 바란다.
+$$
+L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D \textcolor{#419BF9}{T(t)}\,\Big[\textcolor{#00CC66}{\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega})}\Big]\,dt + \color{orange}T(D)\,L_0
+$$
+다음 장에서는 하늘 렌더링 모델에서 이 수치들이 어떻게 결정되는지 알아보겠다.
+</p>
+<h1>Ⅱ. 레일리와 미 (Rayleigh and Mie)</h1>
+<h2>레일리 산란</h2>
 <p>
 <figure><img src="/images/why-sky-is-blue.svg" width="400">
 </figure>
@@ -336,7 +392,7 @@ $$
 </div>
 
 </p>
-<h2>미 산란 (Mie Scattering)</h2>
+<h2>미 산란</h2>
 <p>
 <figure><img src="/images/mie-scattering.svg" width="600">
 </figure>
