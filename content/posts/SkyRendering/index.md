@@ -1,14 +1,11 @@
 +++ 
-date = 2026-06-01T17:35:25+09:00
 title = "Sky Rendering 1"
+date = 2026-06-01
 description = ""
-slug = ""
-authors = []
-tags = ["Graphics", "Rendering", "Environment", "Game Engine"]
+tags = ["Graphics", "Rendering", "Environment"]
 categories = []
-externalLink = ""
 series = ["Sky Rendering"]
-math = "true"
+series_order = 1
 +++
 
 {{< figure src="/images/skyrim-nightsky.webp" attr="The Elder Scrolls V: Skyrim" width="900">}}
@@ -198,11 +195,31 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km
 <h2>Summary</h2>
 <p>A summary table:</p>
 
-| | Rayleigh Scattering | Mie Scattering |
-|---|---|---|
-| **Phase function** | $p(\mu) = \frac{3(1+\mu^2)}{16\pi}$ | $p(\mu,g) = \frac{3}{8\pi}\frac{(1-g^2)(1+\mu^2)}{(2+g^2)(1+g^2-2g\mu)^{3/2}}$ |
-| **Scattering coefficient** | $\sigma_s^r = [5.802,\ 13.558,\ 33.1]\times10^{-6}$ | $\sigma_s^m = 2.1\times10^{-5}$ |
-| **Density distribution** | $d^r(h) = e^{-h/8.0\text{km}}$ | $d^m(h) = e^{-h/1.2\text{km}}$ |
+<table>
+<tr>
+<th></th>
+<th>Rayleigh</th>
+<th>Mie</th>
+</tr>
+
+<tr>
+<td>Phase function</td>
+<td>\(p(\mu)=\frac{3(1+\mu^2)}{16\pi}\)</td>
+<td>\(p(\mu,g)=\frac{3}{8\pi}\frac{(1-g^2)(1+\mu^2)}{(2+g^2)(1+g^2-2g\mu)^{3/2}}\)</td>
+</tr>
+
+<tr>
+<td>Scattering coefficient</td>
+<td>\(\sigma_s^r=[5.802,13.558,33.1]\times10^{-6}\)</td>
+<td>\(\sigma_s^m=2.1\times10^{-5}\)</td>
+</tr>
+
+<tr>
+<td>Density distribution</td>
+<td>\(d^r(h)=e^{-h/(8.0\text{ km})}\)</td>
+<td>\(d^m(h)=e^{-h/(1.2\text{ km})}\)</td>
+</tr>
+</table>
 
 <p>
     Below are rendering results with Rayleigh only, Mie only, and both combined.

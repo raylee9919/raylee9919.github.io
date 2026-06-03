@@ -4,7 +4,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/ko/posts/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -17,7 +17,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/ko/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -30,7 +30,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/ko/series/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -43,7 +43,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/ko/tags/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -55,20 +55,17 @@
                 href="http://localhost:1313/ko/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/%EA%B2%8C%EC%9E%84-%EC%97%94%EC%A7%84/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/ko/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ko/tags/%EB%A0%8C%EB%8D%94%EB%A7%81/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ko/series/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -81,7 +78,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/ko/tags/%ED%99%98%EA%B2%BD/</loc>
-    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <lastmod>2026-06-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ko/tags/c&#43;&#43;17/</loc>
     <lastmod>2023-12-01T10:00:00+08:00</lastmod>

@@ -20,7 +20,7 @@
 />
 <meta
   name="keywords"
-  content="그래픽스, 렌더링, 환경, 게임 엔진"
+  content="그래픽스, 렌더링, 환경"
 />
 <meta
   name="author"
@@ -47,12 +47,11 @@
 	<meta property="og:locale" content="ko">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
-		<meta property="article:published_time" content="2026-06-01T17:35:25+09:00">
-		<meta property="article:modified_time" content="2026-06-01T17:35:25+09:00">
+		<meta property="article:published_time" content="2026-06-01T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-06-01T00:00:00+00:00">
 		<meta property="article:tag" content="그래픽스">
 		<meta property="article:tag" content="렌더링">
 		<meta property="article:tag" content="환경">
-		<meta property="article:tag" content="게임 엔진">
 		<meta property="og:image" content="http://localhost:1313/images/og-default.avif">
 
 
@@ -70,11 +69,11 @@
 반지의 제왕 Ⅲ: 왕의 귀환
 레드 데드 리뎀션 2
 수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 물리 기반 하늘 렌더링의 과정을 다루어본다.">
-	<meta itemprop="datePublished" content="2026-06-01T17:35:25+09:00">
-	<meta itemprop="dateModified" content="2026-06-01T17:35:25+09:00">
-	<meta itemprop="wordCount" content="3253">
+	<meta itemprop="datePublished" content="2026-06-01T00:00:00+00:00">
+	<meta itemprop="dateModified" content="2026-06-01T00:00:00+00:00">
+	<meta itemprop="wordCount" content="3237">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
-	<meta itemprop="keywords" content="그래픽스,렌더링,환경,게임 엔진">
+	<meta itemprop="keywords" content="그래픽스,렌더링,환경">
 
 
 
@@ -914,7 +913,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>3253자</span>
+              <span>3237자</span>
             </div>
             
           </div>
@@ -960,10 +959,6 @@
                   <a href="/ko/tags/%ED%99%98%EA%B2%BD/"
                     class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
                     환경
-                  </a>
-                  <a href="/ko/tags/%EA%B2%8C%EC%9E%84-%EC%97%94%EC%A7%84/"
-                    class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
-                    게임 엔진
                   </a>
                 </div>
               </div>
@@ -1456,30 +1451,26 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km</div>
 <h2>정리</h2>
 <p>표로 정리하면 다음과 같다.</p>
 <table>
-	<thead>
-			<tr>
-					<th></th>
-					<th>레일리 산란</th>
-					<th>미 산란</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>위상 함수</strong></td>
-					<td>$p(\mu) = \frac{3(1+\mu^2)}{16\pi}$</td>
-					<td>$p(\mu,g) = \frac{3}{8\pi}\frac{(1-g<sup>2)(1+\mu</sup>2)}{(2+g<sup>2)(1+g</sup>2-2g\mu)^{3/2}}$</td>
-			</tr>
-			<tr>
-					<td><strong>산란 계수</strong></td>
-					<td>$\sigma_s<sup>r = [5.802,\ 13.558,\ 33.1]\times10</sup>{-6}$</td>
-					<td>$\sigma_s<sup>m = 2.1\times10</sup>{-5}$</td>
-			</tr>
-			<tr>
-					<td><strong>밀도 분포</strong></td>
-					<td>$d<sup>r(h) = e</sup>{-h/8.0\text{km}}$</td>
-					<td>$d<sup>m(h) = e</sup>{-h/1.2\text{km}}$</td>
-			</tr>
-	</tbody>
+<tr>
+<th></th>
+<th>레일리</th>
+<th>미</th>
+</tr>
+<tr>
+<td>위상 함수</td>
+<td>\(p(\mu)=\frac{3(1+\mu^2)}{16\pi}\)</td>
+<td>\(p(\mu,g)=\frac{3}{8\pi}\frac{(1-g^2)(1+\mu^2)}{(2+g^2)(1+g^2-2g\mu)^{3/2}}\)</td>
+</tr>
+<tr>
+<td>산란 계수</td>
+<td>\(\sigma_s^r=[5.802,13.558,33.1]\times10^{-6}\)</td>
+<td>\(\sigma_s^m=2.1\times10^{-5}\)</td>
+</tr>
+<tr>
+<td>밀도 분포</td>
+<td>\(d^r(h)=e^{-h/(8.0\text{ km})}\)</td>
+<td>\(d^m(h)=e^{-h/(1.2\text{ km})}\)</td>
+</tr>
 </table>
 <p>
     아래는 레일리나 미 산란만 있을 때와 합쳐졌을 때의 렌더링 결과이다.    

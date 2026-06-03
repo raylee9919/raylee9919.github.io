@@ -1,14 +1,11 @@
 +++ 
-date = 2026-06-01T17:35:25+09:00
 title = "하늘 렌더링 1"
+date = 2026-06-01
 description = ""
-slug = ""
-authors = []
-tags = ["그래픽스", "렌더링", "환경", "게임 엔진"]
+tags = ["그래픽스", "렌더링", "환경"]
 categories = []
-externalLink = ""
 series = ["하늘 렌더링"]
-math = "true"
+series_order = 1
 +++
 
 {{< figure src="/images/skyrim-nightsky.webp" attr="엘더스크롤 5: 스카이림" width="900">}}
@@ -204,11 +201,31 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km
 <h2>정리</h2>
 <p>표로 정리하면 다음과 같다.</p>
 
-| | 레일리 산란 | 미 산란 |
-|---|---|---|
-| **위상 함수** | $p(\mu) = \frac{3(1+\mu^2)}{16\pi}$ | $p(\mu,g) = \frac{3}{8\pi}\frac{(1-g^2)(1+\mu^2)}{(2+g^2)(1+g^2-2g\mu)^{3/2}}$ |
-| **산란 계수** | $\sigma_s^r = [5.802,\ 13.558,\ 33.1]\times10^{-6}$ | $\sigma_s^m = 2.1\times10^{-5}$ |
-| **밀도 분포** | $d^r(h) = e^{-h/8.0\text{km}}$ | $d^m(h) = e^{-h/1.2\text{km}}$ |
+<table>
+<tr>
+<th></th>
+<th>레일리</th>
+<th>미</th>
+</tr>
+
+<tr>
+<td>위상 함수</td>
+<td>\(p(\mu)=\frac{3(1+\mu^2)}{16\pi}\)</td>
+<td>\(p(\mu,g)=\frac{3}{8\pi}\frac{(1-g^2)(1+\mu^2)}{(2+g^2)(1+g^2-2g\mu)^{3/2}}\)</td>
+</tr>
+
+<tr>
+<td>산란 계수</td>
+<td>\(\sigma_s^r=[5.802,13.558,33.1]\times10^{-6}\)</td>
+<td>\(\sigma_s^m=2.1\times10^{-5}\)</td>
+</tr>
+
+<tr>
+<td>밀도 분포</td>
+<td>\(d^r(h)=e^{-h/(8.0\text{ km})}\)</td>
+<td>\(d^m(h)=e^{-h/(1.2\text{ km})}\)</td>
+</tr>
+</table>
 
 <p>
     아래는 레일리나 미 산란만 있을 때와 합쳐졌을 때의 렌더링 결과이다.    
