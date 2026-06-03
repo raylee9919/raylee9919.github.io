@@ -10,6 +10,36 @@
 		
 		
 		
+			<lastBuildDate>Mon, 01 Jun 2026 17:35:25 +0900</lastBuildDate>
+		
 			<atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Environment</title>
+				<link>http://localhost:1313/tags/environment/</link>
+				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
+				<guid>http://localhost:1313/tags/environment/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Game Engine</title>
+				<link>http://localhost:1313/tags/game-engine/</link>
+				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
+				<guid>http://localhost:1313/tags/game-engine/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Graphics</title>
+				<link>http://localhost:1313/tags/graphics/</link>
+				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
+				<guid>http://localhost:1313/tags/graphics/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Rendering</title>
+				<link>http://localhost:1313/tags/rendering/</link>
+				<pubDate>Mon, 01 Jun 2026 17:35:25 +0900</pubDate>
+				<guid>http://localhost:1313/tags/rendering/</guid>
+				<description></description>
+			</item>
 	</channel>
 </rss>

@@ -22,18 +22,30 @@
                 href="http://localhost:1313/kr/"
                 />
   </url><url>
+    <loc>http://localhost:1313/tags/environment/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/game-engine/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/graphics/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-06-01T17:35:25+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/posts/"
-                />
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
                 href="http://localhost:1313/kr/posts/"
                 />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tags/rendering/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/sky-rendering-1/</loc>
     <lastmod>2026-06-01T17:35:25+09:00</lastmod>
@@ -46,6 +58,19 @@
                 rel="alternate"
                 hreflang="kr"
                 href="http://localhost:1313/kr/posts/sky-rendering-1/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-06-01T17:35:25+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="http://localhost:1313/kr/tags/"
                 />
   </url><url>
     <loc>http://localhost:1313/authors/</loc>
@@ -82,18 +107,6 @@
                 rel="alternate"
                 hreflang="kr"
                 href="http://localhost:1313/kr/series/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="http://localhost:1313/kr/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/"
                 />
   </url>
 </urlset>

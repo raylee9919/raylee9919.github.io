@@ -42,15 +42,15 @@ math = "true"
 </p>
 
 <p>
-이를 빛이 매질을 통과하는 방정식인 VRE(Volume Rendering Equation)로 나타내면 다음과 같다.
+이를 빛이 매질을 통과하는 식인 VRE(Volume Rendering Equation)로 나타내면 다음과 같다.
 $$
 L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D T(t)\,\Big[\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega}) + \sigma_a(\mathbf{x}_t)\,L_e(\mathbf{x}_t, \boldsymbol{\omega})\Big]\,dt + T(D)\,L_0
 $$
-광원을 오직 태양으로 단순화하여 발광(emission)에 관한 항을 제거하면, 
+광원을 오직 태양으로 단순화함으로써, 발광(emission)에 관한 항을 제거하면, 
 $$
 L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D \textcolor{#419BF9}{T(t)}\,\Big[\textcolor{#00CC66}{\sigma_s(\mathbf{x}_t)\,L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega})}\Big]\,dt + \color{orange}T(D)\,L_0
 $$
-위 식을 천천히 살펴보자.
+위 식을 천천히 살펴보도록 하겠다.
 </br></br>
 $T(d)$는 <i>들어온 빛에 대한 남은 빛의 비율</i> ($\frac{L_{\text{out}}}{L_{\text{in}}}$)이다. 거리 $d$에 대해 다음과 같이 표현한다 (Beer-Lambert 법칙).
 $$T(d) = e^{-\sigma_t d}$$
@@ -126,12 +126,24 @@ $$
 </p>
 
 <h1>Ⅱ. 레일리와 미 (Rayleigh and Mie)</h1>
+
+<p>
+    고도에 따라 대기 중 입자의 평균 크기가 달라진다. 이에 따라 산란의 특성이 달라진다. 입자가 비교적 작은 위쪽에는 레일리 산란(Rayleigh scattering)이 주로  
+    일어나고, 입자가 비교적 큰 아래쪽에는 미 산란(Mie scattering)이 주를 이룬다.
+</p>
+
+<p>
+    두 산란에 따라 위상 함수, 산란 계수, 밀도 분포가 달라지므로 이를 중심으로 살펴보도록 하겠다. 밀도 분포는 해당 고도에서 해당 산란을 일으키는 
+    입자가 얼마나 존재하는지로 이해하면 되겠다.
+</p>
+
 <h2>레일리 산란</h2>
+
 <p>
 {{< figure src="/images/why-sky-is-blue.svg" width="400">}}
-고도가 높아질수록, 입자의 크기가 작아지고, 이에 따라 파장(波長, wavelength)이 짧은 광자(光子, photon)가 더 큰 영향을 받게 된다. 
-즉, 파장이 짧은 "푸른" 빛이 더 크게 산란한다. 여기저기서 푸른 파장을 지닌 광자들이 내 눈에 도달하게 되고, 나는 "여기저기"를 푸른 하늘로 인식하는 것이다. 
-이러한 산란을 레일리 산란이라 하고, float3 RGB 계수와 고도에 따른 분포 함수로 이를 구현하고는 한다.
+고도가 높아질수록, 입자의 크기가 작아지고, 이에 따라 파장(wavelength)이 짧은 광자(photon)가 더 큰 영향을 받게 된다. 
+즉, 파장이 짧은 "푸른" 빛이 더 많이 산란한다. 여기저기서 푸른 파장을 지닌 광자들이 내 눈에 도달하게 되고, 나는 "여기저기"를 푸른 하늘로 인식하는 것이다. 
+이러한 산란을 레일리 산란이라 한다.
 
 {{< notice info >}} 
 빛의 에너지는 연속적인 파장에 걸쳐 분포하지만, 보통 RGB 렌더러에서는 R, G, B 세 값만을 쓴다. 이는 연속적인 모든 파장을 다 고려할 수 없으므로, 
@@ -139,23 +151,80 @@ $$
 적분으로써 얻은 값이 아닌, 특정 세 파장에 대한 계수 (440nm, 550nm, 680nm)이다. {{< /notice >}}
 </p>
 
-<h2>미 산란</h2>
 <p>
-{{< figure src="/images/mie-scattering.svg" width="600">}}
-빛의 진행 방향과 "비슷한" 방향으로 더 많이 산란한다는 것이 미 산란이고, 이는 입자의 크기가 클수록, 즉, 고도가 낮아질수록 도드라진다. 미 산란은 레일리 산란과 달리 빛의 파장에 의존하지 않는다.
+	레일리 산란의 <b>위상 함수</b>는 다음을 사용하겠다.
+	$$
+		p(\mu) = \frac{3(1 + \mu^2)}{16\pi}
+	$$
+	$\mu$는 들어오는 빛의 방향과 산란되어 나가는 빛의 방향 사잇각의 $\cos$값이다.
 </p>
 
 <p>
-아래는 레일리와 미 산란이 합쳐졌을 때와 각각만 있을 때의 렌더링 결과이다.
-{{< figure src="/images/rayleigh-and-mie.png" width="600" attr="레일리+미: 푸른 하늘과 햇무리">}}
-</br>
-{{< figure src="/images/rayleigh-only.png" width="600" attr="레일리: 햇무리가 존재하지 않는다.">}}
-</br>
-{{< figure src="/images/mie-only.png" width="600" attr="미: 하늘이 하얗고 햇무리가 존재한다.">}}
+	레일리 산란의 <b>산란 계수</b>는 벡터로 표현된다. $\sigma_s^r = \begin{bmatrix} 5.802 \\ 13.558 \\ 33.1 \end{bmatrix}\times10^{-6}$을 사용하겠다.<br>
+	레일리 산란의 고도 $h$에 따른 <b>밀도 분포</b>는 $d^r(h) = e^{\frac{-h}{8.0km}}$ 를 사용하겠다.
+</p>
+
+<p>위 내용을 hlsl로 옮기면 다음과 같다.</p>
+
+```hlsl
+float phase_rayleigh(float mu) {
+    return 0.05968310365 * (1 + mu*mu);
+}
+
+float3 Sr = float3(5.802e-6, 13.558e-6, 33.1e-6); // 레일리 산란 계수
+float Dr = exp(-altitude / 8.0km); // 8.0km
+```
+
+<h2>미 산란</h2>
+
+<p>
+{{< figure src="/images/mie-scattering.svg" width="600">}}
+빛의 진행 방향과 "비슷한" 방향으로 더 많이 산란한다는 것이 미 산란이고, 이는 입자의 크기가 클수록, 즉, 고도가 낮아질수록 도드라진다. 태양 주위의 햇무리 효과를 낼 수 있고, 레일리 산란과 달리 빛의 파장에 의존하지 않는다.
+</p>
+
+<p>미 산란의 <b>위상 함수</b>는 다음처럼 Cornette-Shanks 위상함수로 표현할 수 있다.</p>
+$$
+	p(\mu, g) = {\frac{3}{8\pi}}{\frac{(1 - g^2)(1 + \mu^2)}{(2 + g^2){(1 + g^2 - 2g\mu)}^{3/2}}}
+$$
+<p>
+	$g$는 비대칭 계수(asymmetry parameter)로서, 산란된 빛이 원래 진행 방향으로 얼마나 유지하려는지를 나타낸다.<br> $g>0$의 경우, 빛이 원래 진행 방향으로 더 많이 산란되고, 
+	$g<0$의 경우, 빛이 반대 방향으로 더 많이 산란된다. </br>우리는 $g=0.8$로 설정하겠다.
+</p>
+
+<p>
+	미 산란의 <b>산란 계수</b> $\sigma_s^m$는 $2.1\times10^{-5}$를 사용하도록 하겠다. 이는 날씨, 대기의 오염도 등에 따라 달라질 수 있다.<br>
+	미 산란의 고도 $h$에 따른 <b>밀도 분포</b>는 $d^m(h) = e^{\frac{-h}{1.2km}}$ 를 사용하겠다.
+</p>
+
+<p>위 내용을 hlsl로 옮기면 다음과 같다.</p>
+
+```hlsl
+float phase_mie(float mu, float g) {
+    // Cornette-Shanks
+    float g2 = g*g;
+    return 0.11936620731 * (((1 - g2)*(1 + mu*mu)) / ((2 + g2) * pow(1 + g2 - 2*g*mu, 1.5)));
+}
+
+float3 Sm = 2.1e-5; // 미 산란 계수
+float Dm = exp(-altitude / 1.2e3); // 1.2km
+```
+
+<h2>정리</h2>
+<p>표로 정리하면 다음과 같다.</p>
+
+| | 레일리 산란 | 미 산란 |
+|---|---|---|
+| **위상 함수** | $p(\mu) = \frac{3(1+\mu^2)}{16\pi}$ | $p(\mu,g) = \frac{3}{8\pi}\frac{(1-g^2)(1+\mu^2)}{(2+g^2)(1+g^2-2g\mu)^{3/2}}$ |
+| **산란 계수** | $\sigma_s^r = [5.802,\ 13.558,\ 33.1]\times10^{-6}$ | $\sigma_s^m = 2.1\times10^{-5}$ |
+| **밀도 분포** | $d^r(h) = e^{-h/8.0\text{km}}$ | $d^m(h) = e^{-h/1.2\text{km}}$ |
+
+<p>
+    아래는 레일리나 미 산란만 있을 때와 합쳐졌을 때의 렌더링 결과이다.    
+    {{< figure src="/images/rayleigh-only.png" width="600" attr="레일리로 인한 푸른 하늘">}}
+    </br>
+    {{< figure src="/images/mie-only.png" width="600" attr="미로 인한 햇무리">}}
+    </br>
+    {{< figure src="/images/rayleigh-and-mie.png" width="600" attr="레일리+미: 푸른 하늘과 햇무리">}}
 </p>
 
 {{< notice note >}} 또 다른 중요한 산란인, 오존(Ozone) 산란은 본문에서 다루지 않겠다. {{< /notice >}}
-
-<h1>Ⅲ. 레이 마칭 (Ray Marching)</h1>
-
-WIP
