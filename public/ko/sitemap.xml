@@ -80,21 +80,11 @@
     <loc>http://localhost:1313/ko/tags/%ED%99%98%EA%B2%BD/</loc>
     <lastmod>2026-06-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ko/tags/c&#43;&#43;17/</loc>
-    <lastmod>2023-12-01T10:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/c&#43;&#43;17/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/tags/c&#43;&#43;17/"
-                />
+    <loc>http://localhost:1313/ko/tags/c&#43;&#43;20/</loc>
+    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ko/categories/</loc>
-    <lastmod>2023-12-01T10:00:00+08:00</lastmod>
+    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -106,21 +96,11 @@
                 href="http://localhost:1313/ko/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/opengl/</loc>
-    <lastmod>2023-12-01T10:00:00+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/opengl/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/tags/opengl/"
-                />
+    <loc>http://localhost:1313/ko/tags/d3d12/</loc>
+    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ko/categories/projects/</loc>
-    <lastmod>2023-12-01T10:00:00+08:00</lastmod>
+    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -132,21 +112,21 @@
                 href="http://localhost:1313/ko/categories/projects/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/projects/hugo-narrow-theme/</loc>
-    <lastmod>2023-12-01T10:00:00+08:00</lastmod>
+    <loc>http://localhost:1313/ko/projects/rhi/</loc>
+    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/projects/hugo-narrow-theme/"
+                href="http://localhost:1313/projects/rhi/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/projects/hugo-narrow-theme/"
+                href="http://localhost:1313/ko/projects/rhi/"
                 />
   </url><url>
     <loc>http://localhost:1313/ko/projects/</loc>
-    <lastmod>2023-12-01T10:00:00+08:00</lastmod>
+    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -156,6 +136,45 @@
                 rel="alternate"
                 hreflang="ko"
                 href="http://localhost:1313/ko/projects/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/ko/tags/c&#43;&#43;17/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/c&#43;&#43;17/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/tags/c&#43;&#43;17/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/ko/tags/opengl/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/opengl/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/tags/opengl/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/ko/projects/rts/</loc>
+    <lastmod>2023-12-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/projects/rts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/projects/rts/"
                 />
   </url>
 </urlset>

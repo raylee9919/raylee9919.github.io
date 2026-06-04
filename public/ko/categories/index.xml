@@ -10,13 +10,13 @@
 		
 		
 		
-			<lastBuildDate>Fri, 01 Dec 2023 10:00:00 +0800</lastBuildDate>
+			<lastBuildDate>Thu, 01 Jan 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/ko/categories/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Projects</title>
 				<link>http://localhost:1313/ko/categories/projects/</link>
-				<pubDate>Fri, 01 Dec 2023 10:00:00 +0800</pubDate>
+				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/categories/projects/</guid>
 				<description></description>
 			</item>

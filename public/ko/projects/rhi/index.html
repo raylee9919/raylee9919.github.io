@@ -13,7 +13,7 @@
 
 <meta
   name="description"
-  content="그래픽스 기술들을 선보이는 렌더러"
+  content="렌더링 파이프라인과 기술 연구 및 구현 프로젝트"
 />
 <meta
   name="keywords"
@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://localhost:1313/ko/projects/rhi/">
 	<meta property="og:site_name" content="SeongWoo Lee">
 	<meta property="og:title" content="RHI">
-	<meta property="og:description" content="그래픽스 기술들을 선보이는 렌더러">
+	<meta property="og:description" content="렌더링 파이프라인과 기술 연구 및 구현 프로젝트">
 	<meta property="og:locale" content="ko">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="projects">
@@ -52,14 +52,14 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
 	<meta name="twitter:title" content="RHI">
-	<meta name="twitter:description" content="그래픽스 기술들을 선보이는 렌더러">
+	<meta name="twitter:description" content="렌더링 파이프라인과 기술 연구 및 구현 프로젝트">
 
 
 	<meta itemprop="name" content="RHI">
-	<meta itemprop="description" content="그래픽스 기술들을 선보이는 렌더러">
+	<meta itemprop="description" content="렌더링 파이프라인과 기술 연구 및 구현 프로젝트">
 	<meta itemprop="datePublished" content="2026-01-01T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-01-01T00:00:00+00:00">
-	<meta itemprop="wordCount" content="880">
+	<meta itemprop="wordCount" content="1095">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="C&#43;&#43;20,D3D12,그래픽스">
 
@@ -869,7 +869,7 @@
     
     
       <div class="text-muted-foreground text-lg leading-relaxed md:text-xl">
-        그래픽스 기술들을 선보이는 렌더러
+        렌더링 파이프라인과 그래픽스 기술을 연구하고 구현한다.
       </div>
     
   </header>
@@ -1039,6 +1039,222 @@
 </ul>
 </li>
 </ul>
+</details>
+<h4 id="파이프라인">파이프라인<a href="#%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h4><details>
+<summary>디퍼드 셰이딩</summary>
+<p>기하 정보와 조명 계산을 분리하여 복잡도를 $(해상도)\times(빛의\space수)$로 줄인다.
+</br></br>
+노말은 메모리 대역폭과 기하 버퍼의 크기를 줄이기 위해 <code>R8G8B8A8_SNORM</code> 형식으로 저장하였다.
+</br></br>
+메모리 사용량을 줄이기 위해 Roughness, Metallic, Emission 등은 별도의 텍스쳐에 저장하지 않고, 머터리얼 ID 텍스쳐를 통해
+셰이딩 단계에서 조회한다.
+</br></br>
+다음과 같은 기하 버퍼를 사용하였다.</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: left">기하 버퍼</th>
+					<th style="text-align: left">형식</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left">위치</td>
+					<td style="text-align: left">R32G32B32A32_FLOAT</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">노말</td>
+					<td style="text-align: left">R8G8B8A8_SNORM</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">텍스쳐 좌표</td>
+					<td style="text-align: left">R32G32_FLOAT</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">머터리얼 ID</td>
+					<td style="text-align: left">R16_UINT</td>
+			</tr>
+			<tr>
+					<td style="text-align: left">깊이</td>
+					<td style="text-align: left">D32</td>
+			</tr>
+	</tbody>
+</table>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="2560"
+  data-image-height="1440"
+  data-image-src="/projects/rhi/resources/gbuffer-01.png"
+>
+  <div class="image-container">
+    <img
+    src="/projects/rhi/resources/gbuffer-01.png"
+    alt="Position"
+    title="위치 — R32G32B32A32_FLOAT"
+    
+      
+      
+        
+          width="2560" height="1440"
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/projects/rhi/resources/gbuffer-01.png"
+    data-gallery-alt="Position"
+    data-gallery-title="위치 — R32G32B32A32_FLOAT"
+  /></div>
+
+  <figcaption class="image-caption">
+      위치 — R32G32B32A32_FLOAT
+    </figcaption></figure>
+
+
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="2560"
+  data-image-height="1440"
+  data-image-src="/projects/rhi/resources/gbuffer-02.png"
+>
+  <div class="image-container">
+    <img
+    src="/projects/rhi/resources/gbuffer-02.png"
+    alt="Normal"
+    title="노말 — R8G8B8A8_SNORM"
+    
+      
+      
+        
+          width="2560" height="1440"
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/projects/rhi/resources/gbuffer-02.png"
+    data-gallery-alt="Normal"
+    data-gallery-title="노말 — R8G8B8A8_SNORM"
+  /></div>
+
+  <figcaption class="image-caption">
+      노말 — R8G8B8A8_SNORM
+    </figcaption></figure>
+
+
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="2560"
+  data-image-height="1440"
+  data-image-src="/projects/rhi/resources/gbuffer-03.png"
+>
+  <div class="image-container">
+    <img
+    src="/projects/rhi/resources/gbuffer-03.png"
+    alt="Texture Coordinates"
+    title="텍스쳐 좌표 — R32G32_FLOAT"
+    
+      
+      
+        
+          width="2560" height="1440"
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/projects/rhi/resources/gbuffer-03.png"
+    data-gallery-alt="Texture Coordinates"
+    data-gallery-title="텍스쳐 좌표 — R32G32_FLOAT"
+  /></div>
+
+  <figcaption class="image-caption">
+      텍스쳐 좌표 — R32G32_FLOAT
+    </figcaption></figure>
+
+
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="2560"
+  data-image-height="1440"
+  data-image-src="/projects/rhi/resources/gbuffer-04.png"
+>
+  <div class="image-container">
+    <img
+    src="/projects/rhi/resources/gbuffer-04.png"
+    alt="Material ID"
+    title="머터리얼 ID — R16_UINT"
+    
+      
+      
+        
+          width="2560" height="1440"
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/projects/rhi/resources/gbuffer-04.png"
+    data-gallery-alt="Material ID"
+    data-gallery-title="머터리얼 ID — R16_UINT"
+  /></div>
+
+  <figcaption class="image-caption">
+      머터리얼 ID — R16_UINT
+    </figcaption></figure>
+
+
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="2560"
+  data-image-height="1440"
+  data-image-src="/projects/rhi/resources/gbuffer-05.png"
+>
+  <div class="image-container">
+    <img
+    src="/projects/rhi/resources/gbuffer-05.png"
+    alt="Depth"
+    title="깊이 — D32"
+    
+      
+      
+        
+          width="2560" height="1440"
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/projects/rhi/resources/gbuffer-05.png"
+    data-gallery-alt="Depth"
+    data-gallery-title="깊이 — D32"
+  /></div>
+
+  <figcaption class="image-caption">
+      깊이 — D32
+    </figcaption></figure>
+</p>
 </details>
 <h4 id="후처리">후처리<a href="#%ed%9b%84%ec%b2%98%eb%a6%ac" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h4><details>
 <summary>HDR 톤 맵핑</summary>
@@ -2063,6 +2279,7 @@ ConstantBuffer &lt;Push_Constants&gt; push : register(b0);</div>
         <li>
           <ul>
             <li><a href="#환경">환경</a></li>
+            <li><a href="#파이프라인">파이프라인</a></li>
             <li><a href="#후처리">후처리</a></li>
           </ul>
         </li>

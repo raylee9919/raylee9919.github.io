@@ -1084,7 +1084,7 @@
             <p
               class="text-white/80 mb-4 line-clamp-2 text-sm leading-relaxed drop-shadow-sm"
             >
-              그래픽스 기술들을 선보이는 렌더러
+              렌더링 파이프라인과 그래픽스 기술을 연구하고 구현한다.
             </p>
           
 
@@ -1611,69 +1611,6 @@
       
 
 
-  <style>
-     
-    svg[id^="mermaid-"] {
-      display: block;
-      margin: 0 auto;
-    }
-  </style>
-  <script type="module">
-    import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-
-    
-    function getCurrentTheme() {
-      const isDark = document.documentElement.classList.contains("dark");
-      return isDark ? "dark" : "default";
-    }
-
-    
-    const theme = getCurrentTheme();
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: theme,
-      securityLevel: "loose",
-    });
-
-    
-    document.querySelectorAll(".mermaid").forEach((element) => {
-      if (!element.getAttribute("data-original-code")) {
-        
-        const originalCode = element.textContent.trim();
-        element.setAttribute("data-original-code", originalCode);
-      }
-    });
-
-    
-    window.addEventListener("themeChanged", async () => {
-      const newTheme = getCurrentTheme();
-
-      try {
-        
-        document.querySelectorAll(".mermaid").forEach((element) => {
-          const originalCode = element.getAttribute("data-original-code");
-          if (originalCode) {
-            
-            element.removeAttribute("data-processed");
-            
-            element.textContent = originalCode;
-          }
-        });
-
-        
-        mermaid.initialize({
-          startOnLoad: false,
-          theme: newTheme,
-          securityLevel: "loose",
-        });
-
-        
-        await mermaid.run();
-      } catch (error) {
-        console.error("Mermaid 主题更新失败:", error);
-      }
-    });
-  </script>
     </main>
   </body>
 </html>

@@ -2,8 +2,8 @@
 title: "RHI"
 date: 2026-01-01
 draft: false
-description: "그래픽스 기술들을 선보이는 렌더러"
-summary: "그래픽스 기술들을 선보이는 렌더러"
+description: "렌더링 파이프라인과 기술 연구 및 구현 프로젝트"
+summary: "렌더링 파이프라인과 그래픽스 기술을 연구하고 구현한다."
 featured: true
 tags:
   - C++20
@@ -43,6 +43,38 @@ link: "https://github.com/raylee9919/RHI"
   - 실제 데이터로 다양한 행성을 표현 가능하다.
 - 실제 태양 조도
   - $10^5$ lux 수준의 큰 값을, CCD 카메라와 HDR 렌더링 파이프라인에서 압축하여 구현하였다.
+
+</details>
+
+#### 파이프라인
+
+<details>
+<summary>디퍼드 셰이딩</summary>
+
+
+기하 정보와 조명 계산을 분리하여 복잡도를 $(해상도)\times(빛의\space수)$로 줄인다.
+</br></br>
+노말은 메모리 대역폭과 기하 버퍼의 크기를 줄이기 위해 `R8G8B8A8_SNORM` 형식으로 저장하였다.
+</br></br>
+메모리 사용량을 줄이기 위해 Roughness, Metallic, Emission 등은 별도의 텍스쳐에 저장하지 않고, 머터리얼 ID 텍스쳐를 통해 
+셰이딩 단계에서 조회한다.
+</br></br>
+다음과 같은 기하 버퍼를 사용하였다. 
+
+| 기하 버퍼 | 형식 |
+|:-----------|:------------|
+| 위치  | R32G32B32A32_FLOAT |
+| 노말 | R8G8B8A8_SNORM |
+| 텍스쳐 좌표 | R32G32_FLOAT |
+| 머터리얼 ID | R16_UINT |
+| 깊이 | D32 |
+
+
+![Position](resources/gbuffer-01.png "위치 — R32G32B32A32_FLOAT")
+![Normal](resources/gbuffer-02.png "노말 — R8G8B8A8_SNORM")
+![Texture Coordinates](resources/gbuffer-03.png "텍스쳐 좌표 — R32G32_FLOAT")
+![Material ID](resources/gbuffer-04.png "머터리얼 ID — R16_UINT")
+![Depth](resources/gbuffer-05.png "깊이 — D32")
 
 </details>
 
