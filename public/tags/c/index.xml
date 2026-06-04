@@ -10,15 +10,15 @@
 		
 		
 		
-			<lastBuildDate>Wed, 01 Oct 2025 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Mon, 01 Jan 1900 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/tags/c/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>Constrained Delaunay Triangulation</title>
-				<link>http://localhost:1313/projects/constrained-delaunay-triangulation/</link>
-				<pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/projects/constrained-delaunay-triangulation/</guid>
-				<description>단일 헤더 제약 들루네 삼각분할 기하 라이브러리</description>
+				<title>CDT</title>
+				<link>http://localhost:1313/projects/cdt/</link>
+				<pubDate>Mon, 01 Jan 1900 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/projects/cdt/</guid>
+				<description>Single-header Constrained Delaunay Triangulation in C</description>
 			</item>
 	</channel>
 </rss>

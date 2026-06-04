@@ -10,15 +10,15 @@
 		
 		
 		
-			<lastBuildDate>Thu, 04 Jun 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/series/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>하늘 렌더링 2</title>
-				<link>http://localhost:1313/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/</link>
-				<pubDate>Thu, 04 Jun 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/</guid>
-				<description></description>
+				<title>하늘 렌더링 1</title>
+				<link>http://localhost:1313/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/</link>
+				<pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/</guid>
+				<description>&lt;p&gt;WIP&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>

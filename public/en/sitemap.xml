@@ -222,5 +222,34 @@
                 hreflang="ko"
                 href="http://localhost:1313/ko/projects/rts/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/tags/c/</loc>
+    <lastmod>1900-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/c/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/tags/c/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/projects/cdt/</loc>
+    <lastmod>1900-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/projects/cdt/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/projects/cdt/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tags/computational-geometry/</loc>
+    <lastmod>1900-01-01T00:00:00+00:00</lastmod>
   </url>
 </urlset>

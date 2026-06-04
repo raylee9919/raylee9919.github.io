@@ -219,5 +219,34 @@
                 hreflang="ko"
                 href="http://localhost:1313/ko/projects/rts/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/ko/tags/c/</loc>
+    <lastmod>1900-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/c/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/tags/c/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/ko/projects/cdt/</loc>
+    <lastmod>1900-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/projects/cdt/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/projects/cdt/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/ko/tags/%EA%B3%84%EC%82%B0-%EA%B8%B0%ED%95%98%ED%95%99/</loc>
+    <lastmod>1900-01-01T00:00:00+00:00</lastmod>
   </url>
 </urlset>
