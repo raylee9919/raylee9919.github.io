@@ -8,16 +8,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title>Projects |
+<title>CDT |
     SeongWoo Lee</title>
 
 <meta
   name="description"
-  content="Explore my portfolio of projects, from web development to AI applications"
+  content="Single-header Constrained Delaunay Triangulation library built in C"
 />
 <meta
   name="keywords"
-  content="Programming, Graphics, Game Engine, Blog, Post, Development"
+  content="C, Computational Geometry"
 />
 <meta
   name="author"
@@ -29,41 +29,40 @@
   name="robots"
   content="index, follow"
 />
-<link rel="canonical" href="http://localhost:1313/projects/" />
+<link rel="canonical" href="http://localhost:1313/projects/cdt/" />
 
 
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
 <link rel="manifest" href="/site.webmanifest" />
-<meta property="og:url" content="http://localhost:1313/projects/">
+<meta property="og:url" content="http://localhost:1313/projects/cdt/">
 	<meta property="og:site_name" content="SeongWoo Lee">
-	<meta property="og:title" content="Projects">
-	<meta property="og:description" content="Explore my portfolio of projects, from web development to AI applications">
+	<meta property="og:title" content="CDT">
+	<meta property="og:description" content="Single-header Constrained Delaunay Triangulation library built in C">
 	<meta property="og:locale" content="en">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="projects">
+		<meta property="article:published_time" content="1900-01-01T00:00:00+00:00">
+		<meta property="article:modified_time" content="1900-01-01T00:00:00+00:00">
+		<meta property="article:tag" content="C">
+		<meta property="article:tag" content="Computational Geometry">
 		<meta property="og:image" content="http://localhost:1313/images/og-default.avif">
 
 
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
-	<meta name="twitter:title" content="Projects">
-	<meta name="twitter:description" content="Explore my portfolio of projects, from web development to AI applications">
+	<meta name="twitter:title" content="CDT">
+	<meta name="twitter:description" content="Single-header Constrained Delaunay Triangulation library built in C">
 
 
-	<meta itemprop="name" content="Projects">
-	<meta itemprop="description" content="Explore my portfolio of projects, from web development to AI applications">
-	<meta itemprop="datePublished" content="2026-01-01T00:00:00+00:00">
-	<meta itemprop="dateModified" content="2026-01-01T00:00:00+00:00">
-	<meta itemprop="wordCount" content="17">
+	<meta itemprop="name" content="CDT">
+	<meta itemprop="description" content="Single-header Constrained Delaunay Triangulation library built in C">
+	<meta itemprop="datePublished" content="1900-01-01T00:00:00+00:00">
+	<meta itemprop="dateModified" content="1900-01-01T00:00:00+00:00">
+	<meta itemprop="wordCount" content="241">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
+	<meta itemprop="keywords" content="C,Computational Geometry">
 
 
-
-  <link
-    rel="alternate"
-    type="application/rss+xml"
-    title="SeongWoo Lee"
-    href="http://localhost:1313/projects/index.xml"
-  />
 
 
 
@@ -94,6 +93,7 @@
 
 
 
+          <script src="/js/toc.js" defer></script>
 
 
 
@@ -222,7 +222,7 @@
               <a
                 href="/projects/"
                 class="nav-link 
-                  nav-active-indicator bg-accent text-accent-foreground
+                  text-muted-foreground hover:text-primary hover:bg-primary/10
                  focus:ring-primary/20 relative flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none"
               >
                 
@@ -387,7 +387,7 @@
       
         role="menu" aria-labelledby="language-toggle"
       
-    ><a href="/projects/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">English</span></a><a href="/ko/projects/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">한국어</span></a></div>
+    ><a href="/projects/cdt/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">English</span></a><a href="/ko/projects/cdt/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">한국어</span></a></div>
   </div>
 
 
@@ -496,7 +496,7 @@
       
         role="menu" aria-labelledby="language-toggle"
       
-    ><a href="/projects/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">English</span></a><a href="/ko/projects/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">한국어</span></a></div>
+    ><a href="/projects/cdt/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">English</span></a><a href="/ko/projects/cdt/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">한국어</span></a></div>
   </div>
 
 
@@ -621,10 +621,10 @@
           <a
             href="/projects/"
             class="nav-panel-link 
-              bg-accent text-accent-foreground
+              text-muted-foreground hover:text-primary hover:bg-primary/10
              focus:ring-primary/20 flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
             role="menuitem"
-            aria-current="page"
+            
           >
             
               <svg class="h-5 w-5" aria-label="Projects" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="6" r="1" fill="currentColor"/><path fill="currentColor" d="M6 17h12v2H6zm4-5.17l2.792 2.794l3.932-3.935L18 12V8h-4l1.31 1.275l-2.519 2.519L10 9l-4 4l1.414 1.414z"/><path fill="currentColor" d="M19 3h-3.298a5 5 0 0 0-.32-.425l-.01-.012a4.43 4.43 0 0 0-2.89-1.518a2.6 2.6 0 0 0-.964 0a4.43 4.43 0 0 0-2.89 1.518l-.01.012a5 5 0 0 0-.32.424V3H5a3.003 3.003 0 0 0-3 3v14a3.003 3.003 0 0 0 3 3h14a3.003 3.003 0 0 0 3-3V6a3.003 3.003 0 0 0-3-3m1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4.55a2.5 2.5 0 0 1 4.9 0H19a1 1 0 0 1 1 1Z"/></svg>
@@ -800,6 +800,26 @@
           </li>
         
       
+        
+          
+          <li class="flex min-w-0 items-center gap-1 md:gap-2">
+            <span class="text-muted-foreground/50 shrink-0"
+              ><svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+</svg>
+            </span>
+            <a
+              href="/projects/"
+              class="text-muted-foreground hover:text-primary hover:bg-primary/10 flex shrink-0 items-center gap-1 rounded-lg px-1 py-0.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.02] md:px-3 md:py-1.5"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+</svg>
+              <span class="max-w-16 truncate md:max-w-none">Projects</span>
+            </a>
+          </li>
+        
+      
 
 
       
@@ -813,7 +833,7 @@
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
 </svg>
-          <span class="max-w-32 truncate md:max-w-[16rem] lg:max-w-none">Projects</span>
+          <span class="max-w-32 truncate md:max-w-[16rem] lg:max-w-none">CDT</span>
         </span>
       </li>
     </ol>
@@ -821,296 +841,145 @@
 
 
         
-  <div class="mx-auto max-w-6xl">
-    
-    <header class="mb-8">
-      <h1 class="text-foreground mb-4 text-3xl font-bold">
-        Projects
-      </h1>
-
-      
-        <div class="prose prose-neutral dark:prose-invert mb-6 max-w-none">
-          <p>Welcome to my projects showcase! Here you&rsquo;ll find a collection of my work, including games, engines, graphics.</p>
-
+  
+  <header class="mb-10">
+    <div class="border-border mb-8 overflow-hidden rounded-2xl border shadow-sm">
+          <img
+            src="/projects/cdt/resources/cover.png"
+            alt="CDT"
+            class="aspect-video w-full object-cover md:aspect-auto md:h-112"
+            loading="eager"
+          />
         </div>
-      
 
 
-      
-      
-      
-        <div class="text-muted-foreground text-sm">
-          3 pages
-        </div>
-      
-    </header>
+    
+    <h1 class="text-foreground mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
+      CDT
+    </h1>
 
     
     
+      <div class="text-muted-foreground text-lg leading-relaxed md:text-xl">
+        Single-header Constrained Delaunay Triangulation in C
+      </div>
     
-      <div class="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        
+  </header>
+
+  
+  <div class="mb-12">
+    <div class="bg-card border-border relative overflow-hidden rounded-2xl border shadow-sm">
+      
+      <div
+        class="from-primary/60 to-primary/20 absolute top-0 left-0 h-1 w-full bg-linear-to-r"
+      ></div>
+
+      <div class="p-6 md:p-8 lg:p-10">
+        <div class="flex flex-col gap-6">
           
-
-
-
-
-<article class="group h-full">
-  <a href="/projects/rhi/" class="block h-full">
-    <div
-      class="border-border focus:ring-primary/20 bg-card relative flex h-full min-h-64 flex-col overflow-hidden rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
-    >
-      <img
-          src="/projects/rhi/resources/image1.webp"
-          alt="RHI"
-          class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-        
-        <div
-          class="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-black/30 transition-opacity duration-300 group-hover:opacity-100"
-        ></div>
-      <div class="relative z-10 flex h-full flex-1 flex-col">
-        
-        
-          <div class="mb-4">
-            <span
-              class="bg-primary/10 text-primary inline-flex h-7 w-7 items-center justify-center rounded-full shadow-sm"
-            >
-              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 16.825l3.15-1.9l3.15 1.925l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4l-1.45 3.375l-3.65.325l2.775 2.425zm3.15.45l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15zm0-5.025"/></svg>
-            </span>
-          </div>
-        
-
-
-        
-        <div class="flex-1"></div>
-
-        
-        <div class="mt-auto">
-          
-          <h3
-            class="text-white group-hover:text-primary 
-              group-hover:text-white
-             mb-2 truncate text-xl leading-tight font-bold transition-colors duration-200"
-          >
-            RHI
-          </h3>
-
-          
-          
-            <p
-              class="text-white/80 mb-4 line-clamp-2 text-sm leading-relaxed drop-shadow-sm"
-            >
-              렌더링 파이프라인과 기술을 연구하고 구현한다.
-            </p>
-          
-
-
-          
-          
-            <div class="flex w-full flex-wrap gap-2 pt-1">
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  C&#43;&#43;20
-                </span>
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  D3D12
-                </span>
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  그래픽스
-                </span>
-              
+          <div class="flex flex-wrap items-center gap-3 text-sm font-semibold">
+            <div class="text-foreground">
+              <time datetime="1900-01-01">
+                January 1, 1900
+              </time>
             </div>
-          
+
+            
+              <span class="text-muted-foreground/60">•</span>
+              <div class="text-foreground flex items-center gap-2">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span
+                    class="
+                      bg-green-400
+                     absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+                  ></span>
+                  <span
+                    class="
+                      bg-green-500
+                     relative inline-flex h-2.5 w-2.5 rounded-full"
+                  ></span>
+                </span>
+                <span>Completed</span>
+              </div>
+            
+
+            
+              <span class="text-muted-foreground/60">•</span>
+              <div class="flex flex-wrap items-center gap-2">
+                
+                  <a
+                    href="/tags/c/"
+                    class="bg-muted/40 text-foreground border-border hover:bg-primary hover:text-primary-foreground hover:border-primary inline-flex rounded-lg border px-3 py-1.5 text-xs font-medium shadow-sm transition-all md:text-sm"
+                  >
+                    C
+                  </a>
+                
+                  <a
+                    href="/tags/computational-geometry/"
+                    class="bg-muted/40 text-foreground border-border hover:bg-primary hover:text-primary-foreground hover:border-primary inline-flex rounded-lg border px-3 py-1.5 text-xs font-medium shadow-sm transition-all md:text-sm"
+                  >
+                    Computational Geometry
+                  </a>
+                
+              </div>
+            
+
+            
+              <span class="text-muted-foreground/60">•</span>
+              <div>
+                <a
+                  href="https://github.com/raylee9919/cdt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group bg-primary/10 text-primary hover:bg-primary hover:text-primary-foreground focus:ring-primary/20 inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-semibold transition-all focus:ring-2 focus:outline-none"
+                  aria-label="CDT"
+                  title="CDT"
+                >
+                  <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                </a>
+              </div>
+            
+          </div>
         </div>
       </div>
     </div>
-  </a>
-</article>
+  </div>
 
-        
-          
+  
+  <div class="bg-card border-border rounded-xl border p-6 shadow-sm md:p-8 md:px-10">
+    <article class="prose prose-neutral dark:prose-invert max-w-none">
+      <details>
+<summary>References</summary>
+<ul>
+<li>Anglada, M. V. <em>An Improved Incremental Algorithm for Constructing Restricted Delaunay Triangulations</em>.</li>
+<li>Bern, M. <em>Edge Insertion for Optimal Triangulations</em>.</li>
+<li>Chew, L. P. <em>Constrained Delaunay Triangulations</em>.</li>
+<li>Eberly, D. H. <em>Triangulation by Ear Clipping</em>.</li>
+<li>Devillers, O. <em>Walking in a Triangulation</em>.</li>
+<li>Deymen, M. <em>Efficient Triangulation-Based Pathfinding</em>.</li>
+<li>Guibas, L. J., &amp; Stolfi, J. <em>Primitives for the Manipulation of General Subdivisions and the Computation of Voronoi Diagrams</em>.</li>
+<li>Kallmann, M. <em>Fully Dynamic Constrained Delaunay Triangulations</em>.</li>
+<li>Kallmann, M. <em>Path Planning in Triangulations</em>.</li>
+<li>Kallmann, M. <em>Star Vertices: A Simple Approach for Fast Point Location in Triangulations</em>.</li>
+<li>Knuth, D. E. <em>The Art of Computer Programming, Volume 1: Fundamental Algorithms</em>.</li>
+<li>Lawson, C. L. <em>Software for C1 Surface Interpolation</em>.</li>
+<li>Held, M. <em>An Engineering Approach to the Reliable and Efficient Computation of Voronoi Diagrams of Points and Line Segments</em>.</li>
+<li>Mäntylä, M. <em>An Introduction to Solid Modeling</em>.</li>
+<li>Mücke, E. P., Saias, I., &amp; Zhu, B. <em>Fast Randomized Point Location Without Preprocessing in Two- and Three-Dimensional Delaunay Triangulations</em>.</li>
+<li>Devillers, O. <em>On Deletion in Delaunay Triangulations</em>.</li>
+<li>Shewchuk, J. R. <em>Adaptive Precision Floating-Point Arithmetic and Fast Robust Geometric Predicates</em>.</li>
+<li>Shewchuk, J. R. <em>Engineering a 2D Quality Mesh Generator and Delaunay Triangulator</em>.</li>
+<li>Shewchuk, J. R. <em>Fast Segment Insertion and Incremental Construction of Constrained Delaunay Triangulations</em>.</li>
+<li>Sloan, S. W. <em>A Fast Algorithm for Constructing Delaunay Triangulations in the Plane</em>.</li>
+<li>Sloan, S. W. <em>A Fast Algorithm for Generating Constrained Delaunay Triangulations</em>.</li>
+<li>Goodman, J. E., O&rsquo;Rourke, J., &amp; Tóth, C. D. (Eds.). <em>Handbook of Discrete and Computational Geometry</em> (3rd ed.).</li>
+</ul>
+</details>
+    </article>
+  </div>
 
-
-
-
-<article class="group h-full">
-  <a href="/projects/rts/" class="block h-full">
-    <div
-      class="border-border focus:ring-primary/20 bg-card relative flex h-full min-h-64 flex-col overflow-hidden rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
-    >
-      <img
-          src="/images/project-rts.png"
-          alt="RTS"
-          class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-        
-        <div
-          class="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-black/30 transition-opacity duration-300 group-hover:opacity-100"
-        ></div>
-      <div class="relative z-10 flex h-full flex-1 flex-col">
-        
-        
-          <div class="mb-4">
-            <span
-              class="bg-primary/10 text-primary inline-flex h-7 w-7 items-center justify-center rounded-full shadow-sm"
-            >
-              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 16.825l3.15-1.9l3.15 1.925l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4l-1.45 3.375l-3.65.325l2.775 2.425zm3.15.45l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15zm0-5.025"/></svg>
-            </span>
-          </div>
-        
-
-
-        
-        <div class="flex-1"></div>
-
-        
-        <div class="mt-auto">
-          
-          <h3
-            class="text-white group-hover:text-primary 
-              group-hover:text-white
-             mb-2 truncate text-xl leading-tight font-bold transition-colors duration-200"
-          >
-            RTS
-          </h3>
-
-          
-          
-            <p
-              class="text-white/80 mb-4 line-clamp-2 text-sm leading-relaxed drop-shadow-sm"
-            >
-              RTS game/engine built from scratch.
-            </p>
-          
-
-
-          
-          
-            <div class="flex w-full flex-wrap gap-2 pt-1">
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  C&#43;&#43;17
-                </span>
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  OpenGL
-                </span>
-              
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</article>
-
-        
-          
-
-
-
-
-<article class="group h-full">
-  <a href="/projects/cdt/" class="block h-full">
-    <div
-      class="border-border focus:ring-primary/20 bg-card relative flex h-full min-h-64 flex-col overflow-hidden rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
-    >
-      <img
-          src="/projects/cdt/resources/cover.png"
-          alt="CDT"
-          class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-        
-        <div
-          class="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-black/30 transition-opacity duration-300 group-hover:opacity-100"
-        ></div>
-      <div class="relative z-10 flex h-full flex-1 flex-col">
-        
-        
-          <div class="mb-4">
-            <span
-              class="bg-primary/10 text-primary inline-flex h-7 w-7 items-center justify-center rounded-full shadow-sm"
-            >
-              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 16.825l3.15-1.9l3.15 1.925l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4l-1.45 3.375l-3.65.325l2.775 2.425zm3.15.45l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15zm0-5.025"/></svg>
-            </span>
-          </div>
-        
-
-
-        
-        <div class="flex-1"></div>
-
-        
-        <div class="mt-auto">
-          
-          <h3
-            class="text-white group-hover:text-primary 
-              group-hover:text-white
-             mb-2 truncate text-xl leading-tight font-bold transition-colors duration-200"
-          >
-            CDT
-          </h3>
-
-          
-          
-            <p
-              class="text-white/80 mb-4 line-clamp-2 text-sm leading-relaxed drop-shadow-sm"
-            >
-              Single-header Constrained Delaunay Triangulation in C
-            </p>
-          
-
-
-          
-          
-            <div class="flex w-full flex-wrap gap-2 pt-1">
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  C
-                </span>
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  Computational Geometry
-                </span>
-              
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</article>
-
-        
-      </div>
-
-      
-      
-
-
-
-
-
+  
+  <div class="mt-12">
     
   </div>
 

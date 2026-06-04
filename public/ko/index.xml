@@ -32,7 +32,7 @@
 				<link>http://localhost:1313/ko/projects/rhi/</link>
 				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/projects/rhi/</guid>
-				<description>렌더링 파이프라인과 그래픽스 기술을 연구하고 구현한다.</description>
+				<description>렌더링 파이프라인 및 그래픽스 기술 프로젝트</description>
 			</item>
 			<item>
 				<title>RTS</title>
@@ -40,6 +40,13 @@
 				<pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/projects/rts/</guid>
 				<description>RTS 장르에 초점을 둔 게임 엔진</description>
+			</item>
+			<item>
+				<title>CDT</title>
+				<link>http://localhost:1313/ko/projects/cdt/</link>
+				<pubDate>Mon, 01 Jan 1900 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/projects/cdt/</guid>
+				<description>제약 들루네 삼각분할 기하 라이브러리</description>
 			</item>
 	</channel>
 </rss>

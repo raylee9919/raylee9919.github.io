@@ -49,6 +49,20 @@
 				<description></description>
 			</item>
 			<item>
+				<title>C</title>
+				<link>http://localhost:1313/ko/tags/c/</link>
+				<pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/tags/c/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>계산 기하학</title>
+				<link>http://localhost:1313/ko/tags/%EA%B3%84%EC%82%B0-%EA%B8%B0%ED%95%98%ED%95%99/</link>
+				<pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/tags/%EA%B3%84%EC%82%B0-%EA%B8%B0%ED%95%98%ED%95%99/</guid>
+				<description></description>
+			</item>
+			<item>
 				<title>C&#43;&#43;17</title>
 				<link>http://localhost:1313/ko/tags/c&#43;&#43;17/</link>
 				<pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
@@ -60,6 +74,13 @@
 				<link>http://localhost:1313/ko/tags/opengl/</link>
 				<pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/tags/opengl/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>라이브러리</title>
+				<link>http://localhost:1313/ko/tags/%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/tags/%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC/</guid>
 				<description></description>
 			</item>
 	</channel>

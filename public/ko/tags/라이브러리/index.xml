@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>라이브러리 on SeongWoo Lee</title>
+		<link>http://localhost:1313/ko/tags/%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC/</link>
+		<description>Recent content in 라이브러리 on SeongWoo Lee</description>
+		<generator>Hugo</generator>
+		<language>ko</language>
+		
+		
+		
+		
+			<lastBuildDate>Wed, 01 Oct 2025 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/ko/tags/%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>제약 들루네 삼각분할</title>
+				<link>http://localhost:1313/ko/projects/%EC%A0%9C%EC%95%BD-%EB%93%A4%EB%A3%A8%EB%84%A4-%EC%82%BC%EA%B0%81%EB%B6%84%ED%95%A0/</link>
+				<pubDate>Wed, 01 Oct 2025 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/projects/%EC%A0%9C%EC%95%BD-%EB%93%A4%EB%A3%A8%EB%84%A4-%EC%82%BC%EA%B0%81%EB%B6%84%ED%95%A0/</guid>
+				<description>단일 헤더 제약 들루네 삼각분할 기하 라이브러리</description>
+			</item>
+	</channel>
+</rss>

@@ -27,5 +27,12 @@
 				<guid>http://localhost:1313/projects/rts/</guid>
 				<description>RTS game/engine built from scratch.</description>
 			</item>
+			<item>
+				<title>CDT</title>
+				<link>http://localhost:1313/projects/cdt/</link>
+				<pubDate>Mon, 01 Jan 1900 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/projects/cdt/</guid>
+				<description>Single-header Constrained Delaunay Triangulation in C</description>
+			</item>
 	</channel>
 </rss>
