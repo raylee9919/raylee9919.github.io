@@ -1,7 +1,7 @@
 ---
 title: "하늘 렌더링 1"
 date: 2026-06-01
-description: ""
+description: "대기 산란의 기초 수학과 원리를 다룬다."
 tags: ["그래픽스", "렌더링", "환경"]
 categories: []
 series: ["하늘 렌더링"]
@@ -23,7 +23,7 @@ cover: "/images/result-1.png"
 	본 시리즈에서는 <b>물리 기반 하늘 렌더링</b>의 원리와 구현을 다룬다.
 </p>
 
-<h1>Ⅰ. 수식</h1>
+# Ⅰ. 수식
 <p>
 태양의 빛이 카메라에 도달하기까지의 과정을 어떻게 나타낼 수 있을까?
 
@@ -121,7 +121,7 @@ $$
 다음 장에서는 하늘 렌더링 모델에서 이 수치들이 어떻게 결정되는지 알아보겠다.
 </p>
 
-<h1>Ⅱ. 레일리와 미 (Rayleigh and Mie)</h1>
+# Ⅱ. 레일리와 미 (Rayleigh and Mie)
 
 <p>
     고도에 따라 대기 중 입자의 평균 크기가 달라진다. 이에 따라 산란의 특성이 달라진다. 입자가 비교적 작은 위쪽에는 레일리 산란(Rayleigh scattering)이 주로  
@@ -133,7 +133,7 @@ $$
     입자가 얼마나 존재하는지로 이해하면 되겠다.
 </p>
 
-<h2>레일리 산란</h2>
+## 레일리 산란
 
 <p>
 {{< figure src="/images/why-sky-is-blue.svg" width="400">}}
@@ -166,7 +166,7 @@ float3 Sr = float3(5.802e-6, 13.558e-6, 33.1e-6); // 레일리 산란 계수
 float Dr = exp(-altitude / 8.0km); // 8.0km
 ```
 
-<h2>미 산란</h2>
+## 미 산란
 
 <p>
 {{< figure src="/images/mie-scattering.svg" width="600">}}
@@ -200,7 +200,8 @@ float3 Sm = 2.1e-5; // 미 산란 계수
 float Dm = exp(-altitude / 1.2e3); // 1.2km
 ```
 
-<h2>정리</h2>
+## 정리
+
 <p>표로 정리하면 다음과 같다.</p>
 
 <table>
@@ -239,12 +240,8 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km
 </p>
 
 
-
-
-<h1>Ⅲ. 레이 마칭 (Ray Marching)</h1>
-
-<h1>Ⅳ. 결과</h1>
-<p>아래는 이를 토대로 C++와 D3D12로 구현한 실시간 하늘 렌더링의 결과이다.</p>
+# III. 결과
+아래는 이를 토대로 C++와 D3D12로 구현한 실시간 하늘 렌더링의 결과이다.
 {{< youtube KMlMLBRS_BI>}}
 {{< figure src="/images/result-1.png">}}
 

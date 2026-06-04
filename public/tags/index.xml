@@ -10,41 +10,62 @@
 		
 		
 		
-			<lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Environment</title>
 				<link>http://localhost:1313/tags/environment/</link>
-				<pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+				<pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/tags/environment/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Graphics</title>
 				<link>http://localhost:1313/tags/graphics/</link>
-				<pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+				<pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/tags/graphics/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>Rendering</title>
 				<link>http://localhost:1313/tags/rendering/</link>
-				<pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+				<pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/tags/rendering/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>C&#43;&#43;20</title>
+				<link>http://localhost:1313/tags/c&#43;&#43;20/</link>
+				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/c&#43;&#43;20/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>D3D12</title>
+				<link>http://localhost:1313/tags/d3d12/</link>
+				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/d3d12/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>그래픽스</title>
+				<link>http://localhost:1313/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/</link>
+				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>C&#43;&#43;17</title>
 				<link>http://localhost:1313/tags/c&#43;&#43;17/</link>
-				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+				<pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/tags/c&#43;&#43;17/</guid>
 				<description></description>
 			</item>
 			<item>
 				<title>OpenGL</title>
 				<link>http://localhost:1313/tags/opengl/</link>
-				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+				<pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/tags/opengl/</guid>
 				<description></description>
 			</item>

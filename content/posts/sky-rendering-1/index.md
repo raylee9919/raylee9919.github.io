@@ -1,7 +1,7 @@
 ---
 title: "Sky Rendering 1"
 date: 2026-06-01
-description: ""
+description: "Covers the basic math and scattering phenomena in the atmosphere."
 tags: ["Graphics", "Rendering", "Environment"]
 categories: []
 series: ["Sky Rendering"]
@@ -231,9 +231,14 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km
     {{< figure src="/images/rayleigh-and-mie.png" width="600" attr="Rayleigh + Mie: blue sky with halo">}}
 </p>
 
-<h1>Ⅲ. Ray Marching</h1>
-
-<h1>Ⅳ. Result</h1>
+# Ⅲ. Result
 <p>The following video shows the implementation in C++ and D3D12.</p>
 {{< youtube KMlMLBRS_BI>}}
 {{< figure src="/images/result-1.png">}}
+
+## Reference
+[Sébastien Hillaire — A Scalable and Production Ready Sky and Atmosphere Rendering Technique](https://sebh.github.io/publications/egsr2020.pdf)
+[Sébastien Hillaire — Physically Based Sky, Atmosphere
+and Cloud Rendering in Frostbite](https://www.ea.com/news/physically-based-sky-atmosphere-and-cloud-rendering)
+[Tomoyuki Nishita et al. — Display of The Earth Taking in Account Atmospheric Scattering](http://nishitalab.org/user/nis/cdrom/sig93_nis.pdf)
+[Epic — Sky Atmosphere Component in Unreal Engine](https://dev.epicgames.com/documentation/unreal-engine/sky-atmosphere-component-in-unreal-engine?lang=en-US)

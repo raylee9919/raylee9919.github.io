@@ -13,10 +13,7 @@
 
 <meta
   name="description"
-  content=" The Elder Scrolls V: Skyrim
-The Lord of the Rings: The Return of the King
-Red Dead Redemption 2
-A starry night sky can intoxicate those who gaze upon..."
+  content="Covers the basic math and scattering phenomena in the atmosphere."
 />
 <meta
   name="keywords"
@@ -40,10 +37,7 @@ A starry night sky can intoxicate those who gaze upon..."
 <meta property="og:url" content="http://localhost:1313/posts/sky-rendering-1/">
 	<meta property="og:site_name" content="SeongWoo Lee">
 	<meta property="og:title" content="Sky Rendering 1">
-	<meta property="og:description" content="The Elder Scrolls V: Skyrim
-The Lord of the Rings: The Return of the King
-Red Dead Redemption 2
-A starry night sky can intoxicate those who gaze upon it, approaching storm clouds can embody great evil,and a blazing sunset can linger in the heart. Weather shapes emotion and atmosphere, and the sky is indispensablein expressing it. This post walks through the process of physically-based sky rendering.">
+	<meta property="og:description" content="Covers the basic math and scattering phenomena in the atmosphere.">
 	<meta property="og:locale" content="en">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
@@ -53,25 +47,20 @@ A starry night sky can intoxicate those who gaze upon it, approaching storm clou
 		<meta property="article:tag" content="Rendering">
 		<meta property="article:tag" content="Environment">
 		<meta property="og:image" content="http://localhost:1313/images/og-default.avif">
+			<meta property="og:see_also" content="http://localhost:1313/posts/sky-rendering-2/">
 
 
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
 	<meta name="twitter:title" content="Sky Rendering 1">
-	<meta name="twitter:description" content="The Elder Scrolls V: Skyrim
-The Lord of the Rings: The Return of the King
-Red Dead Redemption 2
-A starry night sky can intoxicate those who gaze upon it, approaching storm clouds can embody great evil,and a blazing sunset can linger in the heart. Weather shapes emotion and atmosphere, and the sky is indispensablein expressing it. This post walks through the process of physically-based sky rendering.">
+	<meta name="twitter:description" content="Covers the basic math and scattering phenomena in the atmosphere.">
 
 
 	<meta itemprop="name" content="Sky Rendering 1">
-	<meta itemprop="description" content="The Elder Scrolls V: Skyrim
-The Lord of the Rings: The Return of the King
-Red Dead Redemption 2
-A starry night sky can intoxicate those who gaze upon it, approaching storm clouds can embody great evil,and a blazing sunset can linger in the heart. Weather shapes emotion and atmosphere, and the sky is indispensablein expressing it. This post walks through the process of physically-based sky rendering.">
+	<meta itemprop="description" content="Covers the basic math and scattering phenomena in the atmosphere.">
 	<meta itemprop="datePublished" content="2026-06-01T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-06-01T00:00:00+00:00">
-	<meta itemprop="wordCount" content="1353">
+	<meta itemprop="wordCount" content="1396">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="Graphics,Rendering,Environment">
 
@@ -920,7 +909,7 @@ A starry night sky can intoxicate those who gaze upon it, approaching storm clou
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>1353 words</span>
+              <span>1396 words</span>
             </div>
             
           </div>
@@ -986,7 +975,7 @@ A starry night sky can intoxicate those who gaze upon it, approaching storm clou
                   Sky Rendering
                 </span>
                 <span class="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[10px] font-bold">
-                  1/1
+                  1/2
                 </span>
               </button>
 
@@ -1020,6 +1009,17 @@ A starry night sky can intoxicate those who gaze upon it, approaching storm clou
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                         clip-rule="evenodd" />
                     </svg>
+                  </a>
+                </li>
+                <li>
+                  <a href="/posts/sky-rendering-2/"
+                    class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all group text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    >
+                    <span
+                      class="font-mono text-xs shrink-0 opacity-50 group-hover:opacity-100 transition-opacity">
+                      02
+                    </span>
+                    <span class="flex-1 truncate">Sky Rendering 2</span>
                   </a>
                 </li>
               </ol>
@@ -1493,9 +1493,7 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km</div>
     </figure>
 
 </p>
-<h1>Ⅲ. Ray Marching</h1>
-<h1>Ⅳ. Result</h1>
-<p>The following video shows the implementation in C++ and D3D12.</p>
+<h1 id="-result">Ⅲ. Result<a href="#-result" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><p>The following video shows the implementation in C++ and D3D12.</p>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/KMlMLBRS_BI?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
 		</div>
@@ -1503,6 +1501,27 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km</div>
 <figure><img src="/images/result-1.png">
 </figure>
 
+<h2 id="reference">Reference<a href="#reference" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
+    href="https://sebh.github.io/publications/egsr2020.pdf"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Sébastien Hillaire — A Scalable and Production Ready Sky and Atmosphere Rendering Technique<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>
+<a
+    href="https://www.ea.com/news/physically-based-sky-atmosphere-and-cloud-rendering"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Sébastien Hillaire — Physically Based Sky, Atmosphere
+and Cloud Rendering in Frostbite<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>
+<a
+    href="http://nishitalab.org/user/nis/cdrom/sig93_nis.pdf"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Tomoyuki Nishita et al. — Display of The Earth Taking in Account Atmospheric Scattering<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>
+<a
+    href="https://dev.epicgames.com/documentation/unreal-engine/sky-atmosphere-component-in-unreal-engine?lang=en-US"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Epic — Sky Atmosphere Component in Unreal Engine<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a></p>
 
   </article>
 
@@ -1531,6 +1550,65 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km</div>
 
 
 
+
+  <nav class="post-navigation mb-12">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+      
+      <div class="nav-item">
+        
+          <div
+            class="bg-muted/30 border-border/50 flex min-h-[140px] flex-col justify-center rounded-xl border p-6"
+          >
+            <div class="mb-3 flex items-center gap-3">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+</svg>
+              <span class="text-muted-foreground/50 text-sm font-medium">
+                No previous
+              </span>
+            </div>
+          </div>
+        
+      </div>
+
+      
+      <div class="nav-item">
+        
+          <a
+            href="/posts/sky-rendering-2/"
+            class="group bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex min-h-[140px] flex-col justify-between rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
+          >
+            <div>
+              <div class="mb-3 flex items-center justify-end gap-3">
+                <span class="text-muted-foreground text-sm font-medium">
+                  Next
+                </span>
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+</svg>
+              </div>
+
+              <h3
+                class="text-foreground group-hover:text-primary mb-3 line-clamp-2 text-right text-lg leading-tight font-semibold transition-colors duration-200"
+              >
+                Sky Rendering 2
+              </h3>
+            </div>
+
+            <div class="text-muted-foreground mt-auto flex items-center justify-end gap-2 text-xs">
+              <time datetime="2026-06-03">
+                06/03
+              </time>
+              <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+</svg>
+
+            </div>
+          </a>
+        
+      </div>
+    </div>
+  </nav>
 
 
 
@@ -1813,7 +1891,53 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km</div>
 
 
 
-      
+      <aside
+    id="toc-container"
+    class="toc-center"
+    data-position="center"
+  >
+      <div
+        id="toc-center"
+        class="pointer-events-none fixed top-28 right-0 left-0 z-40 mx-auto w-full max-w-4xl px-4 transition-all duration-300"
+      >
+        <div class="pointer-events-auto relative mx-auto w-fit">
+          <button
+            id="toc-center-toggle"
+            class="bg-card/80 border-border text-muted-foreground hover:text-primary hover:bg-primary/10 ring-offset-background focus-visible:ring-ring flex cursor-pointer items-center gap-2 rounded-full border px-4 py-1.5 text-sm shadow-sm backdrop-blur-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          >
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <line x1="8" x2="21" y1="6" y2="6"/>
+  <line x1="8" x2="21" y1="12" y2="12"/>
+  <line x1="8" x2="21" y1="18" y2="18"/>
+  <line x1="3" x2="3.01" y1="6" y2="6"/>
+  <line x1="3" x2="3.01" y1="12" y2="12"/>
+  <line x1="3" x2="3.01" y1="18" y2="18"/>
+</svg>
+
+            <span id="toc-center-title" class="max-w-[200px] truncate">Table of contents</span>
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </button>
+
+          
+          <div
+            id="toc-center-dropdown"
+            class="bg-card border-border scrollbar-hide absolute top-full left-1/2 mt-2 hidden max-h-[60vh] w-[280px] origin-top -translate-x-1/2 scale-95 overflow-y-auto rounded-xl border p-4 opacity-0 shadow-lg transition-all"
+          >
+            <div
+              id="toc-center-content"
+              class="[&_a]:text-muted-foreground [&_a:hover]:bg-primary/10 [&_a:hover]:text-primary [&_a.active]:bg-primary/10 [&_a.active]:text-primary text-sm [&_a]:block [&_a]:truncate [&_a]:rounded-md [&_a]:px-2 [&_a]:py-1 [&_a]:transition-colors [&_a.active]:font-medium [&_li]:my-1.5 [&_nav>ul]:pl-0 [&_ul]:list-none [&_ul]:pl-4"
+            >
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#reference">Reference</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </div></aside>
       
 <div
   id="search-overlay"
