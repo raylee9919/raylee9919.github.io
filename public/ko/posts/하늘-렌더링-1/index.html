@@ -13,7 +13,7 @@
 
 <meta
   name="description"
-  content="대기 산란의 기초 수학과 원리를 다룬다."
+  content="대기 산란의 기초 이론을 다룬다."
 />
 <meta
   name="keywords"
@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/">
 	<meta property="og:site_name" content="SeongWoo Lee">
 	<meta property="og:title" content="하늘 렌더링 1">
-	<meta property="og:description" content="대기 산란의 기초 수학과 원리를 다룬다.">
+	<meta property="og:description" content="대기 산란의 기초 이론을 다룬다.">
 	<meta property="og:locale" content="ko">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
@@ -53,14 +53,14 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
 	<meta name="twitter:title" content="하늘 렌더링 1">
-	<meta name="twitter:description" content="대기 산란의 기초 수학과 원리를 다룬다.">
+	<meta name="twitter:description" content="대기 산란의 기초 이론을 다룬다.">
 
 
 	<meta itemprop="name" content="하늘 렌더링 1">
-	<meta itemprop="description" content="대기 산란의 기초 수학과 원리를 다룬다.">
+	<meta itemprop="description" content="대기 산란의 기초 이론을 다룬다.">
 	<meta itemprop="datePublished" content="2026-06-01T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-06-01T00:00:00+00:00">
-	<meta itemprop="wordCount" content="3295">
+	<meta itemprop="wordCount" content="3380">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="그래픽스,렌더링,환경">
 
@@ -69,6 +69,9 @@
 
 
 <script id="search-config" type="application/json">"{\"searchIndexURL\":\"/ko/index.json\"}"</script>
+
+
+  <script id="gallery-config" type="application/json">"{\"gallery\":true,\"galleryOptions\":{\"columns\":4,\"columnwidth\":200,\"defaultlayout\":\"justified\",\"gap\":10,\"lastrowbehavior\":\"center\",\"targetrowheight\":200},\"lightbox\":true}"</script>
 
 
 
@@ -107,7 +110,11 @@
 
 
 
+  <script src="/js/smart-gallery.min.js" defer></script>
 
+
+
+        <script src="/js/gallery.js" defer></script>
 
 
 
@@ -909,7 +916,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>3295자</span>
+              <span>3380자</span>
             </div>
             
           </div>
@@ -1144,8 +1151,7 @@ $$
 <figure><img src="/images/VRE2.svg" width="350">
 </figure>
 
-이전에 언급했듯이, 거리 $D$ 동안 외부로부터 산란(in-scattering)으로 오는 빛에 의해 광량이 증가한다. 이렇게 들어온 빛은 다시 산란하여 카메라를 향해야 비로소 보일 것이다. 들어온 빛 중 얼마나 다시 산란하여 카메라를 향할까? 추가된 광량 $\textcolor{#00CC66}{L_{\text{scat}}}$에 산란에 대한 확률 밀도 함수인 $\textcolor{#00CC66}{\sigma_s(\mathbf{x}_t)}$를 곱하여 $\int_0^D$동안 적분한 것이 그것이다. 그리고 그 빛은 다시 카메라까지 남은 거리 동안 산란과 흡수를 통해 상쇄될 것이다. 이에 따라 $\textcolor{#419BF9}{T(t)}$를 곱해준 것이다.
-</br></br>
+이전에 언급했듯이, 거리 $D$ 동안 외부로부터 산란(in-scattering)으로 오는 빛에 의해 광량이 증가한다. 이렇게 들어온 빛은 다시 산란하여 카메라를 향해야 비로소 보일 것이다. 들어온 빛 중 얼마나 다시 산란하여 카메라를 향할까? 추가된 광량 $\textcolor{#00CC66}{L_{\text{scat}}}$에 $\textcolor{#00CC66}{\sigma_s(\mathbf{x}_t)}$를 곱하여 $\int_0^D$동안 적분한 것이 그것이다. 그리고 그 빛은 다시 카메라까지 남은 거리 동안 산란과 흡수를 통해 상쇄될 것이다. 이에 따라 $\textcolor{#419BF9}{T(t)}$를 곱해준 것이다.
 그렇다면 $\textcolor{#00CC66}{L_{\text{scat}}(\mathbf{x}_t, \boldsymbol{\omega})}$는 어떻게 표현될까?
 $$
 \textcolor{#00CC66}{L_{\text{scat}}(\mathbf{x}, \boldsymbol{\omega})} = \int_{S^2} p(\boldsymbol{\omega}', \boldsymbol{\omega})\,L(\mathbf{x}, \boldsymbol{\omega}')\,d\boldsymbol{\omega}'
@@ -1202,14 +1208,10 @@ L(\mathbf{x}, \boldsymbol{\omega}) = \int_0^D \textcolor{#419BF9}{T(t)}\,\Big[\t
 $$
 다음 장에서는 하늘 렌더링 모델에서 이 수치들이 어떻게 결정되는지 알아보겠다.
 </p>
-<h1 id="-레일리와-미-rayleigh-and-mie">Ⅱ. 레일리와 미 (Rayleigh and Mie)<a href="#-%eb%a0%88%ec%9d%bc%eb%a6%ac%ec%99%80-%eb%af%b8-rayleigh-and-mie" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><p>
-    고도에 따라 대기 중 입자의 평균 크기가 달라진다. 이에 따라 산란의 특성이 달라진다. 입자가 비교적 작은 위쪽에는 레일리 산란(Rayleigh scattering)이 주로  
-    일어나고, 입자가 비교적 큰 아래쪽에는 미 산란(Mie scattering)이 주를 이룬다.
-</p>
-<p>
-    두 산란에 따라 위상 함수, 산란 계수, 밀도 분포가 달라지므로 이를 중심으로 살펴보도록 하겠다. 밀도 분포는 해당 고도에서 해당 산란을 일으키는 
-    입자가 얼마나 존재하는지로 이해하면 되겠다.
-</p>
+<h1 id="-레일리와-미-rayleigh-and-mie">Ⅱ. 레일리와 미 (Rayleigh and Mie)<a href="#-%eb%a0%88%ec%9d%bc%eb%a6%ac%ec%99%80-%eb%af%b8-rayleigh-and-mie" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><p>고도에 따라 대기 중 입자의 평균 크기가 달라진다. 이에 따라 산란의 특성이 달라진다. 입자가 비교적 작은 위쪽에는 레일리 산란(Rayleigh scattering)이 주로 일어나고,
+입자가 비교적 큰 아래쪽에는 미 산란(Mie scattering)이 주를 이룬다.</p>
+<p>두 산란에 따라 위상 함수, 산란 계수, 밀도 분포가 달라지므로 이를 중심으로 살펴보도록 하겠다. 밀도 분포는 해당 고도에서 해당 산란을 일으키는
+입자가 얼마나 존재하는지로 이해하면 되겠다.</p>
 <h2 id="레일리-산란">레일리 산란<a href="#%eb%a0%88%ec%9d%bc%eb%a6%ac-%ec%82%b0%eb%9e%80" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>
 <figure><img src="/images/why-sky-is-blue.svg" width="400">
 </figure>
@@ -1219,15 +1221,15 @@ $$
 이러한 산란을 레일리 산란이라 한다.
 </p>
 <p>
-	레일리 산란의 <b>위상 함수</b>는 다음을 사용하겠다.
-	$$
-		p(\mu) = \frac{3(1 + \mu^2)}{16\pi}
-	$$
-	$\mu$는 들어오는 빛의 방향과 산란되어 나가는 빛의 방향 사잇각의 $\cos$값이다.
+레일리 산란의 <b>위상 함수</b>는 다음을 사용하겠다.
+$$
+p(\mu) = \frac{3(1 + \mu^2)}{16\pi}
+$$
+$\mu$는 들어오는 빛의 방향과 산란되어 나가는 빛의 방향 사잇각의 $\cos$값이다.
 </p>
 <p>
-	레일리 산란의 <b>산란 계수</b>는 벡터로 표현된다. $\sigma_s^r = \begin{bmatrix} 5.802 \\ 13.558 \\ 33.1 \end{bmatrix}\times10^{-6}$을 사용하겠다.<br>
-	레일리 산란의 고도 $h$에 따른 <b>밀도 분포</b>는 $d^r(h) = e^{\frac{-h}{8.0km}}$ 를 사용하겠다.
+레일리 산란의 <b>산란 계수</b>는 벡터로 표현된다. $\sigma_s^r = \begin{bmatrix} 5.802 \\ 13.558 \\ 33.1 \end{bmatrix}\times10^{-6}$을 사용하겠다.<br>
+레일리 산란의 고도 $h$에 따른 <b>밀도 분포</b>는 $d^r(h) = e^{\frac{-h}{8.0km}}$ 를 사용하겠다.
 </p>
 <p>위 내용을 hlsl로 옮기면 다음과 같다.</p>
 <div
@@ -1333,19 +1335,19 @@ float Dr = exp(-altitude / 8.0km); // 8.0km</div>
 <figure><img src="/images/mie-scattering.svg" width="600">
 </figure>
 
-빛의 진행 방향과 "비슷한" 방향으로 더 많이 산란한다는 것이 미 산란이고, 이는 입자의 크기가 클수록, 즉, 고도가 낮아질수록 도드라진다. 태양 주위의 햇무리 효과를 낼 수 있고, 레일리 산란과 달리 빛의 파장에 의존하지 않는다.
+미 산란은 입자가 상대적으로 큰 에어로졸 (먼지, 오염)의 영향으로 일어난다. 빛의 진행 방향과 "비슷한" 방향으로 더 많이 산란한다. 태양 주위의 햇무리 효과를 낼 수 있고, 레일리 산란과 달리 빛의 파장에 의존하지 않는다.
 </p>
 <p>미 산란의 <b>위상 함수</b>는 다음처럼 Cornette-Shanks 위상함수로 표현할 수 있다.</p>
 $$
-	p(\mu, g) = {\frac{3}{8\pi}}{\frac{(1 - g^2)(1 + \mu^2)}{(2 + g^2){(1 + g^2 - 2g\mu)}^{3/2}}}
+p(\mu, g) = {\frac{3}{8\pi}}{\frac{(1 - g^2)(1 + \mu^2)}{(2 + g^2){(1 + g^2 - 2g\mu)}^{3/2}}}
 $$
 <p>
-	$g$는 비대칭 계수(asymmetry parameter)로서, 산란된 빛이 원래 진행 방향으로 얼마나 유지하려는지를 나타낸다.<br> $g>0$의 경우, 빛이 원래 진행 방향으로 더 많이 산란되고, 
-	$g<0$의 경우, 빛이 반대 방향으로 더 많이 산란된다. </br>우리는 $g=0.8$로 설정하겠다.
+$g$는 비대칭 계수(asymmetry parameter)로서, 산란된 빛이 원래 진행 방향으로 얼마나 유지하려는지를 나타낸다.<br> $g>0$의 경우, 빛이 원래 진행 방향으로 더 많이 산란되고, 
+$g<0$의 경우, 빛이 반대 방향으로 더 많이 산란된다. </br>우리는 $g=0.8$로 설정하겠다.
 </p>
 <p>
-	미 산란의 <b>산란 계수</b> $\sigma_s^m$는 $2.1\times10^{-5}$를 사용하도록 하겠다. 이는 날씨, 대기의 오염도 등에 따라 달라질 수 있다.<br>
-	미 산란의 고도 $h$에 따른 <b>밀도 분포</b>는 $d^m(h) = e^{\frac{-h}{1.2km}}$ 를 사용하겠다.
+미 산란의 <b>산란 계수</b> $\sigma_s^m$는 $2.1\times10^{-5}$를 사용하도록 하겠다. 이는 날씨, 대기의 오염도 등에 따라 달라질 수 있다.<br>
+미 산란의 고도 $h$에 따른 <b>밀도 분포</b>는 $d^m(h) = e^{\frac{-h}{1.2km}}$ 를 사용하겠다.
 </p>
 <p>위 내용을 hlsl로 옮기면 다음과 같다.</p>
 <div
@@ -1474,28 +1476,128 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km</div>
 <td>\(d^m(h)=e^{-h/(1.2\text{ km})}\)</td>
 </tr>
 </table>
+<p>아래는 레일리나 미 산란만 있을 때와 합쳐졌을 때의 렌더링 결과이다.</p>
 <p>
-    아래는 레일리나 미 산란만 있을 때와 합쳐졌을 때의 렌더링 결과이다.    
-    <figure><img src="/images/rayleigh-only.png" width="600"><figcaption>
-    			<p>레일리로 인한 푸른 하늘</p>
-    		</figcaption>
-    </figure>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/images/rayleigh-only.png"
+>
+  <div class="image-container">
+    <img
+    src="/images/rayleigh-only.png"
+    alt="&ldquo;레일리&rdquo;"
+    title="레일리로 인한 푸른 하늘"
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/images/rayleigh-only.png"
+    data-gallery-alt="&ldquo;레일리&rdquo;"
+    data-gallery-title="레일리로 인한 푸른 하늘"
+  /></div>
 
-    </br>
-    <figure><img src="/images/mie-only.png" width="600"><figcaption>
-    			<p>미로 인한 햇무리</p>
-    		</figcaption>
-    </figure>
-
-    </br>
-    <figure><img src="/images/rayleigh-and-mie.png" width="600"><figcaption>
-    			<p>레일리+미: 푸른 하늘과 햇무리</p>
-    		</figcaption>
-    </figure>
-
+  <figcaption class="image-caption">
+      레일리로 인한 푸른 하늘
+    </figcaption></figure>
 </p>
-<h1 id="iii-결과">III. 결과<a href="#iii-%ea%b2%b0%ea%b3%bc" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><p>아래는 이를 토대로 C++와 D3D12로 구현한 실시간 하늘 렌더링의 결과이다.
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/images/mie-only.png"
+>
+  <div class="image-container">
+    <img
+    src="/images/mie-only.png"
+    alt="&ldquo;미&rdquo;"
+    title="미로 인한 햇무리"
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/images/mie-only.png"
+    data-gallery-alt="&ldquo;미&rdquo;"
+    data-gallery-title="미로 인한 햇무리"
+  /></div>
+
+  <figcaption class="image-caption">
+      미로 인한 햇무리
+    </figcaption></figure>
+</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/images/rayleigh-and-mie.png"
+>
+  <div class="image-container">
+    <img
+    src="/images/rayleigh-and-mie.png"
+    alt="&ldquo;레일리 &#43; 미&rdquo;"
+    title="레일리와 미"
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/images/rayleigh-and-mie.png"
+    data-gallery-alt="&ldquo;레일리 &#43; 미&rdquo;"
+    data-gallery-title="레일리와 미"
+  /></div>
+
+  <figcaption class="image-caption">
+      레일리와 미
+    </figcaption></figure>
+</p>
+<p>아래는 각 산란을 일으키는 입자의 밀도 분포 그래프이다. $x$축은 고도(km)이다.
+파란색 레일리는 초록색 미보다 넓게, 보다 높게까지 분포되어 있다. 붉은색 오존은 제일 높은 고도에 텐트 형태로 존재한다.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/sky-rendering-1/resources/density-distribution-graph.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/sky-rendering-1/resources/density-distribution-graph.svg"
+    alt="&ldquo;밀도 분포 그래프&rdquo;"
+    title="빨간색: 오존, 파란색: 레일리, 초록색: 미"
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/sky-rendering-1/resources/density-distribution-graph.svg"
+    data-gallery-alt="&ldquo;밀도 분포 그래프&rdquo;"
+    data-gallery-title="빨간색: 오존, 파란색: 레일리, 초록색: 미"
+  /></div>
+
+  <figcaption class="image-caption">
+      빨간색: 오존, 파란색: 레일리, 초록색: 미
+    </figcaption></figure>
+</p>
+<h1 id="iii-결과">III. 결과<a href="#iii-%ea%b2%b0%ea%b3%bc" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><p>아래는 C++20과 Direct3D 12로 구현한 실시간 하늘 렌더링의 결과이다.</p>
+<p><div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 			<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/KMlMLBRS_BI?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"></iframe>
 		</div>
 
