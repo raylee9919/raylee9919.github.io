@@ -1,24 +1,26 @@
-+++ 
-title = "하늘 렌더링 1"
-date = 2026-06-01
-description = ""
-tags = ["그래픽스", "렌더링", "환경"]
-categories = []
-series = ["하늘 렌더링"]
-series_order = 1
-+++
+---
+title: "하늘 렌더링 1"
+date: 2026-06-01
+description: ""
+tags: ["그래픽스", "렌더링", "환경"]
+categories: []
+series: ["하늘 렌더링"]
+series_order: 1
+cover: "/images/result-1.png"
+---
 
-{{< figure src="/images/skyrim-nightsky.webp" attr="엘더스크롤 5: 스카이림" width="900">}}
-</br>
-{{< figure src="/images/mordor-cloud.jpg" attr="반지의 제왕 Ⅲ: 왕의 귀환" width="900">}}
-</br>
-{{< figure src="/images/sunset-rdr2.jpg" attr="레드 데드 리뎀션 2" width="900">}}
-</br>
+{{< figure src="/images/skyrim-nightsky.webp" attr="엘더스크롤 5: 스카이림">}}
+{{< figure src="/images/mordor-cloud.jpg" attr="반지의 제왕 Ⅲ: 왕의 귀환">}}
+{{< figure src="/images/sunset-rdr2.jpg" attr="레드 데드 리뎀션 2">}}
 
 <p>
-수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,
-휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 
-날씨를 표현하는 데 있어 하늘은 필수 불가결하다. 본 글에서는 <b>물리 기반 하늘 렌더링</b>의 과정을 다루어본다.
+    수놓인 밤하늘은 보는 이를 취하게 만들기도, 다가오는 먹구름은 거악(巨惡)을 형용하기도,
+    휘황한 노을은 여운을 남기기도 한다. 이렇듯, 날씨는 감정과 분위기를 좌지우지한다. 그리고 
+    날씨를 표현하는 데 있어 하늘은 필수 불가결하다.
+</p>
+
+<p>
+	본 시리즈에서는 <b>물리 기반 하늘 렌더링</b>의 원리와 구현을 다룬다.
 </p>
 
 <h1>Ⅰ. 수식</h1>
@@ -49,9 +51,9 @@ $$
 $T(d)$는 <i>들어온 빛에 대한 남은 빛의 비율</i> ($\frac{L_{\text{out}}}{L_{\text{in}}}$)이다. 거리 $d$에 대해 다음과 같이 표현한다 (Beer-Lambert 법칙).
 $$T(d) = e^{-\sigma_t d}$$
 하지만 위 식은 균일(homogeneous) 매질의 경우에만 성립한다. 대기(atmosphere)는 고도(altitude)에 따라 입자의 크기가 달라지는 불균일(heterogeneous) 매질이다. 이 경우, 
-거리 $d$ 동안 매 지점의 상쇄 함수 $\sigma_t(\mathbf{x})$를 적분해주어야 한다. 즉,
+거리 $d$ 동안 매 지점의 상쇄 함수 $\sigma_t(\mathbf{x})$를 적분해야 한다. 즉,
 $$
-T(d) = \exp\!\left(-\int_0^d \sigma_t(\mathbf{x_s})\,ds\right)
+T(d) = e^{-\int_0^d{\sigma_t(\mathbf{x_s})}ds}
 $$
 </br>
 이를 통해 기존 VRE에서 $\color{orange}T(D)\,L_0$는 어떻게 해석할 수 있을까?
@@ -245,3 +247,11 @@ float Dm = exp(-altitude / 1.2e3); // 1.2km
 <p>아래는 이를 토대로 C++와 D3D12로 구현한 실시간 하늘 렌더링의 결과이다.</p>
 {{< youtube KMlMLBRS_BI>}}
 {{< figure src="/images/result-1.png">}}
+
+
+## 레퍼런스
+[Sébastien Hillaire — A Scalable and Production Ready Sky and Atmosphere Rendering Technique](https://sebh.github.io/publications/egsr2020.pdf)
+[Sébastien Hillaire — Physically Based Sky, Atmosphere
+and Cloud Rendering in Frostbite](https://www.ea.com/news/physically-based-sky-atmosphere-and-cloud-rendering)
+[Tomoyuki Nishita et al. — Display of The Earth Taking in Account Atmospheric Scattering](http://nishitalab.org/user/nis/cdrom/sig93_nis.pdf)
+[Epic — Sky Atmosphere Component in Unreal Engine](https://dev.epicgames.com/documentation/unreal-engine/sky-atmosphere-component-in-unreal-engine?lang=en-US)

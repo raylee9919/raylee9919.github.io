@@ -3,4 +3,4 @@ title: "Projects"
 description: "Explore my portfolio of projects, from web development to AI applications"
 ---
 
-Welcome to my projects showcase! Here you'll find a collection of my work, including games, game engines, graphics works, and experimental projects.
+Welcome to my projects showcase! Here you'll find a collection of my work, including games, engines, graphics.

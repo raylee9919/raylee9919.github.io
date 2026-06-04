@@ -1,10 +1,9 @@
 ---
 title: "RTS"
-date: 2023-12-01T10:00:00+08:00
+date: 2023-12-01
 draft: false
-slug: hugo-narrow-theme
-description: "RTS game/engine built on C++17 and OpenGL"
-summary: "RTS game/engine built on C++17 and OpenGL."
+description: "RTS game/engine built from scratch"
+summary: "RTS game/engine built from scratch."
 featured: true
 tags:
   - C++17
@@ -16,66 +15,47 @@ status: "in_progress"
 link: "https://github.com/raylee9919/rts"
 ---
 
-## Project Overview
+{{< icon name="github" size="lg" >}} [GitHub](https://github.com/raylee9919/rts)
+{{< icon name="youtube" size="lg" >}} [YouTube](https://www.youtube.com/playlist?list=PL4taYk3t6-W82PICQ04Ep9R1qkEBrM0Ol)
 
-Hugo Narrow is a modern, clean, and minimal Hugo theme designed for bloggers and content creators who value simplicity and elegance. Built with Tailwind CSS 4.0, it offers extensive customization options while maintaining excellent performance.
+## Overview
+
+A game engine written in C++17, featuring systems and functionalities focused on the RTS genre.
 
 ## Key Features
 
-- **Multiple Color Schemes**: Choose from 11+ pre-designed color themes
-- **Dark Mode Support**: Automatic dark mode with smooth transitions
-- **Responsive Design**: Perfect display on all devices
-- **Fast Performance**: Optimized for speed and SEO
-- **Rich Content Support**: Enhanced Markdown, code highlighting, math equations
-- **Multilingual**: Support for 13+ languages
-- **Modern UI Components**: Search, TOC, comments, analytics integration
+#### Core
 
-## Technologies Used
+- Windows platform layer
+- Custom memory management (arena allocator)
+- SIMD-optimized math library
 
-This project leverages modern web technologies:
+#### Asset System
 
-- **Hugo Extended**: Static site generator with powerful templating
-- **Tailwind CSS 4.0**: Utility-first CSS framework
-- **@tailwindcss/typography**: Beautiful typographic defaults
-- **GLightbox**: Elegant lightbox for images
-- **Mermaid**: Diagram and flowchart support
-- **KaTeX**: Fast math typesetting
+- 3D asset import pipeline (FBX, glTF, ...)
+- Texture import pipeline (PNG, JPG, ...)
 
-## Design Philosophy
+#### Rendering
 
-The theme follows a "content-first" philosophy, ensuring that your writing takes center stage. Every design decision prioritizes readability and user experience.
+- Physically Based Rendering (Cook-Torrance BRDF)
+- Multithreaded skeletal animation system
+- Cascaded Shadow Mapping
+- Instancing
 
-### Color System
+#### Simulation
 
-The theme includes carefully crafted color schemes:
-- Default, Claude, Bumblebee, Emerald
-- Nord, Sunset, Abyss, Dracula
-- Amethyst, Slate, Twitter
+- Minkowski sum-based collision detection
+- Navigation mesh generation based on Delaunay triangulation
 
-Each theme is designed to work perfectly in both light and dark modes.
+#### UI
 
-## Development Journey
+- Subpixel font rendering (ClearType)
+- Multilingual support
 
-Building Hugo Narrow was an exciting journey of learning and experimentation. The main challenges included:
+## Dependencies
 
-1. **Tailwind CSS 4.0 Integration**: Working with the latest version required adapting to new syntax
-2. **Performance Optimization**: Ensuring fast load times while maintaining rich features
-3. **Accessibility**: Making the theme usable for everyone
-4. **Multilingual Support**: Implementing comprehensive i18n
-
-## Community and Contributions
-
-The project is open source and welcomes contributions from the community. Whether it's bug reports, feature requests, or code contributions, every input helps make the theme better.
-
-## Future Roadmap
-
-Planned improvements include:
-- Additional color schemes
-- More shortcodes for content
-- Enhanced gallery features
-- Performance optimizations
-- Better documentation
-
-## Get Started
-
-Visit the [documentation](https://hugo-narrow-docs.vercel.app/) to learn how to use Hugo Narrow for your next project!
+- stb-library
+- ufbx
+- meshoptimizer
+- xxHash3
+- Tracy

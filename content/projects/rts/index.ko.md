@@ -1,10 +1,9 @@
 ---
 title: "RTS"
-date: 2023-12-01T10:00:00+08:00
+date: 2023-12-01
 draft: false
-slug: hugo-narrow-theme
-description: "C++17, OpenGL 위에 만들어진 RTS 게임 엔진"
-summary: "C++17, OpenGL 위에 만들어진 RTS 게임 엔진입니다."
+description: "RTS 게임 엔진"
+summary: "RTS 장르에 초점을 둔 게임 엔진"
 featured: true
 tags:
   - C++17
@@ -16,66 +15,49 @@ status: "in_progress"
 link: "https://github.com/raylee9919/rts"
 ---
 
-## Project Overview
+{{< icon name="github" size="lg" >}} [GitHub](https://github.com/raylee9919/rts)
+{{< icon name="youtube" size="lg" >}} [YouTube](https://www.youtube.com/playlist?list=PL4taYk3t6-W82PICQ04Ep9R1qkEBrM0Ol)
 
-Hugo Narrow is a modern, clean, and minimal Hugo theme designed for bloggers and content creators who value simplicity and elegance. Built with Tailwind CSS 4.0, it offers extensive customization options while maintaining excellent performance.
+## 개요
 
-## Key Features
+C++17로 RTS 장르에 초점을 맞춘 기능과 시스템을 구현한 게임 엔진.
 
-- **Multiple Color Schemes**: Choose from 11+ pre-designed color themes
-- **Dark Mode Support**: Automatic dark mode with smooth transitions
-- **Responsive Design**: Perfect display on all devices
-- **Fast Performance**: Optimized for speed and SEO
-- **Rich Content Support**: Enhanced Markdown, code highlighting, math equations
-- **Multilingual**: Support for 13+ languages
-- **Modern UI Components**: Search, TOC, comments, analytics integration
 
-## Technologies Used
+## 주요 기능
 
-This project leverages modern web technologies:
+#### 코어
 
-- **Hugo Extended**: Static site generator with powerful templating
-- **Tailwind CSS 4.0**: Utility-first CSS framework
-- **@tailwindcss/typography**: Beautiful typographic defaults
-- **GLightbox**: Elegant lightbox for images
-- **Mermaid**: Diagram and flowchart support
-- **KaTeX**: Fast math typesetting
+- Windows 레이어
+- 커스텀 메모리 관리 (아레나 할당자)
+- SIMD 최적화 수학 라이브러리
 
-## Design Philosophy
+#### 에셋 시스템
 
-The theme follows a "content-first" philosophy, ensuring that your writing takes center stage. Every design decision prioritizes readability and user experience.
+- 3D 에셋 임포트 파이프라인 (fbx, gltf, …)
+- 텍스처 임포트 파이프라인 (png, jpg, …)
 
-### Color System
+#### 렌더링
 
-The theme includes carefully crafted color schemes:
-- Default, Claude, Bumblebee, Emerald
-- Nord, Sunset, Abyss, Dracula
-- Amethyst, Slate, Twitter
+- PBR (Cook-Torrance BRDF)
+- 멀티스레드 스켈레탈 애니메이션
+- 캐스케이디드 섀도 맵
+- 인스턴싱
 
-Each theme is designed to work perfectly in both light and dark modes.
+#### 시뮬레이션
 
-## Development Journey
+- 민코프스키 합 기반 충돌 감지
+- 들루네 삼각분할 기법 기반 내비메시 생성
 
-Building Hugo Narrow was an exciting journey of learning and experimentation. The main challenges included:
+#### UI
 
-1. **Tailwind CSS 4.0 Integration**: Working with the latest version required adapting to new syntax
-2. **Performance Optimization**: Ensuring fast load times while maintaining rich features
-3. **Accessibility**: Making the theme usable for everyone
-4. **Multilingual Support**: Implementing comprehensive i18n
+- 서브픽셀 폰트 렌더링 (ClearType)
+- 다국어 지원
 
-## Community and Contributions
 
-The project is open source and welcomes contributions from the community. Whether it's bug reports, feature requests, or code contributions, every input helps make the theme better.
+## 의존성
 
-## Future Roadmap
-
-Planned improvements include:
-- Additional color schemes
-- More shortcodes for content
-- Enhanced gallery features
-- Performance optimizations
-- Better documentation
-
-## Get Started
-
-Visit the [documentation](https://hugo-narrow-docs.vercel.app/) to learn how to use Hugo Narrow for your next project!
+- stb-library
+- ufbx
+- meshoptimizer
+- xxHash-3
+- tracy

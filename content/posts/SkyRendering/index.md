@@ -1,12 +1,13 @@
-+++ 
-title = "Sky Rendering 1"
-date = 2026-06-01
-description = ""
-tags = ["Graphics", "Rendering", "Environment"]
-categories = []
-series = ["Sky Rendering"]
-series_order = 1
-+++
+---
+title: "Sky Rendering 1"
+date: 2026-06-01
+description: ""
+tags: ["Graphics", "Rendering", "Environment"]
+categories: []
+series: ["Sky Rendering"]
+series_order: 1
+cover: "/images/result-1.png"
+---
 
 {{< figure src="/images/skyrim-nightsky.webp" attr="The Elder Scrolls V: Skyrim" width="900">}}
 </br>
