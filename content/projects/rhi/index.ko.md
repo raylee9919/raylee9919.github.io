@@ -130,6 +130,8 @@ float3 tonemap_jodie_reinhard(float3 c) {
 <details>
 <summary>블룸</summary>
 
+{{<youtube WOyP6gRWb5A>}}
+
 강한 강원을 바라볼 때, 이미지 센서의 전하 누출 현상을 모사한다.
 
 - 컴퓨터 셰이더를 통한 다운 샘플링, 업 샘플링
