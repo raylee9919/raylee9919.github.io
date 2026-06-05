@@ -18,9 +18,10 @@ link: "https://github.com/raylee9919/cdt"
 {{< icon name="github" size="lg" >}} [GitHub](https://github.com/raylee9919/cdt)
 {{< icon name="youtube" size="lg" >}} [YouTube](https://youtu.be/rr2v8cLD8So)
 
+![GitHub Banner](resources/github.png "깃허브 스타 100개 달성")
+
 ## 개요
 
-- 깃허브 스타 100개 이상 달성  
 - 점진적 제약 들루네 삼각분할 (Incremental Constrained Delaunay Triangulation)  
 - 단일 헤더 파일 C 라이브러리
 

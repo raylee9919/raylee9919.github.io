@@ -93,6 +93,22 @@
                 href="http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/"
                 />
   </url><url>
+    <loc>http://localhost:1313/posts/birds-eye-view-of-nanite/</loc>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/birds-eye-view-of-nanite/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B8%B1%ED%98%95/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tags/unreal-engine/</loc>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/c&#43;&#43;20/</loc>
     <lastmod>2026-01-01T00:00:00+00:00</lastmod>
     <xhtml:link

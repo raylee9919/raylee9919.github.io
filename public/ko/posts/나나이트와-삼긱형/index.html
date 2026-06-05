@@ -58,7 +58,7 @@
 	<meta itemprop="description" content="그래픽스 학도의 시선에서 나나이트를 훑어본다.">
 	<meta itemprop="datePublished" content="2026-03-01T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-03-01T00:00:00+00:00">
-	<meta itemprop="wordCount" content="1970">
+	<meta itemprop="wordCount" content="2053">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="그래픽스,언리얼 엔진">
 
@@ -901,7 +901,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>4분</span>
+              <span>5분</span>
             </div>
             
 
@@ -912,7 +912,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>1970자</span>
+              <span>2053자</span>
             </div>
             
           </div>
@@ -1296,7 +1296,7 @@
     </figcaption></figure>
 </p>
 <p>왜 나나이트가 <strong>겹침</strong>에 약한지 드러난다.<br>
-기존 하드웨어 래스터라이저에서 Early-Z 컬링의 단위는 4x4 픽셀 정도이다. (하드웨어마다 상이하다.)<br>
+기존 하드웨어 래스터라이저의 Hi-Z 단계에서, 컬링의 단위는 4x4 픽셀 정도이다. (하드웨어마다 상이하다.)<br>
 나나이트에서는 컬링의 단위가, 위에서 보았듯이, 한 클러스터, 즉, 삼각형 128개이다. 이는 생각보다 크다.</p>
 <p>아래 그림을 보자. 푸른 클러스터 뒤에 붉은 클러스터가 겹쳐져 있다. 기존 하드웨어 래스터라이저에서는 걸러질 법 하지만, 나나이트에서는 뒤의 클러스터도
 꼼짝없이 그릴 수 밖에 없다.</p>
@@ -1335,6 +1335,46 @@
       겹쳐진 두 클러스터
     </figcaption></figure>
 </p>
+<p>아래는 <a
+    href="https://youtu.be/eoxYceDfKEM"target="_blank"
+    class="inline-flex items-center gap-1"
+  >에픽의 영상<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>의 일부분이다. 붉을수록 overdraw가 심하다는 것을 나타낸다. 바위끼리 겹쳐진 부분에서 overdraw가 심한 것을 알 수 있다.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="2559"
+  data-image-height="1439"
+  data-image-src="/posts/birds-eye-view-of-nanite/resources/overdraw.png"
+>
+  <div class="image-container">
+    <img
+    src="/posts/birds-eye-view-of-nanite/resources/overdraw.png"
+    alt="Overdraw in kit-bashing"
+    title="겹쳐진 부분의 overdraw"
+    
+      
+      
+        
+          width="2559" height="1439"
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/birds-eye-view-of-nanite/resources/overdraw.png"
+    data-gallery-alt="Overdraw in kit-bashing"
+    data-gallery-title="겹쳐진 부분의 overdraw"
+  /></div>
+
+  <figcaption class="image-caption">
+      겹쳐진 부분의 overdraw
+    </figcaption></figure>
+</p>
 <h2 id="에픽의-기술력">에픽의 기술력<a href="#%ec%97%90%ed%94%bd%ec%9d%98-%ea%b8%b0%ec%88%a0%eb%a0%a5" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>소프트웨어 래스터라이저와 2단계 오클루전 컬링은 사실 새로운 기술이 아니다. Brian Karis 팀은 두 가지 난제를 풀었다:</p>
 <ol>
 <li>클러스터 빌드</li>
@@ -1343,31 +1383,30 @@
 <p>이 두 개가 에픽의 기술이라 볼 수 있겠다.</p>
 <h3 id="클러스터-빌드">클러스터 빌드<a href="#%ed%81%b4%eb%9f%ac%ec%8a%a4%ed%84%b0-%eb%b9%8c%eb%93%9c" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>클러스터 계층을 생성할 때, 틈이 생기면 안 된다. 즉, 한 클러스터는 이웃하는 클러스터와 연계해서 계층을 만들어야한다.<br>
 필자는 <em>&ldquo;복셀은 uniform sampling이기 때문에 lossy하다.&rdquo;</em>, *&ldquo;머그잔과 도넛은 위상학적으로 같다.&quot;*라고 할 때부터 이해하기를 포기했다.</p>
-<h3 id="하드웨어-맵핑">하드웨어 맵핑<a href="#%ed%95%98%eb%93%9c%ec%9b%a8%ec%96%b4-%eb%a7%b5%ed%95%91" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>GPU의 메모리도 CPU처럼 <strong>페이지</strong>로 이루어져 있다. 따라서, 지금 안 쓰이는 LOD의 클러스터를 디스크로 스왑할 수 있다. 가변 크기의 클러스터를
+<h3 id="하드웨어-맵핑">하드웨어 맵핑<a href="#%ed%95%98%eb%93%9c%ec%9b%a8%ec%96%b4-%eb%a7%b5%ed%95%91" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>GPU 메모리도 CPU처럼 페이지로 이루어져 있다. 따라서, 지금 안 쓰이는 LOD의 클러스터를 디스크로 스왑할 수 있다. 가변 크기의 클러스터를
 고정 크기의 페이지에 어떻게 잘 끼워넣을까가 문제들 중 하나였다고 한다.</p>
 <p>이외에도, 즉각적인 디코딩, 양자화, 비트패킹, 위상 인코딩, LZ 압축 알고리즘을 고려한 설계 등, 엄청난 수고가 들어갔음은 분명하다.</p>
-<h2 id="결론">결론<a href="#%ea%b2%b0%eb%a1%a0" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>나나이트는 1 픽셀 삼각형에 강하다. 많이 겹치면 안 좋다.</p>
-<p>Brian Karis 팀의 집념과 기술, 그리고 에픽의 리더십이 대단하다고 느꼈다.<br>
+<h2 id="결론">결론<a href="#%ea%b2%b0%eb%a1%a0" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Brian Karis 팀의 집념과 기술, 그리고 에픽의 리더십이 대단하다고 느꼈다. 언리얼 6에서는 어떤 문제를 해결할까?<br>
 본인은 CPU 래스터라이저를 만들어본 경험이 나나이트를 이해하는 데 큰 도움이 됐다.</p>
 <h2 id="관련-링크">관련 링크<a href="#%ea%b4%80%eb%a0%a8-%eb%a7%81%ed%81%ac" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
     href="https://youtu.be/eviSykqSUUw"target="_blank"
     class="inline-flex items-center gap-1"
-  >A Deep Dive into Nanite Virtualized Geometry<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  >Brian Karis – A Deep Dive into Nanite Virtualized Geometry<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a><br>
 <a
     href="https://youtu.be/NRnj_lnpORU?list=LL"target="_blank"
     class="inline-flex items-center gap-1"
-  >HPG 2022 Keynote: The Journey to Nanite – Brian Karis, Epic Games<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  >Brian Karis – HPG 2022 Keynote: The Journey to Nanite <svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a><br>
 <a
     href="https://youtu.be/KtxiuFe83Hg?t=7984"target="_blank"
     class="inline-flex items-center gap-1"
-  >Optimizing Geometry for the GPU | Zeux 02:13:04<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  >Arseny Kapoulkine – Optimizing Geometry for the GPU 02:13:04<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a><br>
 <a
     href="https://vcg.isti.cnr.it/~ponchio/download/ponchio_phd.pdf"target="_blank"
     class="inline-flex items-center gap-1"
-  >Multiresolution structures for interactive visualization of very large 3D datasets<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  >Federico Ponchio – Multiresolution structures for interactive visualization of very large 3D datasets<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a><br>
 <a
     href="https://scthe.github.io/nanite-webgpu/?scene_file=jinxCombined&amp;impostors_threshold=4000&amp;softwarerasterizer_threshold=1360&amp;nanite_errorthreshold=0.1"target="_blank"
