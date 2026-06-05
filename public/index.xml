@@ -37,7 +37,7 @@
 			<item>
 				<title>RHI</title>
 				<link>http://localhost:1313/projects/rhi/</link>
-				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+				<pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/projects/rhi/</guid>
 				<description>렌더링 파이프라인과 기술을 연구하고 구현한다.</description>
 			</item>
@@ -49,11 +49,32 @@
 				<description>RTS game/engine built from scratch.</description>
 			</item>
 			<item>
+				<title>Shooter</title>
+				<link>http://localhost:1313/projects/shooter/</link>
+				<pubDate>Mon, 01 Jan 2001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/projects/shooter/</guid>
+				<description>UE5 multiplayer shooter</description>
+			</item>
+			<item>
+				<title>RR</title>
+				<link>http://localhost:1313/projects/rr/</link>
+				<pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/projects/rr/</guid>
+				<description>CPU Rasterizer and Raytracer</description>
+			</item>
+			<item>
 				<title>CDT</title>
 				<link>http://localhost:1313/projects/cdt/</link>
 				<pubDate>Mon, 01 Jan 1900 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/projects/cdt/</guid>
-				<description>Single-header Constrained Delaunay Triangulation in C</description>
+				<description>Constrained Delaunay Triangulation library in C</description>
+			</item>
+			<item>
+				<title>Guess the Music</title>
+				<link>http://localhost:1313/projects/guess-the-music/</link>
+				<pubDate>Wed, 01 Jan 1800 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/projects/guess-the-music/</guid>
+				<description>Guess the title of the song!</description>
 			</item>
 	</channel>
 </rss>

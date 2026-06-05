@@ -103,14 +103,11 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B8%B1%ED%98%95/"
+                href="http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B0%81%ED%98%95/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/unreal-engine/</loc>
-    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/tags/c&#43;&#43;20/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -123,7 +120,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -136,7 +133,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/tags/d3d12/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -149,7 +146,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/categories/projects/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -162,7 +159,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/projects/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -175,7 +172,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/projects/rhi/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -187,8 +184,11 @@
                 href="http://localhost:1313/ko/projects/rhi/"
                 />
   </url><url>
+    <loc>http://localhost:1313/tags/unreal-engine/</loc>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -239,6 +239,58 @@
                 href="http://localhost:1313/ko/projects/rts/"
                 />
   </url><url>
+    <loc>http://localhost:1313/tags/c&#43;&#43;/</loc>
+    <lastmod>2001-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/c&#43;&#43;/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/tags/c&#43;&#43;/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/projects/shooter/</loc>
+    <lastmod>2001-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/projects/shooter/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/projects/%EC%8A%88%ED%84%B0/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tags/ue5/</loc>
+    <lastmod>2001-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/ue5/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/tags/ue5/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/projects/rr/</loc>
+    <lastmod>2000-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/projects/rr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/projects/rr/"
+                />
+  </url><url>
     <loc>http://localhost:1313/tags/c/</loc>
     <lastmod>1900-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -267,5 +319,31 @@
   </url><url>
     <loc>http://localhost:1313/tags/computational-geometry/</loc>
     <lastmod>1900-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/projects/guess-the-music/</loc>
+    <lastmod>1800-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/projects/guess-the-music/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/projects/%EB%85%B8%EB%9E%98-%EB%A7%9E%ED%9E%88%EA%B8%B0/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tags/java/</loc>
+    <lastmod>1800-01-01T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/java/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/tags/java/"
+                />
   </url>
 </urlset>

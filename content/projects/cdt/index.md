@@ -2,8 +2,8 @@
 title: "CDT"
 date: 1900-01-01
 draft: false
-description: "Single-header Constrained Delaunay Triangulation library built in C"
-summary: "Single-header Constrained Delaunay Triangulation in C"
+description: "Constrained Delaunay Triangulation library in C"
+summary: "Constrained Delaunay Triangulation library in C"
 featured: true
 tags:
   - C

@@ -3,7 +3,7 @@ title: "RTS"
 date: 2023-12-01
 draft: false
 description: "RTS 게임 엔진"
-summary: "RTS 장르에 초점을 둔 게임 엔진"
+summary: "RTS 장르에 초점을 둔 게임 및 엔진"
 featured: true
 tags:
   - C++17
@@ -20,7 +20,12 @@ link: "https://github.com/raylee9919/rts"
 
 ## 개요
 
-C++17로 RTS 장르에 초점을 맞춘 기능과 시스템을 구현한 게임 엔진.
+
+| 인원 | 기간 | 사용 기술 |
+|:-----------|:------------|:------------|
+| 1인  | 2023년 12월 ~  | C++17, OpenGL, GLSL |
+
+RTS 게임 및 이를 위한 기능을 구현한 엔진
 
 
 ## 주요 기능
@@ -38,7 +43,7 @@ C++17로 RTS 장르에 초점을 맞춘 기능과 시스템을 구현한 게임 
 
 #### 렌더링
 
-- PBR (Cook-Torrance BRDF)
+- Cook-Torrance BRDF
 - 멀티스레드 스켈레탈 애니메이션
 - 캐스케이디드 섀도 맵
 - 인스턴싱

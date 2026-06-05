@@ -1,6 +1,6 @@
 ---
 title: "RHI"
-date: 2026-01-01
+date: 2026-03-01
 draft: false
 description: "렌더링 파이프라인과 기술 연구 및 구현 프로젝트"
 summary: "렌더링 파이프라인과 기술을 연구하고 구현한다."

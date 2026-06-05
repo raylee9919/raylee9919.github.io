@@ -18,7 +18,14 @@
 				<link>http://localhost:1313/ko/projects/rts/</link>
 				<pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/projects/rts/</guid>
-				<description>RTS 장르에 초점을 둔 게임 엔진</description>
+				<description>RTS 장르에 초점을 둔 게임 및 엔진</description>
+			</item>
+			<item>
+				<title>RR</title>
+				<link>http://localhost:1313/ko/projects/rr/</link>
+				<pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/projects/rr/</guid>
+				<description>CPU 래스터라이저와 레이트레이서</description>
 			</item>
 	</channel>
 </rss>

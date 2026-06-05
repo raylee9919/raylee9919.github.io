@@ -10,22 +10,36 @@
 		
 		
 		
-			<lastBuildDate>Thu, 01 Jan 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/ko/categories/projects/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>RHI</title>
 				<link>http://localhost:1313/ko/projects/rhi/</link>
-				<pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
+				<pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/projects/rhi/</guid>
-				<description>렌더링 파이프라인 및 그래픽스 기술 프로젝트</description>
+				<description>렌더링 파이프라인 및 그래픽스 기술</description>
 			</item>
 			<item>
 				<title>RTS</title>
 				<link>http://localhost:1313/ko/projects/rts/</link>
 				<pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/projects/rts/</guid>
-				<description>RTS 장르에 초점을 둔 게임 엔진</description>
+				<description>RTS 장르에 초점을 둔 게임 및 엔진</description>
+			</item>
+			<item>
+				<title>슈터</title>
+				<link>http://localhost:1313/ko/projects/%EC%8A%88%ED%84%B0/</link>
+				<pubDate>Mon, 01 Jan 2001 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/projects/%EC%8A%88%ED%84%B0/</guid>
+				<description>UE5 멀티플레이어 슈터 게임</description>
+			</item>
+			<item>
+				<title>RR</title>
+				<link>http://localhost:1313/ko/projects/rr/</link>
+				<pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/projects/rr/</guid>
+				<description>CPU 래스터라이저와 레이트레이서</description>
 			</item>
 			<item>
 				<title>CDT</title>
@@ -33,6 +47,13 @@
 				<pubDate>Mon, 01 Jan 1900 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/projects/cdt/</guid>
 				<description>제약 들루네 삼각분할 기하 라이브러리</description>
+			</item>
+			<item>
+				<title>노래 맞히기</title>
+				<link>http://localhost:1313/ko/projects/%EB%85%B8%EB%9E%98-%EB%A7%9E%ED%9E%88%EA%B8%B0/</link>
+				<pubDate>Wed, 01 Jan 1800 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/projects/%EB%85%B8%EB%9E%98-%EB%A7%9E%ED%9E%88%EA%B8%B0/</guid>
+				<description>시간 내에 제목을 맞혀라!</description>
 			</item>
 	</channel>
 </rss>

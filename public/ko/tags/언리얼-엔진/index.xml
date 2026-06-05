@@ -14,10 +14,10 @@
 		
 			<atom:link href="http://localhost:1313/ko/tags/%EC%96%B8%EB%A6%AC%EC%96%BC-%EC%97%94%EC%A7%84/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>나나이트와 삼긱형</title>
-				<link>http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B8%B1%ED%98%95/</link>
+				<title>나나이트와 삼각형</title>
+				<link>http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B0%81%ED%98%95/</link>
 				<pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B8%B1%ED%98%95/</guid>
+				<guid>http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B0%81%ED%98%95/</guid>
 				<description>&lt;p&gt;&lt;strong&gt;삼각형&lt;/strong&gt;, 이 기본적인 도형은 썸네일을 차지할 자격이 있다.&lt;br&gt;&#xA;나나이트 개발을 이끈 Brian Karis가 &lt;a&#xD;&#xA;    href=&#34;https://youtu.be/NRnj_lnpORU&#34;target=&#34;_blank&#34;&#xD;&#xA;    class=&#34;inline-flex items-center gap-1&#34;&#xD;&#xA;  &gt;영상&lt;svg class=&#34;h-3 w-3 flex-shrink-0&#34; id=&#34;external-link&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34;&gt;&lt;path fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; stroke-width=&#34;2&#34; d=&#34;M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6&#34;/&gt;&lt;/svg&gt;&#xD;&#xA;  &lt;/a&gt;에서 입고 나온 옷을 보아라.&lt;/p&gt;</description>
 			</item>
 	</channel>

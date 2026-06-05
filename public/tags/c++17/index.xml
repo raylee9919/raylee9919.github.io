@@ -20,5 +20,12 @@
 				<guid>http://localhost:1313/projects/rts/</guid>
 				<description>RTS game/engine built from scratch.</description>
 			</item>
+			<item>
+				<title>RR</title>
+				<link>http://localhost:1313/projects/rr/</link>
+				<pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/projects/rr/</guid>
+				<description>CPU Rasterizer and Raytracer</description>
+			</item>
 	</channel>
 </rss>

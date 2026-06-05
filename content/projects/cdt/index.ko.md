@@ -22,6 +22,10 @@ link: "https://github.com/raylee9919/cdt"
 
 ## 개요
 
+| 인원 | 기간 | 사용 기술 |
+|:-----------|:------------|:------------|
+| 1인  | 2025년 8월 ~ 2025년 11월 | C |
+
 - 점진적 제약 들루네 삼각분할 (Incremental Constrained Delaunay Triangulation)  
 - 단일 헤더 파일 C 라이브러리
 
