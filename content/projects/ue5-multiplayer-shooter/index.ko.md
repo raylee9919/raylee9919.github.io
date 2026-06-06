@@ -7,11 +7,14 @@ summary: "UE5 멀티플레이어 슈터 게임"
 featured: true
 tags:
   - UE5
-  - C++
 categories:
   - projects
 cover: resources/cover.webp
 status: "completed"
+---
+
+{{< youtube Fk1mieGCx_o >}}
+
 ---
 
 {{< icon name="youtube" size="lg" >}} [YouTube](https://www.youtube.com/playlist?list=PL4taYk3t6-W-jM5mpB3anSf0eX6Hcgjel)
@@ -21,7 +24,7 @@ status: "completed"
 
 | 인원 | 기간 | 사용 기술 |
 |:-----------|:------------|:------------|
-| 1인  | 2026년 1월 ~ 2026년 4월 | UE5, C++ |
+| 1인  | 2026년 1월 ~ 2026년 4월 | UE5 |
 
 
 ## 주요 기능
@@ -53,12 +56,3 @@ flowchart LR
 ### 픽업
 
 ![Pickup](resources/pickup.png "픽업 상속도")
-
-
-## 갤러리
-
-![gallery-01](resources/gallery-01.png)
-![gallery-02](resources/gallery-02.png)
-![gallery-03](resources/gallery-03.png)
-![gallery-04](resources/gallery-04.png)
-![gallery-05](resources/gallery-05.png)

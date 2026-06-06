@@ -13,6 +13,8 @@ cover: resources/cover.png
 status: "completed"
 ---
 
+{{< youtube 5414wtHZEmA >}}
+
 {{< icon name="youtube" size="lg" >}} [YouTube](https://youtu.be/5414wtHZEmA)
 
 ## 개요

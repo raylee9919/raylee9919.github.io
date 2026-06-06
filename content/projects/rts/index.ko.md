@@ -15,11 +15,14 @@ status: "in_progress"
 link: "https://github.com/raylee9919/rts"
 ---
 
+{{< youtube YSqlu97es8s >}}
+
+---
+
 {{< icon name="github" size="lg" >}} [GitHub](https://github.com/raylee9919/rts)
 {{< icon name="youtube" size="lg" >}} [YouTube](https://www.youtube.com/playlist?list=PL4taYk3t6-W82PICQ04Ep9R1qkEBrM0Ol)
 
 ## 개요
-
 
 | 인원 | 기간 | 사용 기술 |
 |:-----------|:------------|:------------|
