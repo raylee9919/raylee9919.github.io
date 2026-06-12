@@ -9,4 +9,4 @@ series_order: 1
 cover: "/images/result-1.png"
 ---
 
-WIP
+Translation in progres..

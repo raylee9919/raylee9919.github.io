@@ -27,3 +27,5 @@ status: "completed"
 ## 레이트레이서
 
 {{< icon name="github" size="lg" >}} [GitHub](https://github.com/raylee9919/sw-rt)
+
+Translation in progres..

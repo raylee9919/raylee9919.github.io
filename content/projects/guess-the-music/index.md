@@ -14,3 +14,5 @@ status: "completed"
 ---
 
 {{< icon name="youtube" size="lg" >}} [YouTube](https://youtu.be/5414wtHZEmA)
+
+Translation in progres..

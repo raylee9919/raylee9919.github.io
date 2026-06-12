@@ -8,4 +8,4 @@ series: []
 cover: "resources/cover.svg"
 ---
 
-WIP
+Translation in progres..

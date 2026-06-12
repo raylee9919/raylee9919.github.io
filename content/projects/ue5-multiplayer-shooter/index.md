@@ -13,3 +13,5 @@ categories:
 cover: resources/cover.webp
 status: "completed"
 ---
+
+Translation in progres..

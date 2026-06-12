@@ -16,4 +16,4 @@ status: "in_progress"
 link: "https://github.com/raylee9919/RHI"
 ---
 
-WIP
+Translation in progres..
