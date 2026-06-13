@@ -3,14 +3,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/tags/environment/</loc>
-    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/graphics/</loc>
-    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/posts/designing-reusable-components/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/designing-reusable-components/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/"
+                />
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -22,11 +29,11 @@
                 href="http://localhost:1313/ko/posts/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/rendering/</loc>
-    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/tags/programming/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -37,6 +44,28 @@
                 hreflang="ko"
                 href="http://localhost:1313/ko/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/tags/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tags/environment/</loc>
+    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/graphics/</loc>
+    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/rendering/</loc>
+    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/series/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
@@ -65,19 +94,6 @@
                 rel="alternate"
                 hreflang="ko"
                 href="http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/tags/"
                 />
   </url><url>
     <loc>http://localhost:1313/posts/sky-rendering-1/</loc>
@@ -241,16 +257,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/c&#43;&#43;/</loc>
     <lastmod>2001-01-01T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/c&#43;&#43;/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/tags/c&#43;&#43;/"
-                />
   </url><url>
     <loc>http://localhost:1313/projects/shooter/</loc>
     <lastmod>2001-01-01T00:00:00+00:00</lastmod>

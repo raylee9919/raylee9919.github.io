@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Wed, 03 Jun 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/ko/posts/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>재사용 가능한 설계</title>
+				<link>http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/</link>
+				<pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/</guid>
+				<description>&lt;p&gt;코드를 &amp;ldquo;잘&amp;rdquo; 작성하고 싶은 욕망은 프로그래머라면 자연스럽게 생긴다. 이번 글에서는 필자가 코드를 &amp;ldquo;디자인&amp;quot;하면서, 늘 염두에 두는 몇 가지 사항을 담아보았다.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>하늘 렌더링 2</title>
 				<link>http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/</link>

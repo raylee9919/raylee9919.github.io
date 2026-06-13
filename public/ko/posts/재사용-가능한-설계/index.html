@@ -3,21 +3,21 @@
   lang="ko"
   data-theme="default"
 >
-  <head>
-	<meta name="generator" content="Hugo 0.162.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title>SeongWoo Lee</title>
+<title>재사용 가능한 설계 |
+    SeongWoo Lee</title>
 
 <meta
   name="description"
-  content="SeongWoo Lee&#39;s Website"
+  content="API 디자인에 대한 기준 몇 가지를 다룬다."
 />
 <meta
   name="keywords"
-  content="Programming, Graphics, Game Engine, Blog, Post, Development"
+  content="프로그래밍, 설계"
 />
 <meta
   name="author"
@@ -29,40 +29,40 @@
   name="robots"
   content="index, follow"
 />
-<link rel="canonical" href="http://localhost:1313/ko/" />
+<link rel="canonical" href="http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/" />
 
 
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
 <link rel="manifest" href="/site.webmanifest" />
-<meta property="og:url" content="http://localhost:1313/ko/">
+<meta property="og:url" content="http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/">
 	<meta property="og:site_name" content="SeongWoo Lee">
-	<meta property="og:title" content="SeongWoo Lee">
-	<meta property="og:description" content="SeongWoo Lee&#39;s Website">
+	<meta property="og:title" content="재사용 가능한 설계">
+	<meta property="og:description" content="API 디자인에 대한 기준 몇 가지를 다룬다.">
 	<meta property="og:locale" content="ko">
-	<meta property="og:type" content="website">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-06-13T00:00:00+00:00">
+		<meta property="article:modified_time" content="2026-06-13T00:00:00+00:00">
+		<meta property="article:tag" content="프로그래밍">
+		<meta property="article:tag" content="설계">
 		<meta property="og:image" content="http://localhost:1313/images/og-default.avif">
 
 
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
-	<meta name="twitter:title" content="SeongWoo Lee">
-	<meta name="twitter:description" content="SeongWoo Lee&#39;s Website">
+	<meta name="twitter:title" content="재사용 가능한 설계">
+	<meta name="twitter:description" content="API 디자인에 대한 기준 몇 가지를 다룬다.">
 
 
-	<meta itemprop="name" content="SeongWoo Lee">
-	<meta itemprop="description" content="SeongWoo Lee&#39;s Website">
+	<meta itemprop="name" content="재사용 가능한 설계">
+	<meta itemprop="description" content="API 디자인에 대한 기준 몇 가지를 다룬다.">
 	<meta itemprop="datePublished" content="2026-06-13T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-06-13T00:00:00+00:00">
+	<meta itemprop="wordCount" content="868">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
+	<meta itemprop="keywords" content="프로그래밍,설계">
 
 
-
-  <link
-    rel="alternate"
-    type="application/rss+xml"
-    title="SeongWoo Lee"
-    href="http://localhost:1313/ko/index.xml"
-  />
 
 
 
@@ -93,6 +93,7 @@
 
 
 
+          <script src="/js/toc.js" defer></script>
 
 
 
@@ -119,7 +120,40 @@
     <script>(function(){const e=localStorage.getItem("theme")||"system",n=localStorage.getItem("colorScheme")||"default";document.documentElement.setAttribute("data-theme",n);function t(){e==="dark"||e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")}t(),e==="system"&&window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",t)})()</script>
   </head><body class="bg-background text-foreground min-h-screen antialiased">
     <main class="mx-auto w-full" style="max-width: 56rem">
-      
+      <div
+    id="reading-progress-bar"
+    class="from-primary to-primary/80 pointer-events-none fixed top-0 left-0 z-50 h-[3px] w-0 bg-linear-to-r transition-[width] duration-150 ease-out"
+  ></div>
+
+  <script>
+    (function () {
+      const bar = document.getElementById("reading-progress-bar");
+      if (!bar) return;
+
+      function update() {
+        const scrolled = window.scrollY;
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = total > 0 ? (scrolled / total) * 100 + "%" : "0%";
+      }
+
+      let ticking = false;
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              update();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        },
+        { passive: true }
+      );
+
+      update();
+    })();
+  </script>
 
       <header class="sticky top-0 z-50 px-4 py-6">
   <div
@@ -310,10 +344,10 @@
                     <a
                       href="/ko/"
                       class="nav-link 
-                        bg-accent text-accent-foreground
+                        text-muted-foreground hover:text-primary hover:bg-primary/10
                        focus:ring-primary/20 flex items-center gap-2 rounded-lg px-2 py-2 text-sm leading-snug transition-colors duration-200 focus:ring-2 focus:outline-none"
                       role="menuitem"
-                      aria-current="page"
+                      
                     >
                       
                         <svg class="h-4 w-4" aria-label="보관소" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -353,7 +387,7 @@
       
         role="menu" aria-labelledby="language-toggle"
       
-    ><a href="/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">English</span></a><a href="/ko/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">한국어</span></a></div>
+    ><a href="/posts/designing-reusable-components/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">English</span></a><a href="/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">한국어</span></a></div>
   </div>
 
 
@@ -462,7 +496,7 @@
       
         role="menu" aria-labelledby="language-toggle"
       
-    ><a href="/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">English</span></a><a href="/ko/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">한국어</span></a></div>
+    ><a href="/posts/designing-reusable-components/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">English</span></a><a href="/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">한국어</span></a></div>
   </div>
 
 
@@ -715,10 +749,10 @@
                     <a
                       href="/ko/"
                       class="nav-panel-link 
-                        bg-accent text-accent-foreground
+                        text-muted-foreground hover:text-primary hover:bg-primary/10
                        focus:ring-primary/20 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
                       role="menuitem"
-                      aria-current="page"
+                      
                     >
                       
                         <svg class="h-4 w-4" aria-label="보관소" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -745,119 +779,684 @@
 
       <div class="px-4 py-6">
         
+  <nav class="breadcrumb mb-4 py-1 md:mb-6" aria-label="탐색 경로">
+    <ol
+      class="text-muted-foreground scrollbar-hide flex items-center space-x-1 overflow-x-auto py-1 text-sm whitespace-nowrap md:space-x-2"
+    >
+      
+        
+          
+          <li class="shrink-0">
+            <a
+              href="/ko/"
+              class="text-muted-foreground hover:text-primary hover:bg-primary/10 flex items-center gap-1 rounded-lg px-1 py-0.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.02] md:py-1.5"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m3 12 2-2m0 0 7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+</svg>
+
+              <span class="max-w-16 truncate md:max-w-none">SeongWoo Lee</span>
+            </a>
+          </li>
+        
+      
+        
+          
+          <li class="flex min-w-0 items-center gap-1 md:gap-2">
+            <span class="text-muted-foreground/50 shrink-0"
+              ><svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+</svg>
+            </span>
+            <a
+              href="/ko/posts/"
+              class="text-muted-foreground hover:text-primary hover:bg-primary/10 flex shrink-0 items-center gap-1 rounded-lg px-1 py-0.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.02] md:px-3 md:py-1.5"
+            >
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+</svg>
+              <span class="max-w-16 truncate md:max-w-none">포스트</span>
+            </a>
+          </li>
+        
+      
+
+
+      
+      <li class="flex min-w-0 items-center gap-1 md:gap-2">
+        <span class="text-muted-foreground/50 shrink-0"
+          ><svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+</svg>
+        </span>
+        <span class="text-foreground flex min-w-0 items-center gap-1 font-medium">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+</svg>
+          <span class="max-w-32 truncate md:max-w-[16rem] lg:max-w-none">재사용 가능한 설계</span>
+        </span>
+      </li>
+    </ol>
+  </nav>
+
 
         
+  <div class="mb-8 overflow-hidden rounded-2xl">
+        <img
+          src="/posts/designing-reusable-components/resources/cover.png"
+          alt="재사용 가능한 설계"
+          class="aspect-video max-h-[50vh] w-full object-cover md:max-h-[60vh]"
+          loading="eager"
+        />
+      </div>
+
+
+  
+  <header class="mb-8">
+    
+
+
+
+
+<div class="post-meta mb-8">
+  
+  <h1 class="text-foreground mb-6 text-3xl leading-tight font-bold md:text-4xl">
+    재사용 가능한 설계
+  </h1>
+
   
   
+
   
+  <div class="bg-card border-border rounded-xl border">
+
     
+        
+        <div class="p-6">
+
+          
+          <div class="text-muted-foreground flex flex-wrap items-center gap-3 text-sm mb-4">
+            
+            <div class="flex items-center gap-2">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+</svg>
+
+              <time datetime="2026-06-13">
+                2026년 6월 13일
+              </time>
+            </div>
+
+            
+            
+            <div class="flex items-center gap-2">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+
+              <span>2분</span>
+            </div>
+            
+
+            
+            
+            <div class="flex items-center gap-2">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+</svg>
+
+              <span>868자</span>
+            </div>
+            
+          </div>
+
+          
+          <div class="text-muted-foreground space-y-3 pt-4 border-t border-border">
+            <div class="flex items-center gap-2">
+              <div class="shrink-0">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+</svg>
+
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex flex-wrap items-center gap-1.5">
+                  <span class="text-muted-foreground text-sm font-medium">
+                    Tags:
+                  </span>
+                  <a href="/ko/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/"
+                    class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
+                    프로그래밍
+                  </a>
+                  <a href="/ko/tags/%EC%84%A4%EA%B3%84/"
+                    class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
+                    설계
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+  </header>
+
+  
+  <article class="prose prose-neutral dark:prose-invert mb-12 max-w-none">
+    <p>코드를 &ldquo;잘&rdquo; 작성하고 싶은 욕망은 프로그래머라면 자연스럽게 생긴다. 이번 글에서는 필자가 코드를 &ldquo;디자인&quot;하면서, 늘 염두에 두는 몇 가지 사항을 담아보았다.</p>
+<h2 id="retention">Retention<a href="#retention" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>양쪽 모두 정보를 들고 있어야 하는지, 다른 말로, <strong>A의 정보를 B에서 미러링</strong>할 필요가 있는지 스스로에게 묻자. 무슨 말인지 UI 프로그래밍으로 살펴보자.</p>
+<p>아래는 <strong>Retained-Mode UI</strong>의 형태이다:</p>
+<div
+  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
+  data-code-block
+  data-code-id="code-0"
+  data-collapsible="true"
+  data-default-state="expanded"
+  data-collapsed="false"
+  data-auto-collapse-lines="30"
+  data-auto-collapse-height="400"
+  data-collapsed-height="120"
+>
+  
+  <div
+    class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"
+  >
     
+    <div class="flex items-center gap-2">
+      <div class="text-muted-foreground shrink-0">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+</svg>
+      </div>
+      <span class="text-muted-foreground text-sm font-medium">
+        C&#43;&#43;
+      </span>
+    </div>
+
     
-
-
-
-
-
-  <section class="author-section mb-12">
-    <div class="bg-card border-border rounded-xl border p-8 shadow-sm">
-      <div
-        class="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left"
+    <div class="flex items-center gap-2">
+      <button
+          class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+          type="button"
+          data-code-action="toggle-collapse"
+          data-label-expand="확장"
+          data-label-collapse="접기"
+          title="접기"
+          aria-label="접기"
+          aria-controls="code-0"
+          aria-expanded="true"
+        >
+          <span class="collapse-chevron transition-transform duration-200 ease-out">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </span>
+          <span class="collapse-text hidden sm:inline">접기</span>
+        </button>
+      <button
+        class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+        type="button"
+        data-code-action="copy"
+        data-label-copy="복사"
+        data-label-copied="복사됨"
+        title="복사"
+        aria-label="복사"
       >
-        
-        <div class="shrink-0">
-          
-            <img
-              src="/images/profile.jpg"
-              alt="이성우"
-              class="border-primary/20 h-24 w-24 rounded-full border-4 object-cover shadow-lg"
-            />
-          
-        </div>
-
-        
-        <div class="min-w-0 flex-1">
-          <h1 class="text-foreground mb-2 text-3xl font-bold">
-            이성우
-          </h1>
-
-          
-            <p class="text-muted-foreground mb-3 text-lg">
-              프로그래머, 게임 개발자, 그래픽스 학도
-            </p>
-          
-
-          
-            <p class="text-foreground mb-4 leading-relaxed">
-              더 나은 소프트웨어를 향해.
-            </p>
-          
-
-
-          
-          
-            <div class="flex flex-wrap justify-center gap-3 md:justify-start">
-              
-                <a
-                  href="https://github.com/raylee9919"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="bg-muted text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 inline-flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none"
-                  title="GitHub"
-                >
-                  
-                    <svg class="h-4 w-4" aria-label="GitHub" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5c.08-1.25-.27-2.48-1-3.5c.28-1.15.28-2.35 0-3.5c0 0-1 0-3 1.5c-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5c-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></g></svg>
-                  
-                  <span class="text-sm font-medium">GitHub</span>
-                </a>
-              
-                <a
-                  href="https://x.com/raylee9919"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="bg-muted text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 inline-flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none"
-                  title="X"
-                >
-                  
-                    <svg class="h-4 w-4" aria-label="X" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="m13.458 9.122l7.516-7.965h2.491l-.01.011l-8.89 9.424l8.139 10.802a.906.906 0 0 1-.658 1.45H16.95a.9.9 0 0 1-.659-.359l-5.727-7.601l-7.472 7.96H.535l8.922-9.43L1.318 2.612a.906.906 0 0 1 .724-1.452h4.965c.285 0 .553.134.724.361zm-.763 2a1 1 0 0 1-.07-.093l-6.07-8.056H3.86l13.607 18.06h2.696z" clip-rule="evenodd"/></svg>
-                  
-                  <span class="text-sm font-medium">X</span>
-                </a>
-              
-                <a
-                  href="https://www.youtube.com/@seongwoolee9919"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="bg-muted text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 inline-flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none"
-                  title="YouTube"
-                >
-                  
-                    <svg class="h-4 w-4" aria-label="YouTube" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        <span class="copy-icon">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
 </svg>
-
-                  
-                  <span class="text-sm font-medium">YouTube</span>
-                </a>
-              
-            </div>
-          
-        </div>
-      </div>
+        </span>
+        <span class="copy-text hidden sm:inline">복사</span>
+      </button>
     </div>
-  </section>
+  </div>
+
+  
+  <div class="code-block-content relative" id="code-0">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">button</span><span class="p">.</span><span class="n">is_valid</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">button</span> <span class="o">=</span> <span class="n">create_button</span><span class="p">(</span><span class="s">&#34;play&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="p">.</span><span class="n">is_clicked</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">play_sound</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">destroy_button</span><span class="p">(</span><span class="n">button</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+    <div hidden data-code-source>if (!button.is_valid) {
+	button = create_button(&#34;play&#34;);
+}
+
+if (button.is_clicked) {
+	play_sound();
+} else {
+	destroy_button(button);
+}</div>
+    
+    <div
+      class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"
+      hidden
+    >
+      <button
+        class="collapse-overlay-btn text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all duration-200"
+        type="button"
+        data-code-action="expand"
+        aria-label="확장"
+        title="확장"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+      </button>
+    </div>
+  </div>
+</div>
+<p>버튼이 존재하지 않으면 생성하고, 존재한다면 클릭이 됐는지 확인한다. 클릭이 됐다면 사운드를 재생한다. 이 때, UI 라이브러리를 사용하는
+유저의 입장에서 살펴보자. 유저는 버튼이 살아있는지 계속 확인을 해줘야 한다. UI 라이브러리와 유저가 <strong>동기화</strong>를 해줘야한다는 말이다. 이런 코드는 많아질수록
+동기화도 어려워지고, 플로우를 살펴보기도 어렵다.</p>
+<p>아래는 <strong>Immediate-Mode UI</strong>의 형태이다:</p>
+<div
+  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
+  data-code-block
+  data-code-id="code-1"
+  data-collapsible="true"
+  data-default-state="expanded"
+  data-collapsed="false"
+  data-auto-collapse-lines="30"
+  data-auto-collapse-height="400"
+  data-collapsed-height="120"
+>
+  
+  <div
+    class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"
+  >
+    
+    <div class="flex items-center gap-2">
+      <div class="text-muted-foreground shrink-0">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+</svg>
+      </div>
+      <span class="text-muted-foreground text-sm font-medium">
+        C&#43;&#43;
+      </span>
+    </div>
+
+    
+    <div class="flex items-center gap-2">
+      <button
+          class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+          type="button"
+          data-code-action="toggle-collapse"
+          data-label-expand="확장"
+          data-label-collapse="접기"
+          title="접기"
+          aria-label="접기"
+          aria-controls="code-1"
+          aria-expanded="true"
+        >
+          <span class="collapse-chevron transition-transform duration-200 ease-out">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </span>
+          <span class="collapse-text hidden sm:inline">접기</span>
+        </button>
+      <button
+        class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+        type="button"
+        data-code-action="copy"
+        data-label-copy="복사"
+        data-label-copied="복사됨"
+        title="복사"
+        aria-label="복사"
+      >
+        <span class="copy-icon">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+</svg>
+        </span>
+        <span class="copy-text hidden sm:inline">복사</span>
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="code-block-content relative" id="code-1">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">button</span><span class="p">(</span><span class="s">&#34;play&#34;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">play_sound</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+    <div hidden data-code-source>if (button(&#34;play&#34;)) {
+	play_sound();
+}</div>
+    
+    <div
+      class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"
+      hidden
+    >
+      <button
+        class="collapse-overlay-btn text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all duration-200"
+        type="button"
+        data-code-action="expand"
+        aria-label="확장"
+        title="확장"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+      </button>
+    </div>
+  </div>
+</div>
+<p>유저는 버튼의 &ldquo;생명&quot;을 신경쓰지 않아도 된다. 어떤 일이 일어나는지 훨씬 쉽게 보인다. 상태 (state)가 여기저기 흩어져셔 동기화에 대한 어려움을 겪지도 않아도 된다.</p>
+<p>Immediate-Mode의 장점, 또는 retention이 적은 코드의 장점은 다음과 같다:</p>
+<ul>
+<li>단일화, 단순화된 플로우</li>
+<li>동기화에 대한 걱정 X</li>
+<li>절차적인 코드 작성 가능</li>
+</ul>
+<h2 id="flow-control">Flow Control<a href="#flow-control" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>콜 스택 (call stack)을 상상해보자. 유저와 라이브러리간의 코드에서 왔다갔다를 반복하면 어떤 일이 일어나는지 파악하기 어렵다.</p>
+<p>아래 코드를 보자:</p>
+<div
+  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
+  data-code-block
+  data-code-id="code-2"
+  data-collapsible="true"
+  data-default-state="expanded"
+  data-collapsed="false"
+  data-auto-collapse-lines="30"
+  data-auto-collapse-height="400"
+  data-collapsed-height="120"
+>
+  
+  <div
+    class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"
+  >
+    
+    <div class="flex items-center gap-2">
+      <div class="text-muted-foreground shrink-0">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+</svg>
+      </div>
+      <span class="text-muted-foreground text-sm font-medium">
+        C&#43;&#43;
+      </span>
+    </div>
+
+    
+    <div class="flex items-center gap-2">
+      <button
+          class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+          type="button"
+          data-code-action="toggle-collapse"
+          data-label-expand="확장"
+          data-label-collapse="접기"
+          title="접기"
+          aria-label="접기"
+          aria-controls="code-2"
+          aria-expanded="true"
+        >
+          <span class="collapse-chevron transition-transform duration-200 ease-out">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </span>
+          <span class="collapse-text hidden sm:inline">접기</span>
+        </button>
+      <button
+        class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+        type="button"
+        data-code-action="copy"
+        data-label-copy="복사"
+        data-label-copied="복사됨"
+        title="복사"
+        aria-label="복사"
+      >
+        <span class="copy-icon">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+</svg>
+        </span>
+        <span class="copy-text hidden sm:inline">복사</span>
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="code-block-content relative" id="code-2">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">file</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="s">&#34;log.txt&#34;</span><span class="p">);</span></span></span></code></pre></div>
+    <div hidden data-code-source>file = open_file(&#34;log.txt&#34;);</div>
+    
+    <div
+      class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"
+      hidden
+    >
+      <button
+        class="collapse-overlay-btn text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all duration-200"
+        type="button"
+        data-code-action="expand"
+        aria-label="확장"
+        title="확장"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+      </button>
+    </div>
+  </div>
+</div>
+<p>모두가 행복하다. 아래로 넘어가자:</p>
+<div
+  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
+  data-code-block
+  data-code-id="code-3"
+  data-collapsible="true"
+  data-default-state="expanded"
+  data-collapsed="false"
+  data-auto-collapse-lines="30"
+  data-auto-collapse-height="400"
+  data-collapsed-height="120"
+>
+  
+  <div
+    class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"
+  >
+    
+    <div class="flex items-center gap-2">
+      <div class="text-muted-foreground shrink-0">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+</svg>
+      </div>
+      <span class="text-muted-foreground text-sm font-medium">
+        C&#43;&#43;
+      </span>
+    </div>
+
+    
+    <div class="flex items-center gap-2">
+      <button
+          class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+          type="button"
+          data-code-action="toggle-collapse"
+          data-label-expand="확장"
+          data-label-collapse="접기"
+          title="접기"
+          aria-label="접기"
+          aria-controls="code-3"
+          aria-expanded="true"
+        >
+          <span class="collapse-chevron transition-transform duration-200 ease-out">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </span>
+          <span class="collapse-text hidden sm:inline">접기</span>
+        </button>
+      <button
+        class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+        type="button"
+        data-code-action="copy"
+        data-label-copy="복사"
+        data-label-copied="복사됨"
+        title="복사"
+        aria-label="복사"
+      >
+        <span class="copy-icon">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+</svg>
+        </span>
+        <span class="copy-text hidden sm:inline">복사</span>
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="code-block-content relative" id="code-3">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">set_callbacks</span><span class="p">(</span><span class="n">open</span><span class="p">,</span> <span class="n">read</span><span class="p">,</span> <span class="n">close</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">file</span> <span class="o">=</span> <span class="n">open_file</span><span class="p">(</span><span class="s">&#34;log.txt&#34;</span><span class="p">);</span></span></span></code></pre></div>
+    <div hidden data-code-source>set_callbacks(open, read, close);
+file = open_file(&#34;log.txt&#34;);</div>
+    
+    <div
+      class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"
+      hidden
+    >
+      <button
+        class="collapse-overlay-btn text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all duration-200"
+        type="button"
+        data-code-action="expand"
+        aria-label="확장"
+        title="확장"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+      </button>
+    </div>
+  </div>
+</div>
+<p>API의 <code>open_file()</code> 도중, 유저가 설정한 함수로 콜백할 것이다. 플로우가 조금 더 복잡해진다. 다음을 보자:</p>
+<div
+  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
+  data-code-block
+  data-code-id="code-4"
+  data-collapsible="true"
+  data-default-state="expanded"
+  data-collapsed="false"
+  data-auto-collapse-lines="30"
+  data-auto-collapse-height="400"
+  data-collapsed-height="120"
+>
+  
+  <div
+    class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"
+  >
+    
+    <div class="flex items-center gap-2">
+      <div class="text-muted-foreground shrink-0">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+</svg>
+      </div>
+      <span class="text-muted-foreground text-sm font-medium">
+        C&#43;&#43;
+      </span>
+    </div>
+
+    
+    <div class="flex items-center gap-2">
+      <button
+          class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+          type="button"
+          data-code-action="toggle-collapse"
+          data-label-expand="확장"
+          data-label-collapse="접기"
+          title="접기"
+          aria-label="접기"
+          aria-controls="code-4"
+          aria-expanded="true"
+        >
+          <span class="collapse-chevron transition-transform duration-200 ease-out">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </span>
+          <span class="collapse-text hidden sm:inline">접기</span>
+        </button>
+      <button
+        class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+        type="button"
+        data-code-action="copy"
+        data-label-copy="복사"
+        data-label-copied="복사됨"
+        title="복사"
+        aria-label="복사"
+      >
+        <span class="copy-icon">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+</svg>
+        </span>
+        <span class="copy-text hidden sm:inline">복사</span>
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="code-block-content relative" id="code-4">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">My_Handle</span> <span class="o">:</span> <span class="k">public</span> <span class="n">File_Handle</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">public</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">		<span class="k">virtual</span> <span class="kt">void</span> <span class="n">open</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">file_name</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span></span></span></code></pre></div>
+    <div hidden data-code-source>class My_Handle : public File_Handle {
+	public:
+		virtual void open(char* file_name) override;
+};</div>
+    
+    <div
+      class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"
+      hidden
+    >
+      <button
+        class="collapse-overlay-btn text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all duration-200"
+        type="button"
+        data-code-action="expand"
+        aria-label="확장"
+        title="확장"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+      </button>
+    </div>
+  </div>
+</div>
+<p>이 코드는 위에서 살펴본 <strong>콜백과 동일</strong>하다. 유저가 API에서 제공한 클래스를 상속하고 가상함수를 구현한다. vptr가 있을 뿐, 콜백 함수와 다를 바 없다.</p>
+<p>요는, 최대한 플로우가 명확하게 하자는 것이다. 게임 쪽에서 컨트롤이 많을수록 더 좋다.</p>
+<h2 id="관련-링크">관련 링크<a href="#%ea%b4%80%eb%a0%a8-%eb%a7%81%ed%81%ac" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
+    href="https://youtu.be/ZQ5_u8Lgvyk"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Casey Muratori – Designing and Evaluating Reusable Components - 2004<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a></p>
+
+  </article>
+
+  
+  
+
+
+
+
+
+
+
 
 
   
-    
-    
-    
-
-  
-    
-    
-    
-
-
 
 
 
@@ -866,715 +1465,89 @@
 
 
   
+  
 
 
 
 
 
-
-
-
-
-
-
-  <section class="post-list">
-    
-    
-      <div class="mb-6 flex items-center justify-between">
-        <h2 class="text-foreground text-2xl font-bold">최근 글</h2>
-      </div>
-    
-
-
-    
-    <div class="space-y-4">
+  <nav class="post-navigation mb-12">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
       
+      <div class="nav-item">
         
-
-
-
-
-<article class="group">
-  <a href="/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/" class="block">
-    <div
-      class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 relative flex flex-col overflow-hidden rounded-xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none md:flex-row"
-    >
-      <div class="p-3 pb-0 md:order-last md:w-64 md:shrink-0 md:p-3 md:pl-0">
-          <div
-            class="relative aspect-video h-full w-full overflow-hidden rounded-lg md:aspect-video"
+          <a
+            href="/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/"
+            class="group bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex min-h-[140px] flex-col justify-between rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
           >
-            <img
-              src="/posts/designing-reusable-components/resources/cover.png"
-              alt="재사용 가능한 설계"
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      <div class="flex flex-1 flex-col justify-center gap-4 p-6">
-        
-        <h3
-          class="text-foreground group-hover:text-primary text-xl leading-tight font-bold transition-colors duration-200"
-        >
-          재사용 가능한 설계
-        </h3>
+            <div>
+              <div class="mb-3 flex items-center gap-3">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+</svg>
+                <span class="text-muted-foreground text-sm font-medium">
+                  이전
+                </span>
+              </div>
 
-        
-        
-          <p class="text-muted-foreground line-clamp-3 text-sm leading-relaxed md:line-clamp-2">
-            API 디자인에 대한 기준 몇 가지를 다룬다.
-          </p>
-        
+              <h3
+                class="text-foreground group-hover:text-primary mb-3 line-clamp-2 text-lg leading-tight font-semibold transition-colors duration-200"
+              >
+                하늘 렌더링 2
+              </h3>
+            </div>
 
-
-        
-        <div class="text-muted-foreground mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-          
-          <div class="flex items-center gap-1.5">
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <div class="text-muted-foreground mt-auto flex items-center gap-2 text-xs">
+              <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
 </svg>
 
-            <time datetime="2026-06-13" class="font-medium">
-              2026년 6월 13일
-            </time>
-          </div>
-
-          
-          
-            <div class="flex items-center gap-1.5">
-              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
-
-              <span class="truncate font-medium"
-                >2분</span
-              >
+              <time datetime="2026-06-03">
+                06-03
+              </time>
             </div>
-          
-
-
-          
-          
-            <div class="ml-auto flex flex-wrap items-center gap-1.5 md:ml-0">
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">프로그래밍</span>
-                </span>
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">설계</span>
-                </span>
-              
-            </div>
-          
-        </div>
+          </a>
+        
       </div>
-    </div>
-  </a>
-</article>
 
       
+      <div class="nav-item">
         
-
-
-
-
-<article class="group">
-  <a href="/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/" class="block">
-    <div
-      class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 relative flex flex-col overflow-hidden rounded-xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none md:flex-row"
-    >
-      <div class="p-3 pb-0 md:order-last md:w-64 md:shrink-0 md:p-3 md:pl-0">
           <div
-            class="relative aspect-video h-full w-full overflow-hidden rounded-lg md:aspect-video"
+            class="bg-muted/30 border-border/50 flex min-h-[140px] flex-col justify-center rounded-xl border p-6"
           >
-            <img
-              src="/posts/sky-rendering-2/resources/cover.png"
-              alt="하늘 렌더링 2"
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      <div class="flex flex-1 flex-col justify-center gap-4 p-6">
-        
-        <h3
-          class="text-foreground group-hover:text-primary text-xl leading-tight font-bold transition-colors duration-200"
-        >
-          하늘 렌더링 2
-        </h3>
-
-        
-        
-          <p class="text-muted-foreground line-clamp-3 text-sm leading-relaxed md:line-clamp-2">
-            배운 이론을 코드로 옮겨본다.
-          </p>
-        
-
-
-        
-        <div class="text-muted-foreground mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-          
-          <div class="flex items-center gap-1.5">
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-</svg>
-
-            <time datetime="2026-06-03" class="font-medium">
-              2026년 6월 3일
-            </time>
-          </div>
-
-          
-          
-            <div class="flex items-center gap-1.5">
+            <div class="mb-3 flex items-center justify-end gap-3">
+              <span class="text-muted-foreground/50 text-sm font-medium">
+                다음 없음
+              </span>
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
-
-              <span class="truncate font-medium"
-                >1분</span
-              >
-            </div>
-          
-
-
-          
-          
-            <div class="ml-auto flex flex-wrap items-center gap-1.5 md:ml-0">
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">그래픽스</span>
-                </span>
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">렌더링</span>
-                </span>
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">환경</span>
-                </span>
-              
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</article>
-
-      
-        
-
-
-
-
-<article class="group">
-  <a href="/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/" class="block">
-    <div
-      class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 relative flex flex-col overflow-hidden rounded-xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none md:flex-row"
-    >
-      <div class="p-3 pb-0 md:order-last md:w-64 md:shrink-0 md:p-3 md:pl-0">
-          <div
-            class="relative aspect-video h-full w-full overflow-hidden rounded-lg md:aspect-video"
-          >
-            <img
-              src="/images/result-1.png"
-              alt="하늘 렌더링 1"
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      <div class="flex flex-1 flex-col justify-center gap-4 p-6">
-        
-        <h3
-          class="text-foreground group-hover:text-primary text-xl leading-tight font-bold transition-colors duration-200"
-        >
-          하늘 렌더링 1
-        </h3>
-
-        
-        
-          <p class="text-muted-foreground line-clamp-3 text-sm leading-relaxed md:line-clamp-2">
-            대기 산란의 기초 이론을 다룬다.
-          </p>
-        
-
-
-        
-        <div class="text-muted-foreground mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-          
-          <div class="flex items-center gap-1.5">
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-</svg>
-
-            <time datetime="2026-06-01" class="font-medium">
-              2026년 6월 1일
-            </time>
-          </div>
-
-          
-          
-            <div class="flex items-center gap-1.5">
-              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
-
-              <span class="truncate font-medium"
-                >7분</span
-              >
-            </div>
-          
-
-
-          
-          
-            <div class="ml-auto flex flex-wrap items-center gap-1.5 md:ml-0">
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">그래픽스</span>
-                </span>
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">렌더링</span>
-                </span>
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">환경</span>
-                </span>
-              
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</article>
-
-      
-        
-
-
-
-
-<article class="group">
-  <a href="/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B0%81%ED%98%95/" class="block">
-    <div
-      class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 relative flex flex-col overflow-hidden rounded-xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none md:flex-row"
-    >
-      <div class="p-3 pb-0 md:order-last md:w-64 md:shrink-0 md:p-3 md:pl-0">
-          <div
-            class="relative aspect-video h-full w-full overflow-hidden rounded-lg md:aspect-video"
-          >
-            <img
-              src="/posts/birds-eye-view-of-nanite/resources/cover.svg"
-              alt="나나이트와 삼각형"
-              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      <div class="flex flex-1 flex-col justify-center gap-4 p-6">
-        
-        <h3
-          class="text-foreground group-hover:text-primary text-xl leading-tight font-bold transition-colors duration-200"
-        >
-          나나이트와 삼각형
-        </h3>
-
-        
-        
-          <p class="text-muted-foreground line-clamp-3 text-sm leading-relaxed md:line-clamp-2">
-            그래픽스 학도의 시선에서 나나이트를 훑어본다.
-          </p>
-        
-
-
-        
-        <div class="text-muted-foreground mt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-          
-          <div class="flex items-center gap-1.5">
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-</svg>
-
-            <time datetime="2026-03-01" class="font-medium">
-              2026년 3월 1일
-            </time>
-          </div>
-
-          
-          
-            <div class="flex items-center gap-1.5">
-              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
-
-              <span class="truncate font-medium"
-                >5분</span
-              >
-            </div>
-          
-
-
-          
-          
-            <div class="ml-auto flex flex-wrap items-center gap-1.5 md:ml-0">
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">그래픽스</span>
-                </span>
-              
-                <span
-                  class="bg-muted/50 border-muted/30 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs"
-                >
-                  <span class="font-medium">언리얼 엔진</span>
-                </span>
-              
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</article>
-
-      
-    </div>
-
-    
-    
-      <div class="mt-8 mb-6 text-center">
-        <a
-          href="/ko/posts/"
-          class="bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary/20 inline-flex items-center gap-2 rounded-xl px-6 py-3 font-medium shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg focus:ring-2 focus:outline-none active:scale-95"
-        >
-          <svg class="h-5 w-5" aria-label="모두 보기" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-</svg>
-
-          <span>모두 보기</span>
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
 </svg>
-        </a>
+            </div>
+          </div>
+        
       </div>
-    
+    </div>
+  </nav>
 
-  </section>
 
 
 
   
-    
-    
-    
+  
 
 
 
 
-  <section class="mb-6">
-    
-    <div class="mb-6">
-      <h2 class="text-foreground text-2xl font-bold">
-        주요 프로젝트
-      </h2>
-    </div>
-
-    
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      
-        
 
 
 
 
-<article class="group h-full">
-  <a href="/ko/projects/rhi/" class="block h-full">
-    <div
-      class="border-border focus:ring-primary/20 bg-card relative flex h-full min-h-64 flex-col overflow-hidden rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
-    >
-      <img
-          src="/projects/rhi/resources/image1.webp"
-          alt="RHI"
-          class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-        
-        <div
-          class="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-black/30 transition-opacity duration-300 group-hover:opacity-100"
-        ></div>
-      <div class="relative z-10 flex h-full flex-1 flex-col">
-        
-        
-          <div class="mb-4">
-            <span
-              class="bg-primary/10 text-primary inline-flex h-7 w-7 items-center justify-center rounded-full shadow-sm"
-            >
-              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 16.825l3.15-1.9l3.15 1.925l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4l-1.45 3.375l-3.65.325l2.775 2.425zm3.15.45l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15zm0-5.025"/></svg>
-            </span>
-          </div>
-        
-
-
-        
-        <div class="flex-1"></div>
-
-        
-        <div class="mt-auto">
-          
-          <h3
-            class="text-white group-hover:text-primary 
-              group-hover:text-white
-             mb-2 truncate text-xl leading-tight font-bold transition-colors duration-200"
-          >
-            RHI
-          </h3>
-
-          
-          
-            <p
-              class="text-white/80 mb-4 line-clamp-2 text-sm leading-relaxed drop-shadow-sm"
-            >
-              렌더링 파이프라인 및 그래픽스 기술
-            </p>
-          
-
-
-          
-          
-            <div class="flex w-full flex-wrap gap-2 pt-1">
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  C&#43;&#43;20
-                </span>
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  D3D12
-                </span>
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  그래픽스
-                </span>
-              
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</article>
-
-      
-        
-
-
-
-
-<article class="group h-full">
-  <a href="/ko/projects/rts/" class="block h-full">
-    <div
-      class="border-border focus:ring-primary/20 bg-card relative flex h-full min-h-64 flex-col overflow-hidden rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
-    >
-      <img
-          src="/images/project-rts.png"
-          alt="RTS"
-          class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-        
-        <div
-          class="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-black/30 transition-opacity duration-300 group-hover:opacity-100"
-        ></div>
-      <div class="relative z-10 flex h-full flex-1 flex-col">
-        
-        
-          <div class="mb-4">
-            <span
-              class="bg-primary/10 text-primary inline-flex h-7 w-7 items-center justify-center rounded-full shadow-sm"
-            >
-              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 16.825l3.15-1.9l3.15 1.925l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4l-1.45 3.375l-3.65.325l2.775 2.425zm3.15.45l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15zm0-5.025"/></svg>
-            </span>
-          </div>
-        
-
-
-        
-        <div class="flex-1"></div>
-
-        
-        <div class="mt-auto">
-          
-          <h3
-            class="text-white group-hover:text-primary 
-              group-hover:text-white
-             mb-2 truncate text-xl leading-tight font-bold transition-colors duration-200"
-          >
-            RTS
-          </h3>
-
-          
-          
-            <p
-              class="text-white/80 mb-4 line-clamp-2 text-sm leading-relaxed drop-shadow-sm"
-            >
-              RTS 장르에 초점을 둔 게임 및 엔진
-            </p>
-          
-
-
-          
-          
-            <div class="flex w-full flex-wrap gap-2 pt-1">
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  C&#43;&#43;17
-                </span>
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  OpenGL
-                </span>
-              
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</article>
-
-      
-        
-
-
-
-
-<article class="group h-full">
-  <a href="/ko/projects/%EC%8A%88%ED%84%B0/" class="block h-full">
-    <div
-      class="border-border focus:ring-primary/20 bg-card relative flex h-full min-h-64 flex-col overflow-hidden rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
-    >
-      <img
-          src="/projects/shooter/resources/cover.webp"
-          alt="슈터"
-          class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-        
-        <div
-          class="absolute inset-0 bg-linear-to-t from-black/90 via-black/60 to-black/30 transition-opacity duration-300 group-hover:opacity-100"
-        ></div>
-      <div class="relative z-10 flex h-full flex-1 flex-col">
-        
-        
-          <div class="mb-4">
-            <span
-              class="bg-primary/10 text-primary inline-flex h-7 w-7 items-center justify-center rounded-full shadow-sm"
-            >
-              <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m8.85 16.825l3.15-1.9l3.15 1.925l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4l-1.45 3.375l-3.65.325l2.775 2.425zm3.15.45l-4.15 2.5q-.275.175-.575.15t-.525-.2t-.35-.437t-.05-.588l1.1-4.725L3.775 10.8q-.25-.225-.312-.513t.037-.562t.3-.45t.55-.225l4.85-.425l1.875-4.45q.125-.3.388-.45t.537-.15t.537.15t.388.45l1.875 4.45l4.85.425q.35.05.55.225t.3.45t.038.563t-.313.512l-3.675 3.175l1.1 4.725q.075.325-.05.588t-.35.437t-.525.2t-.575-.15zm0-5.025"/></svg>
-            </span>
-          </div>
-        
-
-
-        
-        <div class="flex-1"></div>
-
-        
-        <div class="mt-auto">
-          
-          <h3
-            class="text-white group-hover:text-primary 
-              group-hover:text-white
-             mb-2 truncate text-xl leading-tight font-bold transition-colors duration-200"
-          >
-            슈터
-          </h3>
-
-          
-          
-            <p
-              class="text-white/80 mb-4 line-clamp-2 text-sm leading-relaxed drop-shadow-sm"
-            >
-              UE5 멀티플레이어 슈터 게임
-            </p>
-          
-
-
-          
-          
-            <div class="flex w-full flex-wrap gap-2 pt-1">
-              
-                <span
-                  class="bg-white/20 text-white border-white/10 backdrop-blur-sm shrink-0 rounded border px-2.5 py-0.5 text-xs font-medium"
-                >
-                  UE5
-                </span>
-              
-            </div>
-          
-        </div>
-      </div>
-    </div>
-  </a>
-</article>
-
-      
-    </div>
-
-    
-    
-    
-      <div class="mt-8 mb-6 text-center">
-        <a
-          href="/ko/projects/"
-          class="bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary/20 inline-flex items-center gap-2 rounded-xl px-6 py-3 font-medium shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg focus:ring-2 focus:outline-none active:scale-95"
-        >
-          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="6" r="1" fill="currentColor"/><path fill="currentColor" d="M6 17h12v2H6zm4-5.17l2.792 2.794l3.932-3.935L18 12V8h-4l1.31 1.275l-2.519 2.519L10 9l-4 4l1.414 1.414z"/><path fill="currentColor" d="M19 3h-3.298a5 5 0 0 0-.32-.425l-.01-.012a4.43 4.43 0 0 0-2.89-1.518a2.6 2.6 0 0 0-.964 0a4.43 4.43 0 0 0-2.89 1.518l-.01.012a5 5 0 0 0-.32.424V3H5a3.003 3.003 0 0 0-3 3v14a3.003 3.003 0 0 0 3 3h14a3.003 3.003 0 0 0 3-3V6a3.003 3.003 0 0 0-3-3m1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4.55a2.5 2.5 0 0 1 4.9 0H19a1 1 0 0 1 1 1Z"/></svg>
-
-
-          <span>모두 보기</span>
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-</svg>
-        </a>
-      </div>
-    
-  </section>
 
 
   
+  
+
 
       </div>
 
@@ -1779,6 +1752,23 @@
   >
     
     
+      <button
+        id="dock-back"
+        class="text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 xs:px-2 xs:py-1.5 flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none sm:px-3 sm:py-2"
+        title="뒤로"
+        aria-label="뒤로"
+      >
+        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m12 19-7-7 7-7"/>
+  <path d="M19 12H5"/>
+</svg>
+
+        <span class="hidden sm:inline">뒤로</span>
+      </button>
+
+      
+      <div class="bg-border xs:mx-1 mx-2 h-6 w-px sm:mx-2"></div>
+    
 
 
     <button
@@ -1821,7 +1811,55 @@
 
 
 
-      
+      <aside
+    id="toc-container"
+    class="toc-center"
+    data-position="center"
+  >
+      <div
+        id="toc-center"
+        class="pointer-events-none fixed top-28 right-0 left-0 z-40 mx-auto w-full max-w-4xl px-4 transition-all duration-300"
+      >
+        <div class="pointer-events-auto relative mx-auto w-fit">
+          <button
+            id="toc-center-toggle"
+            class="bg-card/80 border-border text-muted-foreground hover:text-primary hover:bg-primary/10 ring-offset-background focus-visible:ring-ring flex cursor-pointer items-center gap-2 rounded-full border px-4 py-1.5 text-sm shadow-sm backdrop-blur-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          >
+            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <line x1="8" x2="21" y1="6" y2="6"/>
+  <line x1="8" x2="21" y1="12" y2="12"/>
+  <line x1="8" x2="21" y1="18" y2="18"/>
+  <line x1="3" x2="3.01" y1="6" y2="6"/>
+  <line x1="3" x2="3.01" y1="12" y2="12"/>
+  <line x1="3" x2="3.01" y1="18" y2="18"/>
+</svg>
+
+            <span id="toc-center-title" class="max-w-[200px] truncate">목차</span>
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </button>
+
+          
+          <div
+            id="toc-center-dropdown"
+            class="bg-card border-border scrollbar-hide absolute top-full left-1/2 mt-2 hidden max-h-[60vh] w-[280px] origin-top -translate-x-1/2 scale-95 overflow-y-auto rounded-xl border p-4 opacity-0 shadow-lg transition-all"
+          >
+            <div
+              id="toc-center-content"
+              class="[&_a]:text-muted-foreground [&_a:hover]:bg-primary/10 [&_a:hover]:text-primary [&_a.active]:bg-primary/10 [&_a.active]:text-primary text-sm [&_a]:block [&_a]:truncate [&_a]:rounded-md [&_a]:px-2 [&_a]:py-1 [&_a]:transition-colors [&_a.active]:font-medium [&_li]:my-1.5 [&_nav>ul]:pl-0 [&_ul]:list-none [&_ul]:pl-4"
+            >
+              <nav id="TableOfContents">
+  <ul>
+    <li><a href="#retention">Retention</a></li>
+    <li><a href="#flow-control">Flow Control</a></li>
+    <li><a href="#관련-링크">관련 링크</a></li>
+  </ul>
+</nav>
+            </div>
+          </div>
+        </div>
+      </div></aside>
       
 <div
   id="search-overlay"

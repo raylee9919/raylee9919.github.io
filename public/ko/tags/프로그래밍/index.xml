@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>프로그래밍 on SeongWoo Lee</title>
+		<link>http://localhost:1313/ko/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</link>
+		<description>Recent content in 프로그래밍 on SeongWoo Lee</description>
+		<generator>Hugo</generator>
+		<language>ko</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="http://localhost:1313/ko/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>재사용 가능한 설계</title>
+				<link>http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/</link>
+				<pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/</guid>
+				<description></description>
+			</item>
+	</channel>
+</rss>
