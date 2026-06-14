@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>C on SeongWoo Lee</title>
-		<link>http://localhost:1313/ko/tags/c/</link>
+		<link>https://seongwoolee.com/ko/tags/c/</link>
 		<description>Recent content in C on SeongWoo Lee</description>
 		<generator>Hugo</generator>
 		<language>ko</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Mon, 01 Jan 1900 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/ko/tags/c/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://seongwoolee.com/ko/tags/c/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>CDT</title>
-				<link>http://localhost:1313/ko/projects/cdt/</link>
+				<link>https://seongwoolee.com/ko/projects/cdt/</link>
 				<pubDate>Mon, 01 Jan 1900 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/ko/projects/cdt/</guid>
+				<guid>https://seongwoolee.com/ko/projects/cdt/</guid>
 				<description>제약 들루네 삼각분할 기하 라이브러리</description>
 			</item>
 	</channel>

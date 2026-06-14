@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Categories on SeongWoo Lee</title>
-		<link>http://localhost:1313/categories/</link>
+		<link>https://seongwoolee.com/categories/</link>
 		<description>Recent content in Categories on SeongWoo Lee</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://seongwoolee.com/categories/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Projects</title>
-				<link>http://localhost:1313/categories/projects/</link>
+				<link>https://seongwoolee.com/categories/projects/</link>
 				<pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/categories/projects/</guid>
+				<guid>https://seongwoolee.com/categories/projects/</guid>
 				<description></description>
 			</item>
 	</channel>

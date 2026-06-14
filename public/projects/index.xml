@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>Projects on SeongWoo Lee</title>
-		<link>http://localhost:1313/projects/</link>
+		<link>https://seongwoolee.com/projects/</link>
 		<description>Recent content in Projects on SeongWoo Lee</description>
 		<generator>Hugo</generator>
 		<language>en</language>
@@ -12,47 +12,47 @@
 		
 			<lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://seongwoolee.com/projects/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>RHI</title>
-				<link>http://localhost:1313/projects/rhi/</link>
+				<link>https://seongwoolee.com/projects/rhi/</link>
 				<pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/projects/rhi/</guid>
+				<guid>https://seongwoolee.com/projects/rhi/</guid>
 				<description>렌더링 파이프라인과 기술을 연구하고 구현한다.</description>
 			</item>
 			<item>
 				<title>RTS</title>
-				<link>http://localhost:1313/projects/rts/</link>
+				<link>https://seongwoolee.com/projects/rts/</link>
 				<pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/projects/rts/</guid>
+				<guid>https://seongwoolee.com/projects/rts/</guid>
 				<description>RTS game/engine built from scratch.</description>
 			</item>
 			<item>
 				<title>Shooter</title>
-				<link>http://localhost:1313/projects/shooter/</link>
+				<link>https://seongwoolee.com/projects/shooter/</link>
 				<pubDate>Mon, 01 Jan 2001 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/projects/shooter/</guid>
+				<guid>https://seongwoolee.com/projects/shooter/</guid>
 				<description>UE5 multiplayer shooter</description>
 			</item>
 			<item>
 				<title>RR</title>
-				<link>http://localhost:1313/projects/rr/</link>
+				<link>https://seongwoolee.com/projects/rr/</link>
 				<pubDate>Sat, 01 Jan 2000 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/projects/rr/</guid>
+				<guid>https://seongwoolee.com/projects/rr/</guid>
 				<description>CPU Rasterizer and Raytracer</description>
 			</item>
 			<item>
 				<title>CDT</title>
-				<link>http://localhost:1313/projects/cdt/</link>
+				<link>https://seongwoolee.com/projects/cdt/</link>
 				<pubDate>Mon, 01 Jan 1900 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/projects/cdt/</guid>
+				<guid>https://seongwoolee.com/projects/cdt/</guid>
 				<description>Constrained Delaunay Triangulation library in C</description>
 			</item>
 			<item>
 				<title>Guess the Music</title>
-				<link>http://localhost:1313/projects/guess-the-music/</link>
+				<link>https://seongwoolee.com/projects/guess-the-music/</link>
 				<pubDate>Wed, 01 Jan 1800 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/projects/guess-the-music/</guid>
+				<guid>https://seongwoolee.com/projects/guess-the-music/</guid>
 				<description>Guess the title of the song!</description>
 			</item>
 	</channel>

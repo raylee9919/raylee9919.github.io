@@ -1,5 +1,5 @@
 (() => {
-  // ns-hugo-imp:C:\dev\swl\Blog\themes\hugo-narrow\assets\js\gallery-lightbox.js
+  // ns-hugo-imp:C:\dev\swl\blog\themes\hugo-narrow\assets\js\gallery-lightbox.js
   var GalleryLightbox = class {
     constructor(config = {}) {
       this.config = {

@@ -1,349 +1,351 @@
-
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/ko/</loc>
+    <loc>https://seongwoolee.com/ko/</loc>
     <lastmod>2026-06-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/"
+                href="https://seongwoolee.com/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/"
+                href="https://seongwoolee.com/ko/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/</loc>
+    <loc>https://seongwoolee.com/ko/tags/</loc>
     <lastmod>2026-06-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/"
+                href="https://seongwoolee.com/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/"
+                href="https://seongwoolee.com/ko/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/</loc>
+    <loc>https://seongwoolee.com/ko/tags/%EC%84%A4%EA%B3%84/</loc>
+    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://seongwoolee.com/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/</loc>
     <lastmod>2026-06-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/posts/designing-reusable-components/"
+                href="https://seongwoolee.com/posts/designing-reusable-components/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/"
+                href="https://seongwoolee.com/ko/posts/%EC%9E%AC%EC%82%AC%EC%9A%A9-%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%84%A4%EA%B3%84/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/posts/</loc>
+    <loc>https://seongwoolee.com/ko/posts/</loc>
     <lastmod>2026-06-13T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/posts/"
+                href="https://seongwoolee.com/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/"
+                href="https://seongwoolee.com/ko/posts/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</loc>
+    <loc>https://seongwoolee.com/ko/tags/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/</loc>
     <lastmod>2026-06-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ko/series/</loc>
+    <loc>https://seongwoolee.com/ko/series/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/series/"
+                href="https://seongwoolee.com/series/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/series/"
+                href="https://seongwoolee.com/ko/series/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/</loc>
+    <loc>https://seongwoolee.com/ko/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/"
+                href="https://seongwoolee.com/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/"
+                href="https://seongwoolee.com/ko/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/%EB%A0%8C%EB%8D%94%EB%A7%81/</loc>
+    <loc>https://seongwoolee.com/ko/tags/%EB%A0%8C%EB%8D%94%EB%A7%81/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ko/series/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81/</loc>
+    <loc>https://seongwoolee.com/ko/series/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/</loc>
+    <loc>https://seongwoolee.com/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/posts/sky-rendering-2/"
+                href="https://seongwoolee.com/posts/sky-rendering-2/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/"
+                href="https://seongwoolee.com/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-2/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/%ED%99%98%EA%B2%BD/</loc>
+    <loc>https://seongwoolee.com/ko/tags/%ED%99%98%EA%B2%BD/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/</loc>
+    <loc>https://seongwoolee.com/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/</loc>
     <lastmod>2026-06-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/posts/sky-rendering-1/"
+                href="https://seongwoolee.com/posts/sky-rendering-1/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/"
+                href="https://seongwoolee.com/ko/posts/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81-1/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/c&#43;&#43;20/</loc>
+    <loc>https://seongwoolee.com/ko/tags/c&#43;&#43;20/</loc>
     <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/c&#43;&#43;20/"
+                href="https://seongwoolee.com/tags/c&#43;&#43;20/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/c&#43;&#43;20/"
+                href="https://seongwoolee.com/ko/tags/c&#43;&#43;20/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/categories/</loc>
+    <loc>https://seongwoolee.com/ko/categories/</loc>
     <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/"
+                href="https://seongwoolee.com/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/categories/"
+                href="https://seongwoolee.com/ko/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/d3d12/</loc>
+    <loc>https://seongwoolee.com/ko/tags/d3d12/</loc>
     <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/d3d12/"
+                href="https://seongwoolee.com/tags/d3d12/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/d3d12/"
+                href="https://seongwoolee.com/ko/tags/d3d12/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/categories/projects/</loc>
+    <loc>https://seongwoolee.com/ko/categories/projects/</loc>
     <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/categories/projects/"
+                href="https://seongwoolee.com/categories/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/categories/projects/"
+                href="https://seongwoolee.com/ko/categories/projects/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/projects/rhi/</loc>
+    <loc>https://seongwoolee.com/ko/projects/rhi/</loc>
     <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/projects/rhi/"
+                href="https://seongwoolee.com/projects/rhi/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/projects/rhi/"
+                href="https://seongwoolee.com/ko/projects/rhi/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B0%81%ED%98%95/</loc>
+    <loc>https://seongwoolee.com/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B0%81%ED%98%95/</loc>
     <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/posts/birds-eye-view-of-nanite/"
+                href="https://seongwoolee.com/posts/birds-eye-view-of-nanite/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B0%81%ED%98%95/"
+                href="https://seongwoolee.com/ko/posts/%EB%82%98%EB%82%98%EC%9D%B4%ED%8A%B8%EC%99%80-%EC%82%BC%EA%B0%81%ED%98%95/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/%EC%96%B8%EB%A6%AC%EC%96%BC-%EC%97%94%EC%A7%84/</loc>
+    <loc>https://seongwoolee.com/ko/tags/%EC%96%B8%EB%A6%AC%EC%96%BC-%EC%97%94%EC%A7%84/</loc>
     <lastmod>2026-03-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ko/projects/</loc>
+    <loc>https://seongwoolee.com/ko/projects/</loc>
     <lastmod>2026-03-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/projects/"
+                href="https://seongwoolee.com/projects/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/projects/"
+                href="https://seongwoolee.com/ko/projects/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/c&#43;&#43;17/</loc>
+    <loc>https://seongwoolee.com/ko/tags/c&#43;&#43;17/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/c&#43;&#43;17/"
+                href="https://seongwoolee.com/tags/c&#43;&#43;17/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/c&#43;&#43;17/"
+                href="https://seongwoolee.com/ko/tags/c&#43;&#43;17/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/opengl/</loc>
+    <loc>https://seongwoolee.com/ko/tags/opengl/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/opengl/"
+                href="https://seongwoolee.com/tags/opengl/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/opengl/"
+                href="https://seongwoolee.com/ko/tags/opengl/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/projects/rts/</loc>
+    <loc>https://seongwoolee.com/ko/projects/rts/</loc>
     <lastmod>2023-12-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/projects/rts/"
+                href="https://seongwoolee.com/projects/rts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/projects/rts/"
+                href="https://seongwoolee.com/ko/projects/rts/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/ue5/</loc>
+    <loc>https://seongwoolee.com/ko/tags/ue5/</loc>
     <lastmod>2001-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/ue5/"
+                href="https://seongwoolee.com/tags/ue5/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/ue5/"
+                href="https://seongwoolee.com/ko/tags/ue5/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/projects/%EC%8A%88%ED%84%B0/</loc>
+    <loc>https://seongwoolee.com/ko/projects/%EC%8A%88%ED%84%B0/</loc>
     <lastmod>2001-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/projects/shooter/"
+                href="https://seongwoolee.com/projects/shooter/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/projects/%EC%8A%88%ED%84%B0/"
+                href="https://seongwoolee.com/ko/projects/%EC%8A%88%ED%84%B0/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/projects/rr/</loc>
+    <loc>https://seongwoolee.com/ko/projects/rr/</loc>
     <lastmod>2000-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/projects/rr/"
+                href="https://seongwoolee.com/projects/rr/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/projects/rr/"
+                href="https://seongwoolee.com/ko/projects/rr/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/c/</loc>
+    <loc>https://seongwoolee.com/ko/tags/c/</loc>
     <lastmod>1900-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/c/"
+                href="https://seongwoolee.com/tags/c/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/c/"
+                href="https://seongwoolee.com/ko/tags/c/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/projects/cdt/</loc>
+    <loc>https://seongwoolee.com/ko/projects/cdt/</loc>
     <lastmod>1900-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/projects/cdt/"
+                href="https://seongwoolee.com/projects/cdt/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/projects/cdt/"
+                href="https://seongwoolee.com/ko/projects/cdt/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/%EA%B3%84%EC%82%B0-%EA%B8%B0%ED%95%98%ED%95%99/</loc>
+    <loc>https://seongwoolee.com/ko/tags/%EA%B3%84%EC%82%B0-%EA%B8%B0%ED%95%98%ED%95%99/</loc>
     <lastmod>1900-01-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/ko/tags/java/</loc>
+    <loc>https://seongwoolee.com/ko/tags/java/</loc>
     <lastmod>1800-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/tags/java/"
+                href="https://seongwoolee.com/tags/java/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/tags/java/"
+                href="https://seongwoolee.com/ko/tags/java/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/projects/%EB%85%B8%EB%9E%98-%EB%A7%9E%ED%9E%88%EA%B8%B0/</loc>
+    <loc>https://seongwoolee.com/ko/projects/%EB%85%B8%EB%9E%98-%EB%A7%9E%ED%9E%88%EA%B8%B0/</loc>
     <lastmod>1800-01-01T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/projects/guess-the-music/"
+                href="https://seongwoolee.com/projects/guess-the-music/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/projects/%EB%85%B8%EB%9E%98-%EB%A7%9E%ED%9E%88%EA%B8%B0/"
+                href="https://seongwoolee.com/ko/projects/%EB%85%B8%EB%9E%98-%EB%A7%9E%ED%9E%88%EA%B8%B0/"
                 />
   </url>
 </urlset>

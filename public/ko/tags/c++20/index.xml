@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>C&#43;&#43;20 on SeongWoo Lee</title>
-		<link>http://localhost:1313/ko/tags/c&#43;&#43;20/</link>
+		<link>https://seongwoolee.com/ko/tags/c&#43;&#43;20/</link>
 		<description>Recent content in C&#43;&#43;20 on SeongWoo Lee</description>
 		<generator>Hugo</generator>
 		<language>ko</language>
@@ -12,12 +12,12 @@
 		
 			<lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/ko/tags/c++20/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://seongwoolee.com/ko/tags/c++20/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>RHI</title>
-				<link>http://localhost:1313/ko/projects/rhi/</link>
+				<link>https://seongwoolee.com/ko/projects/rhi/</link>
 				<pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/ko/projects/rhi/</guid>
+				<guid>https://seongwoolee.com/ko/projects/rhi/</guid>
 				<description>렌더링 파이프라인 및 그래픽스 기술</description>
 			</item>
 	</channel>
