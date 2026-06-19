@@ -1,6 +1,6 @@
 ---
 title: "프로젝트"
-description: "Explore my portfolio of projects, from web development to AI applications"
+description: "Explore my portfolio of projects."
 ---
 
-이곳에서는 제가 진행한 다양한 작업물들을 만나보실 수 있습니다.
+이곳에서 제 작업물들을 추천 순으로 확인할 수 있습니다.
