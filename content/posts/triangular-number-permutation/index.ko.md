@@ -1,0 +1,87 @@
+---
+title: "삼각수와 이차 탐사"
+date: 2026-08-06
+description: "삼각수가 이차 탐사에서 어떻게 모든 슬롯을 방문할까?"
+tags: ["수학"]
+categories: []
+series: []
+cover: "resources/cover.jpg"
+---
+
+<i>썸네일 이미지 출처: https://www.libertygames.co.uk, *Stuart Kerr*</i>
+
+---
+
+해시 테이블에서 이차 탐사의 일원으로 삼각수를 사용할 수 있다. 구글의 *sparse hash*, *dense hash* 뿐 아니라, *Jai* 언어에서 채택한 이후 10% 정도 성능 향상을 보았다고 해서 궁금증을 가지게 되었다. 본 글에서는 **어떻게 삼각수가 $2^{m}$ 크기의 오픈 해시 테이블을 빠짐 없이, 중복 없이 순회하는지**를 다룬다.
+
+## 삼각수
+삼각 랙 안의 당구공 수를 한 줄씩 더해보자. $0,1,3,6,10\cdots$. 이 수들이 **삼각수**이다. 즉, ${k}$번째 삼각수는 다음과 같다.
+
+$$T_{k} = \dfrac{k\mathrm{(}k + 1\mathrm{)}}{2}$$
+
+
+최고차항 $\dfrac{k^{2}}{2}$은 이차항이므로 이차 탐사를 만족한다. $2^{m}$ 크기의 해시 테이블에서 탐사 함수 $f$는 다음과 같다.
+
+$$f_{m}\mathrm{(}k\mathrm{)} = T_{k}\mskip6mu\operatorname{mod}2^{m}$$
+
+예를 들어보자. 테이블의 크기가 $4$면 $4 = 2^{m}$이므로 $m = 2$이고, $k$는 $0$부터 $2^{m} - 1$까지의 수이다. 표를 통해 관찰해보자.
+
+
+<table>
+<tr>
+ <td>$k$</td>
+ <td>$0$</td>
+ <td>$1$</td>
+ <td>$2$</td>
+ <td>$3$</td>
+ <td>$4$</td>
+ <td>$5$</td>
+ <td>$6$</td>
+ <td>$7$</td>
+ <td>$8$</td>
+ <td>$9$</td>
+ <td>$10$</td>
+ <td>$11$</td>
+</tr>
+
+<tr>
+ <td>$T_{k}$</td>
+ <td>$0$</td>
+ <td>$1$</td>
+ <td>$3$</td>
+ <td>$6$</td>
+ <td>$10$</td>
+ <td>$15$</td>
+ <td>$21$</td>
+ <td>$28$</td>
+ <td>$36$</td>
+ <td>$45$</td>
+ <td>$55$</td>
+ <td>$66$</td>
+</tr>
+
+<tr>
+ <td>$T_{k}\,\,\operatorname{mod}4$</td>
+ <td><span style="color:palevioletred">0</span></td>
+ <td><span style="color:palevioletred">1</span></td>
+ <td><span style="color:palevioletred">3</span></td>
+ <td><span style="color:palevioletred">2</span></td>
+ <td><span style="color:yellowgreen;">2</span></td>
+ <td><span style="color:yellowgreen">3</span></td>
+ <td><span style="color:yellowgreen">1</span></td>
+ <td><span style="color:yellowgreen">0</span></td>
+ <td><span style="color:palevioletred">0</span></td>
+ <td><span style="color:palevioletred">1</span></td>
+ <td><span style="color:palevioletred">3</span></td>
+ <td><span style="color:palevioletred">2</span></td>
+</tr>
+</table>
+
+패턴이 보인다. $0,1,3,2$ 이후 뒤집어서 $2,3,1,0$, 다시 뒤집어서 $0,1,3,2$가 반복된다. 이를 통한 이차 탐사 과정을 살펴보자.
+
+![Position](resources/example.gif "삼각수를 통한 이차 탐사")
+
+한 줄 요약하면, $2^{n}$ 크기 테이블에서 삼각수를 통해 빠짐 없이, 중복 없이 순회할 수 있다. 나머지 파트는 이를 증명하도록 하겠다.
+
+
+## 수학

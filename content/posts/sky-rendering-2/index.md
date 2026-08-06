@@ -9,4 +9,4 @@ series_order: 2
 cover: "resources/cover.png"
 ---
 
-Translation in progres..
+Translation in progress..
