@@ -57,7 +57,7 @@
 	<meta itemprop="description" content="삼각수가 이차 탐사에서 어떻게 모든 슬롯을 방문할까?">
 	<meta itemprop="datePublished" content="2026-08-06T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-06T00:00:00+00:00">
-	<meta itemprop="wordCount" content="476">
+	<meta itemprop="wordCount" content="1183">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="수학">
 
@@ -900,7 +900,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>1분</span>
+              <span>3분</span>
             </div>
             
 
@@ -911,7 +911,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>476자</span>
+              <span>1183자</span>
             </div>
             
           </div>
@@ -946,13 +946,14 @@
 
   
   <article class="prose prose-neutral dark:prose-invert mb-12 max-w-none">
-    <p><i>썸네일 이미지 출처: <a
+    <p><em>Image from <a
     href="https://www.libertygames.co.uk"target="_blank"
     class="inline-flex items-center gap-1"
-  >https://www.libertygames.co.uk<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>, <em>Stuart Kerr</em></i></p>
+  >libertygames<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>, courtesy of Stuart Kerr</em></p>
 <hr>
-<p>해시 테이블에서 이차 탐사의 일원으로 삼각수를 사용할 수 있다. 구글의 <em>sparse hash</em>, <em>dense hash</em> 뿐 아니라, <em>Jai</em> 언어에서 채택한 이후 10% 정도 성능 향상을 보았다고 해서 궁금증을 가지게 되었다. 본 글에서는 <strong>어떻게 삼각수가 $2^{m}$ 크기의 오픈 해시 테이블을 빠짐 없이, 중복 없이 순회하는지</strong>를 다룬다.</p>
+<p>해시 테이블에서 이차 탐사의 일원으로 삼각수를 사용할 수 있다. 구글의 <em>sparse hash</em>, <em>dense hash</em> 뿐 아니라, <em>Jai</em> 언어에서 채택한 이후 10% 정도 성능 향상을 보았다고 해서 궁금증을 가지게 되었다. <em>Fabian Giesen</em>의 방법을 따라, 본 글에서는 <strong>어떻게 삼각수가 $2^{m}$ 크기의 오픈 해시 테이블을 빠짐 없이, 중복 없이 순회하는지</strong>를 다룬다.</p>
+<hr>
 <h2 id="삼각수">삼각수<a href="#%ec%82%bc%ea%b0%81%ec%88%98" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>삼각 랙 안의 당구공 수를 한 줄씩 더해보자. $0,1,3,6,10\cdots$. 이 수들이 <strong>삼각수</strong>이다. 즉, ${k}$번째 삼각수는 다음과 같다.</p>
 <p>$$T_{k} = \dfrac{k\mathrm{(}k + 1\mathrm{)}}{2}$$</p>
 <p>최고차항 $\dfrac{k^{2}}{2}$은 이차항이므로 이차 탐사를 만족한다. $2^{m}$ 크기의 해시 테이블에서 탐사 함수 $f$는 다음과 같다.</p>
@@ -1041,8 +1042,36 @@
       삼각수를 통한 이차 탐사
     </figcaption></figure>
 </p>
-<p>한 줄 요약하면, $2^{n}$ 크기 테이블에서 삼각수를 통해 빠짐 없이, 중복 없이 순회할 수 있다. 나머지 파트는 이를 증명하도록 하겠다.</p>
-<h2 id="수학">수학<a href="#%ec%88%98%ed%95%99" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2>
+<p>한 줄 요약하면, $2^{n}$ 크기 테이블에서 삼각수를 통해 빠짐 없이, 중복 없이 순회할 수 있다. 나머지 파트는 이를 증명한다.</p>
+<hr>
+<h2 id="증명">증명<a href="#%ec%a6%9d%eb%aa%85" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>최종목표는 $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{{}0,1,\cdots,2^{m} - 1\mathrm{}}$}의 <em>permutation</em>임을 증명하는 것이다.</p>
+<h3 id="a">$(a)$<a href="#a" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>대칭하는 두 삼각수의 차를 살펴보고 $T_{K}\mskip3mu\operatorname{mod}n$의 대칭성을 증명한다.  ($n = 2^{m}$)</p>
+<p>$$T_{2n - 1 - k} - T_{k} = \dfrac{\mathrm{(}2n - k\mathrm{)(}2n - \mathrm{(}k + 1\mathrm{))}}{2} - \dfrac{\mathrm{(}k + 1\mathrm{)}k}{2} = 2n^{2} - n\mathrm{(}2k + 1\mathrm{)}$$
+$$T_{2n - 1 - k} - T_{k}\equiv0\mathrm{(}\operatorname{mod}n\mathrm{)}$$</p>
+<p>또,
+$$T_{2n - 1 - k} - T_{k}\equiv - n\left(\operatorname{mod}2n\right)$$</p>
+<h3 id="b">$(b)$<a href="#b" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>$T_{K}\mskip3mu\operatorname{mod}n$이 $2n$의 주기를 가짐을 증명한다. ($n = 2^{m}$)</p>
+<p>$$T_{a + b} = T_{a} + T_{b} + ab$$</p>
+<p>위 식에 따라,</p>
+<p>$$T_{k + 2n} = T_{k} + T_{2n} + 2kn = T_{k} + n\mathrm{(}2n + 1\mathrm{)} + 2kn\equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$
+$$T_{k + 2n} \equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$</p>
+<h3 id="c">$(c)$<a href="#c" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>$T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{{}0,1,\cdots,2^{m} - 1\mathrm{}}$}의 <em>permutation</em>임을 <em>수학적 귀납법</em>을 통해 증명한다.</p>
+<p>$\mathrm{(}i\mathrm{)} \mskip4.5mu m = 1$일 때, $T_{k}\operatorname{mod}1 = 0$이고 집합은 {$0$}이므로 만족한다.</p>
+<p>$\mathrm{(}ii\mathrm{)} \mskip4.5mu m = k$일 때 성립한다고 가정하면, $T_{k}\mskip4.5mu\operatorname{mod}n$은 {$\mathrm{{}0,1,\cdots,2^{k} - 1\mathrm{}}$}의 <em>permutation</em>이다.</p>
+<p>$m = k + 1$일 때, $T_{k}\mskip4.5mu\operatorname{mod}2^{m + 1}$의 절반, 즉, $\mathrm{[}0,2^{m} - 1\mathrm{]}$ 내의 수들은 $(ii)$에 따라 중복하지 않는다. $(a)$에 따라,</p>
+<p>$$
+T_{2n - 1 - k}\equiv T_{k} - n\mskip4.5mu\mathrm{(}\operatorname{mod}2n\mathrm{)}
+$$</p>
+<p>즉, 나머지 절반은 처음 절반과 겹치지 않으며, 들어있는 수들은 중복하지 않는다.</p>
+<p>따라서, $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{{}0,1,\cdots,2^{m} - 1\mathrm{}}$}의 <em>permutation</em>이다.</p>
+<hr>
+<h3 id="레퍼런스">레퍼런스<a href="#%eb%a0%88%ed%8d%bc%eb%9f%b0%ec%8a%a4" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p><a
+    href="https://fgiesen.wordpress.com/2015/02/22/triangular-numbers-mod-2n/"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Fabian Giesen — Triangular numbers mod 2^n<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+Donald E. Knuth — The Art of Computer Programming, Volume 3</p>
+
   </article>
 
   
@@ -1452,7 +1481,14 @@
               <nav id="TableOfContents">
   <ul>
     <li><a href="#삼각수">삼각수</a></li>
-    <li><a href="#수학">수학</a></li>
+    <li><a href="#증명">증명</a>
+      <ul>
+        <li><a href="#a">$(a)$</a></li>
+        <li><a href="#b">$(b)$</a></li>
+        <li><a href="#c">$(c)$</a></li>
+        <li><a href="#레퍼런스">레퍼런스</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
             </div>
