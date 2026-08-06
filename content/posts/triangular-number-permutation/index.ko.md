@@ -132,6 +132,10 @@ $$
 
 ---
 
+{{< glsl_canvas src="shader.glsl" width="100%" height="450px" >}}
+
+---
+
 ### 레퍼런스
 [Fabian Giesen — Triangular numbers mod 2^n](https://fgiesen.wordpress.com/2015/02/22/triangular-numbers-mod-2n/)  
 Donald E. Knuth — The Art of Computer Programming, Volume 3

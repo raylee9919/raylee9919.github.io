@@ -6,6 +6,7 @@ tags: ["Math"]
 categories: []
 series: []
 cover: "resources/cover.jpg"
+js: ["/js/GlslCanvas.js"]
 ---
 
 <i>Thumbnail image from https://www.libertygames.co.uk, courtesy of *Stuart Kerr*</i>
