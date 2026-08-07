@@ -2,7 +2,7 @@
 title: "삼각수와 이차 탐사"
 date: 2026-08-06
 description: "삼각수가 이차 탐사에서 어떻게 모든 슬롯을 방문할까?"
-tags: ["수학"]
+tags: ["수학", "알고리즘"]
 categories: []
 series: []
 cover: "resources/cover.jpg"
@@ -12,7 +12,7 @@ cover: "resources/cover.jpg"
 
 ---
 
-해시 테이블에서 이차 탐사의 일원으로 삼각수를 사용할 수 있다. 구글의 *sparse hash*, *dense hash* 뿐 아니라, *Jai* 언어에서 채택한 이후 10% 정도 성능 향상을 보았다고 해서 궁금증을 가지게 되었다. *Fabian Giesen*의 방법을 따라, 본 글에서는 **어떻게 삼각수가 $2^{m}$ 크기의 오픈 해시 테이블을 빠짐 없이, 중복 없이 순회하는지**를 다룬다.
+해시 테이블에서 이차 탐사 함수로 삼각수를 사용할 수 있다. 구글의 *sparse hash*, *dense hash* 뿐 아니라, *Jai* 언어에서 채택된 이후 약 10%의 성능 향상을 보였다는 이야기를 듣고 흥미를 가지게 되었다. *Fabian Giesen*의 방법을 따라, 본 글에서는 **어떻게 삼각수가 $2^{m}$ 크기의 오픈 해시 테이블의 모든 슬롯을 정확히 한 번씩 방문하는지**를 다룬다.
 
 ---
 
@@ -107,7 +107,7 @@ $T_{K}\mskip3mu\operatorname{mod}n$이 $2n$의 주기를 가짐을 증명한다.
 
 $$T_{a + b} = T_{a} + T_{b} + ab$$
 
-위 식에 따라,
+위 항등식에 따라,
 
 $$T_{k + 2n} = T_{k} + T_{2n} + 2kn = T_{k} + n\mathrm{(}2n + 1\mathrm{)} + 2kn\equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$
 $$T_{k + 2n} \equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$
@@ -128,7 +128,7 @@ $$
 
 즉, 나머지 절반은 처음 절반과 겹치지 않으며, 들어있는 수들은 중복하지 않는다.
 
-따라서, $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{\{}0,1,\cdots,2^{m} - 1\mathrm{\}}$}의 *permutation*이다.
+따라서, $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{\{}0,1,\cdots,2^{m} - 1\mathrm{\}}$}의 *permutation*이다. ∎
 
 ---
 

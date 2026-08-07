@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>수학 on SeongWoo Lee</title>
-		<link>http://localhost:1313/ko/tags/%EC%88%98%ED%95%99/</link>
-		<description>Recent content in 수학 on SeongWoo Lee</description>
+		<title>알고리즘 on SeongWoo Lee</title>
+		<link>http://localhost:1313/ko/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</link>
+		<description>Recent content in 알고리즘 on SeongWoo Lee</description>
 		<generator>Hugo</generator>
 		<language>ko</language>
 		
@@ -12,7 +12,7 @@
 		
 			<lastBuildDate>Thu, 06 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
-			<atom:link href="http://localhost:1313/ko/tags/%EC%88%98%ED%95%99/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/ko/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>삼각수와 이차 탐사</title>
 				<link>http://localhost:1313/ko/posts/%EC%82%BC%EA%B0%81%EC%88%98%EC%99%80-%EC%9D%B4%EC%B0%A8-%ED%83%90%EC%82%AC/</link>

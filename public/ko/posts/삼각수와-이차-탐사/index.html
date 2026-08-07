@@ -17,7 +17,7 @@
 />
 <meta
   name="keywords"
-  content="수학"
+  content="수학, 알고리즘"
 />
 <meta
   name="author"
@@ -44,6 +44,7 @@
 		<meta property="article:published_time" content="2026-08-06T00:00:00+00:00">
 		<meta property="article:modified_time" content="2026-08-06T00:00:00+00:00">
 		<meta property="article:tag" content="수학">
+		<meta property="article:tag" content="알고리즘">
 		<meta property="og:image" content="http://localhost:1313/images/og-default.avif">
 
 
@@ -57,9 +58,9 @@
 	<meta itemprop="description" content="삼각수가 이차 탐사에서 어떻게 모든 슬롯을 방문할까?">
 	<meta itemprop="datePublished" content="2026-08-06T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-06T00:00:00+00:00">
-	<meta itemprop="wordCount" content="1183">
+	<meta itemprop="wordCount" content="1191">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
-	<meta itemprop="keywords" content="수학">
+	<meta itemprop="keywords" content="수학,알고리즘">
 
 
 
@@ -911,7 +912,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>1183자</span>
+              <span>1191자</span>
             </div>
             
           </div>
@@ -934,6 +935,10 @@
                     class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
                     수학
                   </a>
+                  <a href="/ko/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/"
+                    class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
+                    알고리즘
+                  </a>
                 </div>
               </div>
             </div>
@@ -952,7 +957,7 @@
   >libertygames<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a>, courtesy of Stuart Kerr</em></p>
 <hr>
-<p>해시 테이블에서 이차 탐사의 일원으로 삼각수를 사용할 수 있다. 구글의 <em>sparse hash</em>, <em>dense hash</em> 뿐 아니라, <em>Jai</em> 언어에서 채택한 이후 10% 정도 성능 향상을 보았다고 해서 궁금증을 가지게 되었다. <em>Fabian Giesen</em>의 방법을 따라, 본 글에서는 <strong>어떻게 삼각수가 $2^{m}$ 크기의 오픈 해시 테이블을 빠짐 없이, 중복 없이 순회하는지</strong>를 다룬다.</p>
+<p>해시 테이블에서 이차 탐사 함수로 삼각수를 사용할 수 있다. 구글의 <em>sparse hash</em>, <em>dense hash</em> 뿐 아니라, <em>Jai</em> 언어에서 채택된 이후 약 10%의 성능 향상을 보였다는 이야기를 듣고 흥미를 가지게 되었다. <em>Fabian Giesen</em>의 방법을 따라, 본 글에서는 <strong>어떻게 삼각수가 $2^{m}$ 크기의 오픈 해시 테이블의 모든 슬롯을 정확히 한 번씩 방문하는지</strong>를 다룬다.</p>
 <hr>
 <h2 id="삼각수">삼각수<a href="#%ec%82%bc%ea%b0%81%ec%88%98" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>삼각 랙 안의 당구공 수를 한 줄씩 더해보자. $0,1,3,6,10\cdots$. 이 수들이 <strong>삼각수</strong>이다. 즉, ${k}$번째 삼각수는 다음과 같다.</p>
 <p>$$T_{k} = \dfrac{k\mathrm{(}k + 1\mathrm{)}}{2}$$</p>
@@ -1052,7 +1057,7 @@ $$T_{2n - 1 - k} - T_{k}\equiv0\mathrm{(}\operatorname{mod}n\mathrm{)}$$</p>
 $$T_{2n - 1 - k} - T_{k}\equiv - n\left(\operatorname{mod}2n\right)$$</p>
 <h3 id="b">$(b)$<a href="#b" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>$T_{K}\mskip3mu\operatorname{mod}n$이 $2n$의 주기를 가짐을 증명한다. ($n = 2^{m}$)</p>
 <p>$$T_{a + b} = T_{a} + T_{b} + ab$$</p>
-<p>위 식에 따라,</p>
+<p>위 항등식에 따라,</p>
 <p>$$T_{k + 2n} = T_{k} + T_{2n} + 2kn = T_{k} + n\mathrm{(}2n + 1\mathrm{)} + 2kn\equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$
 $$T_{k + 2n} \equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$</p>
 <h3 id="c">$(c)$<a href="#c" class="heading-anchor" aria-label="이 섹션에 대한 링크"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>$T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{{}0,1,\cdots,2^{m} - 1\mathrm{}}$}의 <em>permutation</em>임을 <em>수학적 귀납법</em>을 통해 증명한다.</p>
@@ -1063,7 +1068,7 @@ $$T_{k + 2n} \equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$</p
 T_{2n - 1 - k}\equiv T_{k} - n\mskip4.5mu\mathrm{(}\operatorname{mod}2n\mathrm{)}
 $$</p>
 <p>즉, 나머지 절반은 처음 절반과 겹치지 않으며, 들어있는 수들은 중복하지 않는다.</p>
-<p>따라서, $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{{}0,1,\cdots,2^{m} - 1\mathrm{}}$}의 <em>permutation</em>이다.</p>
+<p>따라서, $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{{}0,1,\cdots,2^{m} - 1\mathrm{}}$}의 <em>permutation</em>이다. ∎</p>
 <hr>
 
 
