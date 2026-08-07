@@ -2,7 +2,7 @@
 title: "Triangular Numbers in Quadratic Probing"
 date: 2026-08-06
 description: "How do triangular numbers create a permutation sequence in quadratic probing?"
-tags: ["Math", "Algorithm"]
+tags: ["Math", "Algorithm", "Hash"]
 categories: []
 series: []
 cover: "resources/cover.jpg"

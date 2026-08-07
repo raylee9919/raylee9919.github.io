@@ -2,7 +2,7 @@
 title: "삼각수와 이차 탐사"
 date: 2026-08-06
 description: "삼각수가 이차 탐사에서 어떻게 모든 슬롯을 방문할까?"
-tags: ["수학", "알고리즘"]
+tags: ["수학", "알고리즘", "해시"]
 categories: []
 series: []
 cover: "resources/cover.jpg"
