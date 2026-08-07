@@ -79,7 +79,11 @@ $$f_{m}\mathrm{(}k\mathrm{)} = T_{k}\mskip6mu\operatorname{mod}2^{m}$$
 </tr>
 </table>
 
-패턴이 보인다. $0,1,3,2$ 이후 뒤집어서 $2,3,1,0$, 다시 뒤집어서 $0,1,3,2$가 반복된다. 이를 통한 이차 탐사 과정을 살펴보자.
+패턴이 보인다. $0,1,3,2$ 이후 뒤집어서 $2,3,1,0$, 다시 뒤집어서 $0,1,3,2$가 반복된다.
+
+해시 테이블 크기가 $4$인데 왜 뒤까지 보나면, 이후 증명에서 방금 관찰한 대칭성을 사용하기 때문이다. 
+
+크기가 4일 때의 탐사 과정을 살펴보자.
 
 ![Position](resources/example.gif "삼각수를 통한 이차 탐사")
 
@@ -90,10 +94,10 @@ $$f_{m}\mathrm{(}k\mathrm{)} = T_{k}\mskip6mu\operatorname{mod}2^{m}$$
 ## 증명
 
 
-최종목표는 $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{\{}0,1,\cdots,2^{m} - 1\mathrm{\}}$}의 *permutation*임을 증명하는 것이다.
+최종목표는 $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{\{}0,1,\cdots,2^{m} - 1\mathrm{\}}$}의 순열(permutation)임을 증명하는 것이다.
 
 ### $(a)$
-대칭하는 두 삼각수의 차를 살펴보고 $T_{K}\mskip3mu\operatorname{mod}n$의 대칭성을 증명한다.  ($n = 2^{m}$)
+대칭하는 두 삼각수의 차를 살펴보고 $T_{k}\mskip3mu\operatorname{mod}n$의 대칭성을 증명한다.  ($n = 2^{m}$)
 
 $$T_{2n - 1 - k} - T_{k} = \dfrac{\mathrm{(}2n - k\mathrm{)(}2n - \mathrm{(}k + 1\mathrm{))}}{2} - \dfrac{\mathrm{(}k + 1\mathrm{)}k}{2} = 2n^{2} - n\mathrm{(}2k + 1\mathrm{)}$$
 $$T_{2n - 1 - k} - T_{k}\equiv0\mathrm{(}\operatorname{mod}n\mathrm{)}$$
@@ -103,22 +107,22 @@ $$T_{2n - 1 - k} - T_{k}\equiv - n\left(\operatorname{mod}2n\right)$$
 
 
 ### $(b)$
-$T_{K}\mskip3mu\operatorname{mod}n$이 $2n$의 주기를 가짐을 증명한다. ($n = 2^{m}$)
+$T_{k}\mskip3mu\operatorname{mod}n$이 $2n$의 주기를 가짐을 증명한다. ($n = 2^{m}$)
 
 $$T_{a + b} = T_{a} + T_{b} + ab$$
 
 위 항등식에 따라,
 
 $$T_{k + 2n} = T_{k} + T_{2n} + 2kn = T_{k} + n\mathrm{(}2n + 1\mathrm{)} + 2kn\equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$
-$$T_{k + 2n} \equiv T_{K}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$
+$$T_{k + 2n} \equiv T_{k}\mskip4.5mu\mathrm{(}\operatorname{mod}n\mathrm{)}$$
 
 
 ### $(c)$
-$T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{\{}0,1,\cdots,2^{m} - 1\mathrm{\}}$}의 *permutation*임을 *수학적 귀납법*을 통해 증명한다.
+$T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{\{}0,1,\cdots,2^{m} - 1\mathrm{\}}$}의 순열임을 *수학적 귀납법*을 통해 증명한다.
 
-$\mathrm{(}i\mathrm{)} \mskip4.5mu m = 1$일 때, $T_{k}\operatorname{mod}1 = 0$이고 집합은 {$0$}이므로 만족한다.
+$\mathrm{(}i\mathrm{)} \mskip4.5mu m = 0$일 때, $T_{k}\operatorname{mod}1 = 0$이고 집합은 {$0$}이므로 만족한다.
 
-$\mathrm{(}ii\mathrm{)} \mskip4.5mu m = k$일 때 성립한다고 가정하면, $T_{k}\mskip4.5mu\operatorname{mod}n$은 {$\mathrm{\{}0,1,\cdots,2^{k} - 1\mathrm{\}}$}의 *permutation*이다. 
+$\mathrm{(}ii\mathrm{)} \mskip4.5mu m = k$일 때 성립한다고 가정하면, $T_{k}\mskip4.5mu\operatorname{mod}n$은 {$\mathrm{\{}0,1,\cdots,2^{k} - 1\mathrm{\}}$}의 순열이다. 
 
 $m = k + 1$일 때, $T_{k}\mskip4.5mu\operatorname{mod}2^{m + 1}$의 절반, 즉, $\mathrm{[}0,2^{m} - 1\mathrm{]}$ 내의 수들은 $(ii)$에 따라 중복하지 않는다. $(a)$에 따라,
 
@@ -128,7 +132,7 @@ $$
 
 즉, 나머지 절반은 처음 절반과 겹치지 않으며, 들어있는 수들은 중복하지 않는다.
 
-따라서, $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{\{}0,1,\cdots,2^{m} - 1\mathrm{\}}$}의 *permutation*이다. ∎
+따라서, $T_{k}\mskip3mu\operatorname{mod}2^{m}$는 집합 {$\mathrm{\{}0,1,\cdots,2^{m} - 1\mathrm{\}}$}의 순열이다. ∎
 
 ---
 
