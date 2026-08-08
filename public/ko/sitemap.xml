@@ -61,6 +61,9 @@
                 href="http://localhost:1313/ko/posts/"
                 />
   </url><url>
+    <loc>http://localhost:1313/ko/tags/%ED%95%B4%EC%8B%9C/</loc>
+    <lastmod>2026-08-06T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/ko/series/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
     <xhtml:link

@@ -8,4 +8,6 @@ series: []
 cover: "resources/cover.svg"
 ---
 
-Translation in progres..
+Translation in progress. Sorry!
+
+우측 상단에서 언어 전환 후 확인해주세요.

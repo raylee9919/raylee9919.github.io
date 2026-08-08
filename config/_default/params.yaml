@@ -21,12 +21,15 @@ author:
     - name: "GitHub"
       url: "https://github.com/raylee9919"
       icon: "github"
-    - name: "X"
-      url: "https://x.com/raylee9919"
-      icon: "x"
     - name: "YouTube"
       url: "https://www.youtube.com/@seongwoolee9919"
       icon: "youtube"
+    - name: "X"
+      url: "https://x.com/raylee9919"
+      icon: "x"
+    - name: "LinkedIn"
+      url: "https://www.linkedin.com/in/swl99/"
+      icon: "linkedin"
 
 # Header configuration (modularized)
 header:
