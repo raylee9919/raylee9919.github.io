@@ -15,6 +15,9 @@ status: "completed"
 link: "https://github.com/raylee9919/cdt"
 ---
 
+Translation in progress. Sorry!
+
+우측 상단에서 언어 전환 후 확인해주세요.
 
 
 
