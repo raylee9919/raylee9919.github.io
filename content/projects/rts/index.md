@@ -6,7 +6,7 @@ description: "RTS game/engine built from scratch"
 summary: "RTS game/engine built from scratch."
 featured: true
 tags:
-  - C++14
+  - C++17
   - OpenGL
 categories:
   - projects
@@ -20,7 +20,7 @@ link: "https://github.com/raylee9919/rts"
 
 ## Overview
 
-A game engine written in C++14, featuring systems and functionalities focused on the RTS genre.
+A game engine written in C++17, featuring systems and functionalities focused on the RTS genre.
 
 ## Key Features
 

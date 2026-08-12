@@ -6,7 +6,7 @@ description: "RTS 게임 엔진"
 summary: "RTS 장르에 초점을 둔 게임 및 엔진"
 featured: true
 tags:
-  - C++14
+  - C++17
   - OpenGL
 categories:
   - projects
@@ -26,7 +26,7 @@ link: "https://github.com/raylee9919/rts"
 
 | 인원 | 기간 | 사용 기술 |
 |:-----------|:------------|:------------|
-| 1인  | 2023년 12월 ~  | C++14, OpenGL, GLSL |
+| 1인  | 2023년 12월 ~  | C++17, OpenGL, GLSL |
 
 RTS 게임 및 이를 위한 기능을 구현한 엔진
 
