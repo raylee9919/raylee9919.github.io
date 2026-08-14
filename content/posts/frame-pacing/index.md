@@ -43,9 +43,9 @@ would improve, which is wrong.
           |  Render1                Slop1         |  Render2                Slop2
         Vsync                                   
 
- Back     |                Frame1                 |----------------Scanout1---------------|                Frame3                 |
+    Back  |                Frame1                 |----------------Scanout1---------------|                Frame3                 |
 
-Front     |----------------Scanout0---------------|                Frame2                 |----------------Scanout2----X----------|
+    Front |----------------Scanout0---------------|                Frame2                 |----------------Scanout2----X----------|
                                                                                                                        ^
                                                                                                                        |
                                                                                                         Input2 appears somewhere near here.
@@ -64,9 +64,9 @@ gets twice as fast to prove the point:
           |Render1           Slop1                |Render2           Slop2
         Vsync                                   
 
- Back     |                Frame1                 |----------------Scanout1---------------|                Frame3                 |
+    Back  |                Frame1                 |----------------Scanout1---------------|                Frame3                 |
 
-Front     |----------------Scanout0---------------|                Frame2                 |----------------Scanout2----X----------|
+    Front |----------------Scanout0---------------|                Frame2                 |----------------Scanout2----X----------|
                                                                                                                        ^
                                                                                                                        |
                                                                                                         Input2 appears somewhere near here.
@@ -84,9 +84,9 @@ One approach to this problem is 'triple buffering', which adds one more back buf
           |Render1 Render2          Slop1         |Render3 Render4          Slop2
         Vsync                                   
 
- Back     |                Frame1                 |                Frame3                 |
- Back     |                Frame2                 |----------------Scanout2----x----------|
- Front    |----------------Scanout0---------------|                Frame4      ^          |
+    Back  |                Frame1                 |                Frame3                 |
+    Back  |                Frame2                 |----------------Scanout2----x----------|
+    Front |----------------Scanout0---------------|                Frame4      ^          |
                                                                                |
                                                              Input2,3 appears somewhere near here.
                  |-------------------------------------------------------------|
