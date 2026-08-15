@@ -113,8 +113,6 @@ roll it back in a latency-critical multiplayer system. You can even extrapolate
 from the previous and current states, but rumors say nobody does that. 
 
 
-
-
 ### Unity
 
 As of 2026, Unity's default physics timestep is still 50Hz, which is a rather odd 
@@ -131,6 +129,9 @@ But, here's the catch: as described before, it interpolates between the previous
 and current states. So while other physics states will render their current 
 state, a rigid body with interpolation enabled will render an interpolated state, 
 effectively introducing additional tick of latency. 
+
+
+### Thoughts
 
 Certainly, it looks like there's no one-size-fits-all solution. I dunno, man. I 
 should just make a game.
