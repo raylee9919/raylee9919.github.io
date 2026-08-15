@@ -58,7 +58,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-14T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-14T00:00:00+00:00">
-	<meta itemprop="wordCount" content="698">
+	<meta itemprop="wordCount" content="774">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -912,7 +912,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>698 words</span>
+              <span>774 words</span>
             </div>
             
           </div>
@@ -1272,8 +1272,10 @@ guaranteed to be valid itself, as illustrated below:</p>
 
   </figure>
 </p>
-<p>Two players didn&rsquo;t actually collide, but it sure looks like they did! Maybe
-you can use some kind of velocity buffer, but anyway, you get the point.</p>
+<p>Let&rsquo;s say those two players&rsquo; movements aren&rsquo;t linear, yet we are linearly
+interpolating between two states for rendering. Two players didn&rsquo;t actually
+collide, but it sure looks like they did! Maybe you could use some kind of
+velocity buffer, but anyway, you get the point.</p>
 <h3 id="one-last-tick">One Last Tick<a href="#one-last-tick" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Yeah, things get gnarly pretty quickly. As it turns out, you can ditch
 interpolation altogether if you want. You can simply simulate one more time.
 Since we can&rsquo;t account for future inputs, we can&rsquo;t compute the &ldquo;next&rdquo; game state
@@ -1375,42 +1377,16 @@ previous game state by our fixed timestep, not the temporary game state.</p>
 
   </figure>
 </p>
-<p>You can implement this by maintaining some kind of triple buffer for the frames.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing/resources/timestep_8.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing/resources/timestep_8.svg"
-    alt="timestep_8"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing/resources/timestep_8.svg"
-    data-gallery-alt="timestep_8"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<h3 id="unity">Unity<a href="#unity" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>As of 2026, Unity&rsquo;s default physics timestep is still 50Hz, which is rather odd
-choice of number. As illustrated below, a 60Hz monitor will occasionally display
-the exact same frame twice, which can significantly hinder the gaming experience.
-A stable 50fps can feel better than an average 120fps with stuttering.</p>
+<p>But as you can imagine, if your game is physics or simulation-heavy, this
+approach might be not feasible for you. Also, you can forget about the
+<em>future attack input</em> I mentioned above and just compute the future state, then
+roll it back in a latency-critical multiplayer system. You can even extrapolate
+from the previous and current states, but rumors say nobody does that.</p>
+<h3 id="unity">Unity<a href="#unity" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>As of 2026, Unity&rsquo;s default physics timestep is still 50Hz, which is a rather odd
+choice of number, and game states are not globally interpolated by default.
+As illustrated below, the mismatch between physics update and rendering can
+cause noticeable jank on a 60Hz monitor. Remember, a stable 50 FPS can feel better
+than 120 FPS with stuttering.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1454,8 +1430,8 @@ But, here&rsquo;s the catch: as described before, it interpolates between the pr
 and current states. So while other physics states will render their current
 state, a rigid body with interpolation enabled will render an interpolated state,
 effectively introducing additional tick of latency.</p>
-<h3 id="thoughts">Thoughts<a href="#thoughts" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>At this point, I really wanted to say, <em>&ldquo;It&rsquo;s all trade-offs, bro&rdquo;</em>, but I
-dunno man.</p>
+<p>Certainly, it looks like there&rsquo;s no one-size-fits-all solution. I dunno, man. I
+should just make a game.</p>
 <h1 id="frame-pacing-part-is-currently-being-written">Frame Pacing part is currently being written.<a href="#frame-pacing-part-is-currently-being-written" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="timestep-1">Timestep<a href="#timestep-1" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p><a
     href="https://www.gafferongames.com/post/fix_your_timestep/"target="_blank"
     class="inline-flex items-center gap-1"
@@ -1480,12 +1456,12 @@ dunno man.</p>
     href="https://james.darpinian.com/blog/latency/"target="_blank"
     class="inline-flex items-center gap-1"
   >https://james.darpinian.com/blog/latency/<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>
+  </a><br>
 <a
     href="https://james.darpinian.com/blog/latency-techniques/"target="_blank"
     class="inline-flex items-center gap-1"
   >https://james.darpinian.com/blog/latency-techniques/<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>
+  </a><br>
 <a
     href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
     class="inline-flex items-center gap-1"
@@ -1920,7 +1896,6 @@ dunno man.</p>
         <li><a href="#interpolation">Interpolation</a></li>
         <li><a href="#one-last-tick">One Last Tick</a></li>
         <li><a href="#unity">Unity</a></li>
-        <li><a href="#thoughts">Thoughts</a></li>
       </ul>
     </li>
   </ul>

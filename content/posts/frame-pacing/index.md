@@ -81,8 +81,10 @@ guaranteed to be valid itself, as illustrated below:
 
 ![Invalid Interpolation](resources/invalid.svg)
 
-Two players didn't actually collide, but it sure looks like they did! Maybe 
-you can use some kind of velocity buffer, but anyway, you get the point.
+Let's say those two players' movements aren't linear, yet we are linearly 
+interpolating between two states for rendering. Two players didn't actually 
+collide, but it sure looks like they did! Maybe you could use some kind of 
+velocity buffer, but anyway, you get the point.
 
 
 ### One Last Tick
@@ -104,19 +106,22 @@ previous game state by our fixed timestep, not the temporary game state.
 
 ![timestep_7](resources/timestep_7.svg)
 
-You can implement this by maintaining some kind of triple buffer for the frames.
-
-![timestep_8](resources/timestep_8.svg)
+But as you can imagine, if your game is physics or simulation-heavy, this 
+approach might be not feasible for you. Also, you can forget about the 
+*future attack input* I mentioned above and just compute the future state, then 
+roll it back in a latency-critical multiplayer system. You can even extrapolate 
+from the previous and current states, but rumors say nobody does that. 
 
 
 
 
 ### Unity
 
-As of 2026, Unity's default physics timestep is still 50Hz, which is rather odd 
-choice of number. As illustrated below, a 60Hz monitor will occasionally display 
-the exact same frame twice, which can significantly hinder the gaming experience. 
-A stable 50fps can feel better than an average 120fps with stuttering.
+As of 2026, Unity's default physics timestep is still 50Hz, which is a rather odd 
+choice of number, and game states are not globally interpolated by default. 
+As illustrated below, the mismatch between physics update and rendering can 
+cause noticeable jank on a 60Hz monitor. Remember, a stable 50 FPS can feel better 
+than 120 FPS with stuttering.
 
 ![Unity Physics](resources/Unity.svg "You can see the arrow's gradient increasing.")
 
@@ -127,14 +132,8 @@ and current states. So while other physics states will render their current
 state, a rigid body with interpolation enabled will render an interpolated state, 
 effectively introducing additional tick of latency. 
 
-
-
-
-
-### Thoughts
-
-At this point, I really wanted to say, *"It's all trade-offs, bro"*, but I 
-dunno man.
+Certainly, it looks like there's no one-size-fits-all solution. I dunno, man. I 
+should just make a game.
 
 
 
@@ -154,6 +153,6 @@ dunno man.
 
 
 ### Frame Pacing
-https://james.darpinian.com/blog/latency/
-https://james.darpinian.com/blog/latency-techniques/
-https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html
+https://james.darpinian.com/blog/latency/  
+https://james.darpinian.com/blog/latency-techniques/  
+https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html  
