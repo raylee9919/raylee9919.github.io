@@ -263,9 +263,6 @@ being useful. But for games? I don't know about that.
 Windowed fullscreen is considered as fullscreen by compositors on modern OSes. 
 So there's no point in providing 'fullscreen' option to the users.
 
-
-
-
 'Windowed Flip' model was introduced in Windowws 7, and was available in DXGI 
 starting from Windows 8. It is useful over "true" exclusive fullscreen. The 
 compositor detects if your window covers the whole screen and if that's the 
@@ -276,10 +273,4 @@ They basically gave the users more control of whether they want their windows
 to skip the composition and write directly to the frame buffer. Downsides? I 
 dunno. Maybe your window doesn't get frostglass effect behind other process's 
 window, or you don't get softshadow, but who cares when you are playing a game?
-
-
-
-
-
-
 

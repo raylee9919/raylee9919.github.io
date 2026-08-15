@@ -58,7 +58,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-14T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-14T00:00:00+00:00">
-	<meta itemprop="wordCount" content="774">
+	<meta itemprop="wordCount" content="976">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -901,7 +901,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>4 min</span>
+              <span>5 min</span>
             </div>
             
 
@@ -912,7 +912,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>774 words</span>
+              <span>976 words</span>
             </div>
             
           </div>
@@ -1430,9 +1430,192 @@ But, here&rsquo;s the catch: as described before, it interpolates between the pr
 and current states. So while other physics states will render their current
 state, a rigid body with interpolation enabled will render an interpolated state,
 effectively introducing additional tick of latency.</p>
-<p>Certainly, it looks like there&rsquo;s no one-size-fits-all solution. I dunno, man. I
+<h3 id="thoughts">Thoughts<a href="#thoughts" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Certainly, it looks like there&rsquo;s no one-size-fits-all solution. I dunno, man. I
 should just make a game.</p>
-<h1 id="frame-pacing-part-is-currently-being-written">Frame Pacing part is currently being written.<a href="#frame-pacing-part-is-currently-being-written" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="timestep-1">Timestep<a href="#timestep-1" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p><a
+<h2 id="frame-pacing">Frame Pacing<a href="#frame-pacing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>In good old days, things were fixed, graphics hardware was either thin or
+nonexistent, and there were no pipelines. Everything was synchronous. There
+was no middleman between the CPU and the display.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing/resources/fp1.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing/resources/fp1.svg"
+    alt="Frame Pacing 1"
+    title="Good old syncrhonous days"
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing/resources/fp1.svg"
+    data-gallery-alt="Frame Pacing 1"
+    data-gallery-title="Good old syncrhonous days"
+  /></div>
+
+  <figcaption class="image-caption">
+      Good old syncrhonous days
+    </figcaption></figure>
+</p>
+<p>Enter the modern era: everything is pipelined. First, let&rsquo;s take a look at
+how a particular frame generally makes its way to the screen:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing/resources/fp2.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing/resources/fp2.svg"
+    alt="Frame Pacing 2"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing/resources/fp2.svg"
+    data-gallery-alt="Frame Pacing 2"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>Game ticks on the CPU and submits draw commands to the GPU through driver.
+Then, the GPU gets gets to work and renders to the app&rsquo;s render target. We
+aren&rsquo;t halfway through it yet. Let&rsquo;s say your monitor is running at 60Hz. Then,
+for 16.67ms, operating system&rsquo;s compositor composites all the windows on your
+screen. Who doesn&rsquo;t love liquid glass and shadow effects? Finally, at VSync,
+the composited frame is presented to the monitor, which scans it out line by
+line.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="364"
+  data-image-height="236"
+  data-image-src="/posts/timestep-and-frame-pacing/resources/shadow.png"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing/resources/shadow.png"
+    alt="Drop Shadow"
+    title="Look at that sleek shadow!"
+    
+      
+      
+        
+          width="364" height="236"
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing/resources/shadow.png"
+    data-gallery-alt="Drop Shadow"
+    data-gallery-title="Look at that sleek shadow!"
+  /></div>
+
+  <figcaption class="image-caption">
+      Look at that sleek shadow!
+    </figcaption></figure>
+</p>
+<p>In Windows, there&rsquo;s something called <em>exclusive fullscreen mode</em>. This mode
+allows your app to  bypass the compositor. If your app is in fullscreen, there&rsquo;s
+nothing else to composite, right? So the timeline becomes something like this:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing/resources/fp3.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing/resources/fp3.svg"
+    alt="Frame Pacing 3"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing/resources/fp3.svg"
+    data-gallery-alt="Frame Pacing 3"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+
+  <blockquote
+    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
+  >
+    <div class="prose prose-sm max-w-none">
+      <p>Windows&rsquo; compositor, swap chain and flip modes are yet another rabbit hole,
+and we&rsquo;ll get into them later.</p>
+
+    </div>
+  </blockquote><script>
+  function toggleAlert(alertId) {
+    const content = document.getElementById(alertId + "-content");
+    const chevron = document.getElementById(alertId + "-chevron");
+    const header = content.previousElementSibling;
+
+    if (content.classList.contains("hidden")) {
+      content.classList.remove("hidden");
+      chevron.style.transform = "rotate(0deg)";
+      header.setAttribute("aria-expanded", "true");
+    } else {
+      content.classList.add("hidden");
+      chevron.style.transform = "rotate(-90deg)";
+      header.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
+    collapsedAlerts.forEach(function (content) {
+      const alertId = content.id.replace("-content", "");
+      const chevron = document.getElementById(alertId + "-chevron");
+      if (chevron) {
+        chevron.style.transform = "rotate(-90deg)";
+      }
+    });
+  });
+</script>
+<h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="timestep-1">Timestep<a href="#timestep-1" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p><a
     href="https://www.gafferongames.com/post/fix_your_timestep/"target="_blank"
     class="inline-flex items-center gap-1"
   >Glenn Fiedler. &ldquo;Fix Your Timestep!&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -1452,7 +1635,12 @@ should just make a game.</p>
     class="inline-flex items-center gap-1"
   >Jonathan Blow. &ldquo;Q&amp;A: frame-rate-independence&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a></p>
-<h3 id="frame-pacing">Frame Pacing<a href="#frame-pacing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p><a
+<h3 id="frame-pacing-1">Frame Pacing<a href="#frame-pacing-1" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p><a
+    href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Croteam. &ldquo;The Elusive Frame Timing&rdquo;. GDC 2018<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
     href="https://james.darpinian.com/blog/latency/"target="_blank"
     class="inline-flex items-center gap-1"
   >https://james.darpinian.com/blog/latency/<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -1896,15 +2084,14 @@ should just make a game.</p>
         <li><a href="#interpolation">Interpolation</a></li>
         <li><a href="#one-last-tick">One Last Tick</a></li>
         <li><a href="#unity">Unity</a></li>
+        <li><a href="#thoughts">Thoughts</a></li>
       </ul>
     </li>
-  </ul>
-
-  <ul>
+    <li><a href="#frame-pacing">Frame Pacing</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a>
       <ul>
         <li><a href="#timestep-1">Timestep</a></li>
-        <li><a href="#frame-pacing">Frame Pacing</a></li>
+        <li><a href="#frame-pacing-1">Frame Pacing</a></li>
       </ul>
     </li>
   </ul>
