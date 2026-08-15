@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Thu, 06 Aug 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Fri, 14 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/ko/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Timestep and Frame Pacing</title>
+				<link>http://localhost:1313/ko/posts/timestep-and-frame-pacing/</link>
+				<pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/posts/timestep-and-frame-pacing/</guid>
+				<description>&lt;p&gt;Translation in progress. Please switch languages in the top-right corner and check again.&lt;/p&gt;&#xA;&lt;p&gt;번역이 진행 중입니다. 우측 상단에서 언어를 전환한 후 다시 확인해 주세요.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>삼각수와 이차 탐사</title>
 				<link>http://localhost:1313/ko/posts/%EC%82%BC%EA%B0%81%EC%88%98%EC%99%80-%EC%9D%B4%EC%B0%A8-%ED%83%90%EC%82%AC/</link>

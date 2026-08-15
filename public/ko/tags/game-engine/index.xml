@@ -10,15 +10,15 @@
 		
 		
 		
-			<lastBuildDate>Fri, 01 Dec 2023 10:00:00 +0800</lastBuildDate>
+			<lastBuildDate>Fri, 14 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/ko/tags/game-engine/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>RTS</title>
-				<link>http://localhost:1313/ko/projects/hugo-narrow-theme/</link>
-				<pubDate>Fri, 01 Dec 2023 10:00:00 +0800</pubDate>
-				<guid>http://localhost:1313/ko/projects/hugo-narrow-theme/</guid>
-				<description>RTS game/engine built on C++17 and OpenGL.</description>
+				<title>Timestep and Frame Pacing</title>
+				<link>http://localhost:1313/ko/posts/timestep-and-frame-pacing/</link>
+				<pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/posts/timestep-and-frame-pacing/</guid>
+				<description>&lt;p&gt;Translation in progress. Please switch languages in the top-right corner and check again.&lt;/p&gt;&#xA;&lt;p&gt;번역이 진행 중입니다. 우측 상단에서 언어를 전환한 후 다시 확인해 주세요.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>

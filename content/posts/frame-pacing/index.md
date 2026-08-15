@@ -1,307 +1,159 @@
 ---
-title: "Frame Pacing"
+title: "Timestep and Frame Pacing"
 date: 2026-08-14
-description: "VSync, frame pacing, .."
-tags: ["System", "Graphics", "Game Engine"]
+description: "It's a matter of time."
+tags: ["System", "Game Engine"]
 categories: []
 series: []
+cover: "resources/cover.webp"
 ---
 
-This post is still being written.
 
+> I thought the thumbnail was pretty appropriate, as the topic is quite a deep 
+rabbit hole, IMO, and it is "a matter of time."
 
 
+## Timestep
 
+Why you want your tick procedure to be framerate-independent and how to implement 
+it are explained wonderfully in [these posts](#acknowledgements). so I'll be brief 
+about the timestep part.
 
+### Fixed Timestep
 
+You want your timestep to be fixed. If your timestep is simply the amount of time 
+elapsed since the last update, bad things can happen. For example, a bullet might 
+penetrate a wall if rendering takes too long. Instead of integrating one large, 
+variable timestep like this:
 
-                                Frame Pacing
+![bullet penetrating wall](resources/bullet.svg)
 
+By taking as many fixed steps to cover the elapsed time, collisions will be 
+detected, and the bullet won't pass through the wall, like this:
 
+![bullet no more penetrates](resources/bullet_1.svg)
 
+Let's say the time elapsed since the last update is $34.89ms$ and the fixed 
+timestep is $16.67ms$, which means your game's tick rate it effectively $60Hz$. 
+So, your update procedure will run for $2$ times. But, what do we do about the 
+remainder, which is $1.55ms$?
 
+![Semi-fixed timestep](resources/semifixed_timestep.svg)
 
-It is no longer possible to match display's refresh rate precisely.
+Well, we can run one more update procedure at $1.55ms$, which seems reasonable. 
+But, here's the thing: if you want things to be deterministic, you don't want to 
+do that, because of floating point precision—in the sense that `0.1 + 0.2 != 0.3`.
 
-GPUs became more and more asynchronous. 
+So, what you want to do is carry the remainder over to the next frame by adding 
+it to some kind of global accumulator. But what do we about the rendering ? 
+If we simply ignore the remainder until the next frame, as the rendered frame 
+won't reflect the actual elapsed time, making the result feel off, as illustrated 
+below:
 
-Frame pacing is the synchronization of a game’s logic and rendering loop with an OS’s display subsystem and the underlying display hardware
-                                                                                                                        - Android
+![timestep_1](resources/timestep_1.svg)
 
 
-There was no process separation.
-In early days, all processes wrote into a single framebuffer.
-Apps should have make sure it didn't write into the occludede area.
-The system notified the apps that they should repaint (WM_PAINT on Windows).
-A single process could take down the whole system. No surprise.
+### Interpolation
 
-Starting from early 2000s, systems began to let each process to write to its own 
-framebuffer and those were composited afterwards. OS X's Quartz Compositor and 
-Windows DWM (Desktop Windows Manager) are the example.
+Interpolation comes to rescue! When it comes to rendering, we'll interpolate 
+between the two states. First, we need to compute $\alpha$, which is a blend 
+weight between $\mathrm{[}0,1\mathrm{]}$.
 
-What's the downside? Well, it adds latency and is hungry for bandwidth.
+![timestep_2](resources/timestep_2.svg)
 
--------------------------------------------------------------------------------
-[App_0]
+Then, we interpolate between the current state and the previous state and 
+render the interpolated state, like this:
 
-[App_1]
+![timestep_3](resources/timestep_3.svg)
 
-[App_2]
+Wait, why are we interpolating between the current state and the previous state? 
+That sounds laggy. Shouldn't we interpolate between the current state and the 
+next state instead, like this:
 
-[Compositor]     Row_1 Row_2 Row_3 ..           Row1 Row2 ..
+![timestep_4](resources/timestep_4.svg)
 
-[Display 60Hz]         Row_1 Row_2 Row_3 .. Row_1080 Row1 Row2 ..
-                       |         16.667ms          | 
--------------------------------------------------------------------------> time
+Also, suppose you nuke some entities between the current and previous game 
+states, wiping out of existence. How are you supposed to interpolate their 
+transforms?
 
+At the same time, an interpolated game state between two valid states isn't 
+guaranteed to be valid itself, as illustrated below:
 
-Latency differs depending on when your input occurred, and where your mouse is at.
-For example, mouse at the bottom of the screen has higher latency than that on 
-the top of the screen.
+![Invalid Interpolation](resources/invalid.svg)
 
+Two players didn't actually collide, but it sure looks like they did! Maybe 
+you can use some kind of velocity buffer, but anyway, you get the point.
 
 
+### One Last Tick
 
+Yeah, things get gnarly pretty quickly. As it turns out, you can ditch 
+interpolation altogether if you want. You can simply simulate one more time. 
+Since we can't account for future inputs, we can't compute the "next" game state 
+ahead of time.
 
+![timestep_5](resources/timestep_5.svg)
 
+But, we can compute a temporary game state using the remainder $t$ as the 
+timestep. This state is transient and used solely for rendering. 
 
-                                Smooth Resizing
+![timestep_6](resources/timestep_6.svg)
 
-(Search for 'smooth resize' on HMN)
+Then, when the time comes, the "real" new game state is computed by advancing the 
+previous game state by our fixed timestep, not the temporary game state.
 
-The prominent employee on Windows who's working on rendering said that they can't 
-figure out how smooth resizing could be done. So, it is what it is, and just give 
-up the smooth resizing. 
+![timestep_7](resources/timestep_7.svg)
 
+You can implement this by maintaining some kind of triple buffer for the frames.
 
+![timestep_8](resources/timestep_8.svg)
 
 
 
 
+### Unity
 
+As of 2026, Unity's default physics timestep is still 50Hz, which is rather odd 
+choice of number. As illustrated below, a 60Hz monitor will occasionally display 
+the exact same frame twice, which can significantly hinder the gaming experience. 
+A stable 50fps can feel better than an average 120fps with stuttering.
 
+![Unity Physics](resources/Unity.svg "You can see the arrow's gradient increasing.")
 
-                            Swap Chain and VSync
+So I would say tweak your default physics timestep to 60Hz or something reasonable. 
+You could even consider [this option](https://docs.unity3d.com/ScriptReference/Rigidbody-interpolation.html). 
+But, here's the catch: as described before, it interpolates between the previous 
+and current states. So while other physics states will render their current 
+state, a rigid body with interpolation enabled will render an interpolated state, 
+effectively introducing additional tick of latency. 
 
-If you were to scan out during the 3D rendering process of an app, you'd see a 
-flickering half-drawn mess. This was acceptable when the workload was lighter 
-as the main usage was 2D UI rendering.
 
-That's when double buffering rose above the horizon. The display scans out the 
-"front" buffer and the app scribbles on the "back" buffer. As the painting is 
-done, app 'swaps' the buffers.
 
-But what if the buffers get swapped during the scan out process? You'll see 
-horizontal bands of different frames, which is known as 'tearing'. So there's 
-an 'Vsync' option in regard to synchronization. The swap is deferred until 
-the end of current scanout. 
 
-Vsync adds latency of your input to be visually perceived by your eyes as the 
-monitor completes the current scanout even if the game's frame conveying the 
-input information is available.
 
-At the same time, as there's no back buffer to which the app can write, incoming 
-operations must be blocked. During this time, the app might want to do other 
-useful stuffs, like simulating physics for the next timestep as the simultation 
-would be frame rate independent for most of the games.
+### Thoughts
 
-What would happen if the hardware runs twice as fast? One would think the latency 
-would improve, which is wrong.
+At this point, I really wanted to say, *"It's all trade-offs, bro"*, but I 
+dunno man.
 
-(prefixed with frame number)
 
-                         Input2                                  Input3
-                           |                                       |
-              |            v                          |            v
-              |----------|---|------------------------|----------|---|------------------------| 
-              |  Render1                Slop1         |  Render2                Slop2
-            Vsync                                   
-    
-     Back     |                Frame1                 |----------------Scanout1---------------|                Frame3                 |
-    
-    Front     |----------------Scanout0---------------|                Frame2                 |----------------Scanout2----X----------|
-                                                                                                                           ^
-                                                                                                                           |
-                                                                                                            Input2 appears somewhere near here.
-                           |------------------------------------- Latency of Input2 ---------------------------------------|
 
 
-Even if the hardware gets faster, interval between Vsyncs stays the same. The 
-latency would actually get worse. Let's see a diagaram of where the hardware 
-gets twice as fast to prove the point:
+# Frame Pacing part is currently being written.
 
 
-                   Input2                                  Input3
-                     |                                       |
-              |      v                                |      v
-              |-----|-|-------------------------------|-----|-|-------------------------------| 
-              |Render1           Slop1                |Render2           Slop2
-            Vsync                                   
-    
-     Back     |                Frame1                 |----------------Scanout1---------------|                Frame3                 |
-    
-    Front     |----------------Scanout0---------------|                Frame2                 |----------------Scanout2----X----------|
-                                                                                                                           ^
-                                                                                                                           |
-                                                                                                            Input2 appears somewhere near here.
-                     |---------------------------------------- Latency of Input2 ------------------------------------------|
-                           |------------------------------------- Latency Before ------------------------------------------|
 
 
-One approach to this problem is 'triple buffering', which adds one more back buffer.
+## Acknowledgements
 
+### Timestep
+[Glenn Fiedler. "Fix Your Timestep!"](https://www.gafferongames.com/post/fix_your_timestep/)  
+[Jakub Tomšů. "Fixed timestep without interpolation"](https://jakubtomsu.github.io/posts/fixed_timestep_without_interpolation/)  
+[Taha Torabpour. "Upgrade Your Timestep"](https://lotusspring.substack.com/p/upgrade-your-timestep)  
+[Jonathan Blow. "Q&A: frame-rate-independence"](https://www.youtube.com/watch?v=fdAOPHgW7qM)  
 
-                   Input2  Input3
-                     |       |
-              |      v       v                        |
-              |-----|-|-----|-|-----------------------|-----|-|-----|-|-----------------------| 
-              |Render1 Render2          Slop1         |Render3 Render4          Slop2
-            Vsync                                   
-    
-     Back     |                Frame1                 |                Frame3                 |
-     Back     |                Frame2                 |----------------Scanout2----x----------|
-     Front    |----------------Scanout0---------------|                Frame4      ^          |
-                                                                                   |
-                                                                 Input2,3 appears somewhere near here.
-                     |-------------------------------------------------------------|
-                             |-----------------------------------------------------|
-                                                    Latency
 
-
-If the monitor is running at 60Hz, then the latency is more or less 16.67ms, 
-which is still a lot, given that humans can perceive differences in latency 
-all the way down to much smaller numbers, like 1ms.
-
-Nevertheless, the latency has been cut down significantly. Our machine does 
-the work in advance, and the display simply scans out the newly rendered frame. 
-
-The problem is, there's some waste. In the backbuffer, 'Frame1' gets overwritten 
-by 'Frame3' because it's already outdated by the time 'Frame2' is scanned out 
-by the display. In the context of gaming, where the GPU is busy anyway, ths is 
-somewhat acceptable, but that's about as far as it goes.
-
-
-Little bit of tangent: 
-
-[1] The term VSync is kind of misunderstood. It is a signal sent through the 
-video cable to inform the display to begin the scanout process. Yes, it is a 
-real thing.
-
-[2] The diagrams are kind of simplified in that the CPU pushes work to the GPU's 
-queue, and they run asynchronously, but you get the idea.
-
-
-// @Todo
-So... why not just turn off VSync and call it a day? I can live with screen 
-tearing.
-
-
-
-
-
-
-
-1. If you delay the rendering carefully, you can incorporate fresher input 
-into the frame, resulting in lower latency. For example, you can change this:
-
-
-                     Input    Render                              
-                     │   │              │                         
-                     │◄─►│◄────────────►│                         
-                  │  │   │              │              │          
-                  ┼──┴───┴──────────────┴──────────────┼─────►time
-                  │                                    │          
-                VSync                                VSync        
-
-
-                                into this:
-
-                                                   
-                                  Input    Render                  
-                                  │   │              │             
-                                  │◄─►│◄────────────►│             
-                  │               │   │              │ │           
-                  ┼───────────────┴───┴──────────────┴─┼─────►time 
-                  │                                    │           
-                VSync                                VSync         
-
-
-But you are playing with fire, so to speak. What if your prediction is wrong, 
-and you miss the deadline by a single bit? Something like this:
-
-
-                                       Input    Render              
-                                       │   │              │         
-                                       │◄─►│◄───────────┬►│         
-                   │                   │   │            │ │         
-                   ┼───────────────────┴───┴────────────┼─┴───►time 
-                   │                                    │           
-                 VSync                                VSync         
-
-
-Too bad! The train has left, so you'll have to wait for the next one. There are 
-plenty of variables that determine how long rendering takes, and hitches are 
-inevitable. So, it is really hard to predict the timing accurately.
-
-
-2. Variable refresh rate (VRR) technology came to rescue! It effectively 
-defers VSync until rendering is complete. However, many systems don't support it, 
-and it can potentially disrupt other components, such as physics and audio.
-
-
-3. Operating system's mouse cursor is often updated at the very last instant before 
-VSync. Because of this, it can feel like the cursor is operating independently 
-of the application's latency. To hide this effect, you might want to draw your 
-own cursor instead. You can enable it only during interactive drag operations.
-
-                                             
-                                              OS overlays  
-                                              its cursor.  
-                                                   │       
-                                                   │       
-                  │  Render  │                     ▼ │     
-          ────────┼──────────┼─────────────────────X─┤──────►time
-                  │          │                       │     
-                VSync                              VSync   
-
-
-
-
-4. You can predict user input ahead of time. For drawing tools, I could see that 
-being useful. But for games? I don't know about that.
-
-
-
-
-                            Fullscreen vs Windowed
-
-
-Windowed fullscreen is considered as fullscreen by compositors on modern OSes. 
-So there's no point in providing 'fullscreen' option to the users.
-
-
-
-
-'Windowed Flip' model was introduced in Windowws 7, and was available in DXGI 
-starting from Windows 8. It is useful over "true" exclusive fullscreen. The 
-compositor detects if your window covers the whole screen and if that's the 
-case, it will decide not to compose, that is, additional copies skipped.
-
-'Independent Flip' took one step further.
-They basically gave the users more control of whether they want their windows
-to skip the composition and write directly to the frame buffer. Downsides? I 
-dunno. Maybe your window doesn't get frostglass effect behind other process's 
-window, or you don't get softshadow, but who cares when you are playing a game?
-
-
-
-
-
-
-
-                                    References
-
-https://www.gafferongames.com/post/fix_your_timestep/
+### Frame Pacing
 https://james.darpinian.com/blog/latency/
 https://james.darpinian.com/blog/latency-techniques/
 https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html
