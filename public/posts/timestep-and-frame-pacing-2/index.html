@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="240">
+	<meta itemprop="wordCount" content="537">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -904,7 +904,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>2 min</span>
+              <span>3 min</span>
             </div>
             
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>240 words</span>
+              <span>537 words</span>
             </div>
             
           </div>
@@ -1079,7 +1079,252 @@
 
   
   <article class="prose prose-neutral dark:prose-invert mb-12 max-w-none">
-    <h2 id="frame-pacing">Frame Pacing<a href="#frame-pacing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>In good old days, things were fixed, graphics hardware was either thin or
+    <h2 id="frame-pacing">Frame Pacing<a href="#frame-pacing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="leeway-aka-slop">Leeway, aka Slop<a href="#leeway-aka-slop" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>How long does it take for my mouse input to be reflected in a frame and shown
+on my monitor? In other words, what&rsquo;s the latency? It looks something like this:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/1.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/1.svg"
+    alt="Buffering 1"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/1.svg"
+    data-gallery-alt="Buffering 1"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>Good news! Our hardware got faster, and we now have 2x performance improvement!
+Surely, the input latency has improved, right? Actually, it hasn&rsquo;t. We have
+more leeway, but it turns out that it&rsquo;s just slop.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/2.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/2.svg"
+    alt="Buffering 2"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/2.svg"
+    data-gallery-alt="Buffering 2"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<h3 id="triple-buffering">Triple Buffering<a href="#triple-buffering" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Let&rsquo;s dial up our simulation rate, advance one more tick, then render that state.
+Because the later frame incorporates more recent input, it reflects lower latency.
+Now we have two frames, but since we always draw the newest one, the older frame
+is discarded outright. That&rsquo;s an acceptable tradeoff in gaming, where GPUs are
+busy anyway, but in the world of apps, it seems it isn&rsquo;t.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/5.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/5.svg"
+    alt="Buffering 5"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/5.svg"
+    data-gallery-alt="Buffering 5"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>What&rsquo;s going on is actually <em>triple buffering</em>:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/6.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/6.svg"
+    alt="Buffering 6"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/6.svg"
+    data-gallery-alt="Buffering 6"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>Three buffers are colored red, blue, and green. During the first VSync interval,
+the red and blue buffers are <em>back buffers</em>, while the green buffer is the
+<em>front buffer</em>. During this interval, your monitor scans out the front buffer
+line by line, allowing you to see it.</p>
+<p>At the second VSync, the buffers are &ldquo;flipped&rdquo;. Since the blue buffer contains
+an older frame than the red buffer, the red buffer becomes the new front buffer.
+The monitor scans it out again, while the GPU renders the next frame into the
+green buffer, which was the front buffer just before.</p>
+
+  <blockquote
+    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
+  >
+    <div class="prose prose-sm max-w-none">
+      <p>This is what Windows DXGI flip discard mode is. It queues &ldquo;flips&rdquo; and discards
+old ones.</p>
+
+    </div>
+  </blockquote><script>
+  function toggleAlert(alertId) {
+    const content = document.getElementById(alertId + "-content");
+    const chevron = document.getElementById(alertId + "-chevron");
+    const header = content.previousElementSibling;
+
+    if (content.classList.contains("hidden")) {
+      content.classList.remove("hidden");
+      chevron.style.transform = "rotate(0deg)";
+      header.setAttribute("aria-expanded", "true");
+    } else {
+      content.classList.add("hidden");
+      chevron.style.transform = "rotate(-90deg)";
+      header.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
+    collapsedAlerts.forEach(function (content) {
+      const alertId = content.id.replace("-content", "");
+      const chevron = document.getElementById(alertId + "-chevron");
+      if (chevron) {
+        chevron.style.transform = "rotate(-90deg)";
+      }
+    });
+  });
+</script>
+<h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
+    href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Croteam. &ldquo;The Elusive Frame Timing&rdquo;. GDC 2018<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://developer.android.com/games/sdk/frame-pacing"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Android. &ldquo;Frame Pacing Libary&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://james.darpinian.com/blog/latency-techniques/"target="_blank"
+    class="inline-flex items-center gap-1"
+  >James Darpinian. &ldquo;Techniques to Reduce Latency in Your Apps&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Raph Levien. &ldquo;Swapchains and frame pacing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Intel. Sample Application for Direct3D 12 Flip Model Swap Chains<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a></p>
+<h1 id="temporary">Temporary<a href="#temporary" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><p>We can do some statistical voodoo and somehow predict how long rendering
+will take, then defer rendering and complete just before VSync. That&rsquo;ll give us
+the best latency without wasting resources.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
+    alt="Buffering 4"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
+    data-gallery-alt="Buffering 4"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>In good old days, things were fixed, graphics hardware was either thin or
 nonexistent, and there were no pipelines. Everything was synchronous. There
 was no middleman between the CPU and the display.</p>
 <p>
@@ -1262,31 +1507,6 @@ and we&rsquo;ll get into them later.</p>
     });
   });
 </script>
-<h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="frame-pacing-1">Frame Pacing<a href="#frame-pacing-1" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p><a
-    href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Croteam. &ldquo;The Elusive Frame Timing&rdquo;. GDC 2018<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://james.darpinian.com/blog/latency-techniques/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >James Darpinian. &ldquo;Techniques to Reduce Latency in Your Apps&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Raph Levien. &ldquo;Swapchains and frame pacing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
-    href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://developer.android.com/games/sdk/frame-pacing"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Android. &ldquo;Frame Pacing Libary&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
 
   </article>
 
@@ -1741,12 +1961,13 @@ and we&rsquo;ll get into them later.</p>
             >
               <nav id="TableOfContents">
   <ul>
-    <li><a href="#frame-pacing">Frame Pacing</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a>
+    <li><a href="#frame-pacing">Frame Pacing</a>
       <ul>
-        <li><a href="#frame-pacing-1">Frame Pacing</a></li>
+        <li><a href="#leeway-aka-slop">Leeway, aka Slop</a></li>
+        <li><a href="#triple-buffering">Triple Buffering</a></li>
       </ul>
     </li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ul>
 </nav>
             </div>
