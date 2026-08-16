@@ -58,7 +58,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-14T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-14T00:00:00+00:00">
-	<meta itemprop="wordCount" content="976">
+	<meta itemprop="wordCount" content="1085">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -901,7 +901,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>5 min</span>
+              <span>6 min</span>
             </div>
             
 
@@ -912,7 +912,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>976 words</span>
+              <span>1085 words</span>
             </div>
             
           </div>
@@ -1061,6 +1061,44 @@ detected, and the bullet won&rsquo;t pass through the wall, like this:</p>
 
   </figure>
 </p>
+<p>Still, the bullet will go through a super-thin wall, but it at least mitigates
+the problem, Let&rsquo;s not tackle this <em>tunneling</em> problem, at least for now.
+But, the real juice of fixed timestep is <em>determinism</em>. You want things to be
+consistent.</p>
+<p>If the function for position is $p_1 = p_0 + \Delta t^2$, and the first run
+of your game has two timesteps of 1ms and 3ms, while the second run has two
+timesteps of 2ms, the result differs:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing/resources/integration.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing/resources/integration.svg"
+    alt="Differ"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing/resources/integration.svg"
+    data-gallery-alt="Differ"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
 <p>Let&rsquo;s say the time elapsed since the last update is $34.89ms$ and the fixed
 timestep is $16.67ms$, which means your game&rsquo;s tick rate it effectively $60Hz$.
 So, your update procedure will run for $2$ times. But, what do we do about the
@@ -1096,14 +1134,12 @@ remainder, which is $1.55ms$?</p>
 
   </figure>
 </p>
-<p>Well, we can run one more update procedure at $1.55ms$, which seems reasonable.
-But, here&rsquo;s the thing: if you want things to be deterministic, you don&rsquo;t want to
-do that, because of floating point precision—in the sense that <code>0.1 + 0.2 != 0.3</code>.</p>
-<p>So, what you want to do is carry the remainder over to the next frame by adding
-it to some kind of global accumulator. But what do we about the rendering ?
-If we simply ignore the remainder until the next frame, as the rendered frame
-won&rsquo;t reflect the actual elapsed time, making the result feel off, as illustrated
-below:</p>
+<p>You don&rsquo;t wan to run one more tick at $1.55ms$ if you&rsquo;ve listened to me. Instead,
+carry the remainder over to the next frame by adding it to some kind of global
+accumulator.</p>
+<p>But what do we about the rendering? If we simply ignore the remainder until the
+next frame, as the rendered frame won&rsquo;t reflect the actual elapsed time, there&rsquo;ll be
+a judder.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1135,7 +1171,7 @@ below:</p>
 
   </figure>
 </p>
-<h3 id="interpolation">Interpolation<a href="#interpolation" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Interpolation comes to rescue! When it comes to rendering, we&rsquo;ll interpolate
+<h3 id="interpolation">Interpolation<a href="#interpolation" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Interpolation comes to rescue! When it comes to rendering, let&rsquo;s interpolate
 between the two states. First, we need to compute $\alpha$, which is a blend
 weight between $\mathrm{[}0,1\mathrm{]}$.</p>
 <p>
@@ -1236,9 +1272,48 @@ next state instead, like this:</p>
 
   </figure>
 </p>
-<p>Also, suppose you nuke some entities between the current and previous game
-states, wiping out of existence. How are you supposed to interpolate their
-transforms?</p>
+<p>Should we compute the next state and interpolate between the current and next states?
+If we do that, something bad can happen.</p>
+<p>For example, let&rsquo;s say a rock is flying toward you, which is lethal. You press
+the attack button to destroy it, but the input arrives slightly after we have
+already started rendering. If we compute the next state without taking future
+inputs into account and interpolate between the two states to present the frame,
+it might look like your character is already dead. Then, on the next frame, the
+attack input is processed, and your character suddenly comes back to life.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing/resources/timestep_5.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing/resources/timestep_5.svg"
+    alt="timestep_5"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing/resources/timestep_5.svg"
+    data-gallery-alt="timestep_5"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>The problem with interpolation just on goes. Suppose you nuke some entities
+between the current and previous game states, wiping out of existence. How are
+you supposed to interpolate their transforms?</p>
 <p>At the same time, an interpolated game state between two valid states isn&rsquo;t
 guaranteed to be valid itself, as illustrated below:</p>
 <p>
@@ -1272,47 +1347,15 @@ guaranteed to be valid itself, as illustrated below:</p>
 
   </figure>
 </p>
-<p>Let&rsquo;s say those two players&rsquo; movements aren&rsquo;t linear, yet we are linearly
-interpolating between two states for rendering. Two players didn&rsquo;t actually
-collide, but it sure looks like they did! Maybe you could use some kind of
-velocity buffer, but anyway, you get the point.</p>
+<p>Those two players&rsquo; movements aren&rsquo;t linear, yet we are linearly interpolating
+between two states for rendering. Two players didn&rsquo;t actually collide, but it
+sure looks like they did! Maybe you could use some kind of velocity buffer,
+but anyway, you get the point.</p>
 <h3 id="one-last-tick">One Last Tick<a href="#one-last-tick" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Yeah, things get gnarly pretty quickly. As it turns out, you can ditch
-interpolation altogether if you want. You can simply simulate one more time.
-Since we can&rsquo;t account for future inputs, we can&rsquo;t compute the &ldquo;next&rdquo; game state
-ahead of time.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing/resources/timestep_5.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing/resources/timestep_5.svg"
-    alt="timestep_5"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing/resources/timestep_5.svg"
-    data-gallery-alt="timestep_5"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
+interpolation altogether if you want. You can simply simulate one more time.</p>
 <p>But, we can compute a temporary game state using the remainder $t$ as the
-timestep. This state is transient and used solely for rendering.</p>
+timestep. This state is transient and used solely for rendering; it is discarded
+afterward. It is not an authorized or &ldquo;real&rdquo; game state.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1378,10 +1421,8 @@ previous game state by our fixed timestep, not the temporary game state.</p>
   </figure>
 </p>
 <p>But as you can imagine, if your game is physics or simulation-heavy, this
-approach might be not feasible for you. Also, you can forget about the
-<em>future attack input</em> I mentioned above and just compute the future state, then
-roll it back in a latency-critical multiplayer system. You can even extrapolate
-from the previous and current states, but rumors say nobody does that.</p>
+approach might be not feasible for you. You can even extrapolate from the
+previous and current states, but rumors say nobody does that.</p>
 <h3 id="unity">Unity<a href="#unity" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>As of 2026, Unity&rsquo;s default physics timestep is still 50Hz, which is a rather odd
 choice of number, and game states are not globally interpolated by default.
 As illustrated below, the mismatch between physics update and rendering can
@@ -1430,8 +1471,7 @@ But, here&rsquo;s the catch: as described before, it interpolates between the pr
 and current states. So while other physics states will render their current
 state, a rigid body with interpolation enabled will render an interpolated state,
 effectively introducing additional tick of latency.</p>
-<h3 id="thoughts">Thoughts<a href="#thoughts" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Certainly, it looks like there&rsquo;s no one-size-fits-all solution. I dunno, man. I
-should just make a game.</p>
+<h3 id="thoughts">Thoughts<a href="#thoughts" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Certainly, it looks like there&rsquo;s no one-size-fits-all solution. I dunno, man.</p>
 <h2 id="frame-pacing">Frame Pacing<a href="#frame-pacing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>In good old days, things were fixed, graphics hardware was either thin or
 nonexistent, and there were no pipelines. Everything was synchronous. There
 was no middleman between the CPU and the display.</p>
@@ -1582,7 +1622,7 @@ nothing else to composite, right? So the timeline becomes something like this:</
     class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
   >
     <div class="prose prose-sm max-w-none">
-      <p>Windows&rsquo; compositor, swap chain and flip modes are yet another rabbit hole,
+      <p>Compositor, swap chain and flip modes are yet another rabbit hole,
 and we&rsquo;ll get into them later.</p>
 
     </div>

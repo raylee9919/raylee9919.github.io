@@ -33,6 +33,17 @@ detected, and the bullet won't pass through the wall, like this:
 
 ![bullet no more penetrates](resources/bullet_1.svg)
 
+Still, the bullet will go through a super-thin wall, but it at least mitigates 
+the problem, Let's not tackle this *tunneling* problem, at least for now. 
+But, the real juice of fixed timestep is *determinism*. You want things to be 
+consistent.
+
+If the function for position is $p_1 = p_0 + \Delta t^2$, and the first run 
+of your game has two timesteps of 1ms and 3ms, while the second run has two 
+timesteps of 2ms, the result differs:
+
+![Differ](resources/integration.svg)
+
 Let's say the time elapsed since the last update is $34.89ms$ and the fixed 
 timestep is $16.67ms$, which means your game's tick rate it effectively $60Hz$. 
 So, your update procedure will run for $2$ times. But, what do we do about the 
@@ -40,22 +51,20 @@ remainder, which is $1.55ms$?
 
 ![Semi-fixed timestep](resources/semifixed_timestep.svg)
 
-Well, we can run one more update procedure at $1.55ms$, which seems reasonable. 
-But, here's the thing: if you want things to be deterministic, you don't want to 
-do that, because of floating point precision—in the sense that `0.1 + 0.2 != 0.3`.
+You don't wan to run one more tick at $1.55ms$ if you've listened to me. Instead, 
+carry the remainder over to the next frame by adding it to some kind of global 
+accumulator.
 
-So, what you want to do is carry the remainder over to the next frame by adding 
-it to some kind of global accumulator. But what do we about the rendering ? 
-If we simply ignore the remainder until the next frame, as the rendered frame 
-won't reflect the actual elapsed time, making the result feel off, as illustrated 
-below:
+But what do we about the rendering? If we simply ignore the remainder until the 
+next frame, as the rendered frame won't reflect the actual elapsed time, there'll be 
+a judder. 
 
 ![timestep_1](resources/timestep_1.svg)
 
 
 ### Interpolation
 
-Interpolation comes to rescue! When it comes to rendering, we'll interpolate 
+Interpolation comes to rescue! When it comes to rendering, let's interpolate 
 between the two states. First, we need to compute $\alpha$, which is a blend 
 weight between $\mathrm{[}0,1\mathrm{]}$.
 
@@ -72,32 +81,41 @@ next state instead, like this:
 
 ![timestep_4](resources/timestep_4.svg)
 
-Also, suppose you nuke some entities between the current and previous game 
-states, wiping out of existence. How are you supposed to interpolate their 
-transforms?
+Should we compute the next state and interpolate between the current and next states? 
+If we do that, something bad can happen. 
+
+For example, let's say a rock is flying toward you, which is lethal. You press 
+the attack button to destroy it, but the input arrives slightly after we have 
+already started rendering. If we compute the next state without taking future 
+inputs into account and interpolate between the two states to present the frame, 
+it might look like your character is already dead. Then, on the next frame, the 
+attack input is processed, and your character suddenly comes back to life. 
+
+![timestep_5](resources/timestep_5.svg)
+
+The problem with interpolation just on goes. Suppose you nuke some entities 
+between the current and previous game states, wiping out of existence. How are 
+you supposed to interpolate their transforms?
 
 At the same time, an interpolated game state between two valid states isn't 
 guaranteed to be valid itself, as illustrated below:
 
 ![Invalid Interpolation](resources/invalid.svg)
 
-Let's say those two players' movements aren't linear, yet we are linearly 
-interpolating between two states for rendering. Two players didn't actually 
-collide, but it sure looks like they did! Maybe you could use some kind of 
-velocity buffer, but anyway, you get the point.
+Those two players' movements aren't linear, yet we are linearly interpolating 
+between two states for rendering. Two players didn't actually collide, but it 
+sure looks like they did! Maybe you could use some kind of velocity buffer, 
+but anyway, you get the point.
 
 
 ### One Last Tick
 
 Yeah, things get gnarly pretty quickly. As it turns out, you can ditch 
 interpolation altogether if you want. You can simply simulate one more time. 
-Since we can't account for future inputs, we can't compute the "next" game state 
-ahead of time.
-
-![timestep_5](resources/timestep_5.svg)
 
 But, we can compute a temporary game state using the remainder $t$ as the 
-timestep. This state is transient and used solely for rendering. 
+timestep. This state is transient and used solely for rendering; it is discarded 
+afterward. It is not an authorized or "real" game state.
 
 ![timestep_6](resources/timestep_6.svg)
 
@@ -107,10 +125,8 @@ previous game state by our fixed timestep, not the temporary game state.
 ![timestep_7](resources/timestep_7.svg)
 
 But as you can imagine, if your game is physics or simulation-heavy, this 
-approach might be not feasible for you. Also, you can forget about the 
-*future attack input* I mentioned above and just compute the future state, then 
-roll it back in a latency-critical multiplayer system. You can even extrapolate 
-from the previous and current states, but rumors say nobody does that. 
+approach might be not feasible for you. You can even extrapolate from the 
+previous and current states, but rumors say nobody does that. 
 
 
 ### Unity
@@ -133,8 +149,7 @@ effectively introducing additional tick of latency.
 
 ### Thoughts
 
-Certainly, it looks like there's no one-size-fits-all solution. I dunno, man. I 
-should just make a game.
+Certainly, it looks like there's no one-size-fits-all solution. I dunno, man. 
 
 
 
@@ -169,7 +184,7 @@ nothing else to composite, right? So the timeline becomes something like this:
 
 ![Frame Pacing 3](resources/fp3.svg)
 
-> Windows' compositor, swap chain and flip modes are yet another rabbit hole, 
+> Compositor, swap chain and flip modes are yet another rabbit hole, 
 and we'll get into them later.
 
 
