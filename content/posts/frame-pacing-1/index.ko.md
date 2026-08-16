@@ -1,10 +1,10 @@
 ---
-title: "Timestep and Frame Pacing"
+title: "Timestep and Frame Pacing 1"
 date: 2026-08-14
 description: "It's a matter of time."
 tags: ["System", "Game Engine"]
 categories: []
-series: []
+series: ["Timestep and Frame Pacing"]
 cover: "resources/cover.webp"
 ---
 

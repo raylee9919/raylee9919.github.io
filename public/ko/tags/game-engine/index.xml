@@ -10,14 +10,21 @@
 		
 		
 		
-			<lastBuildDate>Fri, 14 Aug 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Sun, 16 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/ko/tags/game-engine/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>Timestep and Frame Pacing</title>
-				<link>http://localhost:1313/ko/posts/timestep-and-frame-pacing/</link>
+				<title>Timestep and Frame Pacing 2</title>
+				<link>http://localhost:1313/ko/posts/timestep-and-frame-pacing-2/</link>
+				<pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/posts/timestep-and-frame-pacing-2/</guid>
+				<description>&lt;p&gt;Translation in progress. Please switch languages in the top-right corner and check again.&lt;/p&gt;&#xA;&lt;p&gt;번역이 진행 중입니다. 우측 상단에서 언어를 전환한 후 다시 확인해 주세요.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Timestep and Frame Pacing 1</title>
+				<link>http://localhost:1313/ko/posts/timestep-and-frame-pacing-1/</link>
 				<pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/ko/posts/timestep-and-frame-pacing/</guid>
+				<guid>http://localhost:1313/ko/posts/timestep-and-frame-pacing-1/</guid>
 				<description>&lt;p&gt;Translation in progress. Please switch languages in the top-right corner and check again.&lt;/p&gt;&#xA;&lt;p&gt;번역이 진행 중입니다. 우측 상단에서 언어를 전환한 후 다시 확인해 주세요.&lt;/p&gt;</description>
 			</item>
 	</channel>

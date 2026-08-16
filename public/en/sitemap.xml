@@ -4,7 +4,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/tags/game-engine/</loc>
-    <lastmod>2026-08-14T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -17,7 +17,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-08-14T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -30,7 +30,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2026-08-14T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -42,8 +42,21 @@
                 href="http://localhost:1313/ko/"
                 />
   </url><url>
+    <loc>http://localhost:1313/series/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/series/"
+                />
+  </url><url>
     <loc>http://localhost:1313/tags/system/</loc>
-    <lastmod>2026-08-14T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -56,7 +69,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-08-14T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -68,17 +81,43 @@
                 href="http://localhost:1313/ko/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1313/posts/timestep-and-frame-pacing/</loc>
-    <lastmod>2026-08-14T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/series/timestep-and-frame-pacing/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/posts/timestep-and-frame-pacing/"
+                href="http://localhost:1313/series/timestep-and-frame-pacing/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/timestep-and-frame-pacing/"
+                href="http://localhost:1313/ko/series/timestep-and-frame-pacing/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/posts/timestep-and-frame-pacing-2/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/timestep-and-frame-pacing-2/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/posts/timestep-and-frame-pacing-2/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/posts/timestep-and-frame-pacing-1/</loc>
+    <lastmod>2026-08-14T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/posts/timestep-and-frame-pacing-1/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="http://localhost:1313/ko/posts/timestep-and-frame-pacing-1/"
                 />
   </url><url>
     <loc>http://localhost:1313/tags/algorithm/</loc>
@@ -111,19 +150,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/rendering/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/series/</loc>
-    <lastmod>2026-06-03T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/series/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/series/"
-                />
   </url><url>
     <loc>http://localhost:1313/series/sky-rendering/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>
