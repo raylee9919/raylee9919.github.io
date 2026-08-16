@@ -33,19 +33,18 @@ more leeway, but it turns out that it's just slop.
 Let's dial up our simulation rate, advance one more tick, then render that state. 
 Because the later frame incorporates more recent input, it reflects lower latency. 
 Now we have two frames, but since we always draw the newest one, the older frame 
-is discarded outright. That's an acceptable tradeoff in gaming, where GPUs are 
-busy anyway, but in the world of apps, it seems it isn't.
+is discarded outright. 
  
 ![Buffering 5](resources/5.svg)
 
-What's going on is actually *triple buffering*:
+What's going on is *triple buffering*:
 
 ![Buffering 6](resources/6.svg)
 
 Three buffers are colored red, blue, and green. During the first VSync interval, 
 the red and blue buffers are *back buffers*, while the green buffer is the 
-*front buffer*. During this interval, your monitor scans out the front buffer 
-line by line, allowing you to see it. 
+*front buffer*. During this interval, while you render into back buffers, your 
+monitor scans out the front buffer line by line, allowing you to see it. 
 
 At the second VSync, the buffers are "flipped". Since the blue buffer contains 
 an older frame than the red buffer, the red buffer becomes the new front buffer. 
