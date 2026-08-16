@@ -9,10 +9,6 @@ cover: "resources/cover.webp"
 ---
 
 
-> I thought the thumbnail was pretty appropriate, as the topic is quite a deep 
-rabbit hole, IMO, and it is "a matter of time."
-
-
 ## Timestep
 
 Why you want your tick procedure to be framerate-independent and how to implement 
