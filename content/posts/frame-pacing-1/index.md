@@ -16,31 +16,28 @@ rabbit hole, IMO, and it is "a matter of time."
 ## Timestep
 
 Why you want your tick procedure to be framerate-independent and how to implement 
-it are explained wonderfully in [these posts](#acknowledgements). so I'll be brief 
-about the timestep part.
+it are explained wonderfully in [these links](#links), so let me skip the 
+implementation details :)
 
 ### Fixed Timestep
 
-You want your timestep to be fixed. If your timestep is simply the amount of time 
-elapsed since the last update, bad things can happen. For example, a bullet might 
-penetrate a wall if rendering takes too long. Instead of integrating one large, 
-variable timestep like this:
+Fixing the simulation timestep, or at least for physics, is the state of the art. 
+For example, a bullet might penetrate a wall if the time since last update spikes 
+for whatever reason while using a variable timestep.
 
 ![bullet penetrating wall](resources/bullet.svg)
 
-By taking as many fixed steps to cover the elapsed time, collisions will be 
-detected, and the bullet won't pass through the wall, like this:
+By taking as many fixed steps to cover the elapsed time, collision is detected.
 
 ![bullet no more penetrates](resources/bullet_1.svg)
 
-Still, the bullet will go through a super-thin wall, but it at least mitigates 
-the problem, Let's not tackle this *tunneling* problem, at least for now. 
-But, the real juice of fixed timestep is *determinism*. You want things to be 
-consistent.
+Still, the bullet will penetrate a paper-thin wall, but let's not tackle this 
+*tunneling* problem, at least for now. *Determinism* is a more important reason 
+to fix the timestep. You want things to be consistent.
 
 If the function for position is $p_1 = p_0 + \Delta t^2$, and the first run 
-of your game has two timesteps of 1ms and 3ms, while the second run has two 
-timesteps of 2ms, the result differs:
+of your game has two timesteps of 10ms and 30ms, while the second run has two 
+timesteps of 20ms, the result differs:
 
 ![Differ](resources/integration.svg)
 
@@ -64,7 +61,7 @@ a judder.
 
 ### Interpolation
 
-Interpolation comes to rescue! When it comes to rendering, let's interpolate 
+Interpolation comes to rescue! When it's time to render, let's interpolate 
 between the two states. First, we need to compute $\alpha$, which is a blend 
 weight between $\mathrm{[}0,1\mathrm{]}$.
 
@@ -81,7 +78,6 @@ next state instead, like this:
 
 ![timestep_4](resources/timestep_4.svg)
 
-Should we compute the next state and interpolate between the current and next states? 
 If we do that, something bad can happen. 
 
 For example, let's say a rock is flying toward you, which is lethal. You press 
@@ -104,8 +100,10 @@ guaranteed to be valid itself, as illustrated below:
 
 Those two players' movements aren't linear, yet we are linearly interpolating 
 between two states for rendering. Two players didn't actually collide, but it 
-sure looks like they did! Maybe you could use some kind of velocity buffer, 
-but anyway, you get the point.
+sure looks like they did! 
+
+> Maybe you could use some kind of velocity buffer or non-linear interpolation, 
+but you get the point.
 
 
 ### One Last Tick
@@ -115,7 +113,7 @@ interpolation altogether if you want. You can simply simulate one more time.
 
 But, we can compute a temporary game state using the remainder $t$ as the 
 timestep. This state is transient and used solely for rendering; it is discarded 
-afterward. It is not an authorized or "real" game state.
+afterward. It's not a "real" game state.
 
 ![timestep_6](resources/timestep_6.svg)
 
@@ -129,22 +127,22 @@ approach might be not feasible for you. You can even extrapolate from the
 previous and current states, but rumors say nobody does that. 
 
 
-### Unity
+### Unity Physics
 
 As of 2026, Unity's default physics timestep is still 50Hz, which is a rather odd 
 choice of number, and game states are not globally interpolated by default. 
 As illustrated below, the mismatch between physics update and rendering can 
-cause noticeable jank on a 60Hz monitor. Remember, a stable 50 FPS can feel better 
+cause noticeable jank on a 60Hz monitor. A stable 50 FPS can feel better 
 than 120 FPS with stuttering.
 
 ![Unity Physics](resources/Unity.svg "You can see the arrow's gradient increasing.")
 
 So I would say tweak your default physics timestep to 60Hz or something reasonable. 
 You could even consider [this option](https://docs.unity3d.com/ScriptReference/Rigidbody-interpolation.html). 
-But, here's the catch: as described before, it interpolates between the previous 
-and current states. So while other physics states will render their current 
-state, a rigid body with interpolation enabled will render an interpolated state, 
-effectively introducing additional tick of latency. 
+But, it interpolates between the previous and current states. So while other 
+physics states will render their current state, a rigid body with interpolation 
+enabled will render an interpolated state, effectively introducing additional 
+tick of latency. 
 
 
 ### Thoughts
@@ -152,9 +150,8 @@ effectively introducing additional tick of latency.
 Certainly, it looks like there's no one-size-fits-all solution. I dunno, man. 
 
 
-## Acknowledgements
+## Links
 
-### Timestep
 [Glenn Fiedler. "Fix Your Timestep!"](https://www.gafferongames.com/post/fix_your_timestep/)  
 [Jakub Tomšů. "Fixed timestep without interpolation"](https://jakubtomsu.github.io/posts/fixed_timestep_without_interpolation/)  
 [Taha Torabpour. "Upgrade Your Timestep"](https://lotusspring.substack.com/p/upgrade-your-timestep)  

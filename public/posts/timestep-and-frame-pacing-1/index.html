@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-14T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-14T00:00:00+00:00">
-	<meta itemprop="wordCount" content="874">
+	<meta itemprop="wordCount" content="827">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -904,7 +904,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>5 min</span>
+              <span>4 min</span>
             </div>
             
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>874 words</span>
+              <span>827 words</span>
             </div>
             
           </div>
@@ -1119,12 +1119,11 @@ rabbit hole, IMO, and it is &ldquo;a matter of time.&rdquo;</p>
 </script>
 <h2 id="timestep">Timestep<a href="#timestep" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Why you want your tick procedure to be framerate-independent and how to implement
 it are explained wonderfully in <a
-    href="#acknowledgements">these posts</a>. so I&rsquo;ll be brief
-about the timestep part.</p>
-<h3 id="fixed-timestep">Fixed Timestep<a href="#fixed-timestep" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>You want your timestep to be fixed. If your timestep is simply the amount of time
-elapsed since the last update, bad things can happen. For example, a bullet might
-penetrate a wall if rendering takes too long. Instead of integrating one large,
-variable timestep like this:</p>
+    href="#links">these links</a>, so let me skip the
+implementation details :)</p>
+<h3 id="fixed-timestep">Fixed Timestep<a href="#fixed-timestep" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Fixing the simulation timestep, or at least for physics, is the state of the art.
+For example, a bullet might penetrate a wall if the time since last update spikes
+for whatever reason while using a variable timestep.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1156,8 +1155,7 @@ variable timestep like this:</p>
 
   </figure>
 </p>
-<p>By taking as many fixed steps to cover the elapsed time, collisions will be
-detected, and the bullet won&rsquo;t pass through the wall, like this:</p>
+<p>By taking as many fixed steps to cover the elapsed time, collision is detected.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1189,13 +1187,12 @@ detected, and the bullet won&rsquo;t pass through the wall, like this:</p>
 
   </figure>
 </p>
-<p>Still, the bullet will go through a super-thin wall, but it at least mitigates
-the problem, Let&rsquo;s not tackle this <em>tunneling</em> problem, at least for now.
-But, the real juice of fixed timestep is <em>determinism</em>. You want things to be
-consistent.</p>
+<p>Still, the bullet will penetrate a paper-thin wall, but let&rsquo;s not tackle this
+<em>tunneling</em> problem, at least for now. <em>Determinism</em> is a more important reason
+to fix the timestep. You want things to be consistent.</p>
 <p>If the function for position is $p_1 = p_0 + \Delta t^2$, and the first run
-of your game has two timesteps of 1ms and 3ms, while the second run has two
-timesteps of 2ms, the result differs:</p>
+of your game has two timesteps of 10ms and 30ms, while the second run has two
+timesteps of 20ms, the result differs:</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1299,7 +1296,7 @@ a judder.</p>
 
   </figure>
 </p>
-<h3 id="interpolation">Interpolation<a href="#interpolation" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Interpolation comes to rescue! When it comes to rendering, let&rsquo;s interpolate
+<h3 id="interpolation">Interpolation<a href="#interpolation" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Interpolation comes to rescue! When it&rsquo;s time to render, let&rsquo;s interpolate
 between the two states. First, we need to compute $\alpha$, which is a blend
 weight between $\mathrm{[}0,1\mathrm{]}$.</p>
 <p>
@@ -1400,8 +1397,7 @@ next state instead, like this:</p>
 
   </figure>
 </p>
-<p>Should we compute the next state and interpolate between the current and next states?
-If we do that, something bad can happen.</p>
+<p>If we do that, something bad can happen.</p>
 <p>For example, let&rsquo;s say a rock is flying toward you, which is lethal. You press
 the attack button to destroy it, but the input arrives slightly after we have
 already started rendering. If we compute the next state without taking future
@@ -1477,13 +1473,50 @@ guaranteed to be valid itself, as illustrated below:</p>
 </p>
 <p>Those two players&rsquo; movements aren&rsquo;t linear, yet we are linearly interpolating
 between two states for rendering. Two players didn&rsquo;t actually collide, but it
-sure looks like they did! Maybe you could use some kind of velocity buffer,
-but anyway, you get the point.</p>
+sure looks like they did!</p>
+
+  <blockquote
+    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
+  >
+    <div class="prose prose-sm max-w-none">
+      <p>Maybe you could use some kind of velocity buffer or non-linear interpolation,
+but you get the point.</p>
+
+    </div>
+  </blockquote><script>
+  function toggleAlert(alertId) {
+    const content = document.getElementById(alertId + "-content");
+    const chevron = document.getElementById(alertId + "-chevron");
+    const header = content.previousElementSibling;
+
+    if (content.classList.contains("hidden")) {
+      content.classList.remove("hidden");
+      chevron.style.transform = "rotate(0deg)";
+      header.setAttribute("aria-expanded", "true");
+    } else {
+      content.classList.add("hidden");
+      chevron.style.transform = "rotate(-90deg)";
+      header.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
+    collapsedAlerts.forEach(function (content) {
+      const alertId = content.id.replace("-content", "");
+      const chevron = document.getElementById(alertId + "-chevron");
+      if (chevron) {
+        chevron.style.transform = "rotate(-90deg)";
+      }
+    });
+  });
+</script>
 <h3 id="one-last-tick">One Last Tick<a href="#one-last-tick" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Yeah, things get gnarly pretty quickly. As it turns out, you can ditch
 interpolation altogether if you want. You can simply simulate one more time.</p>
 <p>But, we can compute a temporary game state using the remainder $t$ as the
 timestep. This state is transient and used solely for rendering; it is discarded
-afterward. It is not an authorized or &ldquo;real&rdquo; game state.</p>
+afterward. It&rsquo;s not a &ldquo;real&rdquo; game state.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1551,10 +1584,10 @@ previous game state by our fixed timestep, not the temporary game state.</p>
 <p>But as you can imagine, if your game is physics or simulation-heavy, this
 approach might be not feasible for you. You can even extrapolate from the
 previous and current states, but rumors say nobody does that.</p>
-<h3 id="unity">Unity<a href="#unity" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>As of 2026, Unity&rsquo;s default physics timestep is still 50Hz, which is a rather odd
+<h3 id="unity-physics">Unity Physics<a href="#unity-physics" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>As of 2026, Unity&rsquo;s default physics timestep is still 50Hz, which is a rather odd
 choice of number, and game states are not globally interpolated by default.
 As illustrated below, the mismatch between physics update and rendering can
-cause noticeable jank on a 60Hz monitor. Remember, a stable 50 FPS can feel better
+cause noticeable jank on a 60Hz monitor. A stable 50 FPS can feel better
 than 120 FPS with stuttering.</p>
 <p>
 <figure
@@ -1595,12 +1628,12 @@ You could even consider <a
     class="inline-flex items-center gap-1"
   >this option<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a>.
-But, here&rsquo;s the catch: as described before, it interpolates between the previous
-and current states. So while other physics states will render their current
-state, a rigid body with interpolation enabled will render an interpolated state,
-effectively introducing additional tick of latency.</p>
+But, it interpolates between the previous and current states. So while other
+physics states will render their current state, a rigid body with interpolation
+enabled will render an interpolated state, effectively introducing additional
+tick of latency.</p>
 <h3 id="thoughts">Thoughts<a href="#thoughts" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Certainly, it looks like there&rsquo;s no one-size-fits-all solution. I dunno, man.</p>
-<h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="timestep-1">Timestep<a href="#timestep-1" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p><a
+<h2 id="links">Links<a href="#links" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
     href="https://www.gafferongames.com/post/fix_your_timestep/"target="_blank"
     class="inline-flex items-center gap-1"
   >Glenn Fiedler. &ldquo;Fix Your Timestep!&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -1655,7 +1688,7 @@ effectively introducing additional tick of latency.</p>
       <div class="nav-item">
         
           <a
-            href="/posts/triangular-numbers-in-quadratic-probing/"
+            href="/posts/sky-rendering-2/"
             class="group bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex min-h-[140px] flex-col justify-between rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
           >
             <div>
@@ -1671,7 +1704,7 @@ effectively introducing additional tick of latency.</p>
               <h3
                 class="text-foreground group-hover:text-primary mb-3 line-clamp-2 text-lg leading-tight font-semibold transition-colors duration-200"
               >
-                Triangular Numbers in Quadratic Probing
+                Sky Rendering 2
               </h3>
             </div>
 
@@ -1680,8 +1713,8 @@ effectively introducing additional tick of latency.</p>
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
 </svg>
 
-              <time datetime="2026-08-06">
-                08/06
+              <time datetime="2026-06-03">
+                06/03
               </time>
             </div>
           </a>
@@ -2067,15 +2100,11 @@ effectively introducing additional tick of latency.</p>
         <li><a href="#fixed-timestep">Fixed Timestep</a></li>
         <li><a href="#interpolation">Interpolation</a></li>
         <li><a href="#one-last-tick">One Last Tick</a></li>
-        <li><a href="#unity">Unity</a></li>
+        <li><a href="#unity-physics">Unity Physics</a></li>
         <li><a href="#thoughts">Thoughts</a></li>
       </ul>
     </li>
-    <li><a href="#acknowledgements">Acknowledgements</a>
-      <ul>
-        <li><a href="#timestep-1">Timestep</a></li>
-      </ul>
-    </li>
+    <li><a href="#links">Links</a></li>
   </ul>
 </nav>
             </div>
