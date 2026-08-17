@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="539">
+	<meta itemprop="wordCount" content="801">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -904,7 +904,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>3 min</span>
+              <span>4 min</span>
             </div>
             
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>539 words</span>
+              <span>801 words</span>
             </div>
             
           </div>
@@ -1149,8 +1149,7 @@ more leeway, but it turns out that it&rsquo;s just slop.</p>
 <h3 id="triple-buffering">Triple Buffering<a href="#triple-buffering" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Let&rsquo;s dial up our simulation rate, advance one more tick, then render that state.
 Because the later frame incorporates more recent input, it reflects lower latency.
 Now we have two frames, but since we always draw the newest one, the older frame
-is discarded outright. That&rsquo;s an acceptable tradeoff in gaming, where GPUs are
-busy anyway, but in the world of apps, it seems it isn&rsquo;t.</p>
+is discarded outright.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1182,7 +1181,7 @@ busy anyway, but in the world of apps, it seems it isn&rsquo;t.</p>
 
   </figure>
 </p>
-<p>What&rsquo;s going on is actually <em>triple buffering</em>:</p>
+<p>What&rsquo;s going on is <em>triple buffering</em>:</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1216,8 +1215,8 @@ busy anyway, but in the world of apps, it seems it isn&rsquo;t.</p>
 </p>
 <p>Three buffers are colored red, blue, and green. During the first VSync interval,
 the red and blue buffers are <em>back buffers</em>, while the green buffer is the
-<em>front buffer</em>. During this interval, your monitor scans out the front buffer
-line by line, allowing you to see it.</p>
+<em>front buffer</em>. During this interval, while you render into back buffers, your
+monitor scans out the front buffer line by line, allowing you to see it.</p>
 <p>At the second VSync, the buffers are &ldquo;flipped&rdquo;. Since the blue buffer contains
 an older frame than the red buffer, the red buffer becomes the new front buffer.
 The monitor scans it out again, while the GPU renders the next frame into the
@@ -1260,6 +1259,323 @@ old ones.</p>
     });
   });
 </script>
+<h3 id="the-elusive-frame-timing">The Elusive Frame Timing<a href="#the-elusive-frame-timing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Back in 2018, <em>Croteam</em> (creators of <em>Serious Sam</em> and <em>The Talos Principle</em>)
+gave a <a
+    href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
+    class="inline-flex items-center gap-1"
+  >talk<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>
+about the weird phenomena surronding elusive frame stuttering. Surely, there
+must be a performance hitch somewhere, and the frame simply missed its deadline
+to be presented, right? That&rsquo;s what they expected to see:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_1.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/croteam_1.svg"
+    alt="Croteam_1"
+    title="Blue frame had to be shown twice because the green fame missed its deadline."
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_1.svg"
+    data-gallery-alt="Croteam_1"
+    data-gallery-title="Blue frame had to be shown twice because the green fame missed its deadline."
+  /></div>
+
+  <figcaption class="image-caption">
+      Blue frame had to be shown twice because the green fame missed its deadline.
+    </figcaption></figure>
+</p>
+<p>Let me break it down for you. A typical game would look something like this:</p>
+<div
+  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
+  data-code-block
+  data-code-id="code-0"
+  data-collapsible="true"
+  data-default-state="expanded"
+  data-collapsed="false"
+  data-auto-collapse-lines="30"
+  data-auto-collapse-height="400"
+  data-collapsed-height="120"
+>
+  
+  <div
+    class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"
+  >
+    
+    <div class="flex items-center gap-2">
+      <div class="text-muted-foreground shrink-0">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+</svg>
+      </div>
+      <span class="text-muted-foreground text-sm font-medium">
+        C
+      </span>
+    </div>
+
+    
+    <div class="flex items-center gap-2">
+      <button
+          class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+          type="button"
+          data-code-action="toggle-collapse"
+          data-label-expand="Expand"
+          data-label-collapse="Collapse"
+          title="Collapse"
+          aria-label="Collapse"
+          aria-controls="code-0"
+          aria-expanded="true"
+        >
+          <span class="collapse-chevron transition-transform duration-200 ease-out">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </span>
+          <span class="collapse-text hidden sm:inline">Collapse</span>
+        </button>
+      <button
+        class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+        type="button"
+        data-code-action="copy"
+        data-label-copy="Copy"
+        data-label-copied="Copied"
+        title="Copy"
+        aria-label="Copy"
+      >
+        <span class="copy-icon">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+</svg>
+        </span>
+        <span class="copy-text hidden sm:inline">Copy</span>
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="code-block-content relative" id="code-0">
+    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">TimeOld</span> <span class="o">=</span> <span class="nf">Now</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="n">GameRunning</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">TimeNew</span> <span class="o">=</span> <span class="nf">Now</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">DeltaTime</span> <span class="o">=</span> <span class="n">TimeNew</span> <span class="o">-</span> <span class="n">TimeOld</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">TimeOld</span> <span class="o">=</span> <span class="n">TimeNew</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">State</span> <span class="o">=</span> <span class="nf">Update</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Render</span><span class="p">(</span><span class="n">State</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
+    <div hidden data-code-source>float TimeOld = Now();
+while (GameRunning) {
+    float TimeNew = Now();
+    float DeltaTime = TimeNew - TimeOld;
+    TimeOld = TimeNew;
+
+    State = Update(DeltaTime);
+    Render(State);
+}</div>
+    
+    <div
+      class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"
+      hidden
+    >
+      <button
+        class="collapse-overlay-btn text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all duration-200"
+        type="button"
+        data-code-action="expand"
+        aria-label="Expand"
+        title="Expand"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+      </button>
+    </div>
+  </div>
+</div>
+<p>Oops, there was a hitch, and <code>DeltaTime</code> was computed as 24.8ms. That&rsquo;s ok. We
+can simply move our character forward by 24.8ms to keep things feeling natural.
+Let&rsquo;s integrate <code>DeltaTime</code> into our <code>Update</code> function, like this:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_2.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/croteam_2.svg"
+    alt="Croteam_2"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_2.svg"
+    data-gallery-alt="Croteam_2"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>Then the GPU renders to the buffer, and the display scans it out.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_3.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/croteam_3.svg"
+    alt="Croteam_3"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_3.svg"
+    data-gallery-alt="Croteam_3"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>So we see this:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_4.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/croteam_4.svg"
+    alt="Croteam_4"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_4.svg"
+    data-gallery-alt="Croteam_4"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>Here&rsquo;s where the mismatch happens. What was the last frame we saw? This blue
+frame, of course:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_5.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/croteam_5.svg"
+    alt="Croteam_5"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_5.svg"
+    data-gallery-alt="Croteam_5"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>Given that your monitor is running at 60Hz, the interval between the times
+you see new frames is 16.67ms.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_6.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/croteam_6.svg"
+    alt="Croteam_6"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_6.svg"
+    data-gallery-alt="Croteam_6"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>Your brain expects the character in the green frame to have moved for 16.67ms
+since the previous frame. But the game moved it by 24.8ms because <strong>it had no
+idea when the frame would actually be displayed.</strong></p>
+<p>The game produced frame just in time. The character didn&rsquo;t lag behind. In fact,
+it moved too far ahead.</p>
 <h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
     href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
     class="inline-flex items-center gap-1"
@@ -1965,6 +2281,7 @@ and we&rsquo;ll get into them later.</p>
       <ul>
         <li><a href="#leeway-aka-slop">Leeway, aka Slop</a></li>
         <li><a href="#triple-buffering">Triple Buffering</a></li>
+        <li><a href="#the-elusive-frame-timing">The Elusive Frame Timing</a></li>
       </ul>
     </li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>

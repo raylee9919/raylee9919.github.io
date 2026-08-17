@@ -122,16 +122,6 @@
   </url><url>
     <loc>http://localhost:1313/ko/posts/%EC%82%BC%EA%B0%81%EC%88%98%EC%99%80-%EC%9D%B4%EC%B0%A8-%ED%83%90%EC%82%AC/</loc>
     <lastmod>2026-08-06T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/posts/triangular-numbers-in-quadratic-probing/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/posts/%EC%82%BC%EA%B0%81%EC%88%98%EC%99%80-%EC%9D%B4%EC%B0%A8-%ED%83%90%EC%82%AC/"
-                />
   </url><url>
     <loc>http://localhost:1313/ko/tags/%EC%88%98%ED%95%99/</loc>
     <lastmod>2026-08-06T00:00:00+00:00</lastmod>

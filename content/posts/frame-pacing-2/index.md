@@ -55,6 +55,62 @@ green buffer, which was the front buffer just before.
 old ones.
 
 
+### The Elusive Frame Timing
+
+Back in 2018, *Croteam* (creators of *Serious Sam* and *The Talos Principle*) 
+gave a [talk](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The) 
+about the weird phenomena surronding elusive frame stuttering. Surely, there 
+must be a performance hitch somewhere, and the frame simply missed its deadline 
+to be presented, right? That's what they expected to see:
+
+![Croteam_1](resources/croteam_1.svg "Blue frame had to be shown twice because the green fame missed its deadline.")
+
+ Let me break it down for you. A typical game would look something like this:
+
+```C
+float TimeOld = Now();
+while (GameRunning) {
+    float TimeNew = Now();
+    float DeltaTime = TimeNew - TimeOld;
+    TimeOld = TimeNew;
+
+    State = Update(DeltaTime);
+    Render(State);
+}
+```
+
+Oops, there was a hitch, and `DeltaTime` was computed as 24.8ms. That's ok. We 
+can simply move our character forward by 24.8ms to keep things feeling natural. 
+Let's integrate `DeltaTime` into our `Update` function, like this:
+
+![Croteam_2](resources/croteam_2.svg)
+
+Then the GPU renders to the buffer, and the display scans it out.
+
+![Croteam_3](resources/croteam_3.svg)
+
+So we see this:
+
+![Croteam_4](resources/croteam_4.svg)
+
+Here's where the mismatch happens. What was the last frame we saw? This blue 
+frame, of course:
+
+![Croteam_5](resources/croteam_5.svg)
+
+Given that your monitor is running at 60Hz, the interval between the times 
+you see new frames is 16.67ms.
+
+![Croteam_6](resources/croteam_6.svg)
+
+Your brain expects the character in the green frame to have moved for 16.67ms 
+since the previous frame. But the game moved it by 24.8ms because **it had no 
+idea when the frame would actually be displayed.**
+
+The game produced frame just in time. The character didn't lag behind. In fact, 
+it moved too far ahead.
+
+
 
 
 ## Acknowledgements

@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-14T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-14T00:00:00+00:00">
-	<meta itemprop="wordCount" content="827">
+	<meta itemprop="wordCount" content="808">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>827 words</span>
+              <span>808 words</span>
             </div>
             
           </div>
@@ -1079,45 +1079,7 @@
 
   
   <article class="prose prose-neutral dark:prose-invert mb-12 max-w-none">
-    
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>I thought the thumbnail was pretty appropriate, as the topic is quite a deep
-rabbit hole, IMO, and it is &ldquo;a matter of time.&rdquo;</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<h2 id="timestep">Timestep<a href="#timestep" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Why you want your tick procedure to be framerate-independent and how to implement
+    <h2 id="timestep">Timestep<a href="#timestep" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Why you want your tick procedure to be framerate-independent and how to implement
 it are explained wonderfully in <a
     href="#links">these links</a>, so let me skip the
 implementation details :)</p>
@@ -1188,8 +1150,8 @@ for whatever reason while using a variable timestep.</p>
   </figure>
 </p>
 <p>Still, the bullet will penetrate a paper-thin wall, but let&rsquo;s not tackle this
-<em>tunneling</em> problem, at least for now. <em>Determinism</em> is a more important reason
-to fix the timestep. You want things to be consistent.</p>
+<em>tunneling</em> problem, at least for now, because <em>Determinism</em> is a more important
+reason to fix the timestep. You want things to be consistent.</p>
 <p>If the function for position is $p_1 = p_0 + \Delta t^2$, and the first run
 of your game has two timesteps of 10ms and 30ms, while the second run has two
 timesteps of 20ms, the result differs:</p>
@@ -1471,9 +1433,9 @@ guaranteed to be valid itself, as illustrated below:</p>
 
   </figure>
 </p>
-<p>Those two players&rsquo; movements aren&rsquo;t linear, yet we are linearly interpolating
-between two states for rendering. Two players didn&rsquo;t actually collide, but it
-sure looks like they did!</p>
+<p>Let&rsquo;s say those players are moving in some wacky non-linear fashion, yet we are
+linearly interpolating between two states for rendering. Two players didn&rsquo;t
+actually collide, but it sure looks like they did!</p>
 
   <blockquote
     class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
@@ -1513,7 +1475,7 @@ but you get the point.</p>
   });
 </script>
 <h3 id="one-last-tick">One Last Tick<a href="#one-last-tick" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Yeah, things get gnarly pretty quickly. As it turns out, you can ditch
-interpolation altogether if you want. You can simply simulate one more time.</p>
+interpolation altogether if you want. You just tick one more time.</p>
 <p>But, we can compute a temporary game state using the remainder $t$ as the
 timestep. This state is transient and used solely for rendering; it is discarded
 afterward. It&rsquo;s not a &ldquo;real&rdquo; game state.</p>
