@@ -28,8 +28,8 @@ By taking as many fixed steps to cover the elapsed time, collision is detected.
 ![bullet no more penetrates](resources/bullet_1.svg)
 
 Still, the bullet will penetrate a paper-thin wall, but let's not tackle this 
-*tunneling* problem, at least for now. *Determinism* is a more important reason 
-to fix the timestep. You want things to be consistent.
+*tunneling* problem, at least for now, because *Determinism* is a more important 
+reason to fix the timestep. You want things to be consistent.
 
 If the function for position is $p_1 = p_0 + \Delta t^2$, and the first run 
 of your game has two timesteps of 10ms and 30ms, while the second run has two 
@@ -94,9 +94,9 @@ guaranteed to be valid itself, as illustrated below:
 
 ![Invalid Interpolation](resources/invalid.svg)
 
-Those two players' movements aren't linear, yet we are linearly interpolating 
-between two states for rendering. Two players didn't actually collide, but it 
-sure looks like they did! 
+Let's say those players are moving in some wacky non-linear fashion, yet we are 
+linearly interpolating between two states for rendering. Two players didn't 
+actually collide, but it sure looks like they did! 
 
 > Maybe you could use some kind of velocity buffer or non-linear interpolation, 
 but you get the point.
@@ -105,7 +105,7 @@ but you get the point.
 ### One Last Tick
 
 Yeah, things get gnarly pretty quickly. As it turns out, you can ditch 
-interpolation altogether if you want. You can simply simulate one more time. 
+interpolation altogether if you want. You just tick one more time. 
 
 But, we can compute a temporary game state using the remainder $t$ as the 
 timestep. This state is transient and used solely for rendering; it is discarded 
