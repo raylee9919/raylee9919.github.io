@@ -12,6 +12,9 @@ cover: "resources/cover.webp"
 
 # Frame Pacing
 
+> Frame pacing is the synchronization of a game’s logic and rendering loop 
+with an OS’s display subsystem and the underlying display hardware - Android
+
 ## Smoothness Isn't in the Eye of Your Game
 
 We decoupled our simulation from rendering and fixed its timestep last time. 
@@ -69,95 +72,78 @@ frames is 16.67ms.
 ![Croteam_6](resources/croteam_6.svg)
 
 Your brain expects the character in the green frame to have moved for 16.67ms 
-since the previous one. But the game actually moved it by 24.8ms because **it 
-had no idea when the frame would actually be displayed.**
-
-The frame was produced just in time. The character didn't lag behind at all. If 
-anything, it moved ahead.
-
-On the next frame, things stabilize and `DeltaTime` comes out to 10.7ms. The 
-character moves less, and everything quietly settles back into place. 
+since the previous one. But the game actually moved it by 24.8ms, because **it 
+had no idea when the previous frame was displayed and when the current frame 
+will be displayed**.
 
 ![Croteam_7](resources/croteam_7.svg)
 
-
-## So, what do we do about it?
-
-
-
-### Leeway, aka Slop
-
-How long does it take for my mouse input to be reflected in a frame and shown 
-on my monitor? In other words, what's the latency? It looks something like this:
-
-![Buffering 1](resources/1.svg)
-
-Good news! Our hardware got faster, and we now have 2x performance improvement! 
-Surely, the input latency has improved, right? Actually, it hasn't. We have 
-more leeway, but it turns out that it's just slop. 
-
-![Buffering 2](resources/2.svg)
+Wait, isn't the interval just a constant 16.67ms? Why don't we just plug that 
+in instead of computing `DeltaTime` every frame?
 
 
-### Triple Buffering
 
-Let's dial up our simulation rate, advance one more tick, then render that state. 
-Because the later frame incorporates more recent input, it reflects lower latency. 
-Now we have two frames, but since we always draw the newest one, the older frame 
-is discarded outright. 
- 
-![Buffering 5](resources/5.svg)
+## Asynchrony and Middleman
 
-What's going on is *triple buffering*:
+### Old Days
 
-![Buffering 6](resources/6.svg)
+In good old days, things were fixed. Graphics hardware was either thin or 
+nonexistent, and there were no pipelines. Things were synchronous, and there 
+was no middleman between your game and the display. The game simply wrote into 
+the buffer, which was then presented to you immediately. So, you could just 
+plug in 16.67ms, or whatever the display's refresh interval happened to be. 
 
-Three buffers are colored red, blue, and green. During the first VSync interval, 
-the red and blue buffers are *back buffers*, while the green buffer is the 
-*front buffer*. During this interval, while you render into back buffers, your 
-monitor scans out the front buffer line by line, allowing you to see it. 
+![Modern Stack 1](resources/modern_1.svg)
 
-At the second VSync, the buffers are "flipped". Since the blue buffer contains 
-an older frame than the red buffer, the red buffer becomes the new front buffer. 
-The monitor scans it out again, while the GPU renders the next frame into the 
-green buffer, which was the front buffer just before.
+### GPU
+
+Here comes every gamer's favorite hardware: GPU.
+
+![Modern Stack 2](resources/modern_2.svg)
+
+This was what we were seeing before, so my point still stands: we can just 
+use a fixed 16.67ms.
+
+### Throughput and Latency
+
+Good news. your hardware just got 2x faster. Technology! 
+
+![Modern Stack 3](resources/modern_3.svg)
+
+Time to talk about input latency. How long does it take for my mouse input to 
+be reflected in a frame and shown on my monitor? it depends on where your mouse 
+it on your screen, as the display scans the buffer line by line, but it would 
+be something like this:
+
+![Modern Stack 4](resources/modern_4.svg)
+
+As we extra powerful machinery and more leeway, can't we make use of it? What 
+if we render one more time? Like this:
+
+![Modern Stack 5](resources/modern_5.svg)
+
+And as it incorporates more hot inputs, if we present it instead, the input 
+latency would improve:
+
+![Modern Stack 6](resources/modern_6.svg)
+
+What we're doing here is *triple buffering*:
+
+![Modern Stack 7](resources/modern_7.svg "Three buffers are colored red, blue, and green.")
+
+During the first VSync interval, the green and blue buffers are *back buffers*, 
+while the red buffer is the *front buffer*. During this interval, while the 
+GPU renders into the back buffers, the display scans out the front buffer line 
+by line, allowing you to see it. 
+
+Beginning of the second interval, the buffers are "flipped". Since the blue 
+buffer contains an older frame than the green buffer, the green buffer now 
+becomes the front buffer, which again, scanned out by the display.
 
 > This is what Windows DXGI flip discard mode is. It queues "flips" and discards 
 old ones.
 
 
-
-## Acknowledgements
-
-[Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
-[Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
-[Android. "Frame Pacing Libary"](https://developer.android.com/games/sdk/frame-pacing)  
-[James Darpinian. "Techniques to Reduce Latency in Your Apps"](https://james.darpinian.com/blog/latency-techniques/)  
-[Raph Levien. "Swapchains and frame pacing"](https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html)  
-[Intel. Sample Application for Direct3D 12 Flip Model Swap Chains](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)
-
-
-
-
-# Temporary
-
-We can do some statistical voodoo and somehow predict how long rendering 
-will take, then defer rendering and complete just before VSync. That'll give us 
-the best latency without wasting resources.
-
-![Buffering 4](resources/4.svg)
-
-
-In good old days, things were fixed, graphics hardware was either thin or 
-nonexistent, and there were no pipelines. Everything was synchronous. There 
-was no middleman between the CPU and the display.
-
-![Frame Pacing 1](resources/fp1.svg "Good old syncrhonous days")
-
-Enter the modern era: everything is pipelined. First, let's take a look at 
-how a particular frame generally makes its way to the screen:
-
-![Frame Pacing 2](resources/fp2.svg)
 
 Game ticks on the CPU and submits draw commands to the GPU through driver. 
 Then, the GPU gets gets to work and renders to the app's render target. We 
@@ -169,6 +155,24 @@ line.
 
 ![Drop Shadow](resources/shadow.png "Look at that sleek shadow!")
 
+
+
+
+
+## Acknowledgements
+
+[Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
+[Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
+[Android. "Frame Pacing Libary"](https://developer.android.com/games/sdk/frame-pacing)  
+[Raph Levien. "Swapchains and frame pacing"](https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html)  
+[Intel. Sample Application for Direct3D 12 Flip Model Swap Chains](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)
+[James Darpinian. "Techniques to Reduce Latency in Your Apps"](https://james.darpinian.com/blog/latency-techniques/)  
+
+
+
+
+# Temporary
+
 In Windows, there's something called *exclusive fullscreen mode*. This mode 
 allows your app to  bypass the compositor. If your app is in fullscreen, there's 
 nothing else to composite, right? So the timeline becomes something like this:
@@ -177,3 +181,12 @@ nothing else to composite, right? So the timeline becomes something like this:
 
 > Compositor, swap chain and flip modes are yet another rabbit hole, 
 and we'll get into them later.
+
+
+
+We can do some statistical voodoo and somehow predict how long rendering 
+will take, then defer rendering and complete just before VSync. That'll give us 
+the best latency without wasting resources.
+
+![Buffering 4](resources/4.svg)
+

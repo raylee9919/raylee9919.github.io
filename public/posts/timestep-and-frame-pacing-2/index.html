@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="862">
+	<meta itemprop="wordCount" content="878">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>862 words</span>
+              <span>878 words</span>
             </div>
             
           </div>
@@ -1079,7 +1079,82 @@
 
   
   <article class="prose prose-neutral dark:prose-invert mb-12 max-w-none">
-    <h1 id="frame-pacing">Frame Pacing<a href="#frame-pacing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><h2 id="smoothness-isnt-in-the-eye-of-your-game">Smoothness Isn&rsquo;t in the Eye of Your Game<a href="#smoothness-isnt-in-the-eye-of-your-game" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>We decoupled our simulation from rendering and fixed its timestep last time.
+    
+  <blockquote
+    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
+  >
+    <div class="prose prose-sm max-w-none">
+      <p>Working on it.</p>
+
+    </div>
+  </blockquote><script>
+  function toggleAlert(alertId) {
+    const content = document.getElementById(alertId + "-content");
+    const chevron = document.getElementById(alertId + "-chevron");
+    const header = content.previousElementSibling;
+
+    if (content.classList.contains("hidden")) {
+      content.classList.remove("hidden");
+      chevron.style.transform = "rotate(0deg)";
+      header.setAttribute("aria-expanded", "true");
+    } else {
+      content.classList.add("hidden");
+      chevron.style.transform = "rotate(-90deg)";
+      header.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
+    collapsedAlerts.forEach(function (content) {
+      const alertId = content.id.replace("-content", "");
+      const chevron = document.getElementById(alertId + "-chevron");
+      if (chevron) {
+        chevron.style.transform = "rotate(-90deg)";
+      }
+    });
+  });
+</script>
+<h1 id="frame-pacing">Frame Pacing<a href="#frame-pacing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1>
+  <blockquote
+    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
+  >
+    <div class="prose prose-sm max-w-none">
+      <p>Frame pacing is the synchronization of a game’s logic and rendering loop
+with an OS’s display subsystem and the underlying display hardware - Android</p>
+
+    </div>
+  </blockquote><script>
+  function toggleAlert(alertId) {
+    const content = document.getElementById(alertId + "-content");
+    const chevron = document.getElementById(alertId + "-chevron");
+    const header = content.previousElementSibling;
+
+    if (content.classList.contains("hidden")) {
+      content.classList.remove("hidden");
+      chevron.style.transform = "rotate(0deg)";
+      header.setAttribute("aria-expanded", "true");
+    } else {
+      content.classList.add("hidden");
+      chevron.style.transform = "rotate(-90deg)";
+      header.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
+    collapsedAlerts.forEach(function (content) {
+      const alertId = content.id.replace("-content", "");
+      const chevron = document.getElementById(alertId + "-chevron");
+      if (chevron) {
+        chevron.style.transform = "rotate(-90deg)";
+      }
+    });
+  });
+</script>
+<h2 id="smoothness-isnt-in-the-eye-of-your-game">Smoothness Isn&rsquo;t in the Eye of Your Game<a href="#smoothness-isnt-in-the-eye-of-your-game" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>We decoupled our simulation from rendering and fixed its timestep last time.
 But is your rendering delta time &ldquo;correct&rdquo;?</p>
 <p>Back in 2018, <em>Croteam</em> (creators of <em>Serious Sam</em> and <em>The Talos Principle</em>)
 gave a <a
@@ -1397,12 +1472,9 @@ frames is 16.67ms.</p>
   </figure>
 </p>
 <p>Your brain expects the character in the green frame to have moved for 16.67ms
-since the previous one. But the game actually moved it by 24.8ms because <strong>it
-had no idea when the frame would actually be displayed.</strong></p>
-<p>The frame was produced just in time. The character didn&rsquo;t lag behind at all. If
-anything, it moved ahead.</p>
-<p>On the next frame, things stabilize and <code>DeltaTime</code> comes out to 10.7ms. The
-character moves less, and everything quietly settles back into place.</p>
+since the previous one. But the game actually moved it by 24.8ms, because <strong>it
+had no idea when the previous frame was displayed and when the current frame
+will be displayed</strong>.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1434,8 +1506,13 @@ character moves less, and everything quietly settles back into place.</p>
 
   </figure>
 </p>
-<h2 id="so-what-do-we-do-about-it">So, what do we do about it?<a href="#so-what-do-we-do-about-it" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="leeway-aka-slop">Leeway, aka Slop<a href="#leeway-aka-slop" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>How long does it take for my mouse input to be reflected in a frame and shown
-on my monitor? In other words, what&rsquo;s the latency? It looks something like this:</p>
+<p>Wait, isn&rsquo;t the interval just a constant 16.67ms? Why don&rsquo;t we just plug that
+in instead of computing <code>DeltaTime</code> every frame?</p>
+<h2 id="asynchrony-and-middleman">Asynchrony and Middleman<a href="#asynchrony-and-middleman" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="old-days">Old Days<a href="#old-days" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>In good old days, things were fixed. Graphics hardware was either thin or
+nonexistent, and there were no pipelines. Things were synchronous, and there
+was no middleman between your game and the display. The game simply wrote into
+the buffer, which was then presented to you immediately. So, you could just
+plug in 16.67ms, or whatever the display&rsquo;s refresh interval happened to be.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1445,12 +1522,12 @@ on my monitor? In other words, what&rsquo;s the latency? It looks something like
   data-gallery-type="auto"
   data-image-width="0"
   data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/1.svg"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_1.svg"
 >
   <div class="image-container">
     <img
-    src="/posts/timestep-and-frame-pacing-2/resources/1.svg"
-    alt="Buffering 1"
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_1.svg"
+    alt="Modern Stack 1"
     
     
       
@@ -1460,16 +1537,14 @@ on my monitor? In other words, what&rsquo;s the latency? It looks something like
     
     loading="lazy"
     decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/1.svg"
-    data-gallery-alt="Buffering 1"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_1.svg"
+    data-gallery-alt="Modern Stack 1"
     data-gallery-title=""
   /></div>
 
   </figure>
 </p>
-<p>Good news! Our hardware got faster, and we now have 2x performance improvement!
-Surely, the input latency has improved, right? Actually, it hasn&rsquo;t. We have
-more leeway, but it turns out that it&rsquo;s just slop.</p>
+<h3 id="gpu">GPU<a href="#gpu" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Here comes every gamer&rsquo;s favorite hardware: GPU.</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1479,12 +1554,12 @@ more leeway, but it turns out that it&rsquo;s just slop.</p>
   data-gallery-type="auto"
   data-image-width="0"
   data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/2.svg"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_2.svg"
 >
   <div class="image-container">
     <img
-    src="/posts/timestep-and-frame-pacing-2/resources/2.svg"
-    alt="Buffering 2"
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_2.svg"
+    alt="Modern Stack 2"
     
     
       
@@ -1494,17 +1569,16 @@ more leeway, but it turns out that it&rsquo;s just slop.</p>
     
     loading="lazy"
     decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/2.svg"
-    data-gallery-alt="Buffering 2"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_2.svg"
+    data-gallery-alt="Modern Stack 2"
     data-gallery-title=""
   /></div>
 
   </figure>
 </p>
-<h3 id="triple-buffering">Triple Buffering<a href="#triple-buffering" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Let&rsquo;s dial up our simulation rate, advance one more tick, then render that state.
-Because the later frame incorporates more recent input, it reflects lower latency.
-Now we have two frames, but since we always draw the newest one, the older frame
-is discarded outright.</p>
+<p>This was what we were seeing before, so my point still stands: we can just
+use a fixed 16.67ms.</p>
+<h3 id="throughput-and-latency">Throughput and Latency<a href="#throughput-and-latency" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Good news. your hardware just got 2x faster. Technology!</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1514,12 +1588,12 @@ is discarded outright.</p>
   data-gallery-type="auto"
   data-image-width="0"
   data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/5.svg"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
 >
   <div class="image-container">
     <img
-    src="/posts/timestep-and-frame-pacing-2/resources/5.svg"
-    alt="Buffering 5"
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
+    alt="Modern Stack 3"
     
     
       
@@ -1529,14 +1603,17 @@ is discarded outright.</p>
     
     loading="lazy"
     decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/5.svg"
-    data-gallery-alt="Buffering 5"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
+    data-gallery-alt="Modern Stack 3"
     data-gallery-title=""
   /></div>
 
   </figure>
 </p>
-<p>What&rsquo;s going on is <em>triple buffering</em>:</p>
+<p>Time to talk about input latency. How long does it take for my mouse input to
+be reflected in a frame and shown on my monitor? it depends on where your mouse
+it on your screen, as the display scans the buffer line by line, but it would
+be something like this:</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1546,12 +1623,12 @@ is discarded outright.</p>
   data-gallery-type="auto"
   data-image-width="0"
   data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/6.svg"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
 >
   <div class="image-container">
     <img
-    src="/posts/timestep-and-frame-pacing-2/resources/6.svg"
-    alt="Buffering 6"
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
+    alt="Modern Stack 4"
     
     
       
@@ -1561,21 +1638,120 @@ is discarded outright.</p>
     
     loading="lazy"
     decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/6.svg"
-    data-gallery-alt="Buffering 6"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
+    data-gallery-alt="Modern Stack 4"
     data-gallery-title=""
   /></div>
 
   </figure>
 </p>
-<p>Three buffers are colored red, blue, and green. During the first VSync interval,
-the red and blue buffers are <em>back buffers</em>, while the green buffer is the
-<em>front buffer</em>. During this interval, while you render into back buffers, your
-monitor scans out the front buffer line by line, allowing you to see it.</p>
-<p>At the second VSync, the buffers are &ldquo;flipped&rdquo;. Since the blue buffer contains
-an older frame than the red buffer, the red buffer becomes the new front buffer.
-The monitor scans it out again, while the GPU renders the next frame into the
-green buffer, which was the front buffer just before.</p>
+<p>As we extra powerful machinery and more leeway, can&rsquo;t we make use of it? What
+if we render one more time? Like this:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
+    alt="Modern Stack 5"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
+    data-gallery-alt="Modern Stack 5"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>And as it incorporates more hot inputs, if we present it instead, the input
+latency would improve:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
+    alt="Modern Stack 6"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
+    data-gallery-alt="Modern Stack 6"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>What we&rsquo;re doing here is <em>triple buffering</em>:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
+    alt="Modern Stack 7"
+    title="Three buffers are colored red, blue, and green."
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
+    data-gallery-alt="Modern Stack 7"
+    data-gallery-title="Three buffers are colored red, blue, and green."
+  /></div>
+
+  <figcaption class="image-caption">
+      Three buffers are colored red, blue, and green.
+    </figcaption></figure>
+</p>
+<p>During the first VSync interval, the green and blue buffers are <em>back buffers</em>,
+while the red buffer is the <em>front buffer</em>. During this interval, while the
+GPU renders into the back buffers, the display scans out the front buffer line
+by line, allowing you to see it.</p>
+<p>Beginning of the second interval, the buffers are &ldquo;flipped&rdquo;. Since the blue
+buffer contains an older frame than the green buffer, the green buffer now
+becomes the front buffer, which again, scanned out by the display.</p>
 
   <blockquote
     class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
@@ -1614,139 +1790,6 @@ old ones.</p>
     });
   });
 </script>
-<h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
-    href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Croteam. &ldquo;The Elusive Frame Timing&rdquo;. GDC 2018<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://developer.android.com/games/sdk/frame-pacing"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Android. &ldquo;Frame Pacing Libary&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://james.darpinian.com/blog/latency-techniques/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >James Darpinian. &ldquo;Techniques to Reduce Latency in Your Apps&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Raph Levien. &ldquo;Swapchains and frame pacing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Intel. Sample Application for Direct3D 12 Flip Model Swap Chains<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<h1 id="temporary">Temporary<a href="#temporary" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><p>We can do some statistical voodoo and somehow predict how long rendering
-will take, then defer rendering and complete just before VSync. That&rsquo;ll give us
-the best latency without wasting resources.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
-    alt="Buffering 4"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
-    data-gallery-alt="Buffering 4"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>In good old days, things were fixed, graphics hardware was either thin or
-nonexistent, and there were no pipelines. Everything was synchronous. There
-was no middleman between the CPU and the display.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/fp1.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/fp1.svg"
-    alt="Frame Pacing 1"
-    title="Good old syncrhonous days"
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/fp1.svg"
-    data-gallery-alt="Frame Pacing 1"
-    data-gallery-title="Good old syncrhonous days"
-  /></div>
-
-  <figcaption class="image-caption">
-      Good old syncrhonous days
-    </figcaption></figure>
-</p>
-<p>Enter the modern era: everything is pipelined. First, let&rsquo;s take a look at
-how a particular frame generally makes its way to the screen:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/fp2.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/fp2.svg"
-    alt="Frame Pacing 2"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/fp2.svg"
-    data-gallery-alt="Frame Pacing 2"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
 <p>Game ticks on the CPU and submits draw commands to the GPU through driver.
 Then, the GPU gets gets to work and renders to the app&rsquo;s render target. We
 aren&rsquo;t halfway through it yet. Let&rsquo;s say your monitor is running at 60Hz. Then,
@@ -1789,7 +1832,37 @@ line.</p>
       Look at that sleek shadow!
     </figcaption></figure>
 </p>
-<p>In Windows, there&rsquo;s something called <em>exclusive fullscreen mode</em>. This mode
+<h2 id="acknowledgements">Acknowledgements<a href="#acknowledgements" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
+    href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Croteam. &ldquo;The Elusive Frame Timing&rdquo;. GDC 2018<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://developer.android.com/games/sdk/frame-pacing"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Android. &ldquo;Frame Pacing Libary&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Raph Levien. &ldquo;Swapchains and frame pacing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
+    href="https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Intel. Sample Application for Direct3D 12 Flip Model Swap Chains<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>
+<a
+    href="https://james.darpinian.com/blog/latency-techniques/"target="_blank"
+    class="inline-flex items-center gap-1"
+  >James Darpinian. &ldquo;Techniques to Reduce Latency in Your Apps&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a></p>
+<h1 id="temporary">Temporary<a href="#temporary" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1><p>In Windows, there&rsquo;s something called <em>exclusive fullscreen mode</em>. This mode
 allows your app to  bypass the compositor. If your app is in fullscreen, there&rsquo;s
 nothing else to composite, right? So the timeline becomes something like this:</p>
 <p>
@@ -1861,6 +1934,40 @@ and we&rsquo;ll get into them later.</p>
     });
   });
 </script>
+<p>We can do some statistical voodoo and somehow predict how long rendering
+will take, then defer rendering and complete just before VSync. That&rsquo;ll give us
+the best latency without wasting resources.</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
+    alt="Buffering 4"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/4.svg"
+    data-gallery-alt="Buffering 4"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
 
   </article>
 
@@ -2316,10 +2423,11 @@ and we&rsquo;ll get into them later.</p>
               <nav id="TableOfContents">
   <ul>
     <li><a href="#smoothness-isnt-in-the-eye-of-your-game">Smoothness Isn&rsquo;t in the Eye of Your Game</a></li>
-    <li><a href="#so-what-do-we-do-about-it">So, what do we do about it?</a>
+    <li><a href="#asynchrony-and-middleman">Asynchrony and Middleman</a>
       <ul>
-        <li><a href="#leeway-aka-slop">Leeway, aka Slop</a></li>
-        <li><a href="#triple-buffering">Triple Buffering</a></li>
+        <li><a href="#old-days">Old Days</a></li>
+        <li><a href="#gpu">GPU</a></li>
+        <li><a href="#throughput-and-latency">Throughput and Latency</a></li>
       </ul>
     </li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
