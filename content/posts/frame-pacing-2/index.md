@@ -8,9 +8,80 @@ series: ["Timestep and Frame Pacing"]
 cover: "resources/cover.webp"
 ---
 
-# Working on it.
+> Working on it.
 
-## Frame Pacing
+# Frame Pacing
+
+## Smoothness Isn't in the Eye of Your Game
+
+We decoupled our simulation from rendering and fixed its timestep last time. 
+But is your rendering delta time "correct"?
+
+Back in 2018, *Croteam* (creators of *Serious Sam* and *The Talos Principle*) 
+gave a [talk](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The) 
+at GDC about a strange phenomenon surrounding frame stuttering. 
+
+Surely there must have been a performance hitch somewhere, and the frame 
+simply missed its presentation deadline, right? We'd expect to see something 
+like this:
+
+![Croteam_1](resources/croteam_1.svg "Blue frame had to be shown twice because the green fame missed its deadline.")
+
+But here's the **elusive** part: no frame was ever shown twice. In fact, some 
+frames were actually "faster" than expected.
+
+Let's break it down. Here's a simple game loop:
+
+```C
+float TimeOld = Now();
+while (GameRunning) {
+    float TimeNew = Now();
+    float DeltaTime = TimeNew - TimeOld;
+    TimeOld = TimeNew;
+
+    State = Update(DeltaTime);
+    Render(State);
+}
+```
+
+Suppose there's a hitch, and `DeltaTime` comes out to 24.8ms. That's fine. We 
+can simply move the character forward by 24.8ms to keep the motion feeling 
+natural. Let's integrate `DeltaTime` into `Update`:
+
+![Croteam_2](resources/croteam_2.svg)
+
+Then the GPU renders to the buffer, and the display scans it out.
+
+![Croteam_3](resources/croteam_3.svg)
+
+So this is what wee see:
+
+![Croteam_4](resources/croteam_4.svg)
+
+Here's where the mismatch happens. What was the last frame we saw? This blue 
+one:
+
+![Croteam_5](resources/croteam_5.svg)
+
+Given that the monitor runs at 60Hz, the interval between the times you see new 
+frames is 16.67ms.
+
+![Croteam_6](resources/croteam_6.svg)
+
+Your brain expects the character in the green frame to have moved for 16.67ms 
+since the previous one. But the game actually moved it by 24.8ms because **it 
+had no idea when the frame would actually be displayed.**
+
+The frame was produced just in time. The character didn't lag behind at all. If 
+anything, it moved ahead.
+
+On the next frame, things stabilize and `DeltaTime` comes out to 10.7ms. The 
+character moves less, and everything quietly settles back into place. 
+
+![Croteam_7](resources/croteam_7.svg)
+
+
+## So, what do we do about it?
 
 
 
@@ -55,63 +126,6 @@ green buffer, which was the front buffer just before.
 old ones.
 
 
-### The Elusive Frame Timing
-
-Back in 2018, *Croteam* (creators of *Serious Sam* and *The Talos Principle*) 
-gave a [talk](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The) 
-about the weird phenomena surronding elusive frame stuttering. Surely, there 
-must be a performance hitch somewhere, and the frame simply missed its deadline 
-to be presented, right? That's what they expected to see:
-
-![Croteam_1](resources/croteam_1.svg "Blue frame had to be shown twice because the green fame missed its deadline.")
-
- Let me break it down for you. A typical game would look something like this:
-
-```C
-float TimeOld = Now();
-while (GameRunning) {
-    float TimeNew = Now();
-    float DeltaTime = TimeNew - TimeOld;
-    TimeOld = TimeNew;
-
-    State = Update(DeltaTime);
-    Render(State);
-}
-```
-
-Oops, there was a hitch, and `DeltaTime` was computed as 24.8ms. That's ok. We 
-can simply move our character forward by 24.8ms to keep things feeling natural. 
-Let's integrate `DeltaTime` into our `Update` function, like this:
-
-![Croteam_2](resources/croteam_2.svg)
-
-Then the GPU renders to the buffer, and the display scans it out.
-
-![Croteam_3](resources/croteam_3.svg)
-
-So we see this:
-
-![Croteam_4](resources/croteam_4.svg)
-
-Here's where the mismatch happens. What was the last frame we saw? This blue 
-frame, of course:
-
-![Croteam_5](resources/croteam_5.svg)
-
-Given that your monitor is running at 60Hz, the interval between the times 
-you see new frames is 16.67ms.
-
-![Croteam_6](resources/croteam_6.svg)
-
-Your brain expects the character in the green frame to have moved for 16.67ms 
-since the previous frame. But the game moved it by 24.8ms because **it had no 
-idea when the frame would actually be displayed.**
-
-The game produced frame just in time. The character didn't lag behind. In fact, 
-it moved too far ahead.
-
-
-
 
 ## Acknowledgements
 
@@ -123,16 +137,15 @@ it moved too far ahead.
 [Intel. Sample Application for Direct3D 12 Flip Model Swap Chains](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)
 
 
+
+
 # Temporary
-
-
 
 We can do some statistical voodoo and somehow predict how long rendering 
 will take, then defer rendering and complete just before VSync. That'll give us 
 the best latency without wasting resources.
 
 ![Buffering 4](resources/4.svg)
-
 
 
 In good old days, things were fixed, graphics hardware was either thin or 
