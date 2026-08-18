@@ -101,33 +101,36 @@ Here comes every gamer's favorite hardware: GPU.
 
 ![Modern Stack 2](resources/modern_2.svg)
 
-This was what we were seeing before, so my point still stands: we can just 
-use a fixed 16.67ms.
+This was what we were seeing before, and my question is still unanswered: why
+not use fixed 16.67ms? But, let's continue.
 
-### Throughput and Latency
+
+
+
+### Triple Buffering
 
 Good news. your hardware just got 2x faster. Technology! 
 
 ![Modern Stack 3](resources/modern_3.svg)
 
-Time to talk about input latency. How long does it take for my mouse input to 
-be reflected in a frame and shown on my monitor? it depends on where your mouse 
-it on your screen, as the display scans the buffer line by line, but it would 
+Time to talk about input latency. How long does it take for my mouse input to
+be reflected in a frame and shown on my monitor? it depends on where your mouse
+it on your screen, as the display scans the buffer line by line, but it would
 be something like this:
 
 ![Modern Stack 4](resources/modern_4.svg)
 
-As we extra powerful machinery and more leeway, can't we make use of it? What 
-if we render one more time? Like this:
+As we have extra computing power and more leeway, can't we make use of it? What
+if we run one more cycle, like this:
 
 ![Modern Stack 5](resources/modern_5.svg)
 
-And as it incorporates more hot inputs, if we present it instead, the input 
-latency would improve:
+As it incorporates more hot inputs, if we present it instead, the input latency
+would improve:
 
 ![Modern Stack 6](resources/modern_6.svg)
 
-What we're doing here is *triple buffering*:
+What we're doing here is called, *triple buffering*:
 
 ![Modern Stack 7](resources/modern_7.svg "Three buffers are colored red, blue, and green.")
 
@@ -145,21 +148,60 @@ old ones.
 
 
 
-Game ticks on the CPU and submits draw commands to the GPU through driver. 
-Then, the GPU gets gets to work and renders to the app's render target. We 
-aren't halfway through it yet. Let's say your monitor is running at 60Hz. Then, 
-for 16.67ms, operating system's compositor composites all the windows on your 
-screen. Who doesn't love liquid glass and shadow effects? Finally, at VSync, 
-the composited frame is presented to the monitor, which scans it out line by 
-line.
 
-![Drop Shadow](resources/shadow.png "Look at that sleek shadow!")
+### Somehow Fixed Timestep Returned
+
+Remember the fixed timestep thing we talked about last time? Where does it fit
+into this scheme?
+
+Well, I would say the nuance slightly shifts. Now, we're not triple buffering
+solely because of input latency. We're doing it simply because it's time to
+tick, and we want to render the result. After all, what kind of game is it if
+the state we just ticked isn't presented?
+
+For example, say now we're using fixed timestep and the tick rate is twice the
+display refresh rate, and we only have two buffers. As illustrated below, we
+only get the spare blue workbench. If we miss the VSync deadline, we have to
+display the previous red frame, and the user will feel the stutter, even though
+the number says we're generating nearly twice as many frames. 
+
+![Modern Stack 8](resources/modern_8.svg)
+
+If we can somehow predict the rendering time, detect that a frame will miss its 
+deadline, and decide not to render it, we won't show the latest state of the 
+game, but at least we won't show the same previous frame, 
+
+> @Todo: I think graphics API blocks the thread from acquiring the same buffer 
+after present() is queued, depending on the setup.
+
+![Modern Stack 9](resources/modern_9.svg)
+
+This was our first glimpse of **frame pacing**. We controlled the pace of frame 
+generation for the sake of the user. Now you see why FPS isn't the golden rule, 
+and why being fast isn't enough.
+
+Instead, we can add an additional workbench. Then we no longer have to rely on 
+statistical voodoo or pray that the system remains stable. With a backup in 
+place, we're "safe" even if the second rendering misses its deadline.
+
+![Modern Stack 10](resources/modern_10.svg)
+
+In this scheme, whose primary focus is deterministic simulation with a fixed 
+timestep, I would say improved latency is more of a byproduct.
+
+> Input latency is a whole another rabbithole, IMO. There's even tech like
+[NVIDIA Reflex](https://developer.nvidia.com/performance-rendering-tools/reflex), 
+which shifts the image just in time to incorporate the latest input and then
+fills the hole. But anyway, I digress.
+
+Hey, we were talking about whether using a fixed 16.67ms for rendering is 
+feasible.
 
 
 
 
 
-## Acknowledgements
+## Links
 
 [Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
 [Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
@@ -167,26 +209,4 @@ line.
 [Raph Levien. "Swapchains and frame pacing"](https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html)  
 [Intel. Sample Application for Direct3D 12 Flip Model Swap Chains](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)
 [James Darpinian. "Techniques to Reduce Latency in Your Apps"](https://james.darpinian.com/blog/latency-techniques/)  
-
-
-
-
-# Temporary
-
-In Windows, there's something called *exclusive fullscreen mode*. This mode 
-allows your app to  bypass the compositor. If your app is in fullscreen, there's 
-nothing else to composite, right? So the timeline becomes something like this:
-
-![Frame Pacing 3](resources/fp3.svg)
-
-> Compositor, swap chain and flip modes are yet another rabbit hole, 
-and we'll get into them later.
-
-
-
-We can do some statistical voodoo and somehow predict how long rendering 
-will take, then defer rendering and complete just before VSync. That'll give us 
-the best latency without wasting resources.
-
-![Buffering 4](resources/4.svg)
-
+[NVIDIA Reflex](https://developer.nvidia.com/performance-rendering-tools/reflex)  

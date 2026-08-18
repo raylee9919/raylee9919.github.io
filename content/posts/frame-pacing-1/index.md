@@ -17,9 +17,9 @@ implementation details :)
 
 ### Fixed Timestep
 
-Fixing the simulation timestep, or at least for physics, is the state of the art. 
-For example, a bullet might penetrate a wall if the time since last update spikes 
-for whatever reason while using a variable timestep.
+You wan to fix the simulation timestep, at least for physics. For example, a 
+bullet might penetrate a wall if the time since last update spikes for whatever
+reason while using a variable timestep.
 
 ![bullet penetrating wall](resources/bullet.svg)
 
@@ -28,7 +28,7 @@ By taking as many fixed steps to cover the elapsed time, collision is detected.
 ![bullet no more penetrates](resources/bullet_1.svg)
 
 Still, the bullet will penetrate a paper-thin wall, but let's not tackle this 
-*tunneling* problem, at least for now, because *Determinism* is a more important 
+*tunneling* problem, at least for now, because *determinism* is a more important 
 reason to fix the timestep. You want things to be consistent.
 
 If the function for position is $p_1 = p_0 + \Delta t^2$, and the first run 
@@ -94,12 +94,9 @@ guaranteed to be valid itself, as illustrated below:
 
 ![Invalid Interpolation](resources/invalid.svg)
 
-Let's say those players are moving in some wacky non-linear fashion, yet we are 
-linearly interpolating between two states for rendering. Two players didn't 
-actually collide, but it sure looks like they did! 
-
-> Maybe you could use some kind of velocity buffer or non-linear interpolation, 
-but you get the point.
+Say those players press *Q* and teleport, as depicted in State1 and State2. Yet
+we're linearly interpolating between the two states for rendering. Two players
+didn't collide, but it sure looks like they did! 
 
 
 ### One Last Tick
@@ -125,30 +122,25 @@ previous and current states, but rumors say nobody does that.
 
 ### Unity Physics
 
-As of 2026, Unity's default physics timestep is still 50Hz, which is a rather odd 
-choice of number, and game states are not globally interpolated by default. 
-As illustrated below, the mismatch between physics update and rendering can 
-cause noticeable jank on a 60Hz monitor. A stable 50 FPS can feel better 
-than 120 FPS with stuttering.
+As of 2026, Unity's default physics timestep is still 50Hz, which is a rather
+odd choice of number, and physics aren't interpolated by default. As
+illustrated below, the mismatch between physics and rendering update can cause
+noticeable jank on a 60Hz monitor. A stable 50 FPS can feel better than 120 FPS
+with stuttering.
 
-![Unity Physics](resources/Unity.svg "You can see the arrow's gradient increasing.")
+![Unity Physics](resources/Unity.svg "C missed the deadline, so B had to be presented twice.")
 
-So I would say tweak your default physics timestep to 60Hz or something reasonable. 
-You could even consider [this option](https://docs.unity3d.com/ScriptReference/Rigidbody-interpolation.html). 
-But, it interpolates between the previous and current states. So while other 
-physics states will render their current state, a rigid body with interpolation 
-enabled will render an interpolated state, effectively introducing additional 
-tick of latency. 
-
-
-### Thoughts
-
-Certainly, it looks like there's no one-size-fits-all solution. I dunno, man. 
+So I would say tweak your default physics timestep to 60Hz or some other sane
+value. You could even consider [this
+option](https://docs.unity3d.com/ScriptReference/Rigidbody-interpolation.html).
+But, as you now know, it interpolates between the previous and current states, 
+so your character might feel one frame behind other objects.
 
 
 ## Links
 
 [Glenn Fiedler. "Fix Your Timestep!"](https://www.gafferongames.com/post/fix_your_timestep/)  
+[Jonathan Blow. "Q&A: frame-rate-independence"](https://www.youtube.com/watch?v=fdAOPHgW7qM)  
 [Jakub Tomšů. "Fixed timestep without interpolation"](https://jakubtomsu.github.io/posts/fixed_timestep_without_interpolation/)  
 [Taha Torabpour. "Upgrade Your Timestep"](https://lotusspring.substack.com/p/upgrade-your-timestep)  
-[Jonathan Blow. "Q&A: frame-rate-independence"](https://www.youtube.com/watch?v=fdAOPHgW7qM)  
+[Tyler Glaiel. "How to make your game run at 60fps"](https://medium.com/@tglaiel/how-to-make-your-game-run-at-60fps-24c61210fe75)  
