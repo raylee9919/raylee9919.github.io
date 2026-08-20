@@ -21,9 +21,16 @@
 				<description></description>
 			</item>
 			<item>
+				<title>Sky Rendering</title>
+				<link>http://localhost:1313/ko/series/sky-rendering/</link>
+				<pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/series/sky-rendering/</guid>
+				<description></description>
+			</item>
+			<item>
 				<title>하늘 렌더링</title>
 				<link>http://localhost:1313/ko/series/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81/</link>
-				<pubDate>Wed, 03 Jun 2026 00:00:00 +0000</pubDate>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/series/%ED%95%98%EB%8A%98-%EB%A0%8C%EB%8D%94%EB%A7%81/</guid>
 				<description></description>
 			</item>

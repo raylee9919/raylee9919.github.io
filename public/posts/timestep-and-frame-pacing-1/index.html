@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-14T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-14T00:00:00+00:00">
-	<meta itemprop="wordCount" content="777">
+	<meta itemprop="wordCount" content="812">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>777 words</span>
+              <span>812 words</span>
             </div>
             
           </div>
@@ -1506,8 +1506,7 @@ previous game state by our fixed timestep, not the temporary game state.</p>
   </figure>
 </p>
 <p>But as you can imagine, if your game is physics or simulation-heavy, this
-approach might be not feasible for you. You can even extrapolate from the
-previous and current states, but rumors say nobody does that.</p>
+approach might be not feasible for you.</p>
 <h3 id="unity-physics">Unity Physics<a href="#unity-physics" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>As of 2026, Unity&rsquo;s default physics timestep is still 50Hz, which is a rather
 odd choice of number, and physics aren&rsquo;t interpolated by default. As
 illustrated below, the mismatch between physics and rendering update can cause
@@ -1555,6 +1554,53 @@ option<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3
   </a>.
 But, as you now know, it interpolates between the previous and current states,
 so your character might feel one frame behind other objects.</p>
+<h2 id="summary">Summary<a href="#summary" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>I&rsquo;d like to borrow a line from <a
+    href="https://philliptrudeau.com/"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Phillip Trudeau<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>
+here, since I think he put it quite well.</p>
+
+  <blockquote
+    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
+  >
+    <div class="prose prose-sm max-w-none">
+      <p><strong>Naive display</strong> isn&rsquo;t smooth.<br>
+<strong>Interpolation</strong> isn&rsquo;t recent.<br>
+<strong>Extrapolation</strong> isn&rsquo;t honest.</p>
+
+    </div>
+  </blockquote><script>
+  function toggleAlert(alertId) {
+    const content = document.getElementById(alertId + "-content");
+    const chevron = document.getElementById(alertId + "-chevron");
+    const header = content.previousElementSibling;
+
+    if (content.classList.contains("hidden")) {
+      content.classList.remove("hidden");
+      chevron.style.transform = "rotate(0deg)";
+      header.setAttribute("aria-expanded", "true");
+    } else {
+      content.classList.add("hidden");
+      chevron.style.transform = "rotate(-90deg)";
+      header.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
+    collapsedAlerts.forEach(function (content) {
+      const alertId = content.id.replace("-content", "");
+      const chevron = document.getElementById(alertId + "-chevron");
+      if (chevron) {
+        chevron.style.transform = "rotate(-90deg)";
+      }
+    });
+  });
+</script>
+<p>And one more from me: <strong>Extra tick</strong> isn&rsquo;t free. That said, if your tick goes
+brrrr at 240Hz, naive display is probably fine.</p>
 <h2 id="links">Links<a href="#links" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
     href="https://www.gafferongames.com/post/fix_your_timestep/"target="_blank"
     class="inline-flex items-center gap-1"
@@ -2030,6 +2076,7 @@ so your character might feel one frame behind other objects.</p>
         <li><a href="#unity-physics">Unity Physics</a></li>
       </ul>
     </li>
+    <li><a href="#summary">Summary</a></li>
     <li><a href="#links">Links</a></li>
   </ul>
 </nav>

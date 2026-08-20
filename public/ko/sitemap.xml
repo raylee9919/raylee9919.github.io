@@ -81,7 +81,7 @@
                 href="http://localhost:1313/ko/series/timestep-and-frame-pacing/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/posts/timestep-and-frame-pacing-2/</loc>
+    <loc>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
@@ -91,7 +91,7 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/timestep-and-frame-pacing-2/"
+                href="http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/"
                 />
   </url><url>
     <loc>http://localhost:1313/ko/posts/</loc>
@@ -107,7 +107,7 @@
                 href="http://localhost:1313/ko/posts/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/posts/timestep-and-frame-pacing-1/</loc>
+    <loc>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/</loc>
     <lastmod>2026-08-14T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
@@ -117,20 +117,8 @@
     <xhtml:link
                 rel="alternate"
                 hreflang="ko"
-                href="http://localhost:1313/ko/posts/timestep-and-frame-pacing-1/"
+                href="http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/"
                 />
-  </url><url>
-    <loc>http://localhost:1313/ko/posts/%EC%82%BC%EA%B0%81%EC%88%98%EC%99%80-%EC%9D%B4%EC%B0%A8-%ED%83%90%EC%82%AC/</loc>
-    <lastmod>2026-08-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/ko/tags/%EC%88%98%ED%95%99/</loc>
-    <lastmod>2026-08-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/ko/tags/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/</loc>
-    <lastmod>2026-08-06T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/ko/tags/%ED%95%B4%EC%8B%9C/</loc>
-    <lastmod>2026-08-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ko/tags/%EA%B7%B8%EB%9E%98%ED%94%BD%EC%8A%A4/</loc>
     <lastmod>2026-06-03T00:00:00+00:00</lastmod>

@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="1337">
+	<meta itemprop="wordCount" content="794">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -904,7 +904,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>7 min</span>
+              <span>4 min</span>
             </div>
             
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>1337 words</span>
+              <span>794 words</span>
             </div>
             
           </div>
@@ -1084,7 +1084,7 @@
     class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
   >
     <div class="prose prose-sm max-w-none">
-      <p>Working on it.</p>
+      <p>I&rsquo;m Working on it. DO NOT READ IT. DO NOT BELIEVE IT.</p>
 
     </div>
   </blockquote><script>
@@ -1581,417 +1581,7 @@ plug in 16.67ms, or whatever the display&rsquo;s refresh interval happened to be
 </p>
 <p>This was what we were seeing before, and my question is still unanswered: why
 not use fixed 16.67ms? But, let&rsquo;s continue.</p>
-<h3 id="triple-buffering">Triple Buffering<a href="#triple-buffering" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Good news. your hardware just got 2x faster. Technology!</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
-    alt="Modern Stack 3"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
-    data-gallery-alt="Modern Stack 3"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>Time to talk about input latency. How long does it take for my mouse input to
-be reflected in a frame and shown on my monitor? It depends on where the mouse
-cursor is on the screen, since the display scans out the buffer line by line.
-Roughly, it looks something like this:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
-    alt="Modern Stack 4"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
-    data-gallery-alt="Modern Stack 4"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>As we have extra computing power and more leeway, can&rsquo;t we make use of it? What
-if we run one more cycle, like this:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
-    alt="Modern Stack 5"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
-    data-gallery-alt="Modern Stack 5"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>As it incorporates more hot inputs, if we present it instead, the input latency
-would improve:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
-    alt="Modern Stack 6"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
-    data-gallery-alt="Modern Stack 6"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>What we&rsquo;re doing here is called, <em>triple buffering</em>:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
-    alt="Modern Stack 7"
-    title="Three buffers are colored red, blue, and green."
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
-    data-gallery-alt="Modern Stack 7"
-    data-gallery-title="Three buffers are colored red, blue, and green."
-  /></div>
-
-  <figcaption class="image-caption">
-      Three buffers are colored red, blue, and green.
-    </figcaption></figure>
-</p>
-<p>During the first VSync interval, the green and blue buffers are <em>back buffers</em>,
-while the red buffer is the <em>front buffer</em>. During this interval, while the
-GPU renders into the back buffers, the display scans out the front buffer line
-by line, allowing you to see it.</p>
-<p>Beginning of the second interval, the buffers are &ldquo;flipped&rdquo;. Since the blue
-buffer contains an older frame than the green buffer, the green buffer now
-becomes the front buffer, which again, scanned out by the display.</p>
-
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>This is what Windows DXGI flip discard mode is. It queues &ldquo;flips&rdquo; and discards
-old ones.</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<h3 id="somehow-fixed-timestep-returned">Somehow Fixed Timestep Returned<a href="#somehow-fixed-timestep-returned" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Remember the fixed timestep thing we talked about last time? Where does it fit
-into this scheme?</p>
-<p>Well, I would say the nuance slightly shifts. Now, we&rsquo;re not triple buffering
-solely because of input latency. We&rsquo;re doing it simply because it&rsquo;s time to
-tick, and we want to render the result. After all, what kind of game is it if
-the state we just ticked isn&rsquo;t presented?</p>
-<p>For example, say now we&rsquo;re using fixed timestep and the tick rate is twice the
-display refresh rate, and we only have two buffers. As illustrated below, we
-only get the spare blue workbench. If we miss the VSync deadline, we have to
-display the previous red frame, and the user will feel the stutter, even though
-the number says we&rsquo;re generating nearly twice as many frames.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_8.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_8.svg"
-    alt="Modern Stack 8"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_8.svg"
-    data-gallery-alt="Modern Stack 8"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>If we can somehow predict the rendering time, detect that a frame will miss its
-deadline, and decide not to render it, we won&rsquo;t show the latest state of the
-game, but at least we won&rsquo;t show the same previous frame,</p>
-
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>@Todo: I think graphics API blocks the thread from acquiring the same buffer
-after present() is queued, depending on the setup.</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_9.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_9.svg"
-    alt="Modern Stack 9"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_9.svg"
-    data-gallery-alt="Modern Stack 9"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>This was our first glimpse of <strong>frame pacing</strong>. We controlled the pace of frame
-generation for the sake of the user. Now you see why FPS isn&rsquo;t the golden rule,
-and why being fast isn&rsquo;t enough.</p>
-<p>Instead, we can add an additional workbench. Then we no longer have to rely on
-statistical voodoo or pray that the system remains stable. With a safeguard in
-place, we&rsquo;re &ldquo;safe&rdquo; even if the second rendering misses its deadline.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_10.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_10.svg"
-    alt="Modern Stack 10"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_10.svg"
-    data-gallery-alt="Modern Stack 10"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>In this scheme, whose primary focus is deterministic simulation with a fixed
-timestep, I would say improved latency is more of a byproduct.</p>
-
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>Input latency is another compltex topic, IMO. There&rsquo;s even tech like
-<a
-    href="https://developer.nvidia.com/performance-rendering-tools/reflex"target="_blank"
-    class="inline-flex items-center gap-1"
-  >NVIDIA Reflex<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>,
-which shifts the image just in time to incorporate the latest input and then
-fills the hole. But anyway, I digress.</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<p>Hey, we were talking about whether using a fixed 16.67ms for rendering is
-feasible.</p>
+<p>It&rsquo;s a tradeoff. Present queue filling up entirely causes the delay to stack up.</p>
 <p>So, how do I get the timestamp of when the frame is actually displayed?</p>
 <h2 id="hello-windows-devs">Hello, Windows Devs<a href="#hello-windows-devs" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>D3DKMTGetScanLine and friends are kind of useless nowadays.</p>
 <p>DwmGetCompositionTimingInfo</p>
@@ -2039,7 +1629,7 @@ which fills in
     class="inline-flex items-center gap-1"
   >Croteam. &ldquo;Myths and Misconceptions of Frame Pacing&rdquo;. Reboot Devlop Blue 2019<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a></p>
-<p>How <em>Unity</em> relocated delta time query code to tackle jitter<br>
+<p>How <em>Unity</em> restructured its code to tackle jitter<br>
 <a
     href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
     class="inline-flex items-center gap-1"
@@ -2541,8 +2131,6 @@ which fills in
       <ul>
         <li><a href="#old-days">Old Days</a></li>
         <li><a href="#gpu">GPU</a></li>
-        <li><a href="#triple-buffering">Triple Buffering</a></li>
-        <li><a href="#somehow-fixed-timestep-returned">Somehow Fixed Timestep Returned</a></li>
       </ul>
     </li>
     <li><a href="#hello-windows-devs">Hello, Windows Devs</a></li>

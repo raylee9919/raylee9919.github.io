@@ -14,17 +14,17 @@
 		
 			<atom:link href="http://localhost:1313/ko/tags/game-engine/index.xml" rel="self" type="application/rss+xml" />
 			<item>
-				<title>Timestep and Frame Pacing 2</title>
-				<link>http://localhost:1313/ko/posts/timestep-and-frame-pacing-2/</link>
+				<title>타임스텝과 프레임 페이싱 2</title>
+				<link>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/</link>
 				<pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/ko/posts/timestep-and-frame-pacing-2/</guid>
+				<guid>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/</guid>
 				<description>&lt;p&gt;Translation in progress. Please switch languages in the top-right corner and check again.&lt;/p&gt;&#xA;&lt;p&gt;번역이 진행 중입니다. 우측 상단에서 언어를 전환한 후 다시 확인해 주세요.&lt;/p&gt;</description>
 			</item>
 			<item>
-				<title>Timestep and Frame Pacing 1</title>
-				<link>http://localhost:1313/ko/posts/timestep-and-frame-pacing-1/</link>
+				<title>타임스텝과 프레임 페이싱 1</title>
+				<link>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/</link>
 				<pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate>
-				<guid>http://localhost:1313/ko/posts/timestep-and-frame-pacing-1/</guid>
+				<guid>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/</guid>
 				<description>&lt;p&gt;Translation in progress. Please switch languages in the top-right corner and check again.&lt;/p&gt;&#xA;&lt;p&gt;번역이 진행 중입니다. 우측 상단에서 언어를 전환한 후 다시 확인해 주세요.&lt;/p&gt;</description>
 			</item>
 	</channel>

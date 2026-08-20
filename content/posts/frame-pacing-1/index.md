@@ -116,8 +116,7 @@ previous game state by our fixed timestep, not the temporary game state.
 ![timestep_7](resources/timestep_7.svg)
 
 But as you can imagine, if your game is physics or simulation-heavy, this 
-approach might be not feasible for you. You can even extrapolate from the 
-previous and current states, but rumors say nobody does that. 
+approach might be not feasible for you.
 
 
 ### Unity Physics
@@ -135,6 +134,21 @@ value. You could even consider [this
 option](https://docs.unity3d.com/ScriptReference/Rigidbody-interpolation.html).
 But, as you now know, it interpolates between the previous and current states, 
 so your character might feel one frame behind other objects.
+
+
+## Summary
+
+I'd like to borrow a line from [Phillip Trudeau](https://philliptrudeau.com/)
+here, since I think he put it quite well. 
+
+>**Naive display** isn't smooth.  
+**Interpolation** isn't recent.  
+**Extrapolation** isn't honest.  
+
+And one more from me: **Extra tick** isn't free. That said, if your tick goes
+brrrr at 240Hz, naive display is probably fine.
+
+
 
 
 ## Links

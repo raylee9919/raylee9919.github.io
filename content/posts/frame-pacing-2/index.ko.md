@@ -2,9 +2,9 @@
 title: "타임스텝과 프레임 페이싱 2"
 date: 2026-08-16
 description: "시간 문제다."
-tags: ["System", "Game Engine"]
+tags: ["시스템", "게임 엔진"]
 categories: []
-series: ["Timestep and Frame Pacing"]
+series: ["타임스텝과 프레임 페이싱"]
 cover: "resources/cover.webp"
 ---
 
