@@ -113,44 +113,6 @@ not use fixed 16.67ms? But, let's continue.
 
 
 
-### Triple Buffering
-
-Good news. your hardware just got 2x faster. Technology! 
-
-![Modern Stack 3](resources/modern_3.svg)
-
-Time to talk about input latency. How long does it take for my mouse input to
-be reflected in a frame and shown on my monitor? It depends on where the mouse
-cursor is on the screen, since the display scans out the buffer line by line.
-Roughly, it looks something like this:
-
-![Modern Stack 4](resources/modern_4.svg)
-
-As we have extra computing power and more leeway, can't we make use of it? What
-if we run one more cycle, like this:
-
-![Modern Stack 5](resources/modern_5.svg)
-
-As it incorporates more hot inputs, if we present it instead, the input latency
-would improve:
-
-![Modern Stack 6](resources/modern_6.svg)
-
-What we're doing here is called, *triple buffering*:
-
-![Modern Stack 7](resources/modern_7.svg "Three buffers are colored red, blue, and green.")
-
-During the first VSync interval, the green and blue buffers are *back buffers*, 
-while the red buffer is the *front buffer*. During this interval, while the 
-GPU renders into the back buffers, the display scans out the front buffer line 
-by line, allowing you to see it. 
-
-Beginning of the second interval, the buffers are "flipped". Since the blue 
-buffer contains an older frame than the green buffer, the green buffer now 
-becomes the front buffer, which again, scanned out by the display.
-
-> This is what Windows DXGI flip discard mode is. It queues "flips" and discards 
-old ones.
 
 
 
