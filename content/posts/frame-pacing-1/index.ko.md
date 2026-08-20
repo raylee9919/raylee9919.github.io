@@ -1,7 +1,7 @@
 ---
-title: "Timestep and Frame Pacing 1"
+title: "타임스텝과 프레임 페이싱 1"
 date: 2026-08-14
-description: "It's a matter of time."
+description: "시간 문제다."
 tags: ["System", "Game Engine"]
 categories: []
 series: ["Timestep and Frame Pacing"]

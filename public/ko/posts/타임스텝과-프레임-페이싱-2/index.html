@@ -1,6 +1,6 @@
 <!doctype html>
 <html
-  lang="en"
+  lang="ko"
   data-theme="default"
 >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
@@ -8,12 +8,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-<title>Timestep and Frame Pacing 2 |
+<title>타임스텝과 프레임 페이싱 2 |
     SeongWoo Lee</title>
 
 <meta
   name="description"
-  content="It&#39;s a matter of time."
+  content="시간 문제다."
 />
 <meta
   name="keywords"
@@ -29,16 +29,16 @@
   name="robots"
   content="index, follow"
 />
-<link rel="canonical" href="http://localhost:1313/posts/timestep-and-frame-pacing-2/" />
+<link rel="canonical" href="http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/" />
 
 
   <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
 <link rel="manifest" href="/site.webmanifest" />
-<meta property="og:url" content="http://localhost:1313/posts/timestep-and-frame-pacing-2/">
+<meta property="og:url" content="http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/">
 	<meta property="og:site_name" content="SeongWoo Lee">
-	<meta property="og:title" content="Timestep and Frame Pacing 2">
-	<meta property="og:description" content="It&#39;s a matter of time.">
-	<meta property="og:locale" content="en">
+	<meta property="og:title" content="타임스텝과 프레임 페이싱 2">
+	<meta property="og:description" content="시간 문제다.">
+	<meta property="og:locale" content="ko">
 	<meta property="og:type" content="article">
 		<meta property="article:section" content="posts">
 		<meta property="article:published_time" content="2026-08-16T00:00:00+00:00">
@@ -46,20 +46,20 @@
 		<meta property="article:tag" content="System">
 		<meta property="article:tag" content="Game Engine">
 		<meta property="og:image" content="http://localhost:1313/images/og-default.avif">
-			<meta property="og:see_also" content="http://localhost:1313/posts/timestep-and-frame-pacing-1/">
+			<meta property="og:see_also" content="http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/">
 
 
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:image" content="http://localhost:1313/images/og-default.avif">
-	<meta name="twitter:title" content="Timestep and Frame Pacing 2">
-	<meta name="twitter:description" content="It&#39;s a matter of time.">
+	<meta name="twitter:title" content="타임스텝과 프레임 페이싱 2">
+	<meta name="twitter:description" content="시간 문제다.">
 
 
-	<meta itemprop="name" content="Timestep and Frame Pacing 2">
-	<meta itemprop="description" content="It&#39;s a matter of time.">
+	<meta itemprop="name" content="타임스텝과 프레임 페이싱 2">
+	<meta itemprop="description" content="시간 문제다.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="1337">
+	<meta itemprop="wordCount" content="45">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -67,10 +67,7 @@
 
 
 
-<script id="search-config" type="application/json">"{\"searchIndexURL\":\"/index.json\"}"</script>
-
-
-  <script id="gallery-config" type="application/json">"{\"gallery\":true,\"galleryOptions\":{\"columns\":4,\"columnwidth\":200,\"defaultlayout\":\"justified\",\"gap\":10,\"lastrowbehavior\":\"center\",\"targetrowheight\":200},\"lightbox\":true}"</script>
+<script id="search-config" type="application/json">"{\"searchIndexURL\":\"/ko/index.json\"}"</script>
 
 
 
@@ -109,11 +106,7 @@
 
 
 
-  <script src="/js/smart-gallery.min.js" defer></script>
 
-
-
-        <script src="/js/gallery.js" defer></script>
 
 
 
@@ -174,7 +167,7 @@
         
           <a
             href="
-              /
+              /ko/
             "
             class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 hover:scale-105"
             aria-label="SeongWoo Lee"
@@ -203,18 +196,18 @@
             
               
               <a
-                href="/posts/"
+                href="/ko/posts/"
                 class="nav-link 
                   text-muted-foreground hover:text-primary hover:bg-primary/10
                  focus:ring-primary/20 relative flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none"
               >
                 
-                  <svg class="h-5 w-5" aria-label="Posts" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="h-5 w-5" aria-label="포스트" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
 </svg>
 
                 
-                <span>Posts</span>
+                <span>포스트</span>
               </a>
             
           
@@ -228,17 +221,17 @@
             
               
               <a
-                href="/projects/"
+                href="/ko/projects/"
                 class="nav-link 
                   text-muted-foreground hover:text-primary hover:bg-primary/10
                  focus:ring-primary/20 relative flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none"
               >
                 
-                  <svg class="h-5 w-5" aria-label="Projects" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="6" r="1" fill="currentColor"/><path fill="currentColor" d="M6 17h12v2H6zm4-5.17l2.792 2.794l3.932-3.935L18 12V8h-4l1.31 1.275l-2.519 2.519L10 9l-4 4l1.414 1.414z"/><path fill="currentColor" d="M19 3h-3.298a5 5 0 0 0-.32-.425l-.01-.012a4.43 4.43 0 0 0-2.89-1.518a2.6 2.6 0 0 0-.964 0a4.43 4.43 0 0 0-2.89 1.518l-.01.012a5 5 0 0 0-.32.424V3H5a3.003 3.003 0 0 0-3 3v14a3.003 3.003 0 0 0 3 3h14a3.003 3.003 0 0 0 3-3V6a3.003 3.003 0 0 0-3-3m1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4.55a2.5 2.5 0 0 1 4.9 0H19a1 1 0 0 1 1 1Z"/></svg>
+                  <svg class="h-5 w-5" aria-label="프로젝트" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="6" r="1" fill="currentColor"/><path fill="currentColor" d="M6 17h12v2H6zm4-5.17l2.792 2.794l3.932-3.935L18 12V8h-4l1.31 1.275l-2.519 2.519L10 9l-4 4l1.414 1.414z"/><path fill="currentColor" d="M19 3h-3.298a5 5 0 0 0-.32-.425l-.01-.012a4.43 4.43 0 0 0-2.89-1.518a2.6 2.6 0 0 0-.964 0a4.43 4.43 0 0 0-2.89 1.518l-.01.012a5 5 0 0 0-.32.424V3H5a3.003 3.003 0 0 0-3 3v14a3.003 3.003 0 0 0 3 3h14a3.003 3.003 0 0 0 3-3V6a3.003 3.003 0 0 0-3-3m1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4.55a2.5 2.5 0 0 1 4.9 0H19a1 1 0 0 1 1 1Z"/></svg>
 
 
                 
-                <span>Projects</span>
+                <span>프로젝트</span>
               </a>
             
           
@@ -251,25 +244,25 @@
               <div class="relative">
                 <button
                   class="nav-link nav-submenu-toggle text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 relative flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none"
-                  data-submenu-id="more"
+                  data-submenu-id="더보기"
                   aria-expanded="false"
                   aria-haspopup="true"
                 >
                   
-                    <svg class="h-5 w-5" aria-label="More" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="h-5 w-5" aria-label="더보기" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9l-5.91.74L12 16l-4.09-6.26L2 9l5.91-.74L12 2z" />
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 17l10 5 10-5" />
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12l10 5 10-5" />
 </svg>
                   
-                  <span>More</span>
+                  <span>더보기</span>
                   <svg class="h-4 w-4 submenu-chevron transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
 </svg>
                 </button>
                 <div
                   class="nav-submenu border-border bg-popover/95 absolute top-full left-0 z-50 mt-2 hidden min-w-44 space-y-1.5 rounded-xl border p-1.5 shadow-lg backdrop-blur-sm"
-                  data-submenu-id="more"
+                  data-submenu-id="더보기"
                   role="menu"
                 >
                   
@@ -281,7 +274,7 @@
                     
                     
                     <a
-                      href="/categories/"
+                      href="/ko/tags/"
                       class="nav-link 
                         text-muted-foreground hover:text-primary hover:bg-primary/10
                        focus:ring-primary/20 flex items-center gap-2 rounded-lg px-2 py-2 text-sm leading-snug transition-colors duration-200 focus:ring-2 focus:outline-none"
@@ -289,36 +282,12 @@
                       
                     >
                       
-                        <svg class="h-4 w-4" aria-label="Categories" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-</svg>
-
-                      
-                      <span>Categories</span>
-                    </a>
-                  
-                    
-                    
-                      
-                        
-                      
-                    
-                    
-                    <a
-                      href="/tags/"
-                      class="nav-link 
-                        text-muted-foreground hover:text-primary hover:bg-primary/10
-                       focus:ring-primary/20 flex items-center gap-2 rounded-lg px-2 py-2 text-sm leading-snug transition-colors duration-200 focus:ring-2 focus:outline-none"
-                      role="menuitem"
-                      
-                    >
-                      
-                        <svg class="h-4 w-4" aria-label="Tags" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="h-4 w-4" aria-label="태그" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
 </svg>
 
                       
-                      <span>Tags</span>
+                      <span>태그</span>
                     </a>
                   
                     
@@ -329,7 +298,7 @@
                     
                     
                     <a
-                      href="/series/"
+                      href="/ko/categories/"
                       class="nav-link 
                         text-muted-foreground hover:text-primary hover:bg-primary/10
                        focus:ring-primary/20 flex items-center gap-2 rounded-lg px-2 py-2 text-sm leading-snug transition-colors duration-200 focus:ring-2 focus:outline-none"
@@ -337,9 +306,12 @@
                       
                     >
                       
-                        <svg class="h-4 w-4" aria-label="Series" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 18l-4.2 1.8q-1 .425-1.9-.162T5 17.975V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v12.975q0 1.075-.9 1.663t-1.9.162zm0-2.2l5 2.15V5H7v12.95zM12 5H7h10z"/></svg>
+                        <svg class="h-4 w-4" aria-label="분류" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+</svg>
+
                       
-                      <span>Series</span>
+                      <span>분류</span>
                     </a>
                   
                     
@@ -350,7 +322,7 @@
                     
                     
                     <a
-                      href="/"
+                      href="/ko/series/"
                       class="nav-link 
                         text-muted-foreground hover:text-primary hover:bg-primary/10
                        focus:ring-primary/20 flex items-center gap-2 rounded-lg px-2 py-2 text-sm leading-snug transition-colors duration-200 focus:ring-2 focus:outline-none"
@@ -358,12 +330,33 @@
                       
                     >
                       
-                        <svg class="h-4 w-4" aria-label="Archives" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="h-4 w-4" aria-label="시리즈" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 18l-4.2 1.8q-1 .425-1.9-.162T5 17.975V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v12.975q0 1.075-.9 1.663t-1.9.162zm0-2.2l5 2.15V5H7v12.95zM12 5H7h10z"/></svg>
+                      
+                      <span>시리즈</span>
+                    </a>
+                  
+                    
+                    
+                      
+                        
+                      
+                    
+                    
+                    <a
+                      href="/ko/"
+                      class="nav-link 
+                        text-muted-foreground hover:text-primary hover:bg-primary/10
+                       focus:ring-primary/20 flex items-center gap-2 rounded-lg px-2 py-2 text-sm leading-snug transition-colors duration-200 focus:ring-2 focus:outline-none"
+                      role="menuitem"
+                      
+                    >
+                      
+                        <svg class="h-4 w-4" aria-label="보관소" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
 </svg>
 
                       
-                      <span>Archives</span>
+                      <span>보관소</span>
                     </a>
                   
                 </div>
@@ -381,10 +374,10 @@
       id="language-toggle"
       class="dropdown-toggle border-border bg-background text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex h-10 w-10 items-center justify-center rounded-lg border transition-all duration-300 ease-out hover:scale-105 focus:ring-2 focus:outline-none active:scale-95"
       data-dropdown-type="language"
-      aria-label="Switch language"
+      aria-label="언어 전환"
       aria-expanded="false"
       aria-haspopup="true"
-    ><svg class="h-5 w-5 relative z-10" aria-label="Switch language" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    ><svg class="h-5 w-5 relative z-10" aria-label="언어 전환" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 	<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 8l6 6m-7 0l6-6l2-3M2 5h12M7 2h1m14 20l-5-10l-5 10m2-4h6" />
 </svg></button>
 
@@ -395,7 +388,7 @@
       
         role="menu" aria-labelledby="language-toggle"
       
-    ><a href="/posts/timestep-and-frame-pacing-2/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">English</span></a><a href="/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">한국어</span></a></div>
+    ><a href="/posts/timestep-and-frame-pacing-2/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">English</span></a><a href="/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">한국어</span></a></div>
   </div>
 
 
@@ -405,10 +398,10 @@
       id="color-scheme-toggle"
       class="dropdown-toggle border-border bg-background text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex h-10 w-10 items-center justify-center rounded-lg border transition-all duration-300 ease-out hover:scale-105 focus:ring-2 focus:outline-none active:scale-95"
       data-dropdown-type="color-scheme"
-      aria-label="Toggle theme"
+      aria-label="테마 전환"
       aria-expanded="false"
       aria-haspopup="true"
-    ><svg class="h-5 w-5 relative z-10" aria-label="Toggle theme" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    ><svg class="h-5 w-5 relative z-10" aria-label="테마 전환" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v6a2 2 0 002 2h4a2 2 0 002-2V5z" />
 </svg>
 </button>
@@ -428,18 +421,18 @@
       id="theme-toggle"
       class="dropdown-toggle border-border bg-background text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex h-10 w-10 items-center justify-center rounded-lg border transition-all duration-300 ease-out hover:scale-105 focus:ring-2 focus:outline-none active:scale-95"
       data-dropdown-type="theme"
-      aria-label="Toggle theme"
+      aria-label="테마 전환"
       aria-expanded="false"
       aria-haspopup="true"
-    ><svg class="h-5 w-5 sun-icon hidden relative z-10" aria-label="Light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    ><svg class="h-5 w-5 sun-icon hidden relative z-10" aria-label="라이트" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
 </svg>
 
-        <svg class="h-5 w-5 moon-icon hidden relative z-10" aria-label="Dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="h-5 w-5 moon-icon hidden relative z-10" aria-label="다크" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
 </svg>
 
-        <svg class="h-5 w-5 system-icon hidden relative z-10" aria-label="System" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="h-5 w-5 system-icon hidden relative z-10" aria-label="시스템" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 </svg>
 </button>
@@ -449,16 +442,16 @@
       class="dropdown-menu border-border bg-popover/95 w-40 absolute top-12 right-0 z-60 hidden rounded-lg border p-1 shadow-lg backdrop-blur-sm transition-all duration-200 ease-out"
       data-dropdown-type="theme"
       
-    ><button data-theme="light" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="Light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    ><button data-theme="light" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="라이트" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
 </svg>
-<span>Light</span></button><button data-theme="dark" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="Dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<span>라이트</span></button><button data-theme="dark" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="다크" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
 </svg>
-<span>Dark</span></button><button data-theme="system" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="System" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<span>다크</span></button><button data-theme="system" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="시스템" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 </svg>
-<span>System</span></button></div>
+<span>시스템</span></button></div>
   </div>
       </div>
     </div>
@@ -470,11 +463,11 @@
 <button
   id="mobile-nav-toggle"
   class="nav-panel-toggle border-border bg-background text-muted-foreground hover:bg-accent hover:text-foreground flex h-10 w-10 items-center justify-center rounded-lg border transition-colors duration-200"
-  aria-label="Menu"
+  aria-label="메뉴"
   aria-expanded="false"
   aria-controls="mobile-nav-panel"
 >
-  <svg class="h-5 w-5" aria-label="Menu" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <svg class="h-5 w-5" aria-label="메뉴" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
 </svg>
 
@@ -490,10 +483,10 @@
       id="language-toggle"
       class="dropdown-toggle border-border bg-background text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex h-10 w-10 items-center justify-center rounded-lg border transition-all duration-300 ease-out hover:scale-105 focus:ring-2 focus:outline-none active:scale-95"
       data-dropdown-type="language"
-      aria-label="Switch language"
+      aria-label="언어 전환"
       aria-expanded="false"
       aria-haspopup="true"
-    ><svg class="h-5 w-5 relative z-10" aria-label="Switch language" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    ><svg class="h-5 w-5 relative z-10" aria-label="언어 전환" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
 	<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 8l6 6m-7 0l6-6l2-3M2 5h12M7 2h1m14 20l-5-10l-5 10m2-4h6" />
 </svg></button>
 
@@ -504,7 +497,7 @@
       
         role="menu" aria-labelledby="language-toggle"
       
-    ><a href="/posts/timestep-and-frame-pacing-2/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">English</span></a><a href="/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">한국어</span></a></div>
+    ><a href="/posts/timestep-and-frame-pacing-2/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem"><span class="font-medium">English</span></a><a href="/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none" role="menuitem" aria-current="true"><span class="font-medium">한국어</span></a></div>
   </div>
 
 
@@ -514,10 +507,10 @@
       id="color-scheme-toggle"
       class="dropdown-toggle border-border bg-background text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex h-10 w-10 items-center justify-center rounded-lg border transition-all duration-300 ease-out hover:scale-105 focus:ring-2 focus:outline-none active:scale-95"
       data-dropdown-type="color-scheme"
-      aria-label="Toggle theme"
+      aria-label="테마 전환"
       aria-expanded="false"
       aria-haspopup="true"
-    ><svg class="h-5 w-5 relative z-10" aria-label="Toggle theme" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    ><svg class="h-5 w-5 relative z-10" aria-label="테마 전환" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v6a2 2 0 002 2h4a2 2 0 002-2V5z" />
 </svg>
 </button>
@@ -537,18 +530,18 @@
       id="theme-toggle"
       class="dropdown-toggle border-border bg-background text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex h-10 w-10 items-center justify-center rounded-lg border transition-all duration-300 ease-out hover:scale-105 focus:ring-2 focus:outline-none active:scale-95"
       data-dropdown-type="theme"
-      aria-label="Toggle theme"
+      aria-label="테마 전환"
       aria-expanded="false"
       aria-haspopup="true"
-    ><svg class="h-5 w-5 sun-icon hidden relative z-10" aria-label="Light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    ><svg class="h-5 w-5 sun-icon hidden relative z-10" aria-label="라이트" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
 </svg>
 
-        <svg class="h-5 w-5 moon-icon hidden relative z-10" aria-label="Dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="h-5 w-5 moon-icon hidden relative z-10" aria-label="다크" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
 </svg>
 
-        <svg class="h-5 w-5 system-icon hidden relative z-10" aria-label="System" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="h-5 w-5 system-icon hidden relative z-10" aria-label="시스템" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 </svg>
 </button>
@@ -558,16 +551,16 @@
       class="dropdown-menu border-border bg-popover/95 w-40 absolute top-12 right-0 z-60 hidden rounded-lg border p-1 shadow-lg backdrop-blur-sm transition-all duration-200 ease-out"
       data-dropdown-type="theme"
       
-    ><button data-theme="light" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="Light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    ><button data-theme="light" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="라이트" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
 </svg>
-<span>Light</span></button><button data-theme="dark" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="Dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<span>라이트</span></button><button data-theme="dark" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="다크" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
 </svg>
-<span>Dark</span></button><button data-theme="system" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="System" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<span>다크</span></button><button data-theme="system" class="text-accent-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex w-full items-center rounded-md px-4 py-2 text-sm transition-all duration-200 ease-out focus:outline-none"><svg class="h-5 w-5 mr-3 h-4 w-4" aria-label="시스템" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 </svg>
-<span>System</span></button></div>
+<span>시스템</span></button></div>
   </div>
       </div>
     </div>
@@ -579,7 +572,7 @@
   id="mobile-nav-panel"
   class="mt-2 hidden md:hidden"
   role="navigation"
-  aria-label="Menu"
+  aria-label="메뉴"
   aria-hidden="true"
   tabindex="-1"
 >
@@ -600,7 +593,7 @@
         
           
           <a
-            href="/posts/"
+            href="/ko/posts/"
             class="nav-panel-link 
               text-muted-foreground hover:text-primary hover:bg-primary/10
              focus:ring-primary/20 flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
@@ -608,12 +601,12 @@
             
           >
             
-              <svg class="h-5 w-5" aria-label="Posts" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="h-5 w-5" aria-label="포스트" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
 </svg>
 
             
-            <span>Posts</span>
+            <span>포스트</span>
           </a>
         
       
@@ -627,7 +620,7 @@
         
           
           <a
-            href="/projects/"
+            href="/ko/projects/"
             class="nav-panel-link 
               text-muted-foreground hover:text-primary hover:bg-primary/10
              focus:ring-primary/20 flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
@@ -635,11 +628,11 @@
             
           >
             
-              <svg class="h-5 w-5" aria-label="Projects" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="6" r="1" fill="currentColor"/><path fill="currentColor" d="M6 17h12v2H6zm4-5.17l2.792 2.794l3.932-3.935L18 12V8h-4l1.31 1.275l-2.519 2.519L10 9l-4 4l1.414 1.414z"/><path fill="currentColor" d="M19 3h-3.298a5 5 0 0 0-.32-.425l-.01-.012a4.43 4.43 0 0 0-2.89-1.518a2.6 2.6 0 0 0-.964 0a4.43 4.43 0 0 0-2.89 1.518l-.01.012a5 5 0 0 0-.32.424V3H5a3.003 3.003 0 0 0-3 3v14a3.003 3.003 0 0 0 3 3h14a3.003 3.003 0 0 0 3-3V6a3.003 3.003 0 0 0-3-3m1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4.55a2.5 2.5 0 0 1 4.9 0H19a1 1 0 0 1 1 1Z"/></svg>
+              <svg class="h-5 w-5" aria-label="프로젝트" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="6" r="1" fill="currentColor"/><path fill="currentColor" d="M6 17h12v2H6zm4-5.17l2.792 2.794l3.932-3.935L18 12V8h-4l1.31 1.275l-2.519 2.519L10 9l-4 4l1.414 1.414z"/><path fill="currentColor" d="M19 3h-3.298a5 5 0 0 0-.32-.425l-.01-.012a4.43 4.43 0 0 0-2.89-1.518a2.6 2.6 0 0 0-.964 0a4.43 4.43 0 0 0-2.89 1.518l-.01.012a5 5 0 0 0-.32.424V3H5a3.003 3.003 0 0 0-3 3v14a3.003 3.003 0 0 0 3 3h14a3.003 3.003 0 0 0 3-3V6a3.003 3.003 0 0 0-3-3m1 17a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h4.55a2.5 2.5 0 0 1 4.9 0H19a1 1 0 0 1 1 1Z"/></svg>
 
 
             
-            <span>Projects</span>
+            <span>프로젝트</span>
           </a>
         
       
@@ -652,27 +645,27 @@
           <div class="nav-accordion-group">
             <button
               class="nav-accordion-toggle text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
-              data-accordion-id="more"
+              data-accordion-id="더보기"
               aria-expanded="false"
-              aria-controls="accordion-more"
+              aria-controls="accordion-더보기"
             >
               
-                <svg class="h-5 w-5" aria-label="More" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg class="h-5 w-5" aria-label="더보기" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3.09 6.26L22 9l-5.91.74L12 16l-4.09-6.26L2 9l5.91-.74L12 2z" />
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 17l10 5 10-5" />
 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12l10 5 10-5" />
 </svg>
               
-              <span class="flex-1 text-left">More</span>
+              <span class="flex-1 text-left">더보기</span>
               <svg class="h-4 w-4 accordion-chevron transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
 </svg>
             </button>
             
             <div
-              id="accordion-more"
+              id="accordion-더보기"
               class="nav-accordion-panel grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out"
-              data-accordion-id="more"
+              data-accordion-id="더보기"
               aria-hidden="true"
             >
               <div class="overflow-hidden">
@@ -686,7 +679,7 @@
                     
                     
                     <a
-                      href="/categories/"
+                      href="/ko/tags/"
                       class="nav-panel-link 
                         text-muted-foreground hover:text-primary hover:bg-primary/10
                        focus:ring-primary/20 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
@@ -694,36 +687,12 @@
                       
                     >
                       
-                        <svg class="h-4 w-4" aria-label="Categories" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-</svg>
-
-                      
-                      <span>Categories</span>
-                    </a>
-                  
-                    
-                    
-                      
-                        
-                      
-                    
-                    
-                    <a
-                      href="/tags/"
-                      class="nav-panel-link 
-                        text-muted-foreground hover:text-primary hover:bg-primary/10
-                       focus:ring-primary/20 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
-                      role="menuitem"
-                      
-                    >
-                      
-                        <svg class="h-4 w-4" aria-label="Tags" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="h-4 w-4" aria-label="태그" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
 </svg>
 
                       
-                      <span>Tags</span>
+                      <span>태그</span>
                     </a>
                   
                     
@@ -734,7 +703,7 @@
                     
                     
                     <a
-                      href="/series/"
+                      href="/ko/categories/"
                       class="nav-panel-link 
                         text-muted-foreground hover:text-primary hover:bg-primary/10
                        focus:ring-primary/20 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
@@ -742,9 +711,12 @@
                       
                     >
                       
-                        <svg class="h-4 w-4" aria-label="Series" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 18l-4.2 1.8q-1 .425-1.9-.162T5 17.975V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v12.975q0 1.075-.9 1.663t-1.9.162zm0-2.2l5 2.15V5H7v12.95zM12 5H7h10z"/></svg>
+                        <svg class="h-4 w-4" aria-label="분류" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+</svg>
+
                       
-                      <span>Series</span>
+                      <span>분류</span>
                     </a>
                   
                     
@@ -755,7 +727,7 @@
                     
                     
                     <a
-                      href="/"
+                      href="/ko/series/"
                       class="nav-panel-link 
                         text-muted-foreground hover:text-primary hover:bg-primary/10
                        focus:ring-primary/20 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
@@ -763,12 +735,33 @@
                       
                     >
                       
-                        <svg class="h-4 w-4" aria-label="Archives" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="h-4 w-4" aria-label="시리즈" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="m12 18l-4.2 1.8q-1 .425-1.9-.162T5 17.975V5q0-.825.588-1.412T7 3h10q.825 0 1.413.588T19 5v12.975q0 1.075-.9 1.663t-1.9.162zm0-2.2l5 2.15V5H7v12.95zM12 5H7h10z"/></svg>
+                      
+                      <span>시리즈</span>
+                    </a>
+                  
+                    
+                    
+                      
+                        
+                      
+                    
+                    
+                    <a
+                      href="/ko/"
+                      class="nav-panel-link 
+                        text-muted-foreground hover:text-primary hover:bg-primary/10
+                       focus:ring-primary/20 flex items-center gap-3 rounded-md px-3 py-2.5 text-sm transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+                      role="menuitem"
+                      
+                    >
+                      
+                        <svg class="h-4 w-4" aria-label="보관소" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
 </svg>
 
                       
-                      <span>Archives</span>
+                      <span>보관소</span>
                     </a>
                   
                 </div>
@@ -787,7 +780,7 @@
 
       <div class="px-4 py-6">
         
-  <nav class="breadcrumb mb-4 py-1 md:mb-6" aria-label="Breadcrumb">
+  <nav class="breadcrumb mb-4 py-1 md:mb-6" aria-label="탐색 경로">
     <ol
       class="text-muted-foreground scrollbar-hide flex items-center space-x-1 overflow-x-auto py-1 text-sm whitespace-nowrap md:space-x-2"
     >
@@ -796,7 +789,7 @@
           
           <li class="shrink-0">
             <a
-              href="/"
+              href="/ko/"
               class="text-muted-foreground hover:text-primary hover:bg-primary/10 flex items-center gap-1 rounded-lg px-1 py-0.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.02] md:py-1.5"
             >
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -817,13 +810,13 @@
 </svg>
             </span>
             <a
-              href="/posts/"
+              href="/ko/posts/"
               class="text-muted-foreground hover:text-primary hover:bg-primary/10 flex shrink-0 items-center gap-1 rounded-lg px-1 py-0.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.02] md:px-3 md:py-1.5"
             >
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
 </svg>
-              <span class="max-w-16 truncate md:max-w-none">Posts</span>
+              <span class="max-w-16 truncate md:max-w-none">포스트</span>
             </a>
           </li>
         
@@ -841,7 +834,7 @@
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
 </svg>
-          <span class="max-w-32 truncate md:max-w-[16rem] lg:max-w-none">Timestep and Frame Pacing 2</span>
+          <span class="max-w-32 truncate md:max-w-[16rem] lg:max-w-none">타임스텝과 프레임 페이싱 2</span>
         </span>
       </li>
     </ol>
@@ -852,7 +845,7 @@
   <div class="mb-8 overflow-hidden rounded-2xl">
         <img
           src="/posts/timestep-and-frame-pacing-2/resources/cover.webp"
-          alt="Timestep and Frame Pacing 2"
+          alt="타임스텝과 프레임 페이싱 2"
           class="aspect-video max-h-[50vh] w-full object-cover md:max-h-[60vh]"
           loading="eager"
         />
@@ -869,7 +862,7 @@
 <div class="post-meta mb-8">
   
   <h1 class="text-foreground mb-6 text-3xl leading-tight font-bold md:text-4xl">
-    Timestep and Frame Pacing 2
+    타임스텝과 프레임 페이싱 2
   </h1>
 
   
@@ -893,7 +886,7 @@
 </svg>
 
               <time datetime="2026-08-16">
-                August 16, 2026
+                2026년 8월 16일
               </time>
             </div>
 
@@ -904,7 +897,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>7 min</span>
+              <span>1분</span>
             </div>
             
 
@@ -915,7 +908,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>1337 words</span>
+              <span>45자</span>
             </div>
             
           </div>
@@ -931,7 +924,7 @@
                   <span class="text-muted-foreground text-sm font-medium">
                     Series:
                   </span>
-                  <a href="/series/timestep-and-frame-pacing/"
+                  <a href="/ko/series/timestep-and-frame-pacing/"
                     class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
                     Timestep and Frame Pacing
                   </a>
@@ -950,11 +943,11 @@
                   <span class="text-muted-foreground text-sm font-medium">
                     Tags:
                   </span>
-                  <a href="/tags/system/"
+                  <a href="/ko/tags/system/"
                     class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
                     System
                   </a>
-                  <a href="/tags/game-engine/"
+                  <a href="/ko/tags/game-engine/"
                     class="inline-flex items-center rounded-full px-2.5 py-1 text-sm font-medium transition-all duration-200 bg-muted/50 text-muted-foreground hover:bg-muted hover:text-foreground">
                     Game Engine
                   </a>
@@ -995,17 +988,17 @@
 
             <nav id="series-content-0"
               class="series-content overflow-y-auto max-h-32 p-4 transition-opacity duration-300 opacity-100 z-10 block"
-              data-link="/series/timestep-and-frame-pacing/">
+              data-link="/ko/series/timestep-and-frame-pacing/">
               <ol class="space-y-1.5">
                 <li>
-                  <a href="/posts/timestep-and-frame-pacing-2/"
+                  <a href="/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/"
                     class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all group bg-primary/15 text-primary font-medium shadow-sm"
                     aria-current="page" >
                     <span
                       class="font-mono text-xs shrink-0 text-primary transition-opacity">
                       01
                     </span>
-                    <span class="flex-1 truncate">Timestep and Frame Pacing 2</span>
+                    <span class="flex-1 truncate">타임스텝과 프레임 페이싱 2</span>
                     <svg class="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fill-rule="evenodd"
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -1014,14 +1007,14 @@
                   </a>
                 </li>
                 <li>
-                  <a href="/posts/timestep-and-frame-pacing-1/"
+                  <a href="/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/"
                     class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm transition-all group text-muted-foreground hover:text-foreground hover:bg-muted/50"
                     >
                     <span
                       class="font-mono text-xs shrink-0 opacity-50 group-hover:opacity-100 transition-opacity">
                       02
                     </span>
-                    <span class="flex-1 truncate">Timestep and Frame Pacing 1</span>
+                    <span class="flex-1 truncate">타임스텝과 프레임 페이싱 1</span>
                   </a>
                 </li>
               </ol>
@@ -1079,1009 +1072,8 @@
 
   
   <article class="prose prose-neutral dark:prose-invert mb-12 max-w-none">
-    
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>Working on it.</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<h1 id="frame-pacing">Frame Pacing<a href="#frame-pacing" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h1>
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>The synchronization of a game’s logic and rendering loop with an OS’s display
-subsystem and the underlying display hardware.</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<h2 id="smoothness-isnt-in-the-eye-of-cpu">Smoothness Isn&rsquo;t in the Eye of CPU<a href="#smoothness-isnt-in-the-eye-of-cpu" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Last time, we decided to use a fixed simulation timestep to cover the entire
-deltatime, decouple rendering from simulation, and use interpolation,
-extrapolation, ticking, or whatever technique is appropriate.</p>
-<p>But is your delta time actually &ldquo;correct&rdquo;?</p>
-<p>Back in 2018, <em>Croteam</em> (creators of <em>Serious Sam</em> and <em>The Talos Principle</em>)
-gave a <a
-    href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
-    class="inline-flex items-center gap-1"
-  >talk<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>
-at GDC about a strange phenomenon surrounding frame stuttering.</p>
-<p>Surely there must have been a performance hitch somewhere, and the frame simply
-missed its presentation deadline, right? We&rsquo;d expect to see something like
-this:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_1.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/croteam_1.svg"
-    alt="Croteam_1"
-    title="Blue frame had to be shown twice because the green fame missed its deadline."
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_1.svg"
-    data-gallery-alt="Croteam_1"
-    data-gallery-title="Blue frame had to be shown twice because the green fame missed its deadline."
-  /></div>
-
-  <figcaption class="image-caption">
-      Blue frame had to be shown twice because the green fame missed its deadline.
-    </figcaption></figure>
-</p>
-<p>But here&rsquo;s the <strong>elusive</strong> part: no frame was ever shown twice. In fact, some
-frames were actually &ldquo;faster&rdquo; than expected.</p>
-<p>Personally, I had a hard time understanding this, so for beginners like me,
-let&rsquo;s break it down step by step. Here&rsquo;s a simple game loop:</p>
-<div
-  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
-  data-code-block
-  data-code-id="code-0"
-  data-collapsible="true"
-  data-default-state="expanded"
-  data-collapsed="false"
-  data-auto-collapse-lines="30"
-  data-auto-collapse-height="400"
-  data-collapsed-height="120"
->
-  
-  <div
-    class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"
-  >
-    
-    <div class="flex items-center gap-2">
-      <div class="text-muted-foreground shrink-0">
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-</svg>
-      </div>
-      <span class="text-muted-foreground text-sm font-medium">
-        C
-      </span>
-    </div>
-
-    
-    <div class="flex items-center gap-2">
-      <button
-          class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
-          type="button"
-          data-code-action="toggle-collapse"
-          data-label-expand="Expand"
-          data-label-collapse="Collapse"
-          title="Collapse"
-          aria-label="Collapse"
-          aria-controls="code-0"
-          aria-expanded="true"
-        >
-          <span class="collapse-chevron transition-transform duration-200 ease-out">
-            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-</svg>
-          </span>
-          <span class="collapse-text hidden sm:inline">Collapse</span>
-        </button>
-      <button
-        class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
-        type="button"
-        data-code-action="copy"
-        data-label-copy="Copy"
-        data-label-copied="Copied"
-        title="Copy"
-        aria-label="Copy"
-      >
-        <span class="copy-icon">
-          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-</svg>
-        </span>
-        <span class="copy-text hidden sm:inline">Copy</span>
-      </button>
-    </div>
-  </div>
-
-  
-  <div class="code-block-content relative" id="code-0">
-    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">TimeOld</span> <span class="o">=</span> <span class="nf">Now</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="n">GameRunning</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">TimeNew</span> <span class="o">=</span> <span class="nf">Now</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">DeltaTime</span> <span class="o">=</span> <span class="n">TimeNew</span> <span class="o">-</span> <span class="n">TimeOld</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">TimeOld</span> <span class="o">=</span> <span class="n">TimeNew</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">State</span> <span class="o">=</span> <span class="nf">Update</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">Render</span><span class="p">(</span><span class="n">State</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
-    <div hidden data-code-source>float TimeOld = Now();
-while (GameRunning) {
-    float TimeNew = Now();
-    float DeltaTime = TimeNew - TimeOld;
-    TimeOld = TimeNew;
-
-    State = Update(DeltaTime);
-    Render(State);
-}</div>
-    
-    <div
-      class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"
-      hidden
-    >
-      <button
-        class="collapse-overlay-btn text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all duration-200"
-        type="button"
-        data-code-action="expand"
-        aria-label="Expand"
-        title="Expand"
-      >
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-</svg>
-      </button>
-    </div>
-  </div>
-</div>
-<p>Let&rsquo;s say the OS scheduler was in a bad mood, and as a result, <code>DeltaTime</code>
-comes out to 24.8ms. That&rsquo;s fine. We can simply move the character forward by
-24.8ms to keep the motion feeling natural. Let&rsquo;s integrate <code>DeltaTime</code> into
-<code>Update</code>:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_2.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/croteam_2.svg"
-    alt="Croteam_2"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_2.svg"
-    data-gallery-alt="Croteam_2"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>Then the GPU renders to the buffer, and the display scans it out.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_3.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/croteam_3.svg"
-    alt="Croteam_3"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_3.svg"
-    data-gallery-alt="Croteam_3"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>So this is what wee see:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_4.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/croteam_4.svg"
-    alt="Croteam_4"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_4.svg"
-    data-gallery-alt="Croteam_4"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>Here&rsquo;s where the mismatch happens. What was the last frame we saw? This blue
-one:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_5.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/croteam_5.svg"
-    alt="Croteam_5"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_5.svg"
-    data-gallery-alt="Croteam_5"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>Given that the monitor runs at 60Hz, the interval between the times you see new
-frames is 16.67ms.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_6.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/croteam_6.svg"
-    alt="Croteam_6"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_6.svg"
-    data-gallery-alt="Croteam_6"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>Your brain expects the character in the green frame to have moved for 16.67ms
-since the previous one. But the game actually moved it by 24.8ms, because <strong>it
-had no idea when the previous frame was displayed.</strong></p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/croteam_7.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/croteam_7.svg"
-    alt="Croteam_7"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/croteam_7.svg"
-    data-gallery-alt="Croteam_7"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>Wait, isn&rsquo;t the interval just a constant 16.67ms? Why don&rsquo;t we just plug that
-in instead of computing <code>DeltaTime</code> every frame?</p>
-<h2 id="asynchrony-and-middleman">Asynchrony and Middleman<a href="#asynchrony-and-middleman" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="old-days">Old Days<a href="#old-days" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>In good old days, things were fixed. Graphics hardware was either thin or
-nonexistent, and there were no pipelines. Things were synchronous, and there
-was no middleman between your game and the display. The game simply wrote into
-the buffer, which was then presented to you immediately. So, you could just
-plug in 16.67ms, or whatever the display&rsquo;s refresh interval happened to be.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_1.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_1.svg"
-    alt="Modern Stack 1"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_1.svg"
-    data-gallery-alt="Modern Stack 1"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<h3 id="gpu">GPU<a href="#gpu" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Here comes every gamer&rsquo;s favorite hardware: GPU.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_2.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_2.svg"
-    alt="Modern Stack 2"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_2.svg"
-    data-gallery-alt="Modern Stack 2"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>This was what we were seeing before, and my question is still unanswered: why
-not use fixed 16.67ms? But, let&rsquo;s continue.</p>
-<h3 id="triple-buffering">Triple Buffering<a href="#triple-buffering" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Good news. your hardware just got 2x faster. Technology!</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
-    alt="Modern Stack 3"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
-    data-gallery-alt="Modern Stack 3"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>Time to talk about input latency. How long does it take for my mouse input to
-be reflected in a frame and shown on my monitor? It depends on where the mouse
-cursor is on the screen, since the display scans out the buffer line by line.
-Roughly, it looks something like this:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
-    alt="Modern Stack 4"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
-    data-gallery-alt="Modern Stack 4"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>As we have extra computing power and more leeway, can&rsquo;t we make use of it? What
-if we run one more cycle, like this:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
-    alt="Modern Stack 5"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_5.svg"
-    data-gallery-alt="Modern Stack 5"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>As it incorporates more hot inputs, if we present it instead, the input latency
-would improve:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
-    alt="Modern Stack 6"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_6.svg"
-    data-gallery-alt="Modern Stack 6"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>What we&rsquo;re doing here is called, <em>triple buffering</em>:</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
-    alt="Modern Stack 7"
-    title="Three buffers are colored red, blue, and green."
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_7.svg"
-    data-gallery-alt="Modern Stack 7"
-    data-gallery-title="Three buffers are colored red, blue, and green."
-  /></div>
-
-  <figcaption class="image-caption">
-      Three buffers are colored red, blue, and green.
-    </figcaption></figure>
-</p>
-<p>During the first VSync interval, the green and blue buffers are <em>back buffers</em>,
-while the red buffer is the <em>front buffer</em>. During this interval, while the
-GPU renders into the back buffers, the display scans out the front buffer line
-by line, allowing you to see it.</p>
-<p>Beginning of the second interval, the buffers are &ldquo;flipped&rdquo;. Since the blue
-buffer contains an older frame than the green buffer, the green buffer now
-becomes the front buffer, which again, scanned out by the display.</p>
-
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>This is what Windows DXGI flip discard mode is. It queues &ldquo;flips&rdquo; and discards
-old ones.</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<h3 id="somehow-fixed-timestep-returned">Somehow Fixed Timestep Returned<a href="#somehow-fixed-timestep-returned" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Remember the fixed timestep thing we talked about last time? Where does it fit
-into this scheme?</p>
-<p>Well, I would say the nuance slightly shifts. Now, we&rsquo;re not triple buffering
-solely because of input latency. We&rsquo;re doing it simply because it&rsquo;s time to
-tick, and we want to render the result. After all, what kind of game is it if
-the state we just ticked isn&rsquo;t presented?</p>
-<p>For example, say now we&rsquo;re using fixed timestep and the tick rate is twice the
-display refresh rate, and we only have two buffers. As illustrated below, we
-only get the spare blue workbench. If we miss the VSync deadline, we have to
-display the previous red frame, and the user will feel the stutter, even though
-the number says we&rsquo;re generating nearly twice as many frames.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_8.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_8.svg"
-    alt="Modern Stack 8"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_8.svg"
-    data-gallery-alt="Modern Stack 8"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>If we can somehow predict the rendering time, detect that a frame will miss its
-deadline, and decide not to render it, we won&rsquo;t show the latest state of the
-game, but at least we won&rsquo;t show the same previous frame,</p>
-
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>@Todo: I think graphics API blocks the thread from acquiring the same buffer
-after present() is queued, depending on the setup.</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_9.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_9.svg"
-    alt="Modern Stack 9"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_9.svg"
-    data-gallery-alt="Modern Stack 9"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>This was our first glimpse of <strong>frame pacing</strong>. We controlled the pace of frame
-generation for the sake of the user. Now you see why FPS isn&rsquo;t the golden rule,
-and why being fast isn&rsquo;t enough.</p>
-<p>Instead, we can add an additional workbench. Then we no longer have to rely on
-statistical voodoo or pray that the system remains stable. With a safeguard in
-place, we&rsquo;re &ldquo;safe&rdquo; even if the second rendering misses its deadline.</p>
-<p>
-<figure
-  class="image-figure not-prose my-8"
-  data-lightbox-enabled="
-    true
-  "
-  data-gallery-type="auto"
-  data-image-width="0"
-  data-image-height="0"
-  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_10.svg"
->
-  <div class="image-container">
-    <img
-    src="/posts/timestep-and-frame-pacing-2/resources/modern_10.svg"
-    alt="Modern Stack 10"
-    
-    
-      
-      
-        
-      
-    
-    loading="lazy"
-    decoding="async"
-    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_10.svg"
-    data-gallery-alt="Modern Stack 10"
-    data-gallery-title=""
-  /></div>
-
-  </figure>
-</p>
-<p>In this scheme, whose primary focus is deterministic simulation with a fixed
-timestep, I would say improved latency is more of a byproduct.</p>
-
-  <blockquote
-    class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
-  >
-    <div class="prose prose-sm max-w-none">
-      <p>Input latency is another compltex topic, IMO. There&rsquo;s even tech like
-<a
-    href="https://developer.nvidia.com/performance-rendering-tools/reflex"target="_blank"
-    class="inline-flex items-center gap-1"
-  >NVIDIA Reflex<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>,
-which shifts the image just in time to incorporate the latest input and then
-fills the hole. But anyway, I digress.</p>
-
-    </div>
-  </blockquote><script>
-  function toggleAlert(alertId) {
-    const content = document.getElementById(alertId + "-content");
-    const chevron = document.getElementById(alertId + "-chevron");
-    const header = content.previousElementSibling;
-
-    if (content.classList.contains("hidden")) {
-      content.classList.remove("hidden");
-      chevron.style.transform = "rotate(0deg)";
-      header.setAttribute("aria-expanded", "true");
-    } else {
-      content.classList.add("hidden");
-      chevron.style.transform = "rotate(-90deg)";
-      header.setAttribute("aria-expanded", "false");
-    }
-  }
-
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const collapsedAlerts = document.querySelectorAll(".alert-content.hidden");
-    collapsedAlerts.forEach(function (content) {
-      const alertId = content.id.replace("-content", "");
-      const chevron = document.getElementById(alertId + "-chevron");
-      if (chevron) {
-        chevron.style.transform = "rotate(-90deg)";
-      }
-    });
-  });
-</script>
-<p>Hey, we were talking about whether using a fixed 16.67ms for rendering is
-feasible.</p>
-<p>So, how do I get the timestamp of when the frame is actually displayed?</p>
-<h2 id="hello-windows-devs">Hello, Windows Devs<a href="#hello-windows-devs" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>D3DKMTGetScanLine and friends are kind of useless nowadays.</p>
-<p>DwmGetCompositionTimingInfo</p>
-<p>Nowadays I suggest to not do any manual sleeping but instead use all those
-fancy new swapchain timing APIs.</p>
-<p>Convert SyncQPC units to seconds for rdtsc ticks, add refresh interval, and
-now you known when the current frame will be displayed more accurately than
-sampling the time after WaitForSingleObject(waitable_timer).</p>
-<p>You can round it to nearest multiple of monitor framerate and that will give
-you &ldquo;perfect&rdquo; frame pacing.</p>
-<p>OpenGL&rsquo;s <code>SwapBuffers()</code> queues presentation and buffer swapping command to
-driver queue. Whether it will actually wait or not depens on driver. Often
-drivers block on next gl call, not always in <code>SwapBuffers()</code>. What you really
-want is frame latency waitable object, which OpenGL doesn&rsquo;t have.</p>
-<p>You would want &ldquo;present frame at timestamp X&rdquo; kind of present call, which
-Direct3D doesn&rsquo;t have. Vulkan has extension for that, which is only available
-on Android, AFAIK.</p>
-<p>So, use <code>IDXGISwapChain2::GetFrameLatencyWaitableObject</code> instead of sleeping
-manually.</p>
-<p>On Windows, you can call
-<a
-    href="https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgiswapchain-getframestatistics"target="_blank"
-    class="inline-flex items-center gap-1"
-  >IDXGISwapChain::GetFrameStatistics()<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>,
-which fills in
-<a
-    href="https://learn.microsoft.com/en-us/windows/win32/api/dxgi/ns-dxgi-dxgi_frame_statistics"target="_blank"
-    class="inline-flex items-center gap-1"
-  >DXGI_FRAME_STATISTICS<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>.</p>
-<h2 id="links">Links<a href="#links" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Why naively sampling the CPU clock causes jitter<br>
-<a
-    href="https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Alen Ladavac. &ldquo;The Elusive Frame Timing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Croteam. &ldquo;The Elusive Frame Timing&rdquo;. GDC 2018<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://www.youtube.com/watch?v=_zpS1p0_L_o"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Croteam. &ldquo;Myths and Misconceptions of Frame Pacing&rdquo;. Reboot Devlop Blue 2019<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p>How <em>Unity</em> relocated delta time query code to tackle jitter<br>
-<a
-    href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
-    href="https://developer.android.com/games/sdk/frame-pacing"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Android. &ldquo;Frame Pacing Libary&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
-    href="https://www.gdcvault.com/play/1026327/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Akimitsu Hogge. Activision Central Technology. &ldquo;Controller to display latency in Call of Duty&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p>Explanation of <em>DXGI_FRAME_STATICS</em> fields<br>
-<a
-    href="https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >John-Paul Ownby. &ldquo;Syncing without VSync&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
-    href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Raph Levien. &ldquo;Swapchains and frame pacing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
-    href="https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Intel. Sample Application for Direct3D 12 Flip Model Swap Chains<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
-    href="https://james.darpinian.com/blog/latency-techniques/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >James Darpinian. &ldquo;Techniques to Reduce Latency in Your Apps&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
-    href="https://developer.nvidia.com/performance-rendering-tools/reflex"target="_blank"
-    class="inline-flex items-center gap-1"
-  >NVIDIA Reflex<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<h2 id="questions">Questions<a href="#questions" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>How do I know if VSync is on/off programmatically?</p>
+    <p>Translation in progress. Please switch languages in the top-right corner and check again.</p>
+<p>번역이 진행 중입니다. 우측 상단에서 언어를 전환한 후 다시 확인해 주세요.</p>
 
   </article>
 
@@ -2117,7 +1109,7 @@ which fills in
       <div class="nav-item">
         
           <a
-            href="/posts/timestep-and-frame-pacing-1/"
+            href="/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/"
             class="group bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex min-h-[140px] flex-col justify-between rounded-xl border p-6 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
           >
             <div>
@@ -2126,14 +1118,14 @@ which fills in
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
 </svg>
                 <span class="text-muted-foreground text-sm font-medium">
-                  Previous
+                  이전
                 </span>
               </div>
 
               <h3
                 class="text-foreground group-hover:text-primary mb-3 line-clamp-2 text-lg leading-tight font-semibold transition-colors duration-200"
               >
-                Timestep and Frame Pacing 1
+                타임스텝과 프레임 페이싱 1
               </h3>
             </div>
 
@@ -2143,7 +1135,7 @@ which fills in
 </svg>
 
               <time datetime="2026-08-14">
-                08/14
+                08-14
               </time>
             </div>
           </a>
@@ -2158,7 +1150,7 @@ which fills in
           >
             <div class="mb-3 flex items-center justify-end gap-3">
               <span class="text-muted-foreground/50 text-sm font-medium">
-                No next
+                다음 없음
               </span>
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -2189,7 +1181,7 @@ which fills in
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
 </svg>
       <h2 class="text-foreground text-2xl font-bold">
-        Related content
+        관련 콘텐츠
       </h2>
     </div>
 
@@ -2197,14 +1189,14 @@ which fills in
     <div class="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       
         <article class="group">
-          <a href="/posts/timestep-and-frame-pacing-1/" class="block">
+          <a href="/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/" class="block">
             <div
               class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex min-h-[120px] items-center rounded-xl border p-5 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none"
             >
               <h3
                 class="text-foreground group-hover:text-primary line-clamp-3 w-full text-lg leading-snug font-semibold"
               >
-                Timestep and Frame Pacing 1
+                타임스텝과 프레임 페이싱 1
               </h3>
             </div>
           </a>
@@ -2236,7 +1228,7 @@ which fills in
             
           
           <a
-            href="/"
+            href="/ko/"
             
             class="nav-link hover:text-primary hover:bg-primary/10 text-muted-foreground flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105"
           >
@@ -2258,7 +1250,7 @@ which fills in
             
           
           <a
-            href="/"
+            href="/ko/"
             
             class="nav-link hover:text-primary hover:bg-primary/10 text-muted-foreground flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105"
           >
@@ -2279,7 +1271,7 @@ which fills in
             
           
           <a
-            href="/"
+            href="/ko/"
             
             class="nav-link hover:text-primary hover:bg-primary/10 text-muted-foreground flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105"
           >
@@ -2430,7 +1422,7 @@ which fills in
   class="pointer-events-none fixed bottom-4 left-1/2 z-9999 w-fit -translate-x-1/2 translate-y-24 opacity-0 transition-all duration-300 ease-out sm:right-0 sm:left-0 sm:mx-auto sm:translate-x-0"
   data-dock-mode="scroll"
   role="toolbar"
-  aria-label="Quick actions toolbar"
+  aria-label="빠른 작업 도구막대"
 >
   <nav
     class="border-border bg-card/80 scrollbar-hide xs:px-3 xs:py-2 mx-auto flex max-w-[calc(100vw-2rem)] min-w-fit items-center justify-center overflow-x-auto rounded-2xl border px-4 py-3 shadow-lg backdrop-blur-sm sm:px-4 sm:py-3"
@@ -2440,15 +1432,15 @@ which fills in
       <button
         id="dock-back"
         class="text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 xs:px-2 xs:py-1.5 flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none sm:px-3 sm:py-2"
-        title="Back"
-        aria-label="Back"
+        title="뒤로"
+        aria-label="뒤로"
       >
         <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="m12 19-7-7 7-7"/>
   <path d="M19 12H5"/>
 </svg>
 
-        <span class="hidden sm:inline">Back</span>
+        <span class="hidden sm:inline">뒤로</span>
       </button>
 
       
@@ -2459,14 +1451,14 @@ which fills in
     <button
       id="dock-search"
       class="text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 xs:px-3 xs:py-1.5 flex shrink-0 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none sm:px-4 sm:py-2"
-      title="Search"
-      aria-label="Search"
+      title="검색"
+      aria-label="검색"
     >
       <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m21 21-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
 </svg>
 
-      <span class="hidden md:inline">Search</span>
+      <span class="hidden md:inline">검색</span>
     </button>
 
     
@@ -2481,14 +1473,14 @@ which fills in
     <button
       id="dock-top"
       class="text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 xs:px-2 xs:py-1.5 flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none sm:px-3 sm:py-2"
-      title="Back to top"
-      aria-label="Back to top"
+      title="맨 위로"
+      aria-label="맨 위로"
     >
       <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="m18 15-6-6-6 6"/>
 </svg>
 
-      <span class="hidden sm:inline">Top</span>
+      <span class="hidden sm:inline">맨 위</span>
     </button>
   </nav>
 </div>
@@ -2496,64 +1488,7 @@ which fills in
 
 
 
-      <aside
-    id="toc-container"
-    class="toc-center"
-    data-position="center"
-  >
-      <div
-        id="toc-center"
-        class="pointer-events-none fixed top-28 right-0 left-0 z-40 mx-auto w-full max-w-4xl px-4 transition-all duration-300"
-      >
-        <div class="pointer-events-auto relative mx-auto w-fit">
-          <button
-            id="toc-center-toggle"
-            class="bg-card/80 border-border text-muted-foreground hover:text-primary hover:bg-primary/10 ring-offset-background focus-visible:ring-ring flex cursor-pointer items-center gap-2 rounded-full border px-4 py-1.5 text-sm shadow-sm backdrop-blur-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-          >
-            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <line x1="8" x2="21" y1="6" y2="6"/>
-  <line x1="8" x2="21" y1="12" y2="12"/>
-  <line x1="8" x2="21" y1="18" y2="18"/>
-  <line x1="3" x2="3.01" y1="6" y2="6"/>
-  <line x1="3" x2="3.01" y1="12" y2="12"/>
-  <line x1="3" x2="3.01" y1="18" y2="18"/>
-</svg>
-
-            <span id="toc-center-title" class="max-w-[200px] truncate">Table of contents</span>
-            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-</svg>
-          </button>
-
-          
-          <div
-            id="toc-center-dropdown"
-            class="bg-card border-border scrollbar-hide absolute top-full left-1/2 mt-2 hidden max-h-[60vh] w-[280px] origin-top -translate-x-1/2 scale-95 overflow-y-auto rounded-xl border p-4 opacity-0 shadow-lg transition-all"
-          >
-            <div
-              id="toc-center-content"
-              class="[&_a]:text-muted-foreground [&_a:hover]:bg-primary/10 [&_a:hover]:text-primary [&_a.active]:bg-primary/10 [&_a.active]:text-primary text-sm [&_a]:block [&_a]:truncate [&_a]:rounded-md [&_a]:px-2 [&_a]:py-1 [&_a]:transition-colors [&_a.active]:font-medium [&_li]:my-1.5 [&_nav>ul]:pl-0 [&_ul]:list-none [&_ul]:pl-4"
-            >
-              <nav id="TableOfContents">
-  <ul>
-    <li><a href="#smoothness-isnt-in-the-eye-of-cpu">Smoothness Isn&rsquo;t in the Eye of CPU</a></li>
-    <li><a href="#asynchrony-and-middleman">Asynchrony and Middleman</a>
-      <ul>
-        <li><a href="#old-days">Old Days</a></li>
-        <li><a href="#gpu">GPU</a></li>
-        <li><a href="#triple-buffering">Triple Buffering</a></li>
-        <li><a href="#somehow-fixed-timestep-returned">Somehow Fixed Timestep Returned</a></li>
-      </ul>
-    </li>
-    <li><a href="#hello-windows-devs">Hello, Windows Devs</a></li>
-    <li><a href="#links">Links</a></li>
-    <li><a href="#questions">Questions</a></li>
-  </ul>
-</nav>
-            </div>
-          </div>
-        </div>
-      </div></aside>
+      
       
 <div
   id="search-overlay"
@@ -2579,7 +1514,7 @@ which fills in
 </svg>
 
     </div>
-    <h2 id="search-title" class="sr-only">Search</h2>
+    <h2 id="search-title" class="sr-only">검색</h2>
 
     
     <div class="relative flex-1">
@@ -2587,8 +1522,8 @@ which fills in
       <button
         id="search-clear"
         class="text-muted-foreground hover:text-foreground hover:bg-muted/50 pointer-events-none absolute top-1/2 left-0 z-10 h-5 w-5 -translate-y-1/2 rounded opacity-0 transition-all duration-200"
-        title="Clear"
-        aria-label="Clear"
+        title="지우기"
+        aria-label="지우기"
       >
         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -2600,7 +1535,7 @@ which fills in
       <input
         id="search-input"
         type="text"
-        placeholder="Search posts..."
+        placeholder="게시물 검색..."
         class="text-foreground placeholder:text-muted-foreground w-full border-none bg-transparent pl-8 text-lg outline-none"
         autocomplete="off"
         spellcheck="false"
@@ -2611,8 +1546,8 @@ which fills in
     <button
       id="search-close"
       class="text-muted-foreground hover:text-foreground hover:bg-muted/50 flex h-6 w-6 items-center justify-center rounded-md p-0.5 transition-all duration-200"
-      title="Close"
-      aria-label="Close"
+      title="닫기"
+      aria-label="닫기"
     >
       <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -2632,7 +1567,7 @@ which fills in
 
       </div>
       <h3 class="text-foreground mb-2 text-lg font-semibold">
-        Start searching
+        검색 시작
       </h3>
     </div>
 
@@ -2641,7 +1576,7 @@ which fills in
       <div
         class="mr-3 h-6 w-6 animate-spin rounded-full border-2 border-current border-t-transparent"
       ></div>
-      <span class="text-muted-foreground">Searching...</span>
+      <span class="text-muted-foreground">검색 중...</span>
     </div>
 
     
@@ -2657,7 +1592,7 @@ which fills in
 
       </div>
       <h3 class="text-foreground mb-2 text-lg font-semibold">
-        No results
+        결과 없음
       </h3>
     </div>
 
@@ -2667,7 +1602,7 @@ which fills in
       <div
         id="search-stats"
         class="text-muted-foreground border-border border-b px-4 py-3 text-sm"
-        data-count-other="Found %d results"
+        data-count-other="결과 %d개"
       ></div>
 
       
@@ -2682,20 +1617,20 @@ which fills in
       <div class="flex items-center gap-2 md:gap-4">
         <div class="flex items-center gap-1">
           <kbd class="bg-muted border-border rounded border px-1.5 py-0.5 text-xs">↑↓</kbd>
-          <span class="hidden sm:inline">Navigate</span>
+          <span class="hidden sm:inline">이동</span>
         </div>
         <div class="flex items-center gap-1">
           <kbd class="bg-muted border-border rounded border px-1.5 py-0.5 text-xs">↵</kbd>
-          <span class="hidden sm:inline">Select</span>
+          <span class="hidden sm:inline">선택</span>
         </div>
         <div class="flex items-center gap-1">
           <kbd class="bg-muted border-border rounded border px-1.5 py-0.5 text-xs">ESC</kbd>
-          <span class="hidden sm:inline">Close</span>
+          <span class="hidden sm:inline">닫기</span>
         </div>
       </div>
       <div class="search-hint-desktop flex items-center gap-1">
         <kbd class="bg-muted border-border rounded border px-1.5 py-0.5 text-xs">⌘K</kbd>
-        <span>Shortcut</span>
+        <span>단축키</span>
       </div>
     </div>
   </div>

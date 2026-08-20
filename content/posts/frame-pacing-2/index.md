@@ -8,32 +8,37 @@ series: ["Timestep and Frame Pacing"]
 cover: "resources/cover.webp"
 ---
 
-> Working on it.
+> I'm Working on it. DO NOT READ IT. DO NOT BELIEVE IT.
 
 # Frame Pacing
 
-> Frame pacing is the synchronization of a game’s logic and rendering loop 
-with an OS’s display subsystem and the underlying display hardware - Android
+> The synchronization of a game’s logic and rendering loop with an OS’s display
+> subsystem and the underlying display hardware.
 
-## Smoothness Isn't in the Eye of Your Game
 
-We decoupled our simulation from rendering and fixed its timestep last time. 
-But is your rendering delta time "correct"?
+## Smoothness Isn't in the Eye of CPU
+
+Last time, we decided to use a fixed simulation timestep to cover the entire
+deltatime, decouple rendering from simulation, and use interpolation,
+extrapolation, ticking, or whatever technique is appropriate. 
+
+But is your delta time actually "correct"?
 
 Back in 2018, *Croteam* (creators of *Serious Sam* and *The Talos Principle*) 
 gave a [talk](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The) 
 at GDC about a strange phenomenon surrounding frame stuttering. 
 
-Surely there must have been a performance hitch somewhere, and the frame 
-simply missed its presentation deadline, right? We'd expect to see something 
-like this:
+Surely there must have been a performance hitch somewhere, and the frame simply
+missed its presentation deadline, right? We'd expect to see something like
+this:
 
 ![Croteam_1](resources/croteam_1.svg "Blue frame had to be shown twice because the green fame missed its deadline.")
 
 But here's the **elusive** part: no frame was ever shown twice. In fact, some 
 frames were actually "faster" than expected.
 
-Let's break it down. Here's a simple game loop:
+Personally, I had a hard time understanding this, so for beginners like me,
+let's break it down step by step. Here's a simple game loop:
 
 ```C
 float TimeOld = Now();
@@ -47,9 +52,10 @@ while (GameRunning) {
 }
 ```
 
-Suppose there's a hitch, and `DeltaTime` comes out to 24.8ms. That's fine. We 
-can simply move the character forward by 24.8ms to keep the motion feeling 
-natural. Let's integrate `DeltaTime` into `Update`:
+Let's say the OS scheduler was in a bad mood, and as a result, `DeltaTime`
+comes out to 24.8ms. That's fine. We can simply move the character forward by
+24.8ms to keep the motion feeling natural. Let's integrate `DeltaTime` into
+`Update`:
 
 ![Croteam_2](resources/croteam_2.svg)
 
@@ -73,13 +79,13 @@ frames is 16.67ms.
 
 Your brain expects the character in the green frame to have moved for 16.67ms 
 since the previous one. But the game actually moved it by 24.8ms, because **it 
-had no idea when the previous frame was displayed and when the current frame 
-will be displayed**.
+had no idea when the previous frame was displayed.**
 
 ![Croteam_7](resources/croteam_7.svg)
 
 Wait, isn't the interval just a constant 16.67ms? Why don't we just plug that 
 in instead of computing `DeltaTime` every frame?
+
 
 
 
@@ -114,9 +120,9 @@ Good news. your hardware just got 2x faster. Technology!
 ![Modern Stack 3](resources/modern_3.svg)
 
 Time to talk about input latency. How long does it take for my mouse input to
-be reflected in a frame and shown on my monitor? it depends on where your mouse
-it on your screen, as the display scans the buffer line by line, but it would
-be something like this:
+be reflected in a frame and shown on my monitor? It depends on where the mouse
+cursor is on the screen, since the display scans out the buffer line by line.
+Roughly, it looks something like this:
 
 ![Modern Stack 4](resources/modern_4.svg)
 
@@ -181,7 +187,7 @@ generation for the sake of the user. Now you see why FPS isn't the golden rule,
 and why being fast isn't enough.
 
 Instead, we can add an additional workbench. Then we no longer have to rely on 
-statistical voodoo or pray that the system remains stable. With a backup in 
+statistical voodoo or pray that the system remains stable. With a safeguard in 
 place, we're "safe" even if the second rendering misses its deadline.
 
 ![Modern Stack 10](resources/modern_10.svg)
@@ -189,7 +195,7 @@ place, we're "safe" even if the second rendering misses its deadline.
 In this scheme, whose primary focus is deterministic simulation with a fixed 
 timestep, I would say improved latency is more of a byproduct.
 
-> Input latency is a whole another rabbithole, IMO. There's even tech like
+> Input latency is another compltex topic, IMO. There's even tech like
 [NVIDIA Reflex](https://developer.nvidia.com/performance-rendering-tools/reflex), 
 which shifts the image just in time to incorporate the latest input and then
 fills the hole. But anyway, I digress.
@@ -201,12 +207,79 @@ feasible.
 
 
 
+
+It's a tradeoff. Present queue filling up entirely causes the delay to stack up.
+
+So, how do I get the timestamp of when the frame is actually displayed?
+
+## Hello, Windows Devs
+
+D3DKMTGetScanLine and friends are kind of useless nowadays.
+
+DwmGetCompositionTimingInfo
+
+Nowadays I suggest to not do any manual sleeping but instead use all those
+fancy new swapchain timing APIs.
+
+Convert SyncQPC units to seconds for rdtsc ticks, add refresh interval, and 
+now you known when the current frame will be displayed more accurately than 
+sampling the time after WaitForSingleObject(waitable_timer).
+
+You can round it to nearest multiple of monitor framerate and that will give 
+you "perfect" frame pacing.
+
+OpenGL's `SwapBuffers()` queues presentation and buffer swapping command to 
+driver queue. Whether it will actually wait or not depens on driver. Often 
+drivers block on next gl call, not always in `SwapBuffers()`. What you really 
+want is frame latency waitable object, which OpenGL doesn't have.
+
+You would want "present frame at timestamp X" kind of present call, which 
+Direct3D doesn't have. Vulkan has extension for that, which is only available 
+on Android, AFAIK.
+
+So, use `IDXGISwapChain2::GetFrameLatencyWaitableObject` instead of sleeping
+manually.
+
+On Windows, you can call
+[IDXGISwapChain::GetFrameStatistics()](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgiswapchain-getframestatistics),
+which fills in
+[DXGI_FRAME_STATISTICS](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/ns-dxgi-dxgi_frame_statistics).
+
+
+
+
+
+
 ## Links
 
+Why naively sampling the CPU clock causes jitter  
+[Alen Ladavac. "The Elusive Frame Timing"](https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92)  
 [Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
+[Croteam. "Myths and Misconceptions of Frame Pacing". Reboot Devlop Blue 2019](https://www.youtube.com/watch?v=_zpS1p0_L_o)  
+
+How *Unity* relocated delta time query code to tackle jitter  
 [Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
+
 [Android. "Frame Pacing Libary"](https://developer.android.com/games/sdk/frame-pacing)  
+
+[Akimitsu Hogge. Activision Central Technology. "Controller to display latency in Call of Duty"](https://www.gdcvault.com/play/1026327/)  
+
+Explanation of *DXGI_FRAME_STATICS* fields  
+[John-Paul Ownby. "Syncing without VSync"](https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/)  
+
+
+
+
 [Raph Levien. "Swapchains and frame pacing"](https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html)  
+
 [Intel. Sample Application for Direct3D 12 Flip Model Swap Chains](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)
+
 [James Darpinian. "Techniques to Reduce Latency in Your Apps"](https://james.darpinian.com/blog/latency-techniques/)  
+
 [NVIDIA Reflex](https://developer.nvidia.com/performance-rendering-tools/reflex)  
+
+
+
+## Questions
+
+How do I know if VSync is on/off programmatically?
