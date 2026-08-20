@@ -117,53 +117,6 @@ not use fixed 16.67ms? But, let's continue.
 
 
 
-### Somehow Fixed Timestep Returned
-
-Remember the fixed timestep thing we talked about last time? Where does it fit
-into this scheme?
-
-Well, I would say the nuance slightly shifts. Now, we're not triple buffering
-solely because of input latency. We're doing it simply because it's time to
-tick, and we want to render the result. After all, what kind of game is it if
-the state we just ticked isn't presented?
-
-For example, say now we're using fixed timestep and the tick rate is twice the
-display refresh rate, and we only have two buffers. As illustrated below, we
-only get the spare blue workbench. If we miss the VSync deadline, we have to
-display the previous red frame, and the user will feel the stutter, even though
-the number says we're generating nearly twice as many frames. 
-
-![Modern Stack 8](resources/modern_8.svg)
-
-If we can somehow predict the rendering time, detect that a frame will miss its 
-deadline, and decide not to render it, we won't show the latest state of the 
-game, but at least we won't show the same previous frame, 
-
-> @Todo: I think graphics API blocks the thread from acquiring the same buffer 
-after present() is queued, depending on the setup.
-
-![Modern Stack 9](resources/modern_9.svg)
-
-This was our first glimpse of **frame pacing**. We controlled the pace of frame 
-generation for the sake of the user. Now you see why FPS isn't the golden rule, 
-and why being fast isn't enough.
-
-Instead, we can add an additional workbench. Then we no longer have to rely on 
-statistical voodoo or pray that the system remains stable. With a safeguard in 
-place, we're "safe" even if the second rendering misses its deadline.
-
-![Modern Stack 10](resources/modern_10.svg)
-
-In this scheme, whose primary focus is deterministic simulation with a fixed 
-timestep, I would say improved latency is more of a byproduct.
-
-> Input latency is another compltex topic, IMO. There's even tech like
-[NVIDIA Reflex](https://developer.nvidia.com/performance-rendering-tools/reflex), 
-which shifts the image just in time to incorporate the latest input and then
-fills the hole. But anyway, I digress.
-
-Hey, we were talking about whether using a fixed 16.67ms for rendering is 
-feasible.
 
 
 
@@ -219,7 +172,7 @@ Why naively sampling the CPU clock causes jitter
 [Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
 [Croteam. "Myths and Misconceptions of Frame Pacing". Reboot Devlop Blue 2019](https://www.youtube.com/watch?v=_zpS1p0_L_o)  
 
-How *Unity* relocated delta time query code to tackle jitter  
+How *Unity* restructured its code to tackle jitter  
 [Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
 
 [Android. "Frame Pacing Libary"](https://developer.android.com/games/sdk/frame-pacing)  
