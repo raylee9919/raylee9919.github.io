@@ -5,16 +5,6 @@
   <url>
     <loc>http://localhost:1313/tags/game-engine/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/game-engine/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/tags/game-engine/"
-                />
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
@@ -57,16 +47,6 @@
   </url><url>
     <loc>http://localhost:1313/tags/system/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/system/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/tags/system/"
-                />
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
@@ -83,16 +63,6 @@
   </url><url>
     <loc>http://localhost:1313/series/timestep-and-frame-pacing/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/series/timestep-and-frame-pacing/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/series/timestep-and-frame-pacing/"
-                />
   </url><url>
     <loc>http://localhost:1313/posts/timestep-and-frame-pacing-2/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>

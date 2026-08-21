@@ -8,7 +8,7 @@ series: ["Timestep and Frame Pacing"]
 cover: "resources/cover.webp"
 ---
 
-> I'm Working on it. DO NOT READ IT. DO NOT BELIEVE IT.
+> This is a draft. Take it with a grain of salt.
 
 # Frame Pacing
 
@@ -79,86 +79,58 @@ frames is 16.67ms.
 
 Your brain expects the character in the green frame to have moved for 16.67ms 
 since the previous one. But the game actually moved it by 24.8ms, because **it 
-had no idea when the previous frame was displayed.**
+has no idea when the frames are displayed.**
 
 ![Croteam_7](resources/croteam_7.svg)
 
 Wait, isn't the interval just a constant 16.67ms? Why don't we just plug that 
 in instead of computing `DeltaTime` every frame?
 
+Neat, but there's a catch.
 
 
+## Modern Pipeline
 
-## Asynchrony and Middleman
+OK, let's step up and face the *modern-asynchronously-pipelined-machinery*:
 
-### Old Days
-
-In good old days, things were fixed. Graphics hardware was either thin or 
-nonexistent, and there were no pipelines. Things were synchronous, and there 
-was no middleman between your game and the display. The game simply wrote into 
-the buffer, which was then presented to you immediately. So, you could just 
-plug in 16.67ms, or whatever the display's refresh interval happened to be. 
-
-![Modern Stack 1](resources/modern_1.svg)
-
-### GPU
-
-Here comes every gamer's favorite hardware: GPU.
-
-![Modern Stack 2](resources/modern_2.svg)
-
-This was what we were seeing before, and my question is still unanswered: why
-not use fixed 16.67ms? But, let's continue.
+![Modern_1](resources/modern_1.svg "Imtimidating?")
 
 
+Intimidating fo-sho. Let's focus on a single frame's lifetime:
+
+![Modern_2](resources/modern_2.svg)
 
 
+CPU submits work to the GPU and calls `Present()`, and the presentation is
+queued. When the time comes to pop it at VSync, if the GPU workload has
+finished, scanout begins and the frame is presented on your display. 
+
+And we were looking at this part:
+
+![Modern_3](resources/modern_3.svg)
+
+The elapsed time between successive `Update()` calls measured 24.8ms, resulting 
+in jitter due to its mismatch with the display refresh rate, and the question
+was, why not simply align it down to fixed 16.67ms for a 60Hz monitor?
+
+It helps, but doesn't fully solve the smoothness problem. We still can't know 
+exactly when a frame will actually hit the screen, or how long it will stay 
+there, in a thick, modern, pipelined, stack like the one below:
+
+![Modern_4](resources/modern_4.svg "It's a simplified diagram, actually.")
+
+Your character moved for 16.67ms worth of distance, but by the time that frame
+is displayed, 33.33ms have already elapsed. And what if this keeps happening?
+You keep rendering as if 16.67ms have passed, but every frame you see is
+already 33.33ms old. That's bad. 
+
+This happens because all you have at hand is the display's refresh rate. What
+you additionally want are these two:
+
+1. Query past frames.
+2. Schedule future frames.
 
 
-
-
-
-
-
-
-
-
-It's a tradeoff. Present queue filling up entirely causes the delay to stack up.
-
-So, how do I get the timestamp of when the frame is actually displayed?
-
-## Hello, Windows Devs
-
-D3DKMTGetScanLine and friends are kind of useless nowadays.
-
-DwmGetCompositionTimingInfo
-
-Nowadays I suggest to not do any manual sleeping but instead use all those
-fancy new swapchain timing APIs.
-
-Convert SyncQPC units to seconds for rdtsc ticks, add refresh interval, and 
-now you known when the current frame will be displayed more accurately than 
-sampling the time after WaitForSingleObject(waitable_timer).
-
-You can round it to nearest multiple of monitor framerate and that will give 
-you "perfect" frame pacing.
-
-OpenGL's `SwapBuffers()` queues presentation and buffer swapping command to 
-driver queue. Whether it will actually wait or not depens on driver. Often 
-drivers block on next gl call, not always in `SwapBuffers()`. What you really 
-want is frame latency waitable object, which OpenGL doesn't have.
-
-You would want "present frame at timestamp X" kind of present call, which 
-Direct3D doesn't have. Vulkan has extension for that, which is only available 
-on Android, AFAIK.
-
-So, use `IDXGISwapChain2::GetFrameLatencyWaitableObject` instead of sleeping
-manually.
-
-On Windows, you can call
-[IDXGISwapChain::GetFrameStatistics()](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgiswapchain-getframestatistics),
-which fills in
-[DXGI_FRAME_STATISTICS](https://learn.microsoft.com/en-us/windows/win32/api/dxgi/ns-dxgi-dxgi_frame_statistics).
 
 
 
@@ -172,18 +144,11 @@ Why naively sampling the CPU clock causes jitter
 [Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
 [Croteam. "Myths and Misconceptions of Frame Pacing". Reboot Devlop Blue 2019](https://www.youtube.com/watch?v=_zpS1p0_L_o)  
 
-How *Unity* restructured its code to tackle jitter  
-[Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
-
 [Android. "Frame Pacing Libary"](https://developer.android.com/games/sdk/frame-pacing)  
 
+[Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
+
 [Akimitsu Hogge. Activision Central Technology. "Controller to display latency in Call of Duty"](https://www.gdcvault.com/play/1026327/)  
-
-Explanation of *DXGI_FRAME_STATICS* fields  
-[John-Paul Ownby. "Syncing without VSync"](https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/)  
-
-
-
 
 [Raph Levien. "Swapchains and frame pacing"](https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html)  
 
@@ -191,10 +156,6 @@ Explanation of *DXGI_FRAME_STATICS* fields
 
 [James Darpinian. "Techniques to Reduce Latency in Your Apps"](https://james.darpinian.com/blog/latency-techniques/)  
 
+[John-Paul Ownby. "Syncing without VSync"](https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/)  
+
 [NVIDIA Reflex](https://developer.nvidia.com/performance-rendering-tools/reflex)  
-
-
-
-## Questions
-
-How do I know if VSync is on/off programmatically?

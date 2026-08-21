@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="794">
+	<meta itemprop="wordCount" content="702">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>794 words</span>
+              <span>702 words</span>
             </div>
             
           </div>
@@ -1084,7 +1084,7 @@
     class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
   >
     <div class="prose prose-sm max-w-none">
-      <p>I&rsquo;m Working on it. DO NOT READ IT. DO NOT BELIEVE IT.</p>
+      <p>This is a draft. Take it with a grain of salt.</p>
 
     </div>
   </blockquote><script>
@@ -1477,7 +1477,7 @@ frames is 16.67ms.</p>
 </p>
 <p>Your brain expects the character in the green frame to have moved for 16.67ms
 since the previous one. But the game actually moved it by 24.8ms, because <strong>it
-had no idea when the previous frame was displayed.</strong></p>
+has no idea when the frames are displayed.</strong></p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1511,11 +1511,8 @@ had no idea when the previous frame was displayed.</strong></p>
 </p>
 <p>Wait, isn&rsquo;t the interval just a constant 16.67ms? Why don&rsquo;t we just plug that
 in instead of computing <code>DeltaTime</code> every frame?</p>
-<h2 id="asynchrony-and-middleman">Asynchrony and Middleman<a href="#asynchrony-and-middleman" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><h3 id="old-days">Old Days<a href="#old-days" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>In good old days, things were fixed. Graphics hardware was either thin or
-nonexistent, and there were no pipelines. Things were synchronous, and there
-was no middleman between your game and the display. The game simply wrote into
-the buffer, which was then presented to you immediately. So, you could just
-plug in 16.67ms, or whatever the display&rsquo;s refresh interval happened to be.</p>
+<p>Neat, but there&rsquo;s a catch.</p>
+<h2 id="modern-pipeline">Modern Pipeline<a href="#modern-pipeline" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>OK, let&rsquo;s step up and face the <em>modern-asynchronously-pipelined-machinery</em>:</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1530,8 +1527,8 @@ plug in 16.67ms, or whatever the display&rsquo;s refresh interval happened to be
   <div class="image-container">
     <img
     src="/posts/timestep-and-frame-pacing-2/resources/modern_1.svg"
-    alt="Modern Stack 1"
-    
+    alt="Modern_1"
+    title="Imtimidating?"
     
       
       
@@ -1541,13 +1538,15 @@ plug in 16.67ms, or whatever the display&rsquo;s refresh interval happened to be
     loading="lazy"
     decoding="async"
     data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_1.svg"
-    data-gallery-alt="Modern Stack 1"
-    data-gallery-title=""
+    data-gallery-alt="Modern_1"
+    data-gallery-title="Imtimidating?"
   /></div>
 
-  </figure>
+  <figcaption class="image-caption">
+      Imtimidating?
+    </figcaption></figure>
 </p>
-<h3 id="gpu">GPU<a href="#gpu" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>Here comes every gamer&rsquo;s favorite hardware: GPU.</p>
+<p>Intimidating fo-sho. Let&rsquo;s focus on a single frame&rsquo;s lifetime:</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1562,7 +1561,7 @@ plug in 16.67ms, or whatever the display&rsquo;s refresh interval happened to be
   <div class="image-container">
     <img
     src="/posts/timestep-and-frame-pacing-2/resources/modern_2.svg"
-    alt="Modern Stack 2"
+    alt="Modern_2"
     
     
       
@@ -1573,46 +1572,96 @@ plug in 16.67ms, or whatever the display&rsquo;s refresh interval happened to be
     loading="lazy"
     decoding="async"
     data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_2.svg"
-    data-gallery-alt="Modern Stack 2"
+    data-gallery-alt="Modern_2"
     data-gallery-title=""
   /></div>
 
   </figure>
 </p>
-<p>This was what we were seeing before, and my question is still unanswered: why
-not use fixed 16.67ms? But, let&rsquo;s continue.</p>
-<p>It&rsquo;s a tradeoff. Present queue filling up entirely causes the delay to stack up.</p>
-<p>So, how do I get the timestamp of when the frame is actually displayed?</p>
-<h2 id="hello-windows-devs">Hello, Windows Devs<a href="#hello-windows-devs" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>D3DKMTGetScanLine and friends are kind of useless nowadays.</p>
-<p>DwmGetCompositionTimingInfo</p>
-<p>Nowadays I suggest to not do any manual sleeping but instead use all those
-fancy new swapchain timing APIs.</p>
-<p>Convert SyncQPC units to seconds for rdtsc ticks, add refresh interval, and
-now you known when the current frame will be displayed more accurately than
-sampling the time after WaitForSingleObject(waitable_timer).</p>
-<p>You can round it to nearest multiple of monitor framerate and that will give
-you &ldquo;perfect&rdquo; frame pacing.</p>
-<p>OpenGL&rsquo;s <code>SwapBuffers()</code> queues presentation and buffer swapping command to
-driver queue. Whether it will actually wait or not depens on driver. Often
-drivers block on next gl call, not always in <code>SwapBuffers()</code>. What you really
-want is frame latency waitable object, which OpenGL doesn&rsquo;t have.</p>
-<p>You would want &ldquo;present frame at timestamp X&rdquo; kind of present call, which
-Direct3D doesn&rsquo;t have. Vulkan has extension for that, which is only available
-on Android, AFAIK.</p>
-<p>So, use <code>IDXGISwapChain2::GetFrameLatencyWaitableObject</code> instead of sleeping
-manually.</p>
-<p>On Windows, you can call
-<a
-    href="https://learn.microsoft.com/en-us/windows/win32/api/dxgi/nf-dxgi-idxgiswapchain-getframestatistics"target="_blank"
-    class="inline-flex items-center gap-1"
-  >IDXGISwapChain::GetFrameStatistics()<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>,
-which fills in
-<a
-    href="https://learn.microsoft.com/en-us/windows/win32/api/dxgi/ns-dxgi-dxgi_frame_statistics"target="_blank"
-    class="inline-flex items-center gap-1"
-  >DXGI_FRAME_STATISTICS<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>.</p>
+<p>CPU submits work to the GPU and calls <code>Present()</code>, and the presentation is
+queued. When the time comes to pop it at VSync, if the GPU workload has
+finished, scanout begins and the frame is presented on your display.</p>
+<p>And we were looking at this part:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
+    alt="Modern_3"
+    
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_3.svg"
+    data-gallery-alt="Modern_3"
+    data-gallery-title=""
+  /></div>
+
+  </figure>
+</p>
+<p>The elapsed time between successive <code>Update()</code> calls measured 24.8ms, resulting
+in jitter due to its mismatch with the display refresh rate, and the question
+was, why not simply align it down to fixed 16.67ms for a 60Hz monitor?</p>
+<p>It helps, but doesn&rsquo;t fully solve the smoothness problem. We still can&rsquo;t know
+exactly when a frame will actually hit the screen, or how long it will stay
+there, in a thick, modern, pipelined, stack like the one below:</p>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
+    alt="Modern_4"
+    title="It&#39;s a simplified diagram, actually."
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/modern_4.svg"
+    data-gallery-alt="Modern_4"
+    data-gallery-title="It&#39;s a simplified diagram, actually."
+  /></div>
+
+  <figcaption class="image-caption">
+      It&rsquo;s a simplified diagram, actually.
+    </figcaption></figure>
+</p>
+<p>Your character moved for 16.67ms worth of distance, but by the time that frame
+is displayed, 33.33ms have already elapsed. And what if this keeps happening?
+You keep rendering as if 16.67ms have passed, but every frame you see is
+already 33.33ms old. That&rsquo;s bad.</p>
+<p>This happens because all you have at hand is the display&rsquo;s refresh rate. What
+you additionally want are these two:</p>
+<ol>
+<li>Query past frames.</li>
+<li>Schedule future frames.</li>
+</ol>
 <h2 id="links">Links<a href="#links" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Why naively sampling the CPU clock causes jitter<br>
 <a
     href="https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92"target="_blank"
@@ -1629,27 +1678,20 @@ which fills in
     class="inline-flex items-center gap-1"
   >Croteam. &ldquo;Myths and Misconceptions of Frame Pacing&rdquo;. Reboot Devlop Blue 2019<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a></p>
-<p>How <em>Unity</em> restructured its code to tackle jitter<br>
-<a
-    href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
 <p><a
     href="https://developer.android.com/games/sdk/frame-pacing"target="_blank"
     class="inline-flex items-center gap-1"
   >Android. &ldquo;Frame Pacing Libary&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a></p>
 <p><a
+    href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a></p>
+<p><a
     href="https://www.gdcvault.com/play/1026327/"target="_blank"
     class="inline-flex items-center gap-1"
   >Akimitsu Hogge. Activision Central Technology. &ldquo;Controller to display latency in Call of Duty&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p>Explanation of <em>DXGI_FRAME_STATICS</em> fields<br>
-<a
-    href="https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >John-Paul Ownby. &ldquo;Syncing without VSync&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a></p>
 <p><a
     href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
@@ -1667,11 +1709,15 @@ which fills in
   >James Darpinian. &ldquo;Techniques to Reduce Latency in Your Apps&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a></p>
 <p><a
+    href="https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/"target="_blank"
+    class="inline-flex items-center gap-1"
+  >John-Paul Ownby. &ldquo;Syncing without VSync&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a></p>
+<p><a
     href="https://developer.nvidia.com/performance-rendering-tools/reflex"target="_blank"
     class="inline-flex items-center gap-1"
   >NVIDIA Reflex<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a></p>
-<h2 id="questions">Questions<a href="#questions" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>How do I know if VSync is on/off programmatically?</p>
 
   </article>
 
@@ -2127,15 +2173,8 @@ which fills in
               <nav id="TableOfContents">
   <ul>
     <li><a href="#smoothness-isnt-in-the-eye-of-cpu">Smoothness Isn&rsquo;t in the Eye of CPU</a></li>
-    <li><a href="#asynchrony-and-middleman">Asynchrony and Middleman</a>
-      <ul>
-        <li><a href="#old-days">Old Days</a></li>
-        <li><a href="#gpu">GPU</a></li>
-      </ul>
-    </li>
-    <li><a href="#hello-windows-devs">Hello, Windows Devs</a></li>
+    <li><a href="#modern-pipeline">Modern Pipeline</a></li>
     <li><a href="#links">Links</a></li>
-    <li><a href="#questions">Questions</a></li>
   </ul>
 </nav>
             </div>

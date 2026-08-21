@@ -3,19 +3,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/ko/tags/game-engine/</loc>
-    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/game-engine/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/tags/game-engine/"
-                />
-  </url><url>
     <loc>http://localhost:1313/ko/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -42,19 +29,6 @@
                 href="http://localhost:1313/ko/series/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/tags/system/</loc>
-    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/tags/system/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/tags/system/"
-                />
-  </url><url>
     <loc>http://localhost:1313/ko/tags/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -68,18 +42,14 @@
                 href="http://localhost:1313/ko/tags/"
                 />
   </url><url>
-    <loc>http://localhost:1313/ko/series/timestep-and-frame-pacing/</loc>
+    <loc>http://localhost:1313/ko/tags/%EA%B2%8C%EC%9E%84-%EC%97%94%EC%A7%84/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/series/timestep-and-frame-pacing/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="http://localhost:1313/ko/series/timestep-and-frame-pacing/"
-                />
+  </url><url>
+    <loc>http://localhost:1313/ko/tags/%EC%8B%9C%EC%8A%A4%ED%85%9C/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/ko/series/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1/</loc>
+    <lastmod>2026-08-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/</loc>
     <lastmod>2026-08-16T00:00:00+00:00</lastmod>

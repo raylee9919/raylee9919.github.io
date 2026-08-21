@@ -10,15 +10,22 @@
 		
 		
 		
-			<lastBuildDate>Fri, 14 Aug 2026 00:00:00 +0000</lastBuildDate>
+			<lastBuildDate>Sun, 16 Aug 2026 00:00:00 +0000</lastBuildDate>
 		
 			<atom:link href="http://localhost:1313/ko/tags/%EC%8B%9C%EC%8A%A4%ED%85%9C/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>타임스텝과 프레임 페이싱 2</title>
+				<link>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/</link>
+				<pubDate>Sun, 16 Aug 2026 00:00:00 +0000</pubDate>
+				<guid>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-2/</guid>
+				<description>&lt;p&gt;Translation in progress. Please switch languages in the top-right corner and check again.&lt;/p&gt;&#xA;&lt;p&gt;번역이 진행 중입니다. 우측 상단에서 언어를 전환한 후 다시 확인해 주세요.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>타임스텝과 프레임 페이싱 1</title>
 				<link>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/</link>
 				<pubDate>Fri, 14 Aug 2026 00:00:00 +0000</pubDate>
 				<guid>http://localhost:1313/ko/posts/%ED%83%80%EC%9E%84%EC%8A%A4%ED%85%9D%EA%B3%BC-%ED%94%84%EB%A0%88%EC%9E%84-%ED%8E%98%EC%9D%B4%EC%8B%B1-1/</guid>
-				<description>&lt;h2 id=&#34;타임스텝&#34;&gt;타임스텝&lt;a href=&#34;#%ed%83%80%ec%9e%84%ec%8a%a4%ed%85%9d&#34; class=&#34;heading-anchor&#34; aria-label=&#34;이 섹션에 대한 링크&#34;&gt;&lt;svg class=&#34;h-4 w-4&#34; aria-hidden=&#34;true&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34;&gt;&lt;g fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; stroke-width=&#34;2&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;/&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;/&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;물리의 tick 주기를 프레임레이트와 무관하게 만들어야 하는 이유와 구현은 &lt;a&#xD;&#xA;    href=&#34;#%eb%a7%81%ed%81%ac&#34;&gt;이&#xA;링크들&lt;/a&gt;에서 훌륭하게 설명하고 있으니, 구현 세부 사항은 건너뛰도록 하자&#xA;:)&lt;/p&gt;</description>
+				<description>&lt;h2 id=&#34;타임스텝&#34;&gt;타임스텝&lt;a href=&#34;#%ed%83%80%ec%9e%84%ec%8a%a4%ed%85%9d&#34; class=&#34;heading-anchor&#34; aria-label=&#34;이 섹션에 대한 링크&#34;&gt;&lt;svg class=&#34;h-4 w-4&#34; aria-hidden=&#34;true&#34; xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34;&gt;&lt;g fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; stroke-width=&#34;2&#34;&gt;&lt;path d=&#34;M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71&#34;/&gt;&lt;path d=&#34;M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71&#34;/&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;물리의 tick 주기를 프레임레이트와 무관하게 만들어야 하는 이유와 구현은 &lt;a&#xD;&#xA;    href=&#34;#%eb%a7%81%ed%81%ac&#34;&gt;이&#xA;링크들&lt;/a&gt;에서 훌륭하게 설명하고 있으니, 구현 세부 사항은 건너뛰도록 하자 :)&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>
