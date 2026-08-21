@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="702">
+	<meta itemprop="wordCount" content="684">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>702 words</span>
+              <span>684 words</span>
             </div>
             
           </div>
@@ -1228,7 +1228,7 @@ let&rsquo;s break it down step by step. Here&rsquo;s a simple game loop:</p>
 </svg>
       </div>
       <span class="text-muted-foreground text-sm font-medium">
-        C
+        PSEUDOCODE
       </span>
     </div>
 
@@ -1273,23 +1273,21 @@ let&rsquo;s break it down step by step. Here&rsquo;s a simple game loop:</p>
 
   
   <div class="code-block-content relative" id="code-0">
-    <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">float</span> <span class="n">TimeOld</span> <span class="o">=</span> <span class="nf">Now</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="p">(</span><span class="n">GameRunning</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">TimeNew</span> <span class="o">=</span> <span class="nf">Now</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">float</span> <span class="n">DeltaTime</span> <span class="o">=</span> <span class="n">TimeNew</span> <span class="o">-</span> <span class="n">TimeOld</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">TimeOld</span> <span class="o">=</span> <span class="n">TimeNew</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">State</span> <span class="o">=</span> <span class="nf">Update</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">Render</span><span class="p">(</span><span class="n">State</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></div>
-    <div hidden data-code-source>float TimeOld = Now();
-while (GameRunning) {
-    float TimeNew = Now();
-    float DeltaTime = TimeNew - TimeOld;
-    TimeOld = TimeNew;
+    <pre tabindex="0"><code class="language-Pseudocode" data-lang="Pseudocode">while running {
+    time_new   = now();
+    delta_time = time_new - time_old;
+    time_old   = time_new;
 
-    State = Update(DeltaTime);
-    Render(State);
+    state = update(delta_time);
+    render(state);
+}</code></pre>
+    <div hidden data-code-source>while running {
+    time_new   = now();
+    delta_time = time_new - time_old;
+    time_old   = time_new;
+
+    state = update(delta_time);
+    render(state);
 }</div>
     
     <div
@@ -1618,7 +1616,7 @@ in jitter due to its mismatch with the display refresh rate, and the question
 was, why not simply align it down to fixed 16.67ms for a 60Hz monitor?</p>
 <p>It helps, but doesn&rsquo;t fully solve the smoothness problem. We still can&rsquo;t know
 exactly when a frame will actually hit the screen, or how long it will stay
-there, in a thick, modern, pipelined, stack like the one below:</p>
+there, in a thick stack like the one below:</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1656,8 +1654,8 @@ there, in a thick, modern, pipelined, stack like the one below:</p>
 is displayed, 33.33ms have already elapsed. And what if this keeps happening?
 You keep rendering as if 16.67ms have passed, but every frame you see is
 already 33.33ms old. That&rsquo;s bad.</p>
-<p>This happens because all you have at hand is the display&rsquo;s refresh rate. What
-you additionally want are these two:</p>
+<p>All you have at hand is the display&rsquo;s refresh rate. What you want are these
+two:</p>
 <ol>
 <li>Query past frames.</li>
 <li>Schedule future frames.</li>

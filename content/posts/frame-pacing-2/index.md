@@ -40,15 +40,14 @@ frames were actually "faster" than expected.
 Personally, I had a hard time understanding this, so for beginners like me,
 let's break it down step by step. Here's a simple game loop:
 
-```C
-float TimeOld = Now();
-while (GameRunning) {
-    float TimeNew = Now();
-    float DeltaTime = TimeNew - TimeOld;
-    TimeOld = TimeNew;
+```Pseudocode
+while running {
+    time_new   = now();
+    delta_time = time_new - time_old;
+    time_old   = time_new;
 
-    State = Update(DeltaTime);
-    Render(State);
+    state = update(delta_time);
+    render(state);
 }
 ```
 
@@ -115,7 +114,7 @@ was, why not simply align it down to fixed 16.67ms for a 60Hz monitor?
 
 It helps, but doesn't fully solve the smoothness problem. We still can't know 
 exactly when a frame will actually hit the screen, or how long it will stay 
-there, in a thick, modern, pipelined, stack like the one below:
+there, in a thick stack like the one below:
 
 ![Modern_4](resources/modern_4.svg "It's a simplified diagram, actually.")
 
@@ -124,8 +123,8 @@ is displayed, 33.33ms have already elapsed. And what if this keeps happening?
 You keep rendering as if 16.67ms have passed, but every frame you see is
 already 33.33ms old. That's bad. 
 
-This happens because all you have at hand is the display's refresh rate. What
-you additionally want are these two:
+All you have at hand is the display's refresh rate. What you want are these
+two:
 
 1. Query past frames.
 2. Schedule future frames.
