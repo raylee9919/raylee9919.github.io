@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="684">
+	<meta itemprop="wordCount" content="994">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -904,7 +904,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>4 min</span>
+              <span>5 min</span>
             </div>
             
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>684 words</span>
+              <span>994 words</span>
             </div>
             
           </div>
@@ -1654,14 +1654,193 @@ there, in a thick stack like the one below:</p>
 is displayed, 33.33ms have already elapsed. And what if this keeps happening?
 You keep rendering as if 16.67ms have passed, but every frame you see is
 already 33.33ms old. That&rsquo;s bad.</p>
-<p>All you have at hand is the display&rsquo;s refresh rate. What you want are these
-two:</p>
+<p>All you have at hand is the display&rsquo;s refresh rate. What you additionally want
+are these two:</p>
 <ol>
 <li>Query past frames.</li>
 <li>Schedule future frames.</li>
 </ol>
-<h2 id="links">Links<a href="#links" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Why naively sampling the CPU clock causes jitter<br>
-<a
+<p>With those two, you can build your own heuristic to smooth out the display
+rate. Here&rsquo;s a rough sketch:</p>
+<p>Start with a target framerate, say 60Hz. If a single frame misses its schedule,
+lower the framerate to match that frame&rsquo;s actual display duration. For example,
+if a frame was displayed across 2 VSync intervals on a 60Hz monitor, drop the
+framerate to 30Hz. Then, if $N$ successive frames could have been displayed
+earlier by a certain margin, adaptively bump the framerate back up.</p>
+<p>In <em>Vulkan</em>, there&rsquo;s the <code>VK_GOOGLE_display_timing</code> extension for exactly these
+capabilities. Unfortunately, for some reason, it appears to be <a
+    href="https://vulkan.gpuinfo.org/displayextensiondetail.php?extension=VK_GOOGLE_display_timing"target="_blank"
+    class="inline-flex items-center gap-1"
+  >mobile
+only<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a>
+, and in <em>Direct3D</em>, there&rsquo;s no way to schedule frames. So the current
+landscape remains unpleasant, especially considering that <em>Croteam</em>&rsquo;s talk was
+given 8 years ago.</p>
+<h2 id="pseudocode">Pseudocode<a href="#pseudocode" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Combined with our fixed-timestep approach and &ldquo;render tick&rdquo;, the code below
+provides a macroscopic view our new game loop:</p>
+<div
+  class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
+  data-code-block
+  data-code-id="code-1"
+  data-collapsible="true"
+  data-default-state="expanded"
+  data-collapsed="false"
+  data-auto-collapse-lines="30"
+  data-auto-collapse-height="400"
+  data-collapsed-height="120"
+>
+  
+  <div
+    class="code-block-header bg-muted/30 border-border flex items-center justify-between border-b px-4 py-3"
+  >
+    
+    <div class="flex items-center gap-2">
+      <div class="text-muted-foreground shrink-0">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+</svg>
+      </div>
+      <span class="text-muted-foreground text-sm font-medium">
+        PSEUDOCODE
+      </span>
+    </div>
+
+    
+    <div class="flex items-center gap-2">
+      <button
+          class="collapse-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+          type="button"
+          data-code-action="toggle-collapse"
+          data-label-expand="Expand"
+          data-label-collapse="Collapse"
+          title="Collapse"
+          aria-label="Collapse"
+          aria-controls="code-1"
+          aria-expanded="true"
+        >
+          <span class="collapse-chevron transition-transform duration-200 ease-out">
+            <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+          </span>
+          <span class="collapse-text hidden sm:inline">Collapse</span>
+        </button>
+      <button
+        class="copy-code-btn text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-all duration-200 ease-out focus:ring-2 focus:outline-none"
+        type="button"
+        data-code-action="copy"
+        data-label-copy="Copy"
+        data-label-copied="Copied"
+        title="Copy"
+        aria-label="Copy"
+      >
+        <span class="copy-icon">
+          <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+</svg>
+        </span>
+        <span class="copy-text hidden sm:inline">Copy</span>
+      </button>
+    </div>
+  </div>
+
+  
+  <div class="code-block-content relative" id="code-1">
+    <pre tabindex="0"><code class="language-Pseudocode" data-lang="Pseudocode">//
+// @Todo: Code is faulty. I&#39;m working on it.
+//
+pending_frames : Queue(Frame_ID);
+frame_history  : Frame_History;
+last_scheduled_time : Time;
+i := 0;
+
+while running {
+    process_input();
+
+    ...
+
+    accumulator += elapsed_time;
+    time        += elapsed_time;
+
+    while accumulator &gt; dt {
+        state[(i + 1) % 2] = simulate(state[i], dt);
+        accumulator -= dt;
+
+        i += 1;
+        i %= 2;
+    }
+
+    query_frame_infos(pending_frames, frame_history);
+    new_scheduled_time := frame_timing_heuristics(pending_frames, frame_history);
+    frame_step := new_scheduled_time - last_scheduled_time;
+
+    temp = simulate(state[i], frame_step);
+    render(temp, scheduled_time);
+
+    last_scheduled_time = new_scheduled_time;
+
+    frame_id := schedule_present(scheduled_time);
+
+    queue_add(pending_frames, frame_id);
+}</code></pre>
+    <div hidden data-code-source>//
+// @Todo: Code is faulty. I&#39;m working on it.
+//
+pending_frames : Queue(Frame_ID);
+frame_history  : Frame_History;
+last_scheduled_time : Time;
+i := 0;
+
+while running {
+    process_input();
+
+    ...
+
+    accumulator &#43;= elapsed_time;
+    time        &#43;= elapsed_time;
+
+    while accumulator &gt; dt {
+        state[(i &#43; 1) % 2] = simulate(state[i], dt);
+        accumulator -= dt;
+
+        i &#43;= 1;
+        i %= 2;
+    }
+
+    query_frame_infos(pending_frames, frame_history);
+    new_scheduled_time := frame_timing_heuristics(pending_frames, frame_history);
+    frame_step := new_scheduled_time - last_scheduled_time;
+
+    temp = simulate(state[i], frame_step);
+    render(temp, scheduled_time);
+
+    last_scheduled_time = new_scheduled_time;
+
+    frame_id := schedule_present(scheduled_time);
+
+    queue_add(pending_frames, frame_id);
+}</div>
+    
+    <div
+      class="collapse-overlay to-card/90 pointer-events-none absolute inset-0 bg-linear-to-b from-transparent via-transparent opacity-0 transition-opacity duration-300"
+      hidden
+    >
+      <button
+        class="collapse-overlay-btn text-muted-foreground bg-card/80 border-border/50 hover:bg-primary/10 hover:text-primary hover:border-primary/30 absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center justify-center rounded-full border p-2 backdrop-blur-sm transition-all duration-200"
+        type="button"
+        data-code-action="expand"
+        aria-label="Expand"
+        title="Expand"
+      >
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+</svg>
+      </button>
+    </div>
+  </div>
+</div>
+<h2 id="links">Links<a href="#links" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
     href="https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92"target="_blank"
     class="inline-flex items-center gap-1"
   >Alen Ladavac. &ldquo;The Elusive Frame Timing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -1675,43 +1854,43 @@ two:</p>
     href="https://www.youtube.com/watch?v=_zpS1p0_L_o"target="_blank"
     class="inline-flex items-center gap-1"
   >Croteam. &ldquo;Myths and Misconceptions of Frame Pacing&rdquo;. Reboot Devlop Blue 2019<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
+  </a><br>
+<a
     href="https://developer.android.com/games/sdk/frame-pacing"target="_blank"
     class="inline-flex items-center gap-1"
   >Android. &ldquo;Frame Pacing Libary&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
+  </a><br>
+<a
     href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
     class="inline-flex items-center gap-1"
   >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
-    href="https://www.gdcvault.com/play/1026327/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Akimitsu Hogge. Activision Central Technology. &ldquo;Controller to display latency in Call of Duty&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
+  </a><br>
+<a
     href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
     class="inline-flex items-center gap-1"
   >Raph Levien. &ldquo;Swapchains and frame pacing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
+  </a><br>
+<a
     href="https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html"target="_blank"
     class="inline-flex items-center gap-1"
   >Intel. Sample Application for Direct3D 12 Flip Model Swap Chains<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
+  </a>
+<a
+    href="https://www.gdcvault.com/play/1026327/"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Akimitsu Hogge. Activision Central Technology. &ldquo;Controller to display latency in Call of Duty&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
     href="https://james.darpinian.com/blog/latency-techniques/"target="_blank"
     class="inline-flex items-center gap-1"
   >James Darpinian. &ldquo;Techniques to Reduce Latency in Your Apps&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
+  </a><br>
+<a
     href="https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/"target="_blank"
     class="inline-flex items-center gap-1"
   >John-Paul Ownby. &ldquo;Syncing without VSync&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a></p>
-<p><a
+  </a><br>
+<a
     href="https://developer.nvidia.com/performance-rendering-tools/reflex"target="_blank"
     class="inline-flex items-center gap-1"
   >NVIDIA Reflex<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -2172,6 +2351,7 @@ two:</p>
   <ul>
     <li><a href="#smoothness-isnt-in-the-eye-of-cpu">Smoothness Isn&rsquo;t in the Eye of CPU</a></li>
     <li><a href="#modern-pipeline">Modern Pipeline</a></li>
+    <li><a href="#pseudocode">Pseudocode</a></li>
     <li><a href="#links">Links</a></li>
   </ul>
 </nav>
@@ -2329,6 +2509,46 @@ two:</p>
       
 
 
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css"
+    integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP"
+    crossorigin="anonymous"
+  />
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"
+    integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js"
+    integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
+    crossorigin="anonymous"
+  ></script>
+
+  <script>
+    function initKaTeX() {
+      if (typeof renderMathInElement === "undefined") {
+        setTimeout(initKaTeX, 100);
+        return;
+      }renderMathInElement(document.body, {
+        delimiters: [{"display":true,"left":"$$","right":"$$"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"},{"display":true,"left":"\\[","right":"\\]"}],
+        throwOnError: false,
+        errorColor: "#cc0000",
+        fleqn: false,
+        leqno: false,
+        trust: false,
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initKaTeX, { once: true });
+    } else {
+      initKaTeX();
+    }
+  </script>
       
 
 

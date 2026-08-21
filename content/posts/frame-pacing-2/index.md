@@ -123,14 +123,73 @@ is displayed, 33.33ms have already elapsed. And what if this keeps happening?
 You keep rendering as if 16.67ms have passed, but every frame you see is
 already 33.33ms old. That's bad. 
 
-All you have at hand is the display's refresh rate. What you want are these
-two:
+All you have at hand is the display's refresh rate. What you additionally want
+are these two:
 
 1. Query past frames.
 2. Schedule future frames.
 
+With those two, you can build your own heuristic to smooth out the display
+rate. Here's a rough sketch:
+
+Start with a target framerate, say 60Hz. If a single frame misses its schedule,
+lower the framerate to match that frame's actual display duration. For example,
+if a frame was displayed across 2 VSync intervals on a 60Hz monitor, drop the 
+framerate to 30Hz. Then, if $N$ successive frames could have been displayed 
+earlier by a certain margin, adaptively bump the framerate back up. 
+
+In *Vulkan*, there's the `VK_GOOGLE_display_timing` extension for exactly these 
+capabilities. Unfortunately, for some reason, it appears to be [mobile
+only](https://vulkan.gpuinfo.org/displayextensiondetail.php?extension=VK_GOOGLE_display_timing)
+, and in *Direct3D*, there's no way to schedule frames. So the current
+landscape remains unpleasant, especially considering that *Croteam*'s talk was
+given 8 years ago.
 
 
+## Pseudocode
+
+Combined with our fixed-timestep approach and "render tick", the code below
+provides a macroscopic view our new game loop:
+
+```Pseudocode
+//
+// @Todo: Code is faulty. I'm working on it.
+//
+pending_frames : Queue(Frame_ID);
+frame_history  : Frame_History;
+last_scheduled_time : Time;
+i := 0;
+
+while running {
+    process_input();
+
+    ...
+
+    accumulator += elapsed_time;
+    time        += elapsed_time;
+
+    while accumulator > dt {
+        state[(i + 1) % 2] = simulate(state[i], dt);
+        accumulator -= dt;
+
+        i += 1;
+        i %= 2;
+    }
+
+    query_frame_infos(pending_frames, frame_history);
+    new_scheduled_time := frame_timing_heuristics(pending_frames, frame_history);
+    frame_step := new_scheduled_time - last_scheduled_time;
+
+    temp = simulate(state[i], frame_step);
+    render(temp, scheduled_time);
+
+    last_scheduled_time = new_scheduled_time;
+
+    frame_id := schedule_present(scheduled_time);
+
+    queue_add(pending_frames, frame_id);
+}
+```
 
 
 
@@ -138,23 +197,14 @@ two:
 
 ## Links
 
-Why naively sampling the CPU clock causes jitter  
 [Alen Ladavac. "The Elusive Frame Timing"](https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92)  
 [Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
 [Croteam. "Myths and Misconceptions of Frame Pacing". Reboot Devlop Blue 2019](https://www.youtube.com/watch?v=_zpS1p0_L_o)  
-
 [Android. "Frame Pacing Libary"](https://developer.android.com/games/sdk/frame-pacing)  
-
 [Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
-
-[Akimitsu Hogge. Activision Central Technology. "Controller to display latency in Call of Duty"](https://www.gdcvault.com/play/1026327/)  
-
 [Raph Levien. "Swapchains and frame pacing"](https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html)  
-
 [Intel. Sample Application for Direct3D 12 Flip Model Swap Chains](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)
-
+[Akimitsu Hogge. Activision Central Technology. "Controller to display latency in Call of Duty"](https://www.gdcvault.com/play/1026327/)  
 [James Darpinian. "Techniques to Reduce Latency in Your Apps"](https://james.darpinian.com/blog/latency-techniques/)  
-
 [John-Paul Ownby. "Syncing without VSync"](https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/)  
-
 [NVIDIA Reflex](https://developer.nvidia.com/performance-rendering-tools/reflex)  
