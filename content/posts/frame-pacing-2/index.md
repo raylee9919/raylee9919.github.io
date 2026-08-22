@@ -8,7 +8,7 @@ series: ["Timestep and Frame Pacing"]
 cover: "resources/cover.webp"
 ---
 
-> This is a draft. Take it with a grain of salt.
+> This is a draft. Please take it with a grain of salt.
 
 # Frame Pacing
 
@@ -51,10 +51,10 @@ while running {
 }
 ```
 
-Let's say the OS scheduler was in a bad mood, and as a result, `DeltaTime`
-comes out to 24.8ms. That's fine. We can simply move the character forward by
-24.8ms to keep the motion feeling natural. Let's integrate `DeltaTime` into
-`Update`:
+Let's say the system's scheduler was in a bad mood, and as a result,
+`DeltaTime` comes out to 24.8ms. That's fine. We can simply move the character
+forward by 24.8ms to keep the motion feeling natural. Let's integrate
+`DeltaTime` into `Update`:
 
 ![Croteam_2](resources/croteam_2.svg)
 
@@ -83,9 +83,7 @@ has no idea when the frames are displayed.**
 ![Croteam_7](resources/croteam_7.svg)
 
 Wait, isn't the interval just a constant 16.67ms? Why don't we just plug that 
-in instead of computing `DeltaTime` every frame?
-
-Neat, but there's a catch.
+in instead of computing `DeltaTime` every frame? Genius! But there's a catch.
 
 
 ## Modern Pipeline
@@ -110,11 +108,11 @@ And we were looking at this part:
 
 The elapsed time between successive `Update()` calls measured 24.8ms, resulting 
 in jitter due to its mismatch with the display refresh rate, and the question
-was, why not simply align it down to fixed 16.67ms for a 60Hz monitor?
+was, why not simply round it to fixed 16.67ms for a 60Hz monitor?
 
 It helps, but doesn't fully solve the smoothness problem. We still can't know 
 exactly when a frame will actually hit the screen, or how long it will stay 
-there, in a thick stack like the one below:
+there, in a thick-modern-pipelined stack:
 
 ![Modern_4](resources/modern_4.svg "It's a simplified diagram, actually.")
 
@@ -138,61 +136,69 @@ if a frame was displayed across 2 VSync intervals on a 60Hz monitor, drop the
 framerate to 30Hz. Then, if $N$ successive frames could have been displayed 
 earlier by a certain margin, adaptively bump the framerate back up. 
 
-In *Vulkan*, there's the `VK_GOOGLE_display_timing` extension for exactly these 
-capabilities. Unfortunately, for some reason, it appears to be [mobile
-only](https://vulkan.gpuinfo.org/displayextensiondetail.php?extension=VK_GOOGLE_display_timing)
+In *Vulkan*, there's the `VK_GOOGLE_display_timing` extension for exactly these
+capabilities. Unfortunately, for some reason, it appears to be limited to
+[certain
+platforms](https://vulkan.gpuinfo.org/displayextensiondetail.php?extension=VK_GOOGLE_display_timing)
 , and in *Direct3D*, there's no way to schedule frames. So the current
 landscape remains unpleasant, especially considering that *Croteam*'s talk was
 given 8 years ago.
 
 
-## Pseudocode
+## Updating Our Game Loop
 
-Combined with our fixed-timestep approach and "render tick", the code below
-provides a macroscopic view our new game loop:
+Assuming everything is at out disposal, combined with our fixed-timestep
+approach and "render tick", what would the updated game loop look like? I
+assume it would look something like this:
 
 ```Pseudocode
-//
-// @Todo: Code is faulty. I'm working on it.
-//
-pending_frames : Queue(Frame_ID);
-frame_history  : Frame_History;
-last_scheduled_time : Time;
-i := 0;
-
 while running {
+    elapsed_time := compute_elapsed_time();
+    accumulator  += elapsed_time;
+
     process_input();
 
-    ...
+    // Iterate with fixed-timestep dt
+    while accumulator >= dt {
+        // Ping-pong between indices 0 and 1.
+        game_state[(i + 1) % 2] = tick(game_state[i], dt);
+        i = (i + 1) % 2;
 
-    accumulator += elapsed_time;
-    time        += elapsed_time;
-
-    while accumulator > dt {
-        state[(i + 1) % 2] = simulate(state[i], dt);
         accumulator -= dt;
-
-        i += 1;
-        i %= 2;
     }
 
+    // Compute 'framestep' and 'new_schedule' with our heuristic.
     query_frame_infos(pending_frames, frame_history);
-    new_scheduled_time := frame_timing_heuristics(pending_frames, frame_history);
-    frame_step := new_scheduled_time - last_scheduled_time;
+    new_schedule := frame_timing_heuristics(pending_frames, frame_history);
+    frame_step   := new_schedule - last_schedule;
 
-    temp = simulate(state[i], frame_step);
-    render(temp, scheduled_time);
+    // 'game_state[2]' is reserved exclusively for rendering.
+    new_render_state_timestamp := game_state[2].timestamp + frame_step;
 
-    last_scheduled_time = new_scheduled_time;
+    // How long should we tick more.
+    render_tick_dt := new_render_state_timestamp - game_state[i].timestamp;
 
-    frame_id := schedule_present(scheduled_time);
+    // Tick state, render frame, and schedule display.
+    if render_tick_dt > 0. {
+        game_state[2] = tick(game_state[i], render_tick_dt);
 
-    queue_add(pending_frames, frame_id);
+        render_frame(game_state[2], new_schedule);
+
+        frame_id := schedule_display(new_schedule);
+        queue_add(pending_frames, frame_id);
+        last_schedule = new_schedule;
+    }
 }
 ```
 
+![Loop_1](resources/loop_1.svg "Hope this makes sense.")
 
 
+### ...
+
+So we're no longer using the remainder to "render tick". It's all theoretical
+talk for now, so I should implement a proof of concept afterward. How far could
+I go with *Direct3D*, though, I dunno.
 
 
 ## Links
@@ -200,11 +206,6 @@ while running {
 [Alen Ladavac. "The Elusive Frame Timing"](https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92)  
 [Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
 [Croteam. "Myths and Misconceptions of Frame Pacing". Reboot Devlop Blue 2019](https://www.youtube.com/watch?v=_zpS1p0_L_o)  
+[Intel. "Sample Application for Direct3D 12 Flip Model Swap Chains"](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)  
 [Android. "Frame Pacing Libary"](https://developer.android.com/games/sdk/frame-pacing)  
 [Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?."](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  
-[Raph Levien. "Swapchains and frame pacing"](https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html)  
-[Intel. Sample Application for Direct3D 12 Flip Model Swap Chains](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)
-[Akimitsu Hogge. Activision Central Technology. "Controller to display latency in Call of Duty"](https://www.gdcvault.com/play/1026327/)  
-[James Darpinian. "Techniques to Reduce Latency in Your Apps"](https://james.darpinian.com/blog/latency-techniques/)  
-[John-Paul Ownby. "Syncing without VSync"](https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/)  
-[NVIDIA Reflex](https://developer.nvidia.com/performance-rendering-tools/reflex)  

@@ -59,7 +59,7 @@
 	<meta itemprop="description" content="It&#39;s a matter of time.">
 	<meta itemprop="datePublished" content="2026-08-16T00:00:00+00:00">
 	<meta itemprop="dateModified" content="2026-08-16T00:00:00+00:00">
-	<meta itemprop="wordCount" content="994">
+	<meta itemprop="wordCount" content="1080">
 	<meta itemprop="image" content="http://localhost:1313/images/og-default.avif">
 	<meta itemprop="keywords" content="System,Game Engine">
 
@@ -904,7 +904,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
 
-              <span>5 min</span>
+              <span>6 min</span>
             </div>
             
 
@@ -915,7 +915,7 @@
   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
 </svg>
 
-              <span>994 words</span>
+              <span>1080 words</span>
             </div>
             
           </div>
@@ -1084,7 +1084,7 @@
     class="border-primary bg-muted/30 hover:bg-muted/40 my-6 rounded-r-lg border-l-4 py-4 pr-4 pl-6 italic transition-all duration-200 ease-out hover:translate-x-1"
   >
     <div class="prose prose-sm max-w-none">
-      <p>This is a draft. Take it with a grain of salt.</p>
+      <p>This is a draft. Please take it with a grain of salt.</p>
 
     </div>
   </blockquote><script>
@@ -1308,10 +1308,10 @@ let&rsquo;s break it down step by step. Here&rsquo;s a simple game loop:</p>
     </div>
   </div>
 </div>
-<p>Let&rsquo;s say the OS scheduler was in a bad mood, and as a result, <code>DeltaTime</code>
-comes out to 24.8ms. That&rsquo;s fine. We can simply move the character forward by
-24.8ms to keep the motion feeling natural. Let&rsquo;s integrate <code>DeltaTime</code> into
-<code>Update</code>:</p>
+<p>Let&rsquo;s say the system&rsquo;s scheduler was in a bad mood, and as a result,
+<code>DeltaTime</code> comes out to 24.8ms. That&rsquo;s fine. We can simply move the character
+forward by 24.8ms to keep the motion feeling natural. Let&rsquo;s integrate
+<code>DeltaTime</code> into <code>Update</code>:</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1508,8 +1508,7 @@ has no idea when the frames are displayed.</strong></p>
   </figure>
 </p>
 <p>Wait, isn&rsquo;t the interval just a constant 16.67ms? Why don&rsquo;t we just plug that
-in instead of computing <code>DeltaTime</code> every frame?</p>
-<p>Neat, but there&rsquo;s a catch.</p>
+in instead of computing <code>DeltaTime</code> every frame? Genius! But there&rsquo;s a catch.</p>
 <h2 id="modern-pipeline">Modern Pipeline<a href="#modern-pipeline" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>OK, let&rsquo;s step up and face the <em>modern-asynchronously-pipelined-machinery</em>:</p>
 <p>
 <figure
@@ -1613,10 +1612,10 @@ finished, scanout begins and the frame is presented on your display.</p>
 </p>
 <p>The elapsed time between successive <code>Update()</code> calls measured 24.8ms, resulting
 in jitter due to its mismatch with the display refresh rate, and the question
-was, why not simply align it down to fixed 16.67ms for a 60Hz monitor?</p>
+was, why not simply round it to fixed 16.67ms for a 60Hz monitor?</p>
 <p>It helps, but doesn&rsquo;t fully solve the smoothness problem. We still can&rsquo;t know
 exactly when a frame will actually hit the screen, or how long it will stay
-there, in a thick stack like the one below:</p>
+there, in a thick-modern-pipelined stack:</p>
 <p>
 <figure
   class="image-figure not-prose my-8"
@@ -1668,17 +1667,19 @@ if a frame was displayed across 2 VSync intervals on a 60Hz monitor, drop the
 framerate to 30Hz. Then, if $N$ successive frames could have been displayed
 earlier by a certain margin, adaptively bump the framerate back up.</p>
 <p>In <em>Vulkan</em>, there&rsquo;s the <code>VK_GOOGLE_display_timing</code> extension for exactly these
-capabilities. Unfortunately, for some reason, it appears to be <a
+capabilities. Unfortunately, for some reason, it appears to be limited to
+<a
     href="https://vulkan.gpuinfo.org/displayextensiondetail.php?extension=VK_GOOGLE_display_timing"target="_blank"
     class="inline-flex items-center gap-1"
-  >mobile
-only<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  >certain
+platforms<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a>
 , and in <em>Direct3D</em>, there&rsquo;s no way to schedule frames. So the current
 landscape remains unpleasant, especially considering that <em>Croteam</em>&rsquo;s talk was
 given 8 years ago.</p>
-<h2 id="pseudocode">Pseudocode<a href="#pseudocode" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Combined with our fixed-timestep approach and &ldquo;render tick&rdquo;, the code below
-provides a macroscopic view our new game loop:</p>
+<h2 id="updating-our-game-loop">Updating Our Game Loop<a href="#updating-our-game-loop" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p>Assuming everything is at out disposal, combined with our fixed-timestep
+approach and &ldquo;render tick&rdquo;, what would the updated game loop look like? I
+assume it would look something like this:</p>
 <div
   class="code-block-container border-border bg-card my-6 overflow-hidden rounded-xl border shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md"
   data-code-block
@@ -1747,79 +1748,79 @@ provides a macroscopic view our new game loop:</p>
 
   
   <div class="code-block-content relative" id="code-1">
-    <pre tabindex="0"><code class="language-Pseudocode" data-lang="Pseudocode">//
-// @Todo: Code is faulty. I&#39;m working on it.
-//
-pending_frames : Queue(Frame_ID);
-frame_history  : Frame_History;
-last_scheduled_time : Time;
-i := 0;
+    <pre tabindex="0"><code class="language-Pseudocode" data-lang="Pseudocode">while running {
+    elapsed_time := compute_elapsed_time();
+    accumulator  += elapsed_time;
 
-while running {
     process_input();
 
-    ...
+    // Iterate with fixed-timestep dt
+    while accumulator &gt;= dt {
+        // Ping-pong between indices 0 and 1.
+        game_state[(i + 1) % 2] = tick(game_state[i], dt);
+        i = (i + 1) % 2;
 
-    accumulator += elapsed_time;
-    time        += elapsed_time;
-
-    while accumulator &gt; dt {
-        state[(i + 1) % 2] = simulate(state[i], dt);
         accumulator -= dt;
-
-        i += 1;
-        i %= 2;
     }
 
+    // Compute &#39;framestep&#39; and &#39;new_schedule&#39; with our heuristic.
     query_frame_infos(pending_frames, frame_history);
-    new_scheduled_time := frame_timing_heuristics(pending_frames, frame_history);
-    frame_step := new_scheduled_time - last_scheduled_time;
+    new_schedule := frame_timing_heuristics(pending_frames, frame_history);
+    frame_step   := new_schedule - last_schedule;
 
-    temp = simulate(state[i], frame_step);
-    render(temp, scheduled_time);
+    // &#39;game_state[2]&#39; is reserved exclusively for rendering.
+    new_render_state_timestamp := game_state[2].timestamp + frame_step;
 
-    last_scheduled_time = new_scheduled_time;
+    // How long should we tick more.
+    render_tick_dt := new_render_state_timestamp - game_state[i].timestamp;
 
-    frame_id := schedule_present(scheduled_time);
+    // Tick state, render frame, and schedule display.
+    if render_tick_dt &gt; 0. {
+        game_state[2] = tick(game_state[i], render_tick_dt);
 
-    queue_add(pending_frames, frame_id);
+        render_frame(game_state[2], new_schedule);
+
+        frame_id := schedule_display(new_schedule);
+        queue_add(pending_frames, frame_id);
+        last_schedule = new_schedule;
+    }
 }</code></pre>
-    <div hidden data-code-source>//
-// @Todo: Code is faulty. I&#39;m working on it.
-//
-pending_frames : Queue(Frame_ID);
-frame_history  : Frame_History;
-last_scheduled_time : Time;
-i := 0;
+    <div hidden data-code-source>while running {
+    elapsed_time := compute_elapsed_time();
+    accumulator  &#43;= elapsed_time;
 
-while running {
     process_input();
 
-    ...
+    // Iterate with fixed-timestep dt
+    while accumulator &gt;= dt {
+        // Ping-pong between indices 0 and 1.
+        game_state[(i &#43; 1) % 2] = tick(game_state[i], dt);
+        i = (i &#43; 1) % 2;
 
-    accumulator &#43;= elapsed_time;
-    time        &#43;= elapsed_time;
-
-    while accumulator &gt; dt {
-        state[(i &#43; 1) % 2] = simulate(state[i], dt);
         accumulator -= dt;
-
-        i &#43;= 1;
-        i %= 2;
     }
 
+    // Compute &#39;framestep&#39; and &#39;new_schedule&#39; with our heuristic.
     query_frame_infos(pending_frames, frame_history);
-    new_scheduled_time := frame_timing_heuristics(pending_frames, frame_history);
-    frame_step := new_scheduled_time - last_scheduled_time;
+    new_schedule := frame_timing_heuristics(pending_frames, frame_history);
+    frame_step   := new_schedule - last_schedule;
 
-    temp = simulate(state[i], frame_step);
-    render(temp, scheduled_time);
+    // &#39;game_state[2]&#39; is reserved exclusively for rendering.
+    new_render_state_timestamp := game_state[2].timestamp &#43; frame_step;
 
-    last_scheduled_time = new_scheduled_time;
+    // How long should we tick more.
+    render_tick_dt := new_render_state_timestamp - game_state[i].timestamp;
 
-    frame_id := schedule_present(scheduled_time);
+    // Tick state, render frame, and schedule display.
+    if render_tick_dt &gt; 0. {
+        game_state[2] = tick(game_state[i], render_tick_dt);
 
-    queue_add(pending_frames, frame_id);
+        render_frame(game_state[2], new_schedule);
+
+        frame_id := schedule_display(new_schedule);
+        queue_add(pending_frames, frame_id);
+        last_schedule = new_schedule;
+    }
 }</div>
     
     <div
@@ -1840,6 +1841,42 @@ while running {
     </div>
   </div>
 </div>
+<p>
+<figure
+  class="image-figure not-prose my-8"
+  data-lightbox-enabled="
+    true
+  "
+  data-gallery-type="auto"
+  data-image-width="0"
+  data-image-height="0"
+  data-image-src="/posts/timestep-and-frame-pacing-2/resources/loop_1.svg"
+>
+  <div class="image-container">
+    <img
+    src="/posts/timestep-and-frame-pacing-2/resources/loop_1.svg"
+    alt="Loop_1"
+    title="Hope this makes sense."
+    
+      
+      
+        
+      
+    
+    loading="lazy"
+    decoding="async"
+    data-gallery-src="/posts/timestep-and-frame-pacing-2/resources/loop_1.svg"
+    data-gallery-alt="Loop_1"
+    data-gallery-title="Hope this makes sense."
+  /></div>
+
+  <figcaption class="image-caption">
+      Hope this makes sense.
+    </figcaption></figure>
+</p>
+<h3 id="heading">&hellip;<a href="#heading" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h3><p>So we&rsquo;re no longer using the remainder to &ldquo;render tick&rdquo;. It&rsquo;s all theoretical
+talk for now, so I should implement a proof of concept afterward. How far could
+I go with <em>Direct3D</em>, though, I dunno.</p>
 <h2 id="links">Links<a href="#links" class="heading-anchor" aria-label="Link to this section"><svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></g></svg></a></h2><p><a
     href="https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92"target="_blank"
     class="inline-flex items-center gap-1"
@@ -1856,6 +1893,11 @@ while running {
   >Croteam. &ldquo;Myths and Misconceptions of Frame Pacing&rdquo;. Reboot Devlop Blue 2019<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a><br>
 <a
+    href="https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html"target="_blank"
+    class="inline-flex items-center gap-1"
+  >Intel. &ldquo;Sample Application for Direct3D 12 Flip Model Swap Chains&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+  </a><br>
+<a
     href="https://developer.android.com/games/sdk/frame-pacing"target="_blank"
     class="inline-flex items-center gap-1"
   >Android. &ldquo;Frame Pacing Libary&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
@@ -1864,36 +1906,6 @@ while running {
     href="https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay"target="_blank"
     class="inline-flex items-center gap-1"
   >Unity. &ldquo;Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?.&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://raphlinus.github.io/ui/graphics/gpu/2021/10/22/swapchain-frame-pacing.html"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Raph Levien. &ldquo;Swapchains and frame pacing&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Intel. Sample Application for Direct3D 12 Flip Model Swap Chains<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a>
-<a
-    href="https://www.gdcvault.com/play/1026327/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >Akimitsu Hogge. Activision Central Technology. &ldquo;Controller to display latency in Call of Duty&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://james.darpinian.com/blog/latency-techniques/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >James Darpinian. &ldquo;Techniques to Reduce Latency in Your Apps&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://www.jpownby.com/index.php/2024/11/27/syncing-without-vsync/"target="_blank"
-    class="inline-flex items-center gap-1"
-  >John-Paul Ownby. &ldquo;Syncing without VSync&rdquo;<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-  </a><br>
-<a
-    href="https://developer.nvidia.com/performance-rendering-tools/reflex"target="_blank"
-    class="inline-flex items-center gap-1"
-  >NVIDIA Reflex<svg class="h-3 w-3 flex-shrink-0" id="external-link" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
   </a></p>
 
   </article>
@@ -2351,7 +2363,11 @@ while running {
   <ul>
     <li><a href="#smoothness-isnt-in-the-eye-of-cpu">Smoothness Isn&rsquo;t in the Eye of CPU</a></li>
     <li><a href="#modern-pipeline">Modern Pipeline</a></li>
-    <li><a href="#pseudocode">Pseudocode</a></li>
+    <li><a href="#updating-our-game-loop">Updating Our Game Loop</a>
+      <ul>
+        <li><a href="#heading">&hellip;</a></li>
+      </ul>
+    </li>
     <li><a href="#links">Links</a></li>
   </ul>
 </nav>
