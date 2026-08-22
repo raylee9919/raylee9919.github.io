@@ -179,7 +179,7 @@ while running {
     render_tick_dt := new_render_state_timestamp - game_state[i].timestamp;
 
     // Tick state, render frame, and schedule display.
-    if render_tick_dt > 0. {
+    if render_tick_dt > 0.0 {
         game_state[2] = tick(game_state[i], render_tick_dt);
 
         render_frame(game_state[2], new_schedule);
