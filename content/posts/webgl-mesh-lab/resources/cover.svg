@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#101010"/>
+      <stop offset="100%" stop-color="#1c1410"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd7ae"/>
+      <stop offset="45%" stop-color="#e0894f"/>
+      <stop offset="100%" stop-color="#6b2f14"/>
+    </linearGradient>
+    <mask id="donutMask">
+      <rect width="1200" height="630" fill="black"/>
+      <ellipse cx="600" cy="330" rx="270" ry="150" fill="white"/>
+      <ellipse cx="600" cy="330" rx="120" ry="66" fill="black"/>
+    </mask>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <g mask="url(#donutMask)">
+    <rect width="1200" height="630" fill="url(#ring)"/>
+  </g>
+  <ellipse cx="600" cy="330" rx="120" ry="66" fill="none" stroke="#000" stroke-opacity="0.25" stroke-width="2"/>
+  <g stroke="#000" stroke-opacity="0.18" stroke-width="2" fill="none">
+    <path d="M 400 300 Q 600 250 800 300"/>
+    <path d="M 380 340 Q 600 400 820 340"/>
+    <path d="M 480 250 L 500 410"/>
+    <path d="M 720 250 L 700 410"/>
+  </g>
+</svg>

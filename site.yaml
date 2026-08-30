@@ -1,0 +1,55 @@
+# SSG site configuration
+
+title: "SeongWoo Lee"
+base_url: "https://seongwoolee.com/"
+description: "SeongWoo Lee's Website"
+default_author: "SeongWoo Lee"
+
+# Where to read content/static from. Relative paths are resolved relative to
+# this file's directory. Content and static assets live in this repo now -
+# self-contained, no reach-outside-the-repo path to a separate Blog/ checkout.
+content_dir: "content"
+static_dirs:
+  - "static"
+output_dir: "public"
+
+# Section directories under content_dir that hold post/project bundles.
+sections:
+  posts:
+    label_en: "Posts"
+    label_ko: "포스트"
+  projects:
+    label_en: "Projects"
+    label_ko: "프로젝트"
+  studies:
+    label_en: "Studies"
+    label_ko: "연구"
+
+# First language listed is the default (served at site root).
+# Others are served under /<lang>/.
+languages:
+  en:
+    label: "English"
+    date_format: "%B %-d, %Y"
+  ko:
+    label: "한국어"
+    date_format: "%Y-%m-%d"
+
+author:
+  name: "SeongWoo Lee"
+  name_ko: "이성우"
+  title: "Programmer, Game Dev, Graphics Apprentice"
+  title_ko: "프로그래머, 게임 개발자, 그래픽스 학도"
+  avatar: "/images/profile.jpg"
+
+social:
+  - name: "GitHub"
+    url: "https://github.com/raylee9919"
+  - name: "YouTube"
+    url: "https://www.youtube.com/@seongwoolee9919"
+  - name: "X"
+    url: "https://x.com/raylee9919"
+  - name: "LinkedIn"
+    url: "https://www.linkedin.com/in/swl99/"
+
+home_recent_count: 5

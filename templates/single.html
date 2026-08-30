@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} · {{ site.title }}{% endblock %}
+{% block description %}{{ page.description or site.description }}{% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [
+  {left: '$$', right: '$$', display: true},
+  {left: '$', right: '$', display: false}
+]});"></script>
+<script defer src="/js/shader-canvas.js"></script>
+<script defer src="/js/mesh-shader.js"></script>
+{% endblock %}
+{% block content %}
+<article class="post">
+  <header class="post-header">
+    <h1>{{ page.title }}</h1>
+    <div class="post-meta">
+      {% if page.date_str %}<time>{{ page.date_str }}</time>{% endif %}
+      {% if page.status %}<span class="status-pill">{{ page.status }}</span>{% endif %}
+    </div>
+    {% if page.tags %}
+    <div class="post-tags">
+      {% for t in page.tags %}<a class="tag-pill" href="{{ tags_index_url }}{{ t|slugify }}/">{{ t }}</a>{% endfor %}
+    </div>
+    {% endif %}
+    {% if page.link %}<p><a class="repo-link" href="{{ page.link }}" target="_blank" rel="noopener">{{ page.link }}</a></p>{% endif %}
+  </header>
+
+  {% if page.cover %}
+  <div class="post-cover"><img src="{{ page.cover }}" alt=""></div>
+  {% endif %}
+
+  {% if page.toc %}
+  <nav class="toc">
+    <p class="toc-title">{{ 'Contents' if lang == 'en' else '목차' }}</p>
+    <ul>
+      {% for item in page.toc %}
+      <li><a href="{{ item.link }}">{{ item.name }}</a>
+        {% if item.children %}
+        <ul>
+          {% for child in item.children %}
+          <li><a href="{{ child.link }}">{{ child.name }}</a></li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+  {% endif %}
+
+  <div class="post-body">
+    {{ page.body_html|safe }}
+  </div>
+</article>
+{% endblock %}

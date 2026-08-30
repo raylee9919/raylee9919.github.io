@@ -1,0 +1,16 @@
+{# expects `item` in scope #}
+<a class="card" href="{{ item.url }}">
+  {% if item.cover %}
+  <div class="card-cover"><img src="{{ item.cover }}" alt="" loading="lazy"></div>
+  {% endif %}
+  <div class="card-body">
+    <h3>{{ item.title }}</h3>
+    {% if item.date_str %}<time class="card-date">{{ item.date_str }}</time>{% endif %}
+    {% if item.description %}<p class="card-desc">{{ item.description }}</p>{% endif %}
+    {% if item.tags %}
+    <div class="card-tags">
+      {% for t in item.tags %}<span class="tag-pill">{{ t }}</span>{% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</a>

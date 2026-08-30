@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} · {{ site.title }}{% endblock %}
+{% block description %}{{ description or site.description }}{% endblock %}
+{% block content %}
+<header class="list-header">
+  <h1>{{ title }}</h1>
+  {% if intro_html %}<div class="intro">{{ intro_html|safe }}</div>{% endif %}
+</header>
+
+{% set grid_class = "card-grid--list" if section == "posts" else "" %}
+
+{% if groups %}
+{% for group in groups %}
+<section class="category-group">
+  <h2 class="category-heading">{{ group.name if group.name else ('Uncategorized' if lang == 'en' else '미분류') }}</h2>
+  <div class="card-grid {{ grid_class }}">
+    {% for item in group.cards %}
+    {% include "_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}
+{% elif items %}
+<div class="card-grid {{ grid_class }}">
+  {% for item in items %}
+  {% include "_card.html" %}
+  {% endfor %}
+</div>
+{% else %}
+<p class="empty">{{ 'Nothing here yet.' if lang == 'en' else '아직 게시물이 없습니다.' }}</p>
+{% endif %}
+{% endblock %}

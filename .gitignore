@@ -1,0 +1,6 @@
+public/
+__pycache__/
+*.pyc
+
+# explicitly marked by filename as not for publishing
+content/posts/frame-pacing-1/dontpush

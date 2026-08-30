@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="{{ lang }}" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{{ site.title }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/highlight.css">
+<link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ home_url }}index.xml">
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ home_url }}">{{ site.title }}</a>
+
+    <nav class="main-nav" aria-label="Main">
+      {% for item in nav %}
+      <a href="{{ item.url }}" class="{{ 'active' if active_url == item.url else '' }}">{{ item.label }}</a>
+      {% endfor %}
+      <a href="{{ tags_index_url }}" class="{{ 'active' if active_url == tags_index_url else '' }}">{{ 'Tags' if lang == 'en' else '태그' }}</a>
+    </nav>
+
+    <div class="header-controls">
+      <div class="lang-switch">
+        {% for l in languages %}
+        {% if l.code == lang %}
+          <span class="lang-current">{{ l.label }}</span>
+        {% else %}
+          <a href="{{ lang_urls[l.code] }}">{{ l.label }}</a>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <button id="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main id="content" class="wrap">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-social">
+      {% for s in site.social %}
+      <a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }}</a>
+      {% endfor %}
+      <a href="{{ home_url }}index.xml">RSS</a>
+    </div>
+    <div class="footer-note">&copy; {{ author.name }} &middot; built with SSG</div>
+  </div>
+</footer>
+
+<script src="/js/main.js"></script>
+</body>
+</html>

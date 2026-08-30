@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ site.title }}{% endblock %}
+{% block content %}
+<section class="hero">
+  {% if author.avatar %}<img class="avatar" src="{{ author.avatar }}" alt="{{ author.name }}">{% endif %}
+  <h1>{{ author.name }}</h1>
+  <p class="tagline">{{ author.title }}</p>
+</section>
+
+<section class="recent">
+  <h2>{{ 'Recent' if lang == 'en' else '최근 글' }}</h2>
+  <div class="card-grid">
+    {% for item in recent %}
+    {% include "_card.html" %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

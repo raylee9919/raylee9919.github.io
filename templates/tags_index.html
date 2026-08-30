@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Tags' if lang == 'en' else '태그' }} · {{ site.title }}{% endblock %}
+{% block content %}
+<header class="list-header">
+  <h1>{{ 'Tags' if lang == 'en' else '태그' }}</h1>
+</header>
+<div class="tag-cloud">
+  {% for t in tags %}
+  <a class="tag-pill tag-pill-lg" href="{{ t.url }}">{{ t.name }} <span class="tag-count">{{ t.count }}</span></a>
+  {% endfor %}
+</div>
+{% endblock %}
