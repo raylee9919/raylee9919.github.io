@@ -341,6 +341,7 @@ class Builder:
         alt = site.alt_urls(page.section, page.slug)
         ctx = self.base_context(page.lang, page.url, alt)
         ctx["page"] = {
+            "slug": page.slug,
             "title": page.title,
             "date": page.date,
             "date_str": self._dateformat(page.date, page.lang),
