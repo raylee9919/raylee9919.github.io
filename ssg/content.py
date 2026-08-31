@@ -27,7 +27,7 @@ MD_EXTENSIONS = [
 
 MD_EXTENSION_CONFIGS = {
     "codehilite": {"css_class": "highlight", "guess_lang": False},
-    "toc": {"permalink": False},
+    "toc": {"permalink": "#", "permalink_class": "heading-anchor"},
 }
 
 # -- a small compatibility shim for leftover Hugo shortcodes in migrated

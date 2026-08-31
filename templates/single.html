@@ -91,5 +91,54 @@
   </nav>
   {% endif %}
 </article>
+
+{% if section == 'posts' %}
+<section class="comments">
+  <script src="https://giscus.app/client.js"
+          data-repo="raylee9919/raylee9919.github.io"
+          data-repo-id="R_kgDOSt4Grg"
+          data-category="Announcements"
+          data-category-id="DIC_kwDOSt4Grs4DEkB1"
+          data-mapping="pathname"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="preferred_color_scheme"
+          data-lang="{{ 'ko' if lang == 'ko' else 'en' }}"
+          crossorigin="anonymous"
+          async>
+  </script>
+</section>
+<script>
+(function () {
+  function effectiveTheme() {
+    var attr = document.documentElement.getAttribute("data-theme");
+    if (attr === "light" || attr === "dark") return attr;
+    return (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+  }
+  function sendGiscusTheme(theme) {
+    var iframe = document.querySelector("iframe.giscus-frame");
+    if (!iframe) return;
+    iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: theme } } }, "https://giscus.app");
+  }
+  var correctedInitialTheme = false;
+  window.addEventListener("message", function (event) {
+    if (event.origin !== "https://giscus.app") return;
+    if (!(event.data && event.data.giscus)) return;
+    // Giscus loaded using the OS-level preference (its own default) - the
+    // first time we hear from it, correct that to whatever this site's
+    // manual toggle/localStorage override actually says, if different.
+    if (!correctedInitialTheme) {
+      correctedInitialTheme = true;
+      sendGiscusTheme(effectiveTheme());
+    }
+  });
+  window.addEventListener("themechange", function (e) {
+    sendGiscusTheme(e.detail.theme);
+  });
+})();
+</script>
+{% endif %}
 </div>
 {% endblock %}

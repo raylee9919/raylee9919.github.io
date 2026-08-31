@@ -1,5 +1,5 @@
 ---
-title: "Shooter"
+title: "UE5 Multiplayer Shooter"
 date: 2026-01-01
 draft: false
 description: "UE5 Multiplayer Shooter"

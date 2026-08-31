@@ -5,11 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ site.title }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
-{% if lang == 'en' %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
-{% endif %}
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css?v={{ asset_v }}">
 <link rel="stylesheet" href="/css/highlight.css">
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
@@ -20,7 +18,7 @@
 <a class="skip-link" href="#content">Skip to content</a>
 
 <header class="site-header">
-  <div class="wrap header-inner">
+  <div class="wrap-wide header-inner">
     <a class="brand" href="{{ home_url }}">{{ site.title }}</a>
 
     <nav class="main-nav" aria-label="Main">
@@ -50,7 +48,7 @@
 </main>
 
 <footer class="site-footer">
-  <div class="wrap footer-inner">
+  <div class="wrap-wide footer-inner">
     <div class="footer-social">
       {% for s in site.social %}
       <a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.name }}</a>

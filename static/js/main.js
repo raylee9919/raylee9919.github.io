@@ -23,6 +23,7 @@
       var next = effectiveDark ? "light" : "dark";
       apply(next);
       try { localStorage.setItem(KEY, next); } catch (e) {}
+      window.dispatchEvent(new CustomEvent("themechange", { detail: { theme: next } }));
     });
   }
 })();

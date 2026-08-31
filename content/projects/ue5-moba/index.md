@@ -11,7 +11,7 @@ tags:
   - GAS
 categories:
   - Games
-cover: "resources/cover.svg"
+cover: "resources/cover.png"
 status: "in_progress"
 ---
 
