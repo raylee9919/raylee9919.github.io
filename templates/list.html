@@ -2,6 +2,7 @@
 {% block title %}{{ title }} · {{ site.title }}{% endblock %}
 {% block description %}{{ description or site.description }}{% endblock %}
 {% block content %}
+<div class="wrap-wide">
 <header class="list-header">
   <h1>{{ title }}</h1>
   {% if intro_html %}<div class="intro">{{ intro_html|safe }}</div>{% endif %}
@@ -29,4 +30,5 @@
 {% else %}
 <p class="empty">{{ 'Nothing here yet.' if lang == 'en' else '아직 게시물이 없습니다.' }}</p>
 {% endif %}
+</div>
 {% endblock %}

@@ -15,15 +15,15 @@ output_dir: "public"
 
 # Section directories under content_dir that hold post/project bundles.
 sections:
-  posts:
-    label_en: "Posts"
-    label_ko: "포스트"
   projects:
     label_en: "Projects"
     label_ko: "프로젝트"
+  posts:
+    label_en: "Posts"
+    label_ko: "포스트"
   studies:
-    label_en: "Studies"
-    label_ko: "연구"
+    label_en: "Short Form"
+    label_ko: "숏폼"
 
 # First language listed is the default (served at site root).
 # Others are served under /<lang>/.
@@ -45,11 +45,13 @@ author:
 social:
   - name: "GitHub"
     url: "https://github.com/raylee9919"
+    icon: "github"
   - name: "YouTube"
     url: "https://www.youtube.com/@seongwoolee9919"
+    icon: "youtube"
   - name: "X"
     url: "https://x.com/raylee9919"
+    icon: "x"
   - name: "LinkedIn"
     url: "https://www.linkedin.com/in/swl99/"
-
-home_recent_count: 5
+    icon: "linkedin"

@@ -35,7 +35,20 @@ MD_EXTENSION_CONFIGS = {
 
 _FIGURE_RE = re.compile(r"\{\{<\s*figure\s+(.*?)\s*/?>\}\}")
 _YOUTUBE_RE = re.compile(r"\{\{<\s*youtube\s+([\w-]+)\s*>\}\}")
-_ICON_RE = re.compile(r"\{\{<\s*icon\s+.*?>\}\}\s*")
+_ICON_RE = re.compile(r"\{\{<\s*icon\s+(.*?)\s*/?>\}\}\s*")
+_ICON_NAMES = {"github", "youtube", "x", "linkedin"}
+
+# ```mermaid fenced blocks need to reach the page as raw, unescaped-by-Pygments
+# text inside a plain <pre class="mermaid"> - the mermaid.js runtime reads
+# that element's textContent and renders its own SVG from it client-side.
+# Handled as a whole-body pass (not line-by-line like the shortcodes below)
+# since a diagram spans multiple lines.
+_MERMAID_RE = re.compile(r"```mermaid\n(.*?)\n```", re.DOTALL)
+
+
+def _mermaid_repl(m: re.Match) -> str:
+    code = html_lib.escape(m.group(1))
+    return f'<pre class="mermaid">{code}</pre>'
 _TABS_OPEN_RE = re.compile(r"^\s*\{\{<\s*tabs\s*>\}\}\s*$")
 _TABS_CLOSE_RE = re.compile(r"^\s*\{\{<\s*/tabs\s*>\}\}\s*$")
 _TAB_OPEN_RE = re.compile(r'^\s*\{\{<\s*tab\s+label="([^"]*)"\s*>\}\}\s*$')
@@ -59,6 +72,14 @@ def _figure_repl(m: re.Match) -> str:
     return f'<figure class="md-figure"{style}>{img}</figure>'
 
 
+def _icon_repl(m: re.Match) -> str:
+    attrs = _parse_shortcode_attrs(m.group(1))
+    name = attrs.get("name", "")
+    if name not in _ICON_NAMES:
+        return ""
+    return f'<span class="icon-inline icon-{name}" aria-hidden="true"></span>'
+
+
 def _youtube_repl(m: re.Match) -> str:
     vid = html_lib.escape(m.group(1), quote=True)
     return (
@@ -73,6 +94,7 @@ def preprocess_shortcodes(body: str) -> str:
     """Expand the handful of Hugo shortcodes this content actually uses into
     plain HTML, ahead of markdown conversion. Not a general Hugo shortcode
     engine - just enough to not lose content that was written for one."""
+    body = _MERMAID_RE.sub(_mermaid_repl, body)
     out_lines = []
     in_tabs = False
     first_tab = False
@@ -99,7 +121,7 @@ def preprocess_shortcodes(body: str) -> str:
             continue
         line = _FIGURE_RE.sub(_figure_repl, line)
         line = _YOUTUBE_RE.sub(_youtube_repl, line)
-        line = _ICON_RE.sub("", line)
+        line = _ICON_RE.sub(_icon_repl, line)
         out_lines.append(line)
     return "\n".join(out_lines)
 
@@ -167,6 +189,18 @@ class Page:
     @property
     def categories(self) -> list[str]:
         return list(self.meta.get("categories") or [])
+
+    @property
+    def series(self) -> list[str]:
+        return list(self.meta.get("series") or [])
+
+    @property
+    def series_order(self) -> float | None:
+        """Optional position within a series (lower comes first). Falls back
+        to date order (oldest first) when unset, since a series is normally
+        read front-to-back rather than newest-first."""
+        v = self.meta.get("series_order")
+        return None if v is None else float(v)
 
     @property
     def description(self) -> str:

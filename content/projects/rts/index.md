@@ -1,6 +1,7 @@
 ---
 title: "RTS"
-date: 2023-12-01
+date: 2024-03-01
+weight: 10
 draft: false
 description: "RTS game/engine built from scratch"
 summary: "RTS game/engine built from scratch."

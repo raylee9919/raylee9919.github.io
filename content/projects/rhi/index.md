@@ -1,5 +1,5 @@
 ---
-title: "RHI"
+title: "Direct3D 12 Renderer"
 date: 2026-03-01
 draft: false
 description: "렌더링 파이프라인과 기술 연구 및 구현 프로젝트"

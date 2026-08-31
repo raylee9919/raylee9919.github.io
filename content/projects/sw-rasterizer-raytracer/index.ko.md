@@ -1,9 +1,9 @@
 ---
-title: "RR"
-date: 2000-01-01
+title: "CPU 래스터라이저와 레이트레이서"
+date: 2025-12-01
 draft: false
-description: "CPU 래스터라이저와 레이트레이서"
-summary: "CPU 래스터라이저와 레이트레이서"
+description: "밑바닥부터 만든 CPU 래스터라이저와 물리 기반 레이트레이서 — BVH와 멀티스레딩으로 160배 가속"
+summary: "밑바닥부터 만든 CPU 래스터라이저 & 레이트레이서, BVH+멀티스레딩으로 160배 가속"
 featured: false
 tags:
   - C++17

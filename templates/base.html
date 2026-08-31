@@ -5,7 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{% block title %}{{ site.title }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
-<link rel="stylesheet" href="/css/style.css">
+{% if lang == 'en' %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+{% endif %}
+<link rel="stylesheet" href="/css/style.css?v={{ asset_v }}">
 <link rel="stylesheet" href="/css/highlight.css">
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ home_url }}index.xml">
@@ -35,12 +40,12 @@
         {% endif %}
         {% endfor %}
       </div>
-      <button id="theme-toggle" type="button" aria-label="Toggle color theme">◐</button>
+      <button id="theme-toggle" type="button" aria-label="Toggle color theme"><span class="icon-theme icon-sun" aria-hidden="true"></span><span class="icon-theme icon-moon" aria-hidden="true"></span></button>
     </div>
   </div>
 </header>
 
-<main id="content" class="wrap">
+<main id="content">
 {% block content %}{% endblock %}
 </main>
 

@@ -1,9 +1,9 @@
 ---
-title: "RR"
-date: 2000-01-01
+title: "CPU Rasterizer and Raytracer"
+date: 2025-12-01
 draft: false
-description: "CPU Rasterizer and Raytracer"
-summary: "CPU Rasterizer and Raytracer"
+description: "A from-scratch CPU rasterizer and physically based raytracer, accelerated 160x with BVH and multithreading"
+summary: "A from-scratch CPU rasterizer and raytracer, 160x faster with BVH + multithreading"
 featured: false
 tags:
   - C++17

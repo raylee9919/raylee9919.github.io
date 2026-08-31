@@ -1,6 +1,6 @@
 ---
 title: "슈터"
-date: 2001-01-01
+date: 2026-01-01
 draft: false
 description: "UE5 멀티플레이어 슈터 게임"
 summary: "UE5 멀티플레이어 슈터 게임"

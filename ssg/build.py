@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import shutil
 import time
 from pathlib import Path
@@ -86,6 +87,12 @@ class Site:
     def tag_url(self, lang: str, tag: str) -> str:
         return f"{self.lang_prefix(lang)}/tags/{slugify(tag)}/"
 
+    def series_index_url(self, lang: str) -> str:
+        return f"{self.lang_prefix(lang)}/series/"
+
+    def series_url(self, lang: str, name: str) -> str:
+        return f"{self.lang_prefix(lang)}/series/{slugify(name)}/"
+
     def cover_url(self, page: Page) -> str | None:
         if not page.cover:
             return None
@@ -114,6 +121,30 @@ class Site:
                 tags.setdefault(t, []).append(p)
         return dict(sorted(tags.items(), key=lambda kv: kv[0].lower()))
 
+    def series_for_lang(self, lang: str) -> dict[str, list[Page]]:
+        """Group items by series name. Posts within a series are ordered by
+        `series_order` (falling back to date, oldest first); series
+        themselves are ordered by their most recently published post,
+        newest first."""
+        series: dict[str, list[Page]] = {}
+        for p in self.all_items_for_lang(lang):
+            for s in p.series:
+                series.setdefault(s, []).append(p)
+
+        def entry_key(p: Page):
+            date_ord = p.date.toordinal() if p.date else 0
+            if p.series_order is not None:
+                return (0, p.series_order, date_ord)
+            return (1, 0, date_ord)
+
+        for posts in series.values():
+            posts.sort(key=entry_key)
+
+        def latest(posts: list[Page]) -> int:
+            return max((p.date.toordinal() if p.date else 0) for p in posts)
+
+        return dict(sorted(series.items(), key=lambda kv: latest(kv[1]), reverse=True))
+
     def alt_urls(self, section: str, slug: str) -> dict[str, str]:
         """Map lang -> url of the same content item in that language, if it exists."""
         out = {}
@@ -134,6 +165,17 @@ class Builder:
         )
         self.env.filters["dateformat"] = self._dateformat
         self.env.filters["slugify"] = slugify
+        # Cache-buster for /css/style.css - the URL never changes between
+        # builds, so without this a browser can happily keep serving a
+        # stale copy after a CSS edit even past a normal reload.
+        self.asset_v = self._hash_asset("static/css/style.css")
+
+    def _hash_asset(self, rel_path: str) -> str:
+        path = _resolve(self.site.root, rel_path)
+        try:
+            return hashlib.sha1(path.read_bytes()).hexdigest()[:8]
+        except FileNotFoundError:
+            return "0"
 
     def _dateformat(self, date, lang: str) -> str:
         if date is None:
@@ -174,8 +216,10 @@ class Builder:
             "nav": nav,
             "home_url": self.site.home_url(lang),
             "tags_index_url": self.site.tags_index_url(lang),
+            "series_index_url": self.site.series_index_url(lang),
             "active_url": active_url,
             "lang_urls": resolved_lang_urls,
+            "asset_v": self.asset_v,
         }
 
     def render(self, template_name: str, out_path: Path, **ctx):
@@ -200,6 +244,7 @@ class Builder:
             for section in site.sections:
                 self.build_section(section, lang)
             self.build_tags(lang)
+            self.build_series(lang)
             self.build_rss(lang)
 
     def copy_static(self):
@@ -228,9 +273,7 @@ class Builder:
 
     def build_home(self, lang: str):
         site = self.site
-        recent = site.all_items_for_lang(lang)[: site.cfg.get("home_recent_count", 5)]
         ctx = self.base_context(lang, site.home_url(lang))
-        ctx["recent"] = [self._card(p, lang) for p in recent]
         self.render("home.html", site.output_dir / lang_out(site, lang) / "index.html", **ctx)
 
     def _card(self, page: Page, lang: str) -> dict:
@@ -304,7 +347,7 @@ class Builder:
             "description": page.description,
             "tags": page.tags,
             "categories": page.categories,
-            "series": page.meta.get("series") or [],
+            "series": page.series,
             "cover": site.cover_url(page),
             "body_html": page.body_html,
             "toc": page.toc,
@@ -312,9 +355,29 @@ class Builder:
             "status": page.meta.get("status"),
         }
         ctx["section"] = page.section
+        ctx["series_nav"] = self._series_nav(page)
         rel_dir = site.output_dir / lang_out(site, page.lang) / page.section / page.slug
         self.render("single.html", rel_dir / "index.html", **ctx)
         self._copy_resources(page, rel_dir)
+
+    def _series_nav(self, page: Page) -> dict | None:
+        """A single post can list more than one series in front matter, but
+        the navigator only makes sense for one - use the first, and only
+        bother if that series actually has more than this one post in it."""
+        if not page.series:
+            return None
+        name = page.series[0]
+        siblings = self.site.series_for_lang(page.lang).get(name, [])
+        if len(siblings) < 2:
+            return None
+        index = next((i for i, s in enumerate(siblings) if s is page), None)
+        return {
+            "name": name,
+            "url": self.site.series_url(page.lang, name),
+            "posts": [{"title": s.title, "url": s.url, "current": s is page} for s in siblings],
+            "prev": siblings[index - 1] if index is not None and index > 0 else None,
+            "next": siblings[index + 1] if index is not None and index + 1 < len(siblings) else None,
+        }
 
     def build_tags(self, lang: str):
         site = self.site
@@ -337,6 +400,35 @@ class Builder:
                 "list.html",
                 site.output_dir / lang_out(site, lang) / "tags" / slugify(tag) / "index.html",
                 **tctx,
+            )
+
+    def build_series(self, lang: str):
+        site = self.site
+        series = site.series_for_lang(lang)
+        series_lang_urls = {l: site.series_index_url(l) for l in site.languages}
+        ctx = self.base_context(lang, site.series_index_url(lang), series_lang_urls)
+        ctx["series"] = [
+            {"name": name, "url": site.series_url(lang, name), "count": len(items)}
+            for name, items in series.items()
+        ]
+        self.render(
+            "series_index.html",
+            site.output_dir / lang_out(site, lang) / "series" / "index.html",
+            **ctx,
+        )
+
+        for name, items in series.items():
+            sctx = self.base_context(lang, site.series_url(lang, name))
+            sctx["title"] = name
+            sctx["description"] = ""
+            sctx["intro_html"] = ""
+            # chronological (series order), not the newest-first default -
+            # a series is meant to be read front-to-back.
+            sctx["items"] = [self._card(p, lang) for p in items]
+            self.render(
+                "list.html",
+                site.output_dir / lang_out(site, lang) / "series" / slugify(name) / "index.html",
+                **sctx,
             )
 
     def build_rss(self, lang: str):

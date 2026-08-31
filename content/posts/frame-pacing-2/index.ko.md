@@ -195,9 +195,9 @@ while running {
 
 ## 링크
 
-[Alen Ladavac. "The Elusive Frame Timing"](https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92)
-[Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)
-[Croteam. "Myths and Misconceptions of Frame Pacing". Reboot Devlop Blue 2019](https://www.youtube.com/watch?v=_zpS1p0_L_o)
-[Intel. "Sample Application for Direct3D 12 Flip Model Swap Chains"](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)
-[Android. "Frame Pacing Library"](https://developer.android.com/games/sdk/frame-pacing)
-[Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?"](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)
+[Alen Ladavac. "The Elusive Frame Timing"](https://medium.com/@alen.ladavac/the-elusive-frame-timing-168f899aec92)  
+[Croteam. "The Elusive Frame Timing". GDC 2018](https://www.gdcvault.com/play/1025031/Advanced-Graphics-Techniques-Tutorial-The)  
+[Croteam. "Myths and Misconceptions of Frame Pacing". Reboot Devlop Blue 2019](https://www.youtube.com/watch?v=_zpS1p0_L_o)  
+[Intel. "Sample Application for Direct3D 12 Flip Model Swap Chains"](https://www.intel.com/content/www/us/en/developer/articles/code-sample/sample-application-for-direct3d-12-flip-model-swap-chains.html)  
+[Android. "Frame Pacing Library"](https://developer.android.com/games/sdk/frame-pacing)  
+[Unity. "Fixing Time.deltaTime in Unity 2020.2 for smoother gameplay: What did it take?"](https://unity.com/blog/engine-platform/fixing-time-deltatime-in-unity-2020-2-for-smoother-gameplay)  

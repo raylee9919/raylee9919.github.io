@@ -1,18 +1,21 @@
 {% extends "base.html" %}
 {% block title %}{{ site.title }}{% endblock %}
 {% block content %}
+<div class="wrap">
 <section class="hero">
   {% if author.avatar %}<img class="avatar" src="{{ author.avatar }}" alt="{{ author.name }}">{% endif %}
   <h1>{{ author.name }}</h1>
   <p class="tagline">{{ author.title }}</p>
-</section>
-
-<section class="recent">
-  <h2>{{ 'Recent' if lang == 'en' else '최근 글' }}</h2>
-  <div class="card-grid">
-    {% for item in recent %}
-    {% include "_card.html" %}
+  {% if site.social %}
+  <div class="hero-links">
+    {% for s in site.social %}
+    <a class="hero-link" href="{{ s.url }}" target="_blank" rel="noopener">
+      {% if s.icon %}<span class="hero-link-icon icon-{{ s.icon }}" aria-hidden="true"></span>{% endif %}
+      {{ s.name }}
+    </a>
     {% endfor %}
   </div>
+  {% endif %}
 </section>
+</div>
 {% endblock %}

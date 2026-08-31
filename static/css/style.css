@@ -11,10 +11,29 @@
   --code-fg: #d4d4d4;
   --shadow: 0 1px 2px rgba(28, 27, 25, 0.06), 0 4px 16px rgba(28, 27, 25, 0.06);
   --radius: 10px;
-  --content-width: 46rem;
+  --content-width: 60rem;
+  --content-width-wide: 76rem;
   --font-sans: -apple-system, "Segoe UI", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
-  --font-mono: "SF Mono", Consolas, "Cascadia Code", "D2Coding", monospace;
+  --font-serif-en: "EB Garamond", "Cormorant Garamond", Garamond, Georgia, serif;
+  --font-sans-ko: "KoPubWorld Dotum", var(--font-sans);
+  --font-mono: Consolas, "SF Mono", "Cascadia Code", "D2Coding", monospace;
 }
+
+/* Self-hosted rather than pulled from a third-party CDN each load - KoPub
+   fonts are freely redistributable, so the files just live in static/fonts/. */
+@font-face {
+  font-family: "KoPubWorld Dotum";
+  src: url("/fonts/KoPubWorld-Dotum-Medium.woff2") format("woff2"),
+       url("/fonts/KoPubWorld-Dotum-Medium.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* English pages use EB Garamond, Korean pages use KoPub World Dotum -
+   neither covers the other script, so each is scoped to its lang. */
+html[lang="en"] body { font-family: var(--font-serif-en); }
+html[lang="ko"] body { font-family: var(--font-sans-ko); }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -51,6 +70,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .wrap { max-width: var(--content-width); margin: 0 auto; padding: 0 1.5rem; }
+.wrap-wide { max-width: var(--content-width-wide); margin: 0 auto; padding: 0 1.5rem; }
 a { color: inherit; }
 img { max-width: 100%; border-radius: 6px; }
 .skip-link {
@@ -70,24 +90,50 @@ img { max-width: 100%; border-radius: 6px; }
   display: flex; align-items: center; gap: 1.5rem;
   padding: .9rem 1.5rem;
 }
-.brand { font-weight: 700; text-decoration: none; letter-spacing: -.01em; }
+.brand { font-weight: 700; text-decoration: none; letter-spacing: -.01em; flex-shrink: 0; }
 .main-nav { display: flex; gap: 1.1rem; flex: 1; }
 .main-nav a { text-decoration: none; color: var(--fg-muted); font-size: .93rem; }
 .main-nav a:hover, .main-nav a.active { color: var(--fg); }
-.header-controls { display: flex; align-items: center; gap: .9rem; }
+.header-controls { display: flex; align-items: center; gap: .9rem; flex-shrink: 0; }
 .lang-switch { display: flex; gap: .5rem; font-size: .85rem; }
 .lang-switch a { text-decoration: none; color: var(--fg-muted); }
 .lang-switch a:hover { color: var(--fg); }
 .lang-current { color: var(--fg); font-weight: 600; }
 #theme-toggle {
   background: none; border: 1px solid var(--border); color: var(--fg);
-  border-radius: 999px; width: 2rem; height: 2rem; cursor: pointer; font-size: 1rem;
-  display: flex; align-items: center; justify-content: center;
+  border-radius: 999px; width: 2rem; height: 2rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 #theme-toggle:hover { border-color: var(--accent); }
+/* An actual icon, not a "◐" text glyph - that glyph isn't reliably covered
+   by any font, so the browser falls back to a *locale-appropriate* font
+   for it based on html[lang], rendering it at a different apparent size
+   per language. A masked icon sidesteps font coverage entirely.
+
+   Two icons stacked in the same slot, toggled by the *effective* theme -
+   showing what you'd switch TO (sun while dark, moon while light) is the
+   standard convention. Same "effectively dark" logic as the color tokens
+   above: explicit data-theme="dark", or no override while the system
+   prefers dark. */
+.icon-theme {
+  display: none; width: 1.05rem; height: 1.05rem; flex: none;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+}
+.icon-sun { -webkit-mask-image: url("/images/icon-sun.svg"); mask-image: url("/images/icon-sun.svg"); }
+.icon-moon { -webkit-mask-image: url("/images/icon-moon.svg"); mask-image: url("/images/icon-moon.svg"); display: block; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .icon-sun { display: block; }
+  :root:not([data-theme="light"]) .icon-moon { display: none; }
+}
+:root[data-theme="dark"] .icon-sun { display: block; }
+:root[data-theme="dark"] .icon-moon { display: none; }
 
 /* ---------- hero / home ---------- */
-main.wrap { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 60vh; }
+#content { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 60vh; }
 .hero { text-align: center; padding: 2rem 0 3rem; }
 .hero .avatar {
   width: 88px; height: 88px; border-radius: 50%; object-fit: cover;
@@ -95,7 +141,41 @@ main.wrap { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 60vh; }
 }
 .hero h1 { margin: 0 0 .3rem; font-size: 1.7rem; }
 .hero .tagline { color: var(--fg-muted); margin: 0; }
-.recent h2, .list-header h1, .tags-index h1 { font-size: 1.25rem; margin-bottom: 1.2rem; }
+.hero-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1.4rem; }
+.hero-link {
+  display: inline-block; text-decoration: none; color: var(--fg);
+  border: 1px solid var(--border); border-radius: 999px; padding: .45rem 1.1rem;
+  font-size: .88rem; background: var(--bg-elevated);
+  transition: border-color .15s ease, color .15s ease;
+}
+.hero-link:hover { border-color: var(--accent); color: var(--accent); }
+.hero-link { display: inline-flex; align-items: center; gap: .45rem; }
+
+/* Monochrome icons via mask instead of <img>, so they inherit currentColor -
+   matching text color in both themes and on hover, with one asset each. */
+.hero-link-icon {
+  display: inline-block; width: 1rem; height: 1rem; flex: none;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+}
+.icon-github { -webkit-mask-image: url("/images/icon-github.svg"); mask-image: url("/images/icon-github.svg"); }
+.icon-youtube { -webkit-mask-image: url("/images/icon-youtube.svg"); mask-image: url("/images/icon-youtube.svg"); }
+.icon-x { -webkit-mask-image: url("/images/icon-x.svg"); mask-image: url("/images/icon-x.svg"); }
+.icon-linkedin { -webkit-mask-image: url("/images/icon-linkedin.svg"); mask-image: url("/images/icon-linkedin.svg"); }
+
+/* Same mask trick, sized in em so it scales with surrounding text - for
+   icon+link lines inside post bodies (e.g. the {{< icon >}} shortcode). */
+.icon-inline {
+  display: inline-block; width: 1em; height: 1em; flex: none;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+  vertical-align: -0.15em; margin-right: .35em;
+}
+.list-header h1, .tags-index h1 { font-size: 1.25rem; margin-bottom: 1.2rem; }
 
 .category-group { margin-bottom: 2.4rem; }
 .category-group:last-child { margin-bottom: 0; }
@@ -113,8 +193,15 @@ main.wrap { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 60vh; }
   overflow: hidden; transition: transform .15s ease, box-shadow .15s ease;
 }
 .card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-.card-cover { aspect-ratio: 16/9; overflow: hidden; background: var(--border); }
+.card-cover { position: relative; aspect-ratio: 16/9; overflow: hidden; background: var(--border); }
 .card-cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; display: block; }
+.card-cover img.card-badge {
+  position: absolute; top: .5rem; left: .5rem; z-index: 1;
+  width: 3.0rem; height: 3.0rem; padding: .1rem; box-sizing: border-box;
+  background: #fff; border-radius: 50%;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, .45), 0 1px 2px rgba(0, 0, 0, .25);
+  object-fit: contain;
+}
 .card-body { padding: 1rem 1.1rem 1.2rem; }
 .card-body h3 { margin: 0 0 .3rem; font-size: 1.02rem; }
 .card-date { color: var(--fg-muted); font-size: .78rem; }
@@ -135,7 +222,7 @@ main.wrap { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 60vh; }
 
 /* -- wide, one-per-row layout (posts list): cover left, content right -- */
 .card-grid--list { grid-template-columns: 1fr; gap: 1rem; }
-.card-grid--list .card { display: flex; flex-direction: row; align-items: stretch; }
+.card-grid--list .card { display: flex; flex-direction: row; align-items: center; }
 .card-grid--list .card-cover { width: 16rem; flex: none; aspect-ratio: 16/9; }
 .card-grid--list .card-body {
   flex: 1; min-width: 0; padding: 1.2rem 1.4rem;
@@ -169,6 +256,32 @@ main.wrap { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 60vh; }
 .toc a { text-decoration: none; color: var(--fg-muted); }
 .toc a:hover { color: var(--accent); }
 
+/* ---------- series ---------- */
+.series-nav {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1rem 1.3rem; margin: 1.2rem 0; background: var(--bg-elevated); font-size: .88rem;
+}
+.series-nav-title { margin: 0 0 .5rem; font-weight: 600; }
+.series-nav-title a { text-decoration: none; color: var(--fg); }
+.series-nav-title a:hover { color: var(--accent); }
+.series-nav ol { margin: 0; padding-left: 1.2rem; color: var(--fg-muted); }
+.series-nav li { margin: .15rem 0; }
+.series-nav li.current { font-weight: 600; color: var(--fg); }
+.series-nav a { color: var(--fg-muted); text-decoration: none; }
+.series-nav a:hover { color: var(--accent); }
+
+.series-adjacent {
+  display: flex; justify-content: space-between; gap: 1rem;
+  margin-top: 2.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border);
+  font-size: .9rem;
+}
+.series-adjacent a { text-decoration: none; color: var(--fg); max-width: 48%; }
+.series-adjacent a:hover .label, .series-adjacent a:hover { color: var(--accent); }
+.series-adjacent .label {
+  display: block; font-size: .74rem; text-transform: uppercase;
+  letter-spacing: .04em; color: var(--fg-muted); margin-bottom: .2rem;
+}
+
 .post-body { margin-top: 1.8rem; }
 .post-body h2 { font-size: 1.35rem; margin-top: 2.2rem; }
 .post-body h3 { font-size: 1.1rem; margin-top: 1.8rem; }
@@ -185,9 +298,14 @@ main.wrap { padding-top: 2.5rem; padding-bottom: 4rem; min-height: 60vh; }
 .post-body pre {
   background: var(--code-bg); color: var(--code-fg); border-radius: var(--radius);
   padding: 1rem 1.2rem; overflow-x: auto; font-size: .85rem; line-height: 1.55;
-  margin: 0;
+  margin: 0; font-family: var(--font-mono);
 }
 .post-body pre code { background: none; padding: 0; color: inherit; }
+.post-body .mermaid {
+  background: var(--code-bg); border-radius: var(--radius);
+  padding: 1.2rem; margin: 1.2em 0; overflow-x: auto; text-align: center;
+}
+.post-body .mermaid svg { max-width: 100%; }
 .post-body table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: .92rem; }
 .post-body th, .post-body td { border: 1px solid var(--border); padding: .5rem .7rem; text-align: left; }
 .post-body img { display: block; margin: 1.2em auto; }

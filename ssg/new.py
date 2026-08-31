@@ -11,6 +11,7 @@ description: ""
 tags: []
 categories: []
 series: []
+series_order:
 cover: ""
 draft: true
 ---
@@ -24,6 +25,7 @@ description: ""
 tags: []
 categories: []
 series: []
+series_order:
 cover: ""
 draft: true
 ---

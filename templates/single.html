@@ -10,8 +10,13 @@
 ]});"></script>
 <script defer src="/js/shader-canvas.js"></script>
 <script defer src="/js/mesh-shader.js"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "dark", securityLevel: "strict" });
+</script>
 {% endblock %}
 {% block content %}
+<div class="wrap-wide">
 <article class="post">
   <header class="post-header">
     <h1>{{ page.title }}</h1>
@@ -24,8 +29,21 @@
       {% for t in page.tags %}<a class="tag-pill" href="{{ tags_index_url }}{{ t|slugify }}/">{{ t }}</a>{% endfor %}
     </div>
     {% endif %}
-    {% if page.link %}<p><a class="repo-link" href="{{ page.link }}" target="_blank" rel="noopener">{{ page.link }}</a></p>{% endif %}
+    {% if page.link %}<p><a class="repo-link" href="{{ page.link }}" target="_blank" rel="noopener"><span class="icon-inline icon-github" aria-hidden="true"></span>{{ page.link }}</a></p>{% endif %}
   </header>
+
+  {% if series_nav %}
+  <nav class="series-nav" aria-label="{{ 'Series' if lang == 'en' else '시리즈' }}">
+    <p class="series-nav-title"><a href="{{ series_nav.url }}">{{ 'Series' if lang == 'en' else '시리즈' }}: {{ series_nav.name }}</a></p>
+    <ol>
+      {% for p in series_nav.posts %}
+      <li class="{{ 'current' if p.current else '' }}">
+        {% if p.current %}{{ loop.index }}. {{ p.title }}{% else %}<a href="{{ p.url }}">{{ loop.index }}. {{ p.title }}</a>{% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </nav>
+  {% endif %}
 
   {% if page.cover %}
   <div class="post-cover"><img src="{{ page.cover }}" alt=""></div>
@@ -53,5 +71,25 @@
   <div class="post-body">
     {{ page.body_html|safe }}
   </div>
+
+  {% if series_nav and (series_nav.prev or series_nav.next) %}
+  <nav class="series-adjacent" aria-label="{{ 'Series navigation' if lang == 'en' else '시리즈 이동' }}">
+    {% if series_nav.prev %}
+    <a href="{{ series_nav.prev.url }}">
+      <span class="label">{{ '← Previous' if lang == 'en' else '← 이전 글' }}</span>
+      {{ series_nav.prev.title }}
+    </a>
+    {% else %}
+    <span></span>
+    {% endif %}
+    {% if series_nav.next %}
+    <a href="{{ series_nav.next.url }}" style="text-align: right;">
+      <span class="label">{{ 'Next →' if lang == 'en' else '다음 글 →' }}</span>
+      {{ series_nav.next.title }}
+    </a>
+    {% endif %}
+  </nav>
+  {% endif %}
 </article>
+</div>
 {% endblock %}
