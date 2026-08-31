@@ -4,3 +4,4 @@ __pycache__/
 
 # explicitly marked by filename as not for publishing
 content/posts/frame-pacing-1/dontpush
+README.md
