@@ -1,5 +1,5 @@
 ---
-title: "Space Fork"
+title: "Space Escape"
 date: 2025-05-11
 draft: false
 description: "A VR escape room where the puzzles are solved by writing real Python"
@@ -19,7 +19,7 @@ status: "completed"
 
 | Team | Duration | Stack |
 |:-----------|:------------|:------------|
-| 2  | May 2025 ~ Jun 2025 | Unity 2022.3 LTS, XR Interaction Toolkit, C# |
+| 3  | Aug 2025 ~ Dec 2025 | Unity 2022.3 LTS, XR Interaction Toolkit, C# |
 
 A **VR escape room** where the only tool you're given is a keyboard: every
 puzzle is solved by typing real Python-flavored code into an in-world
@@ -88,7 +88,7 @@ for beat instead of the escape room being puzzles in a vacuum.
 
 ## Team
 
-A two-person project — level design, dialogue, and the puzzle/keyboard
+A three-person project — level design, dialogue, and the puzzle/keyboard
 systems were split and merged stage by stage, escape-room-style, right down
 to the commit log (`"merge two keyboard files"`, `"Merge Sungwoo's
 Dialogue"`).

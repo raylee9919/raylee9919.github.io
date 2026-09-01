@@ -1,5 +1,5 @@
 ---
-title: "Space Fork"
+title: "Space Escape"
 date: 2025-05-11
 draft: false
 description: "진짜 파이썬 코드를 입력해서 탈출하는 VR 방탈출 게임"
@@ -19,7 +19,7 @@ status: "completed"
 
 | 인원 | 기간 | 사용 기술 |
 |:-----------|:------------|:------------|
-| 2인  | 2025년 5월 ~ 2025년 6월 | Unity 2022.3 LTS, XR Interaction Toolkit, C# |
+| 3인  | 2025년 8월 ~ 2025년 12월 | Unity 2022.3 LTS, XR Interaction Toolkit, C# |
 
 주어진 도구는 키보드뿐인 **VR 방탈출 게임**. 모든 퍼즐은 게임 속 터미널에
 실제 파이썬 문법을 닮은 코드를 입력해서 풀어야 한다. 고장 난 우주선에서
@@ -81,6 +81,6 @@ VR에서 타이핑은 보통 고역이라, 터미널은 OS 키보드 대신 MRTK
 
 ## 팀
 
-2인 프로젝트로, 레벨 디자인·대사·퍼즐 및 키보드 시스템을 단계별로 나눠
+3인 프로젝트로, 레벨 디자인·대사·퍼즐 및 키보드 시스템을 단계별로 나눠
 작업하고 병합했다. 커밋 로그에도 그 흔적이 고스란히 남아 있다
 (`"merge two keyboard files"`, `"Merge Sungwoo's Dialogue"`).
