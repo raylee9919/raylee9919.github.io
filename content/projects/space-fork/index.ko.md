@@ -11,7 +11,7 @@ tags:
 categories:
   - 게임
 link: "https://github.com/raylee9919/Space-Fork"
-cover: "resources/cover.svg"
+cover: "resources/cover.webp"
 status: "completed"
 ---
 
