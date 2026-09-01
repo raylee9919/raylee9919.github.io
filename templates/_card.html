@@ -5,6 +5,8 @@
     <img src="{{ item.cover }}" alt="" loading="lazy">
     {% if 'UE5' in item.tags %}
     <img class="card-badge" src="/images/icon-unreal.svg" alt="Unreal Engine" title="Unreal Engine">
+    {% elif 'Unity' in item.tags %}
+    <img class="card-badge" src="/images/icon-unity.svg" alt="Unity" title="Unity">
     {% endif %}
   </div>
   {% endif %}
