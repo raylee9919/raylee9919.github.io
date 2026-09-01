@@ -54,6 +54,23 @@ _TABS_CLOSE_RE = re.compile(r"^\s*\{\{<\s*/tabs\s*>\}\}\s*$")
 _TAB_OPEN_RE = re.compile(r'^\s*\{\{<\s*tab\s+label="([^"]*)"\s*>\}\}\s*$')
 _TAB_CLOSE_RE = re.compile(r"^\s*\{\{<\s*/tab\s*>\}\}\s*$")
 
+# #pitch { ... } - a click/swipe-through slide deck (e.g. Problem -> Solution
+# -> Result). Usable in any .md file; a `##` heading starts each new slide
+# (its text becomes the slide's title - no separate markup needed), and the
+# nav chrome/interaction are built client-side by pitch-deck code in main.js,
+# keyed off the .pitch-deck/.pitch-slide markup emitted here.
+#
+#   #pitch {
+#   ## Problem
+#   ...
+#
+#   ## Solution
+#   ...
+#   }
+_PITCH_OPEN_RE = re.compile(r"^\s*#pitch\s*\{\s*$")
+_PITCH_CLOSE_RE = re.compile(r"^\s*\}\s*$")
+_PITCH_SLIDE_RE = re.compile(r"^##\s+(.+?)\s*$")
+
 
 def _parse_shortcode_attrs(raw: str) -> dict[str, str]:
     return dict(re.findall(r'(\w+)="([^"]*)"', raw))
@@ -98,9 +115,34 @@ def preprocess_shortcodes(body: str) -> str:
     out_lines = []
     in_tabs = False
     first_tab = False
+    in_pitch = False
+    pitch_slide_open = False
     for line in body.split("\n"):
+        if in_pitch:
+            if _PITCH_CLOSE_RE.match(line):
+                if pitch_slide_open:
+                    out_lines.append("")
+                    out_lines.append("</div>")
+                out_lines.append("</div>")
+                in_pitch = pitch_slide_open = False
+                continue
+            m = _PITCH_SLIDE_RE.match(line)
+            if m:
+                if pitch_slide_open:
+                    out_lines.append("")
+                    out_lines.append("</div>")
+                title = html_lib.escape(m.group(1), quote=True)
+                out_lines.append(f'<div class="pitch-slide" data-slide-title="{title}" markdown="1">')
+                out_lines.append("")
+                pitch_slide_open = True
+                continue
+            out_lines.append(line)
+            continue
         if _TABS_OPEN_RE.match(line):
-            out_lines.append('<div class="md-tabs">')
+            # outer wrapper needs markdown="1" too, or md_in_html treats the
+            # whole thing as one opaque raw-HTML block and never re-examines
+            # the markdown="1" children nested inside it for markdown.
+            out_lines.append('<div class="md-tabs" markdown="1">')
             in_tabs, first_tab = True, True
             continue
         if _TABS_CLOSE_RE.match(line):
@@ -118,6 +160,11 @@ def preprocess_shortcodes(body: str) -> str:
         if _TAB_CLOSE_RE.match(line):
             out_lines.append("")
             out_lines.append("</details>")
+            continue
+        if _PITCH_OPEN_RE.match(line):
+            # markdown="1" here too - see the note by the tabs wrapper above.
+            out_lines.append('<div class="pitch-deck" data-pitch tabindex="0" markdown="1">')
+            in_pitch = True
             continue
         line = _FIGURE_RE.sub(_figure_repl, line)
         line = _YOUTUBE_RE.sub(_youtube_repl, line)

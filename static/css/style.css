@@ -230,7 +230,10 @@ img { max-width: 100%; border-radius: 6px; }
 .post-tags { margin: .8rem 0; display: flex; flex-wrap: wrap; gap: .4rem; }
 .post-cover { margin: 1.5rem 0; }
 .post-cover img { width: 100%; }
-.repo-link { color: var(--accent); }
+/* Monospace, not the CJK body font - a raw URL reads better as code, and it
+   sidesteps the Noto Sans KR web-font swap (Latin glyph metrics shift once
+   it loads) that's most visible on a long unbroken string like this. */
+.repo-link { color: var(--accent); font-family: var(--font-mono); font-size: .9em; }
 
 .toc {
   border: 1px solid var(--border); border-radius: var(--radius);
@@ -455,6 +458,51 @@ img { max-width: 100%; border-radius: 6px; }
   line-height: 1.5;
   white-space: pre-wrap;
   margin: 0;
+}
+
+/* ---------- pitch deck ({{< pitch >}}/{{< slide >}}) ---------- */
+.pitch-deck { margin: 1.6rem 0; outline: none; }
+.pitch-progress { display: flex; gap: .4rem; margin-bottom: .7rem; }
+.pitch-bar {
+  flex: 1; height: 4px; padding: 0; border: none; border-radius: 999px;
+  background: var(--border); cursor: pointer;
+}
+.pitch-bar.is-current, .pitch-bar.is-done { background: var(--accent); }
+.pitch-viewport {
+  position: relative; border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--bg-elevated); padding: 2.2rem 3.2rem; cursor: pointer;
+  min-height: 10rem; display: grid; align-items: center;
+}
+/* All slides share one grid cell, so the viewport's height is always the
+   tallest slide's height - not just whichever one happens to be active -
+   and switching slides doesn't resize the deck. */
+.pitch-slide {
+  grid-area: 1 / 1; width: 100%; opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity .2s ease;
+}
+.pitch-slide.is-active { opacity: 1; visibility: visible; pointer-events: auto; }
+.pitch-slide > *:first-child { margin-top: 0; }
+.pitch-slide > *:last-child { margin-bottom: 0; }
+.pitch-slide img {
+  display: block; margin: 1.1rem auto 0; max-height: 320px; width: auto;
+  max-width: 100%; border: 1px solid var(--border);
+}
+.pitch-eyebrow {
+  margin: 0 0 .5rem; font-size: .76rem; font-weight: 600; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--accent);
+}
+.pitch-nav {
+  position: absolute; top: 50%; transform: translateY(-50%); width: 2.1rem; height: 2.1rem;
+  border-radius: 999px; border: 1px solid var(--border); background: var(--bg);
+  color: var(--fg); font-size: 1.2rem; line-height: 1; cursor: pointer;
+}
+.pitch-nav:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.pitch-nav:disabled { opacity: .3; cursor: default; }
+.pitch-nav-prev { left: .7rem; }
+.pitch-nav-next { right: .7rem; }
+@media (max-width: 640px) {
+  .pitch-viewport { padding: 1.8rem 1.1rem; }
+  .pitch-nav { display: none; }
 }
 
 /* ---------- footer ---------- */
