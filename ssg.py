@@ -29,8 +29,16 @@ def cmd_build(args):
 
 
 def cmd_serve(args):
-    site = build(Path(args.config))
-    serve(site.output_dir, port=args.port)
+    config_path = Path(args.config)
+    site = build(config_path)
+
+    # Rebuilding to the same output_dir each time is enough - the HTTP
+    # server just reads whatever's on disk per-request, no restart needed.
+    def rebuild():
+        build(config_path)
+
+    watch_paths = [site.content_dir, ROOT / "templates", *site.static_dirs, config_path]
+    serve(site.output_dir, port=args.port, watch_paths=watch_paths, rebuild=rebuild)
 
 
 def cmd_new(args):

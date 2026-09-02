@@ -34,13 +34,8 @@ status: "completed"
 - **온라인 서브시스템 스팀**을 통한 세션 생성 및 참가
 - 체력, 점수, 게임 상태 동기화를 위한 프로퍼티 복제 (Replication)
 - 권한 기반 명령 전달을 위한 RPC (Server, Client, NetMulticast)
-- 게임 흐름:
-```mermaid
-flowchart LR
-    A[로비] --> B[매치 메이킹]
-    B --> C[카운트다운]
-    C --> D[게임 진행]
-```
+- 게임 흐름: **로비** → **매치 메이킹** → **카운트다운** → **게임 진행**
+
 ![Flow](resources/flow.png)
 
 ### 게임플레이

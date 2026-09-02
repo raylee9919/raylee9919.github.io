@@ -5,6 +5,7 @@ from __future__ import annotations
 import datetime
 import html as html_lib
 import re
+import textwrap
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -34,21 +35,10 @@ MD_EXTENSION_CONFIGS = {
 # content ({{< figure >}}, {{< youtube >}}, {{< icon >}}, {{< tabs >}}/{{< tab >}}) --
 
 _FIGURE_RE = re.compile(r"\{\{<\s*figure\s+(.*?)\s*/?>\}\}")
-_YOUTUBE_RE = re.compile(r"\{\{<\s*youtube\s+([\w-]+)\s*>\}\}")
+_YOUTUBE_RE = re.compile(r"\{\{<\s*youtube\s+([\w-]+)(?:\s+(.*?))?\s*/?>\}\}")
 _ICON_RE = re.compile(r"\{\{<\s*icon\s+(.*?)\s*/?>\}\}\s*")
 _ICON_NAMES = {"github", "youtube", "x", "linkedin"}
 
-# ```mermaid fenced blocks need to reach the page as raw, unescaped-by-Pygments
-# text inside a plain <pre class="mermaid"> - the mermaid.js runtime reads
-# that element's textContent and renders its own SVG from it client-side.
-# Handled as a whole-body pass (not line-by-line like the shortcodes below)
-# since a diagram spans multiple lines.
-_MERMAID_RE = re.compile(r"```mermaid\n(.*?)\n```", re.DOTALL)
-
-
-def _mermaid_repl(m: re.Match) -> str:
-    code = html_lib.escape(m.group(1))
-    return f'<pre class="mermaid">{code}</pre>'
 _TABS_OPEN_RE = re.compile(r"^\s*\{\{<\s*tabs\s*>\}\}\s*$")
 _TABS_CLOSE_RE = re.compile(r"^\s*\{\{<\s*/tabs\s*>\}\}\s*$")
 _TAB_OPEN_RE = re.compile(r'^\s*\{\{<\s*tab\s+label="([^"]*)"\s*>\}\}\s*$')
@@ -70,6 +60,50 @@ _TAB_CLOSE_RE = re.compile(r"^\s*\{\{<\s*/tab\s*>\}\}\s*$")
 _PITCH_OPEN_RE = re.compile(r"^\s*#pitch\s*\{\s*$")
 _PITCH_CLOSE_RE = re.compile(r"^\s*\}\s*$")
 _PITCH_SLIDE_RE = re.compile(r"^##\s+(.+?)\s*$")
+
+# #slideshow { ... } - same pitch-deck output as #pitch above, but with each
+# slide written as a brace block (`Title { ... };`) instead of a `##`
+# heading, and the whole thing closed with `};`. The title is optional - a
+# bare `{ ... };` makes an untitled slide (no eyebrow, dot falls back to
+# "Slide N" - same fallback the pitch-deck JS already does for a missing
+# data-slide-title). Content inside a slide can be indented however you
+# like - it's dedented as a block before being handed to markdown, so
+# indentation doesn't get misread as a code block.
+#
+#   #slideshow {
+#       Problem {
+#           ...
+#       };
+#
+#       {
+#           untitled slide
+#       };
+#
+#       Title : align = "cc" {
+#           content aligned center/center instead of the default top-left
+#       };
+#   };
+_SLIDESHOW_OPEN_RE = re.compile(r"^\s*#slideshow\s*\{\s*$")
+_SLIDESHOW_CLOSE_RE = re.compile(r"^\s*\};\s*$")
+_SLIDESHOW_SLIDE_OPEN_RE = re.compile(r"^\s*(.*?)\s*\{\s*$")
+_SLIDESHOW_ALIGN_RE = re.compile(r'^(.*?)\s*:\s*align\s*=\s*"([tcb][lcr])"\s*$')
+_SLIDESHOW_VALIGN_CSS = {"t": "start", "c": "center", "b": "end"}
+_SLIDESHOW_HALIGN_CSS = {"l": "left", "c": "center", "r": "right"}
+
+
+def _parse_slideshow_slide_header(header: str) -> tuple[str, str]:
+    """`Title : align = "tl" ` -> (title, align_code). Align is optional and
+    defaults to "tl" (top-left) - the two chars are {t,c,b}{l,c,r}, matching
+    CSS align-self / text-align on the slide."""
+    m = _SLIDESHOW_ALIGN_RE.match(header)
+    if m:
+        return m.group(1).strip(), m.group(2)
+    return header.strip(), "tl"
+
+
+def _slideshow_align_style(align: str) -> str:
+    valign, halign = align[0], align[1]
+    return f"align-self:{_SLIDESHOW_VALIGN_CSS[valign]};text-align:{_SLIDESHOW_HALIGN_CSS[halign]}"
 
 
 def _parse_shortcode_attrs(raw: str) -> dict[str, str]:
@@ -99,8 +133,11 @@ def _icon_repl(m: re.Match) -> str:
 
 def _youtube_repl(m: re.Match) -> str:
     vid = html_lib.escape(m.group(1), quote=True)
+    attrs = _parse_shortcode_attrs(m.group(2) or "")
+    width = attrs.get("width")
+    style = f' style="max-width:{int(width)}px;margin-left:auto;margin-right:auto"' if width and width.isdigit() else ""
     return (
-        f'<div class="embed-responsive"><iframe src="https://www.youtube-nocookie.com/embed/{vid}" '
+        f'<div class="embed-responsive"{style}><iframe src="https://www.youtube-nocookie.com/embed/{vid}" '
         f'title="YouTube video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" '
         f'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '
         f'allowfullscreen></iframe></div>'
@@ -111,12 +148,16 @@ def preprocess_shortcodes(body: str) -> str:
     """Expand the handful of Hugo shortcodes this content actually uses into
     plain HTML, ahead of markdown conversion. Not a general Hugo shortcode
     engine - just enough to not lose content that was written for one."""
-    body = _MERMAID_RE.sub(_mermaid_repl, body)
     out_lines = []
     in_tabs = False
     first_tab = False
     in_pitch = False
     pitch_slide_open = False
+    in_slideshow = False
+    in_slide = False
+    slide_title = ""
+    slide_align = "tl"
+    slide_lines: list[str] = []
     for line in body.split("\n"):
         if in_pitch:
             if _PITCH_CLOSE_RE.match(line):
@@ -136,8 +177,43 @@ def preprocess_shortcodes(body: str) -> str:
                 out_lines.append("")
                 pitch_slide_open = True
                 continue
+            line = _FIGURE_RE.sub(_figure_repl, line)
+            line = _YOUTUBE_RE.sub(_youtube_repl, line)
+            line = _ICON_RE.sub(_icon_repl, line)
             out_lines.append(line)
             continue
+        if in_slideshow:
+            if in_slide:
+                if _SLIDESHOW_CLOSE_RE.match(line):
+                    title = html_lib.escape(slide_title, quote=True)
+                    style = _slideshow_align_style(slide_align)
+                    out_lines.append(f'<div class="pitch-slide" data-slide-title="{title}" style="{style}" markdown="1">')
+                    out_lines.append("")
+                    # Content is written indented to taste inside `Title { ... };` -
+                    # dedent it as a block so markdown doesn't read it as a code
+                    # block (its 4-space-indent rule).
+                    out_lines.append(textwrap.dedent("\n".join(slide_lines)).strip("\n"))
+                    out_lines.append("")
+                    out_lines.append("</div>")
+                    in_slide = False
+                    slide_lines = []
+                    continue
+                line = _FIGURE_RE.sub(_figure_repl, line)
+                line = _YOUTUBE_RE.sub(_youtube_repl, line)
+                line = _ICON_RE.sub(_icon_repl, line)
+                slide_lines.append(line)
+                continue
+            if _SLIDESHOW_CLOSE_RE.match(line):
+                out_lines.append("</div>")
+                in_slideshow = False
+                continue
+            m = _SLIDESHOW_SLIDE_OPEN_RE.match(line)
+            if m:
+                slide_title, slide_align = _parse_slideshow_slide_header(m.group(1))
+                in_slide = True
+                slide_lines = []
+                continue
+            continue  # blank/stray line between slide blocks - ignore
         if _TABS_OPEN_RE.match(line):
             # outer wrapper needs markdown="1" too, or md_in_html treats the
             # whole thing as one opaque raw-HTML block and never re-examines
@@ -165,6 +241,10 @@ def preprocess_shortcodes(body: str) -> str:
             # markdown="1" here too - see the note by the tabs wrapper above.
             out_lines.append('<div class="pitch-deck" data-pitch tabindex="0" markdown="1">')
             in_pitch = True
+            continue
+        if _SLIDESHOW_OPEN_RE.match(line):
+            out_lines.append('<div class="pitch-deck" data-pitch tabindex="0" markdown="1">')
+            in_slideshow = True
             continue
         line = _FIGURE_RE.sub(_figure_repl, line)
         line = _YOUTUBE_RE.sub(_youtube_repl, line)
