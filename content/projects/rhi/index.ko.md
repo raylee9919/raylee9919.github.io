@@ -147,57 +147,6 @@ float3 tonemap_jodie_reinhard(float3 c) {
 </details>
 
 
-## 에셋
-
-<details markdown="1">
-<summary>셰이더</summary>
-
-JSON 메타데이터와 리플렉션을 기반으로 셰이더를 관리한다.
-
-#### JSON 메타데이터
-
-렌더 타겟, 깊이 버퍼, 컬링 모드, 셰이더 파일 경로 등을 정의.
-
-```json {filename=gbuffer.json}
-{
-    "pipeline" : "Graphics",
-    "name": "GBuffer",
-    "shader": "$PROJECT$/Asset/Shader/HLSL/GBuffer.hlsl",
-    "cull" : "back",
-    "render_targets" : [
-        "R32G32B32A32_FLOAT",
-        "R8G8B8A8_SNORM",
-        "R32G32_FLOAT",
-        "R16_UINT"
-    ],
-    "depth_format" : "D32"
-}
-```
-
-#### 바인드리스 렌더링
-
-루트 시그니처를 하나의 상수 버퍼로 단순화하였다.
-
-```hlsl {filename=gbuffer.hlsl}
-struct Push_Constants {
-    uint vertex_buffer_id;
-    uint transform_id;
-    uint material_id;
-
-    uint transforms_id;
-    uint camera_id;
-    uint anisotropic_sampler_id;
-};
-ConstantBuffer <Push_Constants> push : register(b0);
-```
-
-#### 리플렉션
-
-셰이더와 리소스 정보를 자동으로 추출하여 파이프라인 상태를 생성한다.
-
-</details>
-
-
 ## 갤러리
 
 ![Sponza](resources/gallery-1.png "Sponza scene")
