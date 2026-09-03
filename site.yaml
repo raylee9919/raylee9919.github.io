@@ -42,6 +42,12 @@ author:
   title_ko: "프로그래머, 게임 개발자, 그래픽스 학도"
   avatar: "/images/profile.jpg"
 
+# Leave visitor_log_url unset/empty to disable the visitor beacon (e.g. local/
+# dev builds). See worker/README.md to deploy your own free Cloudflare Worker
+# and fill this in with its URL.
+analytics:
+  visitor_log_url: "https://ssg-visitor-log.seongwoolee.workers.dev"
+
 social:
   - name: "GitHub"
     url: "https://github.com/raylee9919"

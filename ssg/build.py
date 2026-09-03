@@ -202,6 +202,7 @@ class Builder:
                 "description": cfg.get("description", ""),
                 "base_url": self.site.base_url,
                 "social": cfg.get("social", []),
+                "analytics": cfg.get("analytics", {}),
             },
             "author": {
                 "name": author.get(f"name_{lang}", author.get("name", "")),

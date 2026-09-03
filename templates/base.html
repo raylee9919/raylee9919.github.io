@@ -13,6 +13,21 @@
 <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
 <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ home_url }}index.xml">
 {% block extra_head %}{% endblock %}
+{% if site.analytics.visitor_log_url %}
+<script>
+(function () {
+  try {
+    var url = {{ site.analytics.visitor_log_url | tojson }} + "/log";
+    var data = JSON.stringify({ path: location.pathname, referrer: document.referrer });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, new Blob([data], { type: "application/json" }));
+    } else {
+      fetch(url, { method: "POST", body: data, headers: { "Content-Type": "application/json" }, keepalive: true });
+    }
+  } catch (e) {}
+})();
+</script>
+{% endif %}
 </head>
 <body>
 <a class="skip-link" href="#content">Skip to content</a>
