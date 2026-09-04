@@ -19,11 +19,12 @@
   try {
     var url = {{ site.analytics.visitor_log_url | tojson }} + "/log";
     var data = JSON.stringify({ path: location.pathname, referrer: document.referrer });
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(url, new Blob([data], { type: "application/json" }));
-    } else {
-      fetch(url, { method: "POST", body: data, headers: { "Content-Type": "application/json" }, keepalive: true });
-    }
+    // Plain fetch(keepalive), not navigator.sendBeacon() - some ad/privacy
+    // blockers (common on Android) specifically target the Beacon API as a
+    // recognizable tracking primitive and silently drop the call, even when
+    // the destination domain itself isn't blocked. fetch+keepalive survives
+    // page unload the same way sendBeacon does, without that signature.
+    fetch(url, { method: "POST", body: data, headers: { "Content-Type": "application/json" }, keepalive: true, mode: "cors" }).catch(function () {});
   } catch (e) {}
 })();
 </script>
