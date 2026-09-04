@@ -2,6 +2,11 @@ public/
 __pycache__/
 *.pyc
 
+# wrangler CLI's local cache/state (Cloudflare Worker tooling)
+.wrangler/
+worker/.wrangler/
+worker/node_modules/
+
 # explicitly marked by filename as not for publishing
 content/posts/frame-pacing-1/dontpush
 README.md
