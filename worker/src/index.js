@@ -73,9 +73,13 @@ async function handleView(request, env) {
   const keys = list.keys.map((k) => k.name).sort().reverse().slice(0, limit);
   const entries = await Promise.all(keys.map((k) => env.VISITS.get(k, "json")));
 
+  const fmtKST = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false,
+  });
   const rows = entries.filter(Boolean).map((e) => `
     <tr>
-      <td>${esc(e.ts.replace("T", " ").replace(/\.\d+Z$/, "Z"))}</td>
+      <td>${esc(fmtKST.format(new Date(e.ts)))}</td>
       <td>${esc(e.org) || "&mdash;"}</td>
       <td>${esc(e.ip)}</td>
       <td>${esc(e.country)}${e.city ? " / " + esc(e.city) : ""}</td>
@@ -95,7 +99,7 @@ async function handleView(request, env) {
 <body>
 <h1>Visitor log (last ${entries.length})</h1>
 <table>
-<thead><tr><th>Time (UTC)</th><th>Org</th><th>IP</th><th>Country/City</th><th>Path</th><th>Referrer</th></tr></thead>
+<thead><tr><th>Time (KST)</th><th>Org</th><th>IP</th><th>Country/City</th><th>Path</th><th>Referrer</th></tr></thead>
 <tbody>${rows}</tbody>
 </table>
 </body></html>`;
