@@ -21,15 +21,9 @@ The first is placing a `UTextRenderActor` in the world. Under the hood, the actu
 
 Just look at the emissive text on the wall. Details are lost, and thin glyphs don't render correctly. It's intolerable. To get decent results, one must fight through a cryptic collection of options in the font asset, reimport the font, check the result, and repeat until it looks "fine". It's an ad hoc, time-consuming process, and it's especially annoying when you're trying to maintain a high visual standard while designing a level. 
 
-Alternatively, you can draw `UWidgetComponent` in the world. It's crisp, but that comes with its own problem. A `UWidgetComponent` renders a Slate/UMG widget into a render target, which is then disdplayed as a surface in the world. Depending on its redraw settings, that widget may be rendered every frame. That's overkill, in my opinion, for a simple non-interactable piece of text. I don't want to pay the overhead of rendering every simple text element into a render target just to display it in the 3D world. If you have many pieces of text, maintaining a separate render target for each widget can make the approach even less attractive. 
+Alternatively, you can draw `UWidgetComponent` in the world. The quality seems better for some reason, even though it also pre-rasterizes glyphs, but that comes with its own set of problems. A `UWidgetComponent` renders a Slate/UMG widget to a render target, which is then displayed as a surface in the world. Depending on its redraw settings, the widget may be rendered every frame. In my opinion, that's overkill, for a simple non-interactable piece of text. If you have many pieces of text, maintaining a separate render target for each widget can makes the approach even less attractive, and we'll get into why later.
 
-![2](resources/2.png)
-
-See the problem? There is no in-between. So, I decied to roll my own 3D text plugin. First, let's set the goals:
-
-1. Preserve the detail of the original font
-2. Render thin glyphs correctly
-3. Faster than `UWidgetComponent`
+See the problem? There is no in-between. So, I decided to roll my own 3D text plugin, and here are my goals: **preserve the quality while making it fast enough for artists to just drop in the text and call it a day.**
 
 
 
@@ -83,12 +77,50 @@ None of that curve math has actually run yet by the time a pixel gets shaded. `S
 
 
 
+# Performance
+
+Stress test time! I compared 100 *Slug* text boxes against 100 actors with a `UWidgetComponent` attached, each displaying the same text. Both use a fairly complex font with brush-stroke details, which gives `UWidgetComponent` an advantage over *Slug* as the number of curves increases, while `UWidgetComponent` itself is simply sampling the glyph atlas.
+
+The result was a win for a `Slug`, averaging more than 20 FPS. I was skeptical at first, since the computation seemed fairly heavy, but there was more to the story. 
+
+One interesting thing about `UWidgetComponent` was that, no matter how small the text became on screen as the camera retreated, there was virtually no difference in performance. As it turned out, the cost of sampling and rasterization wasn't the main concern. 
+
+<div class="img-row">
+<figure><img src="resources/NoDifference_1.png"><figcaption>48 FPS</figcaption></figure>
+<figure><img src="resources/NoDifference_2.png"><figcaption>48 FPS</figcaption></figure>
+</div>
+
+The graphics queue was waiting for the compute queue to finish its work, after which it could clear the corresponding render target, sample the glyph atlas, and draw to the render target. Binding the render target, clearing it, and writing to it are operations that can't be parallelized away. Each of them is its own pass. There were *N* of them, all processed sequentially, and that was the "real" cost of it.
+
+![PIX_UWidgetComponent](resources/PIX_UWidgetComponent.png)
+
+*Slug* implementation, on the other hand, is highly parallelizable. Also, its computation cost depends on how much screen space the text occupies, since coverage is computed per pixel. In other words, small text on the screen incurs an inifinitesimal amount of computation, as it should.
+
+![PIX_Slug](resources/PIX_Slug.png)
+
+To hammer it home, I tested with *Roboto*, which is a fairly simple font. *Slug* ran at a solid 120 FPS, while `UWidgetComponent` remained the same performance as before. 
+
+<div class="img-row">
+<figure><img src="resources/Roboto.png"><figcaption>Solid 120 FPS</figcaption></figure>
+</div>
+
+
 # Wrapping Up
 
-After all, it was just handful of elbow grease around HarfBuzz and FreeType, along with the usual C++isms, OOP, and cryptic, undocumented, who-knows-what Unreal Engine code. I'd say the algorithm is the real juice, the "real" knowledge worth taking away from this.
+Slug's performance strongly depends on the complexity of the font, so if you're dealing with a font with a lot of detail, it's worth checking the performance first. For general use, it might make sense to simply build an enhanced `TextRenderActor`, but I digress. 
 
-Performance strongly depends on the complexity of the font, thus, I wouldn't call this an inexpensive solution. If the font contains a lot of detail, it's worth checking the performance. Maybe, for general use, it would make sense to remove the render target part from *UWidgetComponent` and turn it into a plugin, but I digress. I am confident, however, that *Slug* delivers the best quality of all the available options.
+I am confident, however, that *Slug* delivers the best quality of all the available options. So let's just smash the problem with a large hammer and call it a day. Just watch out for complex fonts. 
 
-None of the underlying technique is mine. All credit for that goes to *Eric Lengyel*. I simply worked out from his paper and assembled the puzzle pieces. 
+After all, it was just handful of elbow grease around HarfBuzz and FreeType, a bunch of data logistics, and who-knows-what Unreal Engine code. I'd say the algorithm is the real juice, the "real" knowledge worth taking away from this.
+
+That said, none of the underlying technique is mine. All credit for that goes to *Eric Lengyel*. I simply worked it out from his paper and assembled the puzzle pieces. 
 
 ![1](resources/1.png)
+
+# References
+
+- Eric Lengyel, [*GPU-Centered Font Rendering Directly from Glyph Outlines*](https://jcgt.org/published/0006/02/02/paper.pdf), Journal of Computer Graphics Techniques, Vol. 6, No. 2, 2017.
+- [EricLengyel/Slug](https://github.com/EricLengyel/Slug) — reference vertex/pixel shaders for the Slug algorithm.
+- Eric Lengyel, [*A Decade of Slug*](https://terathon.com/blog/decade-slug.html) — the 2026 patent disclaimer that made Slug free to use.
+- [HarfBuzz](https://harfbuzz.github.io/) — text shaping engine.
+- [FreeType](https://freetype.org/) — font outline/glyph rasterization library.
