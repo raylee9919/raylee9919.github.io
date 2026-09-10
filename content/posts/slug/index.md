@@ -87,6 +87,8 @@ None of that curve math has actually run yet by the time a pixel gets shaded. `S
 
 After all, it was just handful of elbow grease around HarfBuzz and FreeType, along with the usual C++isms, OOP, and cryptic, undocumented, who-knows-what Unreal Engine code. I'd say the algorithm is the real juice, the "real" knowledge worth taking away from this.
 
+Performance strongly depends on the complexity of the font, thus, I wouldn't call this an inexpensive solution. If the font contains a lot of detail, it's worth checking the performance. Maybe, for general use, it would make sense to remove the render target part from *UWidgetComponent` and turn it into a plugin, but I digress. I am confident, however, that *Slug* delivers the best quality of all the available options.
+
 None of the underlying technique is mine. All credit for that goes to *Eric Lengyel*. I simply worked out from his paper and assembled the puzzle pieces. 
 
 ![1](resources/1.png)

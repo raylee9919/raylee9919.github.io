@@ -7,5 +7,6 @@ categories: []
 cover: "resources/cover.png "
 ---
 
-There's a hole in the Unreal's 3D text rendering API. What I mean by that is, there are basically two ways to do 3d text rendering in Unreal 
-engine. One is `UTextRenderComponent` and the other is `UWidgetComponent`. 
+Translation in progress. Sorry!
+
+우측 상단에서 언어 전환 후 확인해주세요.
