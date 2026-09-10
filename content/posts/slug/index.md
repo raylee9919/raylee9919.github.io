@@ -7,10 +7,6 @@ categories: []
 cover: "resources/cover.png "
 ---
 
-![Draft](resources/construction.png)
-This is a draft.
-
-
 # Motivation and Goals
 
 Let me introduce two particular ways to render 3D text in Unreal Engine. 
@@ -23,7 +19,7 @@ Just look at the emissive text on the wall. Details are lost, and thin glyphs do
 
 Alternatively, you can draw `UWidgetComponent` in the world. The quality seems better for some reason, even though it also pre-rasterizes glyphs, but that comes with its own set of problems. A `UWidgetComponent` renders a Slate/UMG widget to a render target, which is then displayed as a surface in the world. Depending on its redraw settings, the widget may be rendered every frame. In my opinion, that's overkill, for a simple non-interactable piece of text. If you have many pieces of text, maintaining a separate render target for each widget can makes the approach even less attractive, and we'll get into why later.
 
-See the problem? There is no in-between. So, I decided to roll my own 3D text plugin, and here are my goals: **preserve the quality while making it fast enough for artists to just drop in the text and call it a day.**
+See the problem? There is no in-between. So, I decided to roll my own 3D text plugin, and here's my goal: **preserve the quality while making it fast enough for artists to just drop in the text and call it a day.**
 
 
 
@@ -39,7 +35,7 @@ I learned about *Slug* at the *Better Software Conference 2026*. *Slug* is a GPU
 
 Slug has been used commercially by major game studios, including *Ubisoft* and *Blizzard*. Its licensing status changed in 2026, making it possible for me to use the technology for this project. Instead of baking a glyph atlas ahead of time and hoping it survives whatever size and angle the text happens to be viewed at, I can evaluate the original vector outlines directly during rendering. Perfect.
 
-<img src="resources/tunnel.jpg" style="width: 50%;">
+<img src="resources/tunnel.jpg">
 
 
 
@@ -79,7 +75,7 @@ None of that curve math has actually run yet by the time a pixel gets shaded. `S
 
 # Performance
 
-Stress test time! I compared 100 *Slug* text boxes against 100 actors with a `UWidgetComponent` attached, each displaying the same text. Both use a fairly complex font with brush-stroke details, which gives `UWidgetComponent` an advantage over *Slug* as the number of curves increases, while `UWidgetComponent` itself is simply sampling the glyph atlas.
+I compared 100 *Slug* text boxes against 100 actors with a `UWidgetComponent` attached, each displaying the same text. Both use a fairly complex font with brush-stroke details, which gives `UWidgetComponent` an advantage over *Slug* as the number of curves increases, while `UWidgetComponent` itself is simply sampling the glyph atlas.
 
 The result was a win for a `Slug`, averaging more than 20 FPS. I was skeptical at first, since the computation seemed fairly heavy, but there was more to the story. 
 
@@ -115,12 +111,12 @@ After all, it was just handful of elbow grease around HarfBuzz and FreeType, a b
 
 That said, none of the underlying technique is mine. All credit for that goes to *Eric Lengyel*. I simply worked it out from his paper and assembled the puzzle pieces. 
 
-![1](resources/1.png)
+<div class="img-row">
+<figure><img src="resources/1.png"><figcaption>The quality is impeccable.</figcaption></figure>
+</div>
 
 # References
 
 - Eric Lengyel, [*GPU-Centered Font Rendering Directly from Glyph Outlines*](https://jcgt.org/published/0006/02/02/paper.pdf), Journal of Computer Graphics Techniques, Vol. 6, No. 2, 2017.
 - [EricLengyel/Slug](https://github.com/EricLengyel/Slug) — reference vertex/pixel shaders for the Slug algorithm.
 - Eric Lengyel, [*A Decade of Slug*](https://terathon.com/blog/decade-slug.html) — the 2026 patent disclaimer that made Slug free to use.
-- [HarfBuzz](https://harfbuzz.github.io/) — text shaping engine.
-- [FreeType](https://freetype.org/) — font outline/glyph rasterization library.
