@@ -25,7 +25,7 @@ See the problem? There is no in-between. So, I decided to roll my own 3D text pl
 
 # Prerequisites
 
-In my opinion, a basic understanding of typography and text rendering is necessary to fully grasp what's going on. Familiarity with computer graphics helps as well. 
+A basic understanding of typography and text rendering is necessary to fully grasp what's going on. Familiarity with computer graphics helps as well. 
 
 
 
@@ -77,7 +77,7 @@ None of that curve math has actually run yet by the time a pixel gets shaded. `S
 
 I compared 100 *Slug* text boxes against 100 actors with a `UWidgetComponent` attached, each displaying the same text. Both use a fairly complex font with brush-stroke details, which gives `UWidgetComponent` an advantage over *Slug* as the number of curves increases, while `UWidgetComponent` itself is simply sampling the glyph atlas.
 
-The result was a win for a `Slug`, averaging more than 20 FPS. I was skeptical at first, since the computation seemed fairly heavy, but there was more to the story. 
+The result was a win for a *Slug*, averaging more than 20 FPS. I was skeptical at first, since the computation seemed fairly heavy, but there was more to the story. 
 
 One interesting thing about `UWidgetComponent` was that, no matter how small the text became on screen as the camera retreated, there was virtually no difference in performance. As it turned out, the cost of sampling and rasterization wasn't the main concern. 
 
